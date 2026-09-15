@@ -1,13 +1,27 @@
 # Presentation Writeup: Safety Alignment of Small VLMs via Gradient-Based Sample Selection
-## Fully Cited Research Deck — Zero Fabricated Numbers
+## Fully Cited — All Numbers Extracted Directly from PDFs via OCR
 
 **Researcher**: Aryaman Singh Dev | **Advisor**: Prof. Thao Minh Le (co-author of Bach et al.)  
 **Institution**: Pennsylvania State University  
-**Date**: September 2026
+**Source PDFs on disk**:
+- `2604.17215v1.pdf` — Bach et al. (ACL 2026) — text LLMs only
+- `Safety Alignment for Vision Language Models-with-annotations.pdf` — Nie et al. (arXiv:2405.13581, May 2024) — SafeVLM
+- `VLMGuard-R1 Proactive Safety Alignment for VLMs via Reasoning-Driven Prompt Optimization-with-annotations.pdf` — VLMGuard-R1
 
-> **How to use this document**: Every claim below is grounded in a specific paper, section, or arXiv source.  
-> Anywhere you see a 📎 box, that tells you exactly which table or figure to screenshot from the paper and insert into your slide.  
-> Do NOT use the numbers from RESEARCH_METHODOLOGY_AND_VLM_SPEC.md until you have personally verified them against those tables.
+> **Policy**: Every number in this document was extracted word-for-word from the PDF text.  
+> Every `📎 ATTACH` instruction points to the exact table in the exact paper.  
+> No numbers are estimated or assumed.
+
+---
+
+## WHAT BACH ET AL. (arXiv:2604.17215) DOES AND DOES NOT COVER
+
+Confirmed directly from PDF text, line 2736:
+> *"Our experiments focus on text-only models. Extending gradient-based selection to vision-language models or other modalities requires further investigation."*
+> — Bach et al. (2604.17215v1.pdf), Limitations section
+
+**Bach et al. is exclusively a text LLM paper.** Models: Qwen2.5-7B-Instruct, LLaMA-3.1-8B-Instruct, Qwen3-4B-Instruct.  
+**Your contribution** is extending their procedure to VLMs — this is not in the paper; it is your research question.
 
 ---
 
@@ -17,468 +31,363 @@
 
 **Subtitle**: Extending Bach et al. (ACL 2026, arXiv:2604.17215) to Multimodal Architectures
 
-**Your name, PSU, date**
+**Authors, PSU, September 2026**
 
-> 📎 **No table needed here. Place the Bach et al. paper header (authors + arXiv link) as a footnote on this slide.**
-
----
-
-## SLIDE 2 — The Problem: Why Fine-Tuning Breaks Safety
-
-### ⚠️ IMPORTANT: What Bach et al. Does and Does NOT Cover
-
-**Bach et al. (ACL 2026) works exclusively on text-only LLMs.**
-Models studied: Qwen2.5-7B-Instruct, LLaMA-3.1-8B-Instruct, Qwen3-4B-Instruct.
-The paper's own Limitations section explicitly states:
-> *"Focuses on text-only models (extending to vision-language models requires further investigation)."*
-> — Bach et al., Appendix, Limitations
-
-**This limitation is our research opportunity.** Structure this slide as two clearly separated claims.
+> 📎 No table needed. Print the Bach et al. paper header on the slide as a footnote citation.
 
 ---
 
-### Part A — What Is Confirmed (Text LLMs Only)
+## SLIDE 2 — The Problem (Two Separate Claims)
 
-Fine-tuning a safety-aligned **text LLM** on completely **benign downstream data** degrades its safety guardrails. The training data contains **no harmful content** — yet the model loses its ability to refuse harmful requests.
+### Claim 1: Confirmed for Text LLMs (Bach et al.)
 
-> **"Even fine-tuning on benign, non-malicious datasets can unintentionally weaken safety mechanisms, suggesting that alignment degradation is not merely a consequence of adversarial data but a structural property of fine-tuning itself."**
->
-> *— Bach et al. (ACL 2026), §1 (Introduction), paragraph 2*  
-> **Citation on slide**: Bach et al., arXiv:2604.17215, §1
+Directly from PDF (2604.17215v1.pdf, §1, Introduction):
+> *"Even fine-tuning on benign, non-malicious datasets can unintentionally weaken safety mechanisms, suggesting that alignment degradation is not merely a consequence of adversarial data but a structural property of fine-tuning itself. While the data content is typically benign, the parameter updates they induce can be destructive to the alignment priors."*  
+> — Bach et al., §1
 
----
-
-### Part B — Our Hypothesis (VLMs — Unproven, This is Our Research)
-
-We hypothesize the same mechanism operates in Vision-Language Models — and is likely **worse** because:
-1. VLMs have an additional unaligned parameter group (the multimodal projector) that text-only methods do not address.
-2. Visual inputs provide a second attack pathway that bypasses text safety filters entirely (confirmed: FigStep, arXiv:2311.05608).
-3. Bach et al. themselves identify this as unaddressed future work (their Appendix, Limitations).
-
-**Framing for your slide**: *"Bach et al. proved this for text. We ask: does it hold for vision-language models, and can the same cure work?"*
+**Citation on slide**: Bach et al., arXiv:2604.17215, §1 (Introduction)
 
 ---
 
-### Theoretical Mechanisms (Support Both Parts A and B)
+### Claim 2: Our Research Hypothesis for VLMs (Not Yet Proven — This Is Our Work)
 
-**Mechanism 1 — Elastic Reversion** *(Ji et al., arXiv:2406.06144)*:
-- Models statistically "resist" alignment modifications and rebound toward their pretrained behavior under fine-tuning.
-- The elastic force is proportional to dataset size:
-$$F_{\text{elastic}} \propto |D_i| \cdot \Delta D_{\text{KL}}\left(p_\theta \;\|\; p_{D_i}\right)$$
-- Because the pretraining corpus $|D_p|$ vastly exceeds the alignment dataset $|D_a|$, the pretrained distribution exerts orders-of-magnitude stronger pull on model behavior.
-- *Source: This exact formula and explanation is from Ji et al. (arXiv:2406.06144), cited in Bach et al. §2.2*
+We hypothesize the same mechanism operates in VLMs. The justification is:
+1. Bach et al. explicitly leave this open: *"Extending gradient-based selection to vision-language models... requires further investigation."* (PDF line 2736, Limitations)
+2. VLMs have an additional unaligned pathway — the visual modality — which existing safety methods do not protect. Confirmed by SafeVLM (arXiv:2405.13581):
+   > *"The visual modality of VLMs is vulnerable, with attackers easily bypassing LLMs' safety alignment through visual modality features to launch attacks."*  
+   > — Nie et al. (2405.13581v1, §1 Abstract)
 
-**Mechanism 2 — Safety Basin Geometry** *(Peng et al., NeurIPS 2024, arXiv:2405.17374)*:
-- Safety alignment places model parameters into a localized, flat region of the loss landscape — the **Safety Basin**.
-- Safety basins have **sharp boundaries with step-function collapse**: a single large gradient update can push the model permanently outside the basin, destroying alignment with no graceful degradation.
-- *Source: Bach et al. §2.1, citing Peng et al. (arXiv:2405.17374)*
+**How to frame on slide**: *"Bach et al. proved this for text LLMs. We ask: does the same mechanism operate in VLMs, and can the same data-centric defense work?"*
 
-**Why VLMs Are More Vulnerable**:
-- A text-only LLM has one modality pathway. A VLM has three distinct trainable parameter groups: Vision Encoder, Multimodal Projector, and Language Backbone.
-- Visual inputs (e.g. images with embedded text) bypass text safety filters entirely. This is the **VLM-specific additional attack surface** — confirmed by FigStep *(Gong et al., arXiv:2311.05608)*.
+---
 
-> 📎 **No table on this slide.** Use a schematic diagram (you can draw this):
-> - Safety Basin as a green valley in a 2D loss landscape.
-> - An arrow labeled "High-$G_i$ sample" climbing over the wall into the red danger zone.
-> - Label the wall: "Sharp boundary (step-function collapse)" — this is verbally described in Bach et al. §2.1.
+### Theoretical Mechanisms (Both Claims)
+
+**Mechanism 1 — Elastic Reversion** (Ji et al., arXiv:2406.06144, cited in Bach et al. §1):
+
+From Bach et al. PDF (§1, Introduction):
+> *"(Ji et al., 2024) shows that LLMs exhibit elasticity: a tendency to revert toward pretrained distributions during fine-tuning because the massive pretraining corpora exerts stronger influence than smaller alignment datasets."*
+
+Formula (from Bach et al. §2.2):
+$$F_{\text{elastic}} \propto |D_i| \cdot \Delta D_{\text{KL}}(p_\theta \| p_{D_i})$$
+
+**Mechanism 2 — Safety Basin Geometry** (Peng et al., NeurIPS 2024, arXiv:2405.17374, cited in Bach et al. §2.1):
+
+From Bach et al. PDF (§2.1):
+> *"A critical empirical finding is that safety basins have sharp boundaries: safety exhibits step-function collapse when crossing the boundary, with minimal graceful degradation. This geometry makes large parameter updates particularly dangerous."*
+
+VISAGE score formula, from Bach et al. PDF (§2.1, Eq. 1):
+> *"VISAGE = E_{α~U(-a,a)} [S_max - S(α)] s.t. S < S_max"*  
+> *"Higher VISAGE indicates larger safety basins and more robust alignment."*
+
+> 📎 No table needed on this slide. Sketch the safety basin diagram (green valley, red outside zone) based on the description in §2.1.
 
 ---
 
 ## SLIDE 3 — The Multimodal Attack Surface
 
-### What to write on the slide:
+### Why VLMs Are Uniquely Vulnerable
 
-**Why VLMs Need a Specialized Defense**
+**SafeVLM paper** (PDF: `Safety Alignment for Vision Language Models-with-annotations.pdf`, arXiv:2405.13581, Abstract):
+> *"The visual modality of VLMs is vulnerable, with attackers easily bypassing LLMs' safety alignment through visual modality features to launch attacks."*
 
-In text LLMs, the only attack pathway is through the text prompt. In VLMs, attackers have three independent pathways:
+**FigStep attack** (Gong et al., arXiv:2311.05608):
+Cited in SafeVLM reference list (PDF line 1136):
+> *"Gong, Y., et al. FigStep: Jailbreaking large vision-language models via typographic visual prompts, 2023."*
 
-| Attack Type | Example | Dataset |
+**MM-SafetyBench** (Liu et al., arXiv:2311.17600):
+Cited in SafeVLM reference list (PDF line 1170):
+> *"Liu, X., et al. MM-SafetyBench: A benchmark for safety evaluation of multimodal large language models."*
+
+| Attack Type | Benchmark | Citation |
 |:---|:---|:---|
-| **Text-only jailbreak** | Direct harmful prompt | HarmBench (arXiv:2402.04249), AdvBench (Zou et al., arXiv:2307.15043) |
-| **Visual typographic jailbreak** | Harmful instruction embedded as image text | FigStep (arXiv:2311.05608) |
-| **Multimodal paired attack** | Image + text instruction co-designed to elicit harm | MM-SafetyBench (arXiv:2311.17600): 13 risk categories, 5,040 image-text pairs |
-| **Transfer + diffusion attacks** | LLM-based jailbreaks transferred to vision inputs | JailBreakV-28K (arXiv:2404.03027, COLM 2024) |
+| Text jailbreak | AdvBench | Zou et al. (2023), cited in Bach et al. §5.1 |
+| Text jailbreak | HarmBench | Mazeika et al. (2024), cited in Bach et al. §5.1 |
+| Typographic visual | FigStep | Gong et al. (arXiv:2311.05608) |
+| Multimodal pairs | MM-SafetyBench | Liu et al. (arXiv:2311.17600) |
+| Visual jailbreaks | JailBreakV-28K | Luo et al. (arXiv:2404.03027, COLM 2024) |
+| Object hallucination | POPE | Li et al. (arXiv:2305.10355) |
 
-**FigStep specifically**: Converts a harmful text instruction into an image using OCR/typography. The model reads it as visual text and complies — bypassing all text-level safety filters.
-- *Source: Gong et al., FigStep (arXiv:2311.05608), Section 1 and Section 3*
-
-**MM-SafetyBench**: The primary VLM safety evaluation benchmark.
-- 5,040 image-text pairs across 13 safety-critical scenarios.
-- *Source: Liu et al., MM-SafetyBench (arXiv:2311.17600), Section 2*
-
-> 📎 **ATTACH**: Figure 1 from FigStep (arXiv:2311.05608) — shows the typographic attack pipeline visually.  
-> 📎 **ATTACH**: Table 1 from MM-SafetyBench (arXiv:2311.17600) — shows the 13 risk category breakdown.
+> 📎 **ATTACH**: Figure 1 from FigStep paper (arXiv:2311.05608) — shows the typographic attack pipeline.  
+> 📎 **ATTACH**: Table showing the 13 categories from MM-SafetyBench (arXiv:2311.17600, Table 1 or §2).
 
 ---
 
-## SLIDE 4 — The Foundational Paper: Bach et al. (ACL 2026)
+## SLIDE 4 — Bach et al. Core Findings (Text LLMs — Confirmed Numbers from PDF)
 
-### What to write on the slide:
+### The Three Gradient Classes
 
-**Core Hypothesis** *(Bach et al. §3, paragraph 1)*:
-> "We hypothesize that per-sample gradient magnitude indicates drift risk. High-gradient samples occur where aligned predictions diverge substantially from task targets — precisely where alignment training modified behavior away from pretrained tendencies."
->
-> *Citation: Bach et al. (arXiv:2604.17215), §3, paragraph 1*
+From Bach et al. PDF, §3.1 (confirmed via OCR):
+> *"Table 2 shows high-Gi selection retains only 62-72% of original alignment and increases ASR by 5-9×, while moderate-Gi selection preserves 83-88% with only 1.5-2× ASR increase."*
 
-**The three gradient classes**:
+**Table 2 exact numbers** (extracted directly from 2604.17215v1.pdf):
 
-The per-sample gradient norm for sample $i$ computed at the aligned model $\theta_0$:
-$$G_i = \left\| \nabla_\theta \mathcal{L}(x_i, y_i; \theta_0) \right\|_2$$
+| Model | Selection | VISAGE Score | Basin Retention | ASR↓ |
+|:---|:---|:---:|:---:|:---:|
+| Qwen-2.5-7B | Aligned (no FT) | 78.5 | — | 2.1 |
+| Qwen-2.5-7B | High-$G_i$ | 48.8 | 62.2% | 18.4 |
+| Qwen-2.5-7B | Random | 57.0 | 72.6% | 12.7 |
+| Qwen-2.5-7B | Moderate-$G_i$ | 65.5 | 83.4% | 5.8 |
+| LLaMA-3.1-8B | Aligned (no FT) | 67.7 | — | 3.2 |
+| LLaMA-3.1-8B | High-$G_i$ | 48.9 | 72.2% | 15.1 |
+| LLaMA-3.1-8B | Random | 52.8 | 78.0% | 9.8 |
+| LLaMA-3.1-8B | Moderate-$G_i$ | 59.3 | 87.6% | 4.9 |
 
-| Class | Selection | Effect on Safety | Effect on Task Learning |
-|:---|:---|:---|:---|
-| **Low-$G_i$** | Bottom 20% | Better safety | Worse task (catastrophic forgetting) |
-| **High-$G_i$** | Top 20% | Safety collapses | Moderate task performance |
-| **Moderate-$G_i$** | Middle 20% closest to median | **Best safety** | **Best task performance** |
+*Source: Bach et al. (2604.17215v1.pdf), Table 2, confirmed via PDF text extraction.*
 
-> *Source: Bach et al. §3.1 — "High-Gi selection retains only 62–72% of original alignment... while moderate-Gi selection preserves 83–88%"* (this specific 62–88% range is from §3.1 of the paper text).
+**Caption from paper**: *"High-gradient selection causes the largest degradation (62-72% retention); moderate-gradient selection preserves 83-88% with the lowest ASR."*
 
-**Safety basin retention results**:
-
-> 📎 **ATTACH**: **Table 2 from Bach et al. (arXiv:2604.17215)** — shows VISAGE safety basin retention scores for High-$G_i$, Random, and Moderate-$G_i$.  
-> This is the key table proving the 83–88% vs 62–72% retention difference. Take a screenshot of the entire table.
-
-**Why "low gradient" also fails** *(Bach et al. §3, "Why not low-gradient samples?")*:
-> "Low-Gi provides better safety preservation but consistently trades 0.8–1.9 points of task performance, revealing a Pareto tradeoff."
->
-> *Citation: Bach et al. §3*
+> 📎 **ATTACH**: **Table 2 from 2604.17215v1.pdf** — screenshot the whole table. The numbers above come from it.
 
 ---
 
-## SLIDE 5 — The Mechanism: Why High-$G_i$ Samples Are Dangerous
+## SLIDE 5 — Mechanism: Format Mismatches Drive High-$G_i$
 
-### What to write on the slide:
+From Bach et al. PDF, Appendix (Sample Audit section, line 114):
+> *"High-gradient samples are often format mismatches, not content-based outliers. They are dominated by short-answer tasks where the aligned model's verbose output distribution diverges from terse targets."*
 
-**The Root Cause: Format Mismatches, Not Harmful Content** *(Bach et al. Appendix — Sample Audit)*
+From Bach et al. PDF, §3.2 (Gradient Direction Analysis, confirmed via OCR):
+> *"High-gradient samples exhibit higher directional alignment with the reversion direction compared to moderate-gradient samples in final-layer parameters, though the specific components vary by architecture: V/O projections in Qwen2.5 (TopK-Cosine 0.119 vs 0.104 for V, r = 0.41) and MLP layers in LLaMA (0.104 vs 0.102, r = 0.18). Besides, middle layers show no directional effect in either model (|r| < 0.07, p > 0.3)."*
 
-> "High-gradient samples are often format mismatches, not content-based outliers. They are dominated by short-answer tasks where the aligned model's verbose output distribution diverges from terse targets."
->
-> *Citation: Bach et al. (arXiv:2604.17215), Appendix — Sample Audit section*
+**Table 4 exact numbers** (from 2604.17215v1.pdf, extracted via OCR):
 
-**The Chain of Causation** (as described in Bach et al. §2.2 and §3):
+| Model | Parameter Group | HIGH $G_i$ (TopK-Cosine) | MOD $G_i$ (TopK-Cosine) | r | p |
+|:---|:---|:---:|:---:|:---:|:---:|
+| Qwen2.5-7B | Last_V | 0.119 | 0.104 | 0.41 | < 10⁻³ |
+| Qwen2.5-7B | Last_O | 0.276 | 0.244 | 0.39 | < 10⁻³ |
+| Qwen2.5-7B | Middle | −0.004 | −0.004 | 0.06 | 0.38 |
+| LLaMA-3.1-8B | Last_MLP | 0.104 | 0.102 | 0.18 | < 0.01 |
+| LLaMA-3.1-8B | Last_V | −0.029 | −0.033 | 0.33 | < 10⁻³ |
+| LLaMA-3.1-8B | Middle | −0.020 | −0.024 | 0.03 | 0.72 |
+
+*Source: Bach et al. (2604.17215v1.pdf), Table 4, confirmed via PDF text extraction.*
+
+**Why gradient clipping fails** — from Bach et al. PDF, Appendix ("Why Not Gradient Clipping?"):
+> *"Clipping attenuates step size but still trains on high-gradient samples, meaning the model still receives a learning signal pushing toward pretrained distributions. Our method removes these samples entirely."*
+
+> 📎 **ATTACH**: **Table 4 from 2604.17215v1.pdf** — screenshot the complete table.
+
+---
+
+## SLIDE 6 — The Algorithm (Exactly as in Paper)
+
+**Algorithm 1** from Bach et al. PDF (§4.1, extracted verbatim):
 
 ```
-Safety alignment makes the model verbose, explanatory, and cautious.
-        ↓
-Downstream benchmarks (e.g. SQuAD, MedMCQA) require single-token answers: "Yes", "No", "(A)"
-        ↓
-The aligned model's output distribution diverges sharply from the terse target.
-        ↓
-Cross-entropy loss spikes → Massive gradient norm Gi
-        ↓
-Optimizer applies a large parameter update in the direction of the reversion vector
-        ↓
-Model moves out of the safety basin → Safety collapses
+Algorithm 1: Gradient-Based Sample Selection
+Require: Batch B, model θ, selection ratio ρ = 0.2
+Ensure:  Selected samples S
+
+1. Compute losses: Li = L(xi, yi; θ) for all (xi, yi) ∈ B
+2. Filter: C ← {(xi, yi) : Li ∈ [μL − σL, μL + σL]}
+3. Compute gradient norms: Gi = ‖∇θ L(xi, yi; θ)‖₂ for (xi, yi) ∈ C
+4. μG ← median({Gi})
+5. Select ⌊ρ|B|⌋ samples closest to μG as S
+6. return S
 ```
 
-**Gradient Direction Evidence** *(Bach et al. §3.2)*:
-> "High-gradient samples exhibit higher directional alignment with the reversion direction compared to moderate-gradient samples in final-layer parameters."
->
-> *Citation: Bach et al. §3.2 (Gradient Direction Analysis)*
+*Source: Bach et al. (2604.17215v1.pdf), §4.1, Algorithm 1 — transcribed verbatim.*
 
-**Why gradient clipping doesn't fix this** *(Bach et al. Appendix — "Why Not Gradient Clipping?")*:
-> "Clipping attenuates step size but still trains on high-gradient samples, meaning the model still receives a learning signal pushing toward pretrained distributions. Our method removes these samples entirely."
->
-> *Citation: Bach et al. Appendix, §"Why Not Gradient Clipping?"*
+**Key design choices** — from Bach et al. PDF, §4.1:
+> *"We use median (not mean) for robustness against heavy-tailed gradient distributions. Selection ratio ρ ∈ [0.15, 0.25] balances quality vs. cost; we use ρ = 0.2. Pre-filtering reduces gradient computation by ~32%."*
 
-> 📎 **ATTACH**: **Table 4 from Bach et al. (arXiv:2604.17215)** — shows TopK-Cosine similarity between gradient directions and the reversion vector $\mathbf{r} = \theta_{\text{pre}} - \theta_{\text{align}}$ across parameter groups.
+**Stage 2 (loss pre-filter)** removes samples outside ±1σ of mean loss — this is the `[μL − σL, μL + σL]` range in step 2. This is **not** a fixed threshold τ — it is a dynamic ±1σ window.
 
----
+**Selection ratio robustness** — from Bach et al. PDF, §4.2 (Table 5 in paper):
+> *"Results are robust across ρ ∈ [0.1, 0.4]: ASR remains consistently low (2.7–6.0%), all substantially better than baseline (16.6%) and random sampling (11.8%)."*
 
-## SLIDE 6 — The Algorithm: 3-Stage Gradient-Based Selection
-
-### What to write on the slide:
-
-**Algorithm** *(Bach et al. §4.1)*:
-
-The algorithm operates in three stages on each downstream training dataset $D_t$:
-
-```
-STAGE 1 — Loss-Based Pre-Filtering
-  Remove samples with very low loss (already memorized — zero gradient signal)
-  Remove samples with very high loss (outliers distorting gradient distribution)
-  → Retain the middle portion for gradient computation.
-  
-STAGE 2 — Gradient Norm Computation
-  For each surviving sample i, compute per-sample gradient norm:
-    Gi = || ∇_θ L(xi, yi; θ0) ||₂
-  (Requires micro-batching with batch size = 1 — individual backward passes)
-
-STAGE 3 — Median-Based Selection
-  Compute the median gradient norm M = median({Gi})
-  Select the ρ fraction of samples closest to M:
-    S_t = { i : |Gi − M| is smallest among ρ·N samples }
-  Default: ρ = 0.2 (select 20% of data)
-```
-
-> *Source: Bach et al. §4.1 (Algorithm) and §4.2 (Sensitivity to Selection Ratio)*
-
-**Why median, not mean?** *(Bach et al. §4.1)*:
-> "We use median (not mean) for robustness against heavy-tailed gradient distributions."
->
-> *Citation: Bach et al. §4.1*
-
-**Computational cost** *(Bach et al. Appendix, Limitations section)*:
-> "Focuses on text-only models... and incurs a ~51% computational overhead during training."
->
-> *Citation: Bach et al. Appendix, Limitations*
-
-**Selection ratio robustness** *(Bach et al. §4.2)*:
-> "Results are robust across ρ ∈ [0.1, 0.4]. Smaller ρ (stricter filtering) provides slightly better safety at marginal task performance cost."
->
-> *Citation: Bach et al. §4.2*
-
-> 📎 **ATTACH**: Any figure from Bach et al. showing the selection ratio sensitivity (§4.2). This will be a line graph or bar chart showing ASR vs. different ρ values.
+> 📎 **ATTACH**: **Table 5 from 2604.17215v1.pdf** (sensitivity to ρ on Qwen3-4B) — shows robustness across selection ratios.  
+> 📎 Also attach the Algorithm 1 box from the paper directly — it is clean and citable.
 
 ---
 
-## SLIDE 7 — Main Results: Text LLM Baselines (Bach et al.)
+## SLIDE 7 — Main Results: Full Text LLM Table (Confirmed from PDF)
 
-### What to write on the slide:
+**Table 6 exact numbers** — extracted directly from 2604.17215v1.pdf via OCR. This is the main ASR + capabilities table, checkpoint-averaged, mean ± std over 3 seeds.
 
-**Experimental setup** *(Bach et al. §5.1)*:
-- Models: Qwen2.5-7B-Instruct, LLaMA-3.1-8B-Instruct, Qwen3-4B-Instruct
-- Task sequence: Dolly → GSM8K → MedMCQA → SQuAD v2
-- Safety evaluation: AdvBench, HarmBench, TruthfulQA
-- Baselines: Standard fine-tuning, Random sampling, KL-divergence regularization, O-LoRA, EWC, Gradient Clipping
+| Model | Method | ASR ↓ | TruthfulQA | ARC-C | BoolQ | HellaSwag | Winogrande |
+|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Qwen2.5-7B** | Baseline | 36.7 ± 13.6 | 38.2 ± 1.2 | 58.0 ± 1.5 | 86.4 ± 1.0 | 79.2 ± 0.5 | 72.3 ± 0.3 |
+| | Random | 31.1 ± 14.3 | 38.4 ± 1.1 | 58.1 ± 0.6 | 85.9 ± 2.0 | 79.4 ± 0.3 | 72.3 ± 0.5 |
+| | KL | 33.5 ± 13.4 | 37.8 ± 1.3 | 58.3 ± 1.7 | 86.2 ± 1.4 | 79.1 ± 0.4 | 72.3 ± 0.4 |
+| | O-LoRA | 16.5 ± 19.7 | 42.9 ± 1.0 | 56.6 ± 0.9 | 86.1 ± 1.2 | 79.3 ± 0.4 | 71.8 ± 0.6 |
+| | EWC | 17.4 ± 6.7 | 38.1 ± 0.3 | 57.7 ± 0.4 | 86.8 ± 0.2 | 79.2 ± 0.1 | 71.7 ± 0.3 |
+| | Grad. Clip | 31.2 ± 13.8 | 38.2 ± 1.1 | 57.9 ± 1.4 | 86.3 ± 1.1 | 79.3 ± 0.4 | 72.1 ± 0.4 |
+| | **Moderate-$G_i$** | **10.2 ± 7.1** | 42.5 ± 1.3 | 59.6 ± 1.7 | 86.3 ± 1.5 | 79.9 ± 0.1 | 71.7 ± 0.9 |
+| **LLaMA-3.1-8B** | Baseline | 44.2 ± 22.5 | 37.8 ± 0.7 | 56.3 ± 1.3 | 84.8 ± 1.0 | 77.9 ± 0.5 | 73.8 ± 0.5 |
+| | Random | 31.9 ± 23.3 | 38.6 ± 1.7 | 56.9 ± 1.5 | 84.8 ± 0.6 | 78.0 ± 0.3 | 73.6 ± 0.5 |
+| | KL | 43.6 ± 21.6 | 38.6 ± 0.8 | 56.4 ± 1.5 | 84.9 ± 1.0 | 78.0 ± 0.6 | 74.0 ± 0.5 |
+| | O-LoRA | 23.3 ± 28.0 | 40.0 ± 1.0 | 56.4 ± 1.2 | 84.7 ± 0.6 | 78.3 ± 0.6 | 74.0 ± 0.7 |
+| | EWC | 40.2 ± 11.8 | 38.0 ± 0.3 | 56.0 ± 0.7 | 84.9 ± 0.2 | 78.0 ± 0.1 | 74.0 ± 0.2 |
+| | **Moderate-$G_i$** | **18.3 ± 17.3** | 41.5 ± 2.6 | 56.0 ± 1.5 | 84.8 ± 0.6 | 77.9 ± 0.7 | 73.7 ± 0.5 |
+| **Qwen3-4B** | Baseline | 16.6 ± 7.7 | 39.7 ± 0.7 | 59.8 ± 1.5 | 86.2 ± 0.5 | 71.0 ± 1.2 | 68.7 ± 0.4 |
+| | Random | 11.8 ± 5.8 | 40.1 ± 1.6 | 60.2 ± 1.1 | 85.6 ± 1.2 | 70.6 ± 0.8 | 68.7 ± 0.7 |
+| | KL | 17.8 ± 7.0 | 39.7 ± 0.8 | 59.5 ± 1.2 | 86.0 ± 0.4 | 71.0 ± 1.2 | 69.0 ± 0.7 |
+| | O-LoRA | 6.8 ± 6.5 | 42.3 ± 1.6 | 59.5 ± 1.3 | 85.2 ± 0.8 | 70.7 ± 1.1 | 68.7 ± 0.7 |
+| | EWC | 14.1 ± 3.1 | 40.5 ± 0.2 | 59.3 ± 0.3 | 85.7 ± 0.1 | 71.1 ± 0.1 | 68.9 ± 0.3 |
+| | **Moderate-$G_i$** | **6.0 ± 5.4** | 42.8 ± 1.6 | 59.2 ± 1.3 | 84.6 ± 1.4 | 70.1 ± 0.8 | 68.5 ± 0.8 |
 
-**The headline result** *(Bach et al. §5.2, confirmed from paper text)*:
-> "On Qwen2.5, our method achieves 10.2% ASR versus 36.7% for the baseline — representing a 3.6× reduction."
->
-> *Citation: Bach et al. §5.2, Alignment Preservation*
+*Source: Bach et al. (2604.17215v1.pdf), Table 6. Caption: "Alignment preservation metrics, checkpoint-averaged (mean ± std over three seeds). Safety via attack success rate (ASR, lower better), truthfulness via TruthfulQA, and general capabilities via ARC-Challenge, BoolQ, HellaSwag, and Winogrande."*
 
-**Truthfulness and capabilities** *(Bach et al. §5.2)*:
-> "Moderate-Gi maintains factual accuracy matching or exceeding baselines and competitive general capabilities."
->
-> *Citation: Bach et al. §5.2*
+**From paper text** (§5.2, confirmed via OCR):
+> *"Moderate-Gi achieves 10.2% ASR versus 36.7% (Baseline), 31.1% (Random), 33.5% (KL), and 16.5% (O-LoRA)—representing 3.6× reduction over Baseline. EWC achieves 17.4% ASR but notably worsens safety on LLaMA-3.1 (40.2% vs. 44.2% baseline), demonstrating that Fisher-based regularization, designed to protect task-critical parameters, fails to consistently preserve alignment."*
 
-**Catastrophic forgetting** *(Bach et al. §5.4)*:
-> "Moderate-Gi achieves significant improvements in BWT and reduces the maximum single-step performance drop."
->
-> *Citation: Bach et al. §5.4*
-
-> 📎 **ATTACH**: **Table 5 from Bach et al. (arXiv:2604.17215)** — the main ASR results table comparing all baselines across all three model families. **This is your primary evidence slide table.**
->
-> 📎 **ATTACH**: **Table 6 from Bach et al. (arXiv:2604.17215)** — the BWT/catastrophic forgetting comparison table.
->
-> **Note**: Take the actual numbers directly from these tables. Do NOT use any numbers from other files in this repository — only Tables 5 and 6 from the paper PDF.
-
----
-
-## SLIDE 8 — Our Contribution: Porting to Vision-Language Models
-
-### What to write on the slide:
-
-**The open problem from the paper itself** *(Bach et al. Appendix, Limitations)*:
-> "Focuses on text-only models (extending to vision-language models requires further investigation)."
->
-> *Citation: Bach et al. Appendix, Limitations — this is the exact research gap we address.*
-
-**Our target model**: `Qwen2-VL-2B-Instruct`
-
-**VLM-Specific Architecture Challenge**:
-
-In text LLMs, there is one trainable parameter group (LoRA on language transformer). In VLMs, the architecture decomposes into:
-
-$$\Theta_{\text{VLM}} = \underbrace{\Theta_{\text{Vision}}}_{\text{frozen}} \cup \underbrace{\Theta_{\text{Projector}}}_{\text{trainable}} \cup \underbrace{\Theta_{\text{Language-LoRA}}}_{\text{trainable}}$$
-
-**Our novel contribution — 3 Gradient Attribution Modes**:
-
-The text paper uses a single $G_i$ over language LoRA weights. In VLMs, should $G_i$ be computed over the language model, the multimodal projector, or both?
-
-$$G_i^{(L)} = \left\| \nabla_{\Theta_{\text{LM-LoRA}}} \mathcal{L}_i \right\|_2 \quad \text{(Language attribution — direct port of Bach et al.)}$$
-
-$$G_i^{(P)} = \left\| \nabla_{\Theta_{\text{Projector}}} \mathcal{L}_i \right\|_2 \quad \text{(Projector attribution — cross-modal tension)}$$
-
-$$G_i^{(J)} = \sqrt{\left(G_i^{(L)}\right)^2 + \lambda \left(G_i^{(P)}\right)^2} \quad \text{(Joint — holistic VLM signal)}$$
-
-> **Research hypothesis**: High $G_i^{(P)}$ may specifically indicate visual grounding failures (visual-text projector mismatch), while high $G_i^{(L)}$ replicates the format-mismatch mechanism from text LLMs. The Joint mode $G_i^{(J)}$ accounts for both simultaneously.
->
-> *This is our original formulation. There is no prior paper to cite — this is the novel ablation study we will publish.*
-
-**Critical implementation detail — Multimodal Label Masking**:
-
-Cross-entropy loss must be computed **only on target response tokens**. Visual tokens and prompt tokens must be masked to $-100$:
-- Without masking: $G_i$ is dominated by visual reconstruction loss, not task-response mismatch.
-- With masking: $G_i$ correctly measures only the alignment-relevant divergence on the model's answer.
-
-> 📎 **No table to attach on this slide.** Draw a diagram of the Qwen2-VL-2B architecture showing the three parameter groups, which are frozen (ViT), and where gradients are intercepted (Projector, Language LoRA).
+> 📎 **ATTACH**: **Table 6 from 2604.17215v1.pdf** — screenshot the whole table. The numbers above were extracted verbatim.
 
 ---
 
-## SLIDE 9 — 4-Task Continual Curriculum for VLMs
+## SLIDE 8 — Continual Learning / BWT Results (Confirmed from PDF)
 
-### What to write on the slide:
+**Table 8 exact numbers** — extracted directly from 2604.17215v1.pdf via OCR:
 
-**The task sequence mirrors Bach et al.'s 4 text domains** *(Bach et al. §5.1)*, replacing each text dataset with a multimodal equivalent:
+| Model | Method | Avg Perf | BWT ↑ | FM ↓ | Max Drop ↓ |
+|:---|:---|:---:|:---:|:---:|:---:|
+| **LLaMA-3.1-8B** | Baseline | 46.5 | +0.2 | −0.2 | 8.4 |
+| | Random | 46.8 | +0.8 | −0.8 | 4.6 |
+| | KL | 46.4 | −1.1 | 1.1 | 8.7 |
+| | O-LoRA | 47.9 | +6.4 | −4.5 | — |
+| | **Moderate-$G_i$** | 46.4 | **−1.7** | 1.7 | **5.4** |
+| **Qwen3-4B** | Baseline | 54.2 | −18.5 | 32.5 | 18.5 |
+| | Random | 55.0 | −19.8 | 23.2 | 19.8 |
+| | KL | 54.8 | −15.5 | 26.0 | 15.5 |
+| | O-LoRA | 58.8 | −12.4 | 15.3 | 12.4 |
+| | **Moderate-$G_i$** | **58.1** | **−4.3** | **5.6** | **4.3** |
 
-| Stage | Bach et al. Text Task | Our VLM Equivalent | Modality Challenge |
-|:---|:---|:---|:---|
-| 1 | Dolly (instruction following) | **LLaVA-Instruct-150K** | General visual instruction following |
-| 2 | GSM8K (math reasoning) | **MathVista** | Visual-mathematical reasoning from charts/diagrams |
-| 3 | MedMCQA (medical QA) | **SLAKE / VQA-RAD** | Clinical image understanding and medical VQA |
-| 4 | SQuAD v2 (reading comprehension) | **DocVQA** | Dense document OCR and layout reasoning |
+*Source: Bach et al. (2604.17215v1.pdf), Table 8. Caption confirmed via OCR: "Moderate-Gi achieves 14.2% BWT improvement and 5.8× reduction in max drop on Qwen3."*
 
-> *Mapping rationale: This analogy is our own contribution. The text task sequence is from Bach et al. §5.1.*
+**From paper text** (confirmed via OCR, around line 1243):
+> *"Moderate-Gi achieves 14.2% BWT improvement and 5.8× reduction in max drop on Qwen3."*
 
-> 📎 **No table to attach.** You can create a simple 4-box timeline diagram for this slide (text + image examples for each task type).
+> 📎 **ATTACH**: **Table 8 from 2604.17215v1.pdf** — screenshot the whole table.
 
 ---
 
-## SLIDE 10 — Evaluation Suite
+## SLIDE 9 — HarmBench Results (Confirmed from PDF)
 
-### What to write on the slide:
+**Table 9 exact numbers** — extracted from 2604.17215v1.pdf:
 
-We evaluate three orthogonal properties at each checkpoint after every task:
+| Method | HarmBench ASR ↓ |
+|:---|:---:|
+| Baseline | 27.8 (3.7) |
+| Random | 17.2 (5.6) |
+| KL | 27.7 (1.0) |
+| EWC | 31.0 (6.7) |
+| O-LoRA | 10.0 (1.4) |
+| **Moderate-$G_i$** | **5.0 (3.4)** |
 
-### Battery 1: Safety Metrics
+*Source: Bach et al. (2604.17215v1.pdf), Table 9. Model: LLaMA-3.1-8B. Caption: "HarmBench ASR on LLaMA-3.1-8B across the full continual learning pipeline."*
 
-| Benchmark | What it tests | Source |
+From paper text (§5.2):
+> *"Our method achieves 5.6× lower ASR than baseline on HarmBench."*
+
+> 📎 **ATTACH**: **Table 9 from 2604.17215v1.pdf**.
+
+---
+
+## SLIDE 10 — SafeVLM: The Existing VLM Safety Approach We Are Comparing Against
+
+**Paper**: Nie et al., *Safety Alignment for Vision Language Models*, arXiv:2405.13581  
+**PDF on disk**: `Safety Alignment for Vision Language Models-with-annotations.pdf`
+
+**What they do** (from PDF Abstract, confirmed via OCR):
+> *"We enhance the existing VLMs' visual modality safety alignment by adding safety modules, including a safety projector, safety tokens, and a safety head, through a two-stage training process, effectively improving the model's defense against risky images."*
+
+**Their results on LLaVA-v1.5-7B** (from PDF Table 3 + Table 4, extracted via OCR):
+
+| Method | AdvBench (Vanilla) ↓ | AdvBench (Suffix Injection) ↓ | XSTest Unsafe ↓ | RTVLM Score ↑ |
+|:---|:---:|:---:|:---:|:---:|
+| LLaVA-v1.5-7B (baseline) | 6.45% | 78.27% | 26.50% | 6.27 |
+| **SafeVLM** | **1.72%** | **67.56%** | **7.46%** | **8.26** |
+| SafeVLM (+LoRA) | 1.90% | 69.86% | 6.96% | — |
+
+*Source: Nie et al. (arXiv:2405.13581), Tables 3 & 4, confirmed via PDF text extraction.*
+
+**Key difference from our approach**:
+- SafeVLM adds new architectural modules (safety projector, safety tokens, safety head) — requires architectural modification.
+- Our approach (Moderate-$G_i$ adapted to VLMs) requires **zero architectural changes**, no curated safety data at adaptation steps.
+
+> 📎 **ATTACH**: Table 3 from `Safety Alignment for Vision Language Models-with-annotations.pdf` — shows AdvBench and XSTest ASR numbers.
+
+---
+
+## SLIDE 11 — Our VLM Extension: Methodology
+
+### What Changes When Going Text LLM → VLM
+
+In Bach et al.'s text LLM, trainable parameters are homogeneous LoRA adapters on language attention/MLP layers. In VLMs, the architecture decomposes:
+
+$$\Theta_{\text{VLM}} = \underbrace{\Theta_{\text{Vision Encoder}}}_{\text{frozen}} \cup \underbrace{\Theta_{\text{Projector}}}_{\text{trainable}} \cup \underbrace{\Theta_{\text{Language LoRA}}}_{\text{trainable}}$$
+
+### Our 3 Gradient Attribution Modes (Novel Contribution)
+
+This is our formulation — no prior paper has done this ablation for VLMs:
+
+$$G_i^{(L)} = \left\| \nabla_{\Theta_{\text{LM-LoRA}}} \mathcal{L}_i \right\|_2 \quad \text{(Language: direct port of Bach et al.)}$$
+
+$$G_i^{(P)} = \left\| \nabla_{\Theta_{\text{Projector}}} \mathcal{L}_i \right\|_2 \quad \text{(Projector: cross-modal alignment tension)}$$
+
+$$G_i^{(J)} = \sqrt{\left(G_i^{(L)}\right)^2 + \lambda \left(G_i^{(P)}\right)^2} \quad \text{(Joint: combined VLM signal)}$$
+
+Justified by SafeVLM finding (PDF, §3.2):
+> *"Projectors play a [key] role... the features processed by the existing pre-trained projectors lack safety alignment."*  
+> — Nie et al. (2405.13581), §3.2
+
+### Critical VLM Implementation: Label Masking
+
+Bach et al.'s Algorithm 1 computes $G_i = \|\nabla_\theta \mathcal{L}(x_i, y_i; \theta)\|_2$ on the response tokens $y_i$. In VLMs, the input contains visual tokens that must be masked to $-100$ to prevent the gradient from being dominated by image reconstruction loss instead of task-response alignment.
+
+> 📎 No table needed on this slide. Draw the Qwen2-VL-2B architecture showing frozen ViT, trainable projector, and LoRA language backbone.
+
+---
+
+## SLIDE 12 — Task Sequence and Execution Plan
+
+**Our task sequence** (analogue of Bach et al.'s Dolly → GSM8K → MedMCQA → SQuAD v2):
+
+| Stage | Bach et al. Text Task | Our VLM Equivalent |
 |:---|:---|:---|
-| **MM-SafetyBench** | 5,040 image-text pairs across 13 multimodal risk scenarios | Liu et al., arXiv:2311.17600, §2 |
-| **FigStep** | Typographic image jailbreaks via OCR exploitation | Gong et al., arXiv:2311.05608, §3 |
-| **JailBreakV-28K** | Diverse visual jailbreaks (transfer, diffusion, OCR) | Luo et al., arXiv:2404.03027, COLM 2024 |
-| **HarmBench (text slice)** | 510+ standardized red-teaming queries with Llama-Guard-3-8B judge | Mazeika et al., arXiv:2402.04249 |
+| 1 | Dolly (instruction following) | LLaVA-Instruct-150K |
+| 2 | GSM8K (math reasoning) | MathVista |
+| 3 | MedMCQA (medical QA) | SLAKE / VQA-RAD |
+| 4 | SQuAD v2 (reading comprehension) | DocVQA |
 
-### Battery 2: Truthfulness & Hallucination
+*Source for text tasks: Bach et al. §5.1. VLM analogues are our design.*
 
-| Benchmark | What it tests | Source |
-|:---|:---|:---|
-| **POPE** | Object hallucination (random, popular, adversarial splits) | Li et al., arXiv:2305.10355 |
-| **MMHal-Bench** | Hallucination severity scoring | Bird et al. |
+**Phase 1 (Colab T4 — Active)**: Single task, 10% calibration subsample. Verify Moderate-$G_i^{(L)}$ vs Random vs High-$G_i$ on FigStep ASR.
 
-### Battery 3: Task Capability
-
-Evaluate downstream task accuracy on LLaVA-Bench, MathVista, VQA-RAD, DocVQA to ensure Moderate-$G_i$ does not sacrifice multimodal capability.
-
-**Safety Judge**: Llama-Guard-3-8B classifies each response as safe or unsafe.  
-*Used in Bach et al. §5.1 for AdvBench/HarmBench evaluation.*
-
-**Metric formulas**:
-
-$$\text{ASR} = \frac{\text{Number of unsafe responses}}{M} \times 100\%$$
-
-$$\text{BWT} = \frac{1}{T-1}\sum_{i=1}^{T-1}(R_{T,i} - R_{i,i})$$
-
-*(Backward Transfer measures how much earlier task performance degrades after training subsequent tasks. Closer to 0 is better.)*
-
-> 📎 **ATTACH**: Table 1 from MM-SafetyBench (arXiv:2311.17600) — 13 category breakdown.  
-> 📎 **ATTACH**: Figure from HarmBench (arXiv:2402.04249) showing the benchmark taxonomy — this shows why it's the SOTA safety evaluation standard.
+**Phase 2 (Campus Cluster — Pending clearance)**: Full 4-task sequence with all attribution mode ablations and SOTA baselines.
 
 ---
 
-## SLIDE 11 — SOTA Baseline Comparison & Why Data-Centric Wins
+## SLIDE 13 — Summary
 
-### What to write on the slide:
+### Confirmed from papers (text LLMs):
+- Fine-tuning on benign data causes alignment drift — proved by Bach et al. (arXiv:2604.17215).
+- Moderate-$G_i$ cuts Qwen2.5 ASR from **36.7% to 10.2%** (3.6× reduction) — Bach et al. Table 6.
+- Safety basin retention: **83–88% vs 62–72%** for High-$G_i$ — Bach et al. Table 2.
+- BWT improvement on Qwen3: from **−18.5% to −4.3%** — Bach et al. Table 8.
 
-**Six families of methods** for preserving safety during fine-tuning:
+### Our contribution (VLMs — to be experimentally verified):
+- First extension of gradient-based selection to VLMs.
+- First ablation of gradient attribution across Language LoRA vs Multimodal Projector.
+- Open challenge explicitly called out in Bach et al. Appendix (Limitations, line 2736 of PDF).
 
-| Family | Method | Mechanism | Key Limitation |
+> 📎 **ATTACH**: Table 2 and Table 6 from 2604.17215v1.pdf together on this summary slide.
+
+---
+
+## Quick Reference: Which PDF, Which Table
+
+| Slide | What to screenshot | PDF filename | Table/Figure |
 |:---|:---|:---|:---|
-| **Data-centric (Ours)** | **Moderate-$G_i$** | Filter training samples by gradient norm | ~51% training overhead; 0 inference overhead |
-| Regularization | EWC, KL-Divergence | Penalize parameter drift from $\theta_0$ | Protects task but fails to fully prevent alignment drift (Bach et al. §5.2) |
-| Parameter isolation | O-LoRA, Safe LoRA | Orthogonal subspace updates | Requires custom LoRA setups; high variance across tasks |
-| Safety replay | VLGuard mix | Add 5–10% safety data at each task | Requires curated safety dataset at every adaptation step |
-| Post-hoc | SafeLoRA, Antidote | Project weights back to safe subspace after training | Adds post-training optimization step; degrades task performance |
-| Inference-time | VLMGuard-R1, system prompts | Reasoning-driven output guardrails | Adds inference latency; does not fix underlying parameter drift |
-
-> *Source for baseline taxonomy: Bach et al. §5.1 lists EWC, KL-reg, O-LoRA, Gradient Clipping as their comparisons. VLGuard is from Zong et al. (ICML 2024, arXiv:2402.02207). SaLoRA is from arXiv:2501.01774 (ICLR 2025).*
-
-**Key advantage of data-centric approach**:
-- Requires **no curated safe data** at each adaptation step.
-- Requires **no architectural changes**.
-- Adds **zero inference overhead**.
-- Works on any benign downstream dataset.
-
-> *Source: Bach et al. Abstract and §1 (Introduction), paragraph 4*
-
-> 📎 **ATTACH**: **Table 5 from Bach et al. (arXiv:2604.17215)** — shows all baseline ASR numbers side by side (the same table as Slide 7). On this slide, highlight Moderate-$G_i$ vs. EWC and O-LoRA specifically.
->
-> 📎 **ATTACH**: **Table 6 from Bach et al. (arXiv:2604.17215)** — shows BWT across all baselines.
-
----
-
-## SLIDE 12 — Execution Plan (Phase 1 Colab, Phase 2 Cluster)
-
-### What to write on the slide:
-
-**Phase 1: Free Compute Hypothesis Check** *(per advisor directive, Sept 2026)*
-
-- **Model**: Qwen2-VL-2B-Instruct (4-bit QLoRA — reduces VRAM below 12 GB)
-- **Task**: LLaVA-Instruct-150K at 10% calibration subsample (~15,000 samples)
-- **Compute**: Free Google Colab T4 GPU
-- **Goal**: Verify that Moderate-$G_i$ selection, when applied to multimodal inputs with proper label masking, produces a meaningfully different safety basin retention than High-$G_i$ and Random selection.
-- **What we measure**: FigStep ASR and MM-SafetyBench ASR (subsampled 200 pairs) on the checkpoint after Task 1 only.
-- **Decision gate**: If Moderate-$G_i$ shows even a relative ASR reduction vs. Random, the hypothesis is confirmed and Phase 2 proceeds.
-
-**Phase 2: Full 4-Task Sequence** *(pending cluster clearance)*
-
-- Full LLaVA-150K → MathVista → SLAKE → DocVQA sequence.
-- Full ablation: $G_i^{(L)}$ vs. $G_i^{(P)}$ vs. $G_i^{(J)}$.
-- Full SOTA baselines: Full FT, EWC, KL-reg, VLGuard replay, SaLoRA, O-LoRA.
-- Full evaluation: 5,040 MM-SafetyBench + 1,000 FigStep + POPE + task benchmarks.
-
-> 📎 **No table here.** Use a simple two-row timeline diagram: "Phase 1 (Now) → Phase 2 (Cluster)" with bullet points for each.
-
----
-
-## SLIDE 13 — Summary & Contributions
-
-### What to write on the slide:
-
-**What we established**:
-
-1. Fine-tuning aligned VLMs on benign data causes safety collapse through elastic reversion and safety basin escape.
-   - *Sources: Bach et al. §1–§3; Ji et al. (arXiv:2406.06144); Peng et al. (arXiv:2405.17374)*
-
-2. In text LLMs, selecting the 20% of training samples closest to the median gradient norm (Moderate-$G_i$) preserves 83–88% of the safety basin while cutting ASR from 36.7% to 10.2% on Qwen2.5.
-   - *Source: Bach et al. §3.1 and §5.2 — confirm exact numbers from Tables 2 and 5*
-
-3. VLMs face an additional multimodal attack surface (FigStep, MM-SafetyBench) that text-only defenses cannot address.
-   - *Sources: FigStep (arXiv:2311.05608), MM-SafetyBench (arXiv:2311.17600)*
-
-4. We extend Moderate-$G_i$ to VLMs via three novel gradient attribution modes ($G_i^{(L)}, G_i^{(P)}, G_i^{(J)}$) and a strict multimodal label masking protocol.
-   - *Source: Our original contribution — addresses Bach et al. Appendix Limitations (open future work)*
-
-**What we will determine experimentally**:
-- Whether the format-mismatch mechanism transfers from text LLMs to multimodal settings.
-- Which attribution mode ($G_i^{(L)}$, $G_i^{(P)}$, or $G_i^{(J)}$) best predicts multimodal safety drift.
-
-> 📎 **ATTACH on this slide**: **Table 2 from Bach et al.** (safety basin retention) next to a simple visual of the VLM architecture — to show the "problem confirmed for text" + "our extension to multimodal" contrast.
-
----
-
-## Paper-to-Slide Citation Checklist
-
-Use this to know exactly which paper section and table to open before each slide:
-
-| Slide | Claims That Need a Table/Figure | Which File | Exact Location |
-|:---|:---|:---|:---|
-| Slide 2 | Safety basin sharp boundaries | Bach et al. (2604.17215v1.pdf) | §2.1 — read the paragraph, no table |
-| Slide 2 | Elastic force formula | Ji et al. (arXiv:2406.06144) | §3, Eq. for $F_{\text{elastic}}$ |
-| Slide 3 | FigStep attack example | FigStep PDF (arXiv:2311.05608) | Figure 1 — screenshot this |
-| Slide 3 | MM-SafetyBench 13 categories | MM-SafetyBench PDF (arXiv:2311.17600) | Table 1 or Section 2 — screenshot this |
-| Slide 4 | Safety basin retention 62–88% | Bach et al. (2604.17215v1.pdf) | **Table 2** — screenshot this whole table |
-| Slide 5 | Gradient direction alignment with reversion vector | Bach et al. (2604.17215v1.pdf) | **Table 4** — screenshot this |
-| Slide 6 | Selection ratio robustness ρ ∈ [0.1, 0.4] | Bach et al. (2604.17215v1.pdf) | §4.2 — look for figure or table |
-| Slide 7 | 10.2% vs 36.7% ASR headline | Bach et al. (2604.17215v1.pdf) | **Table 5** — screenshot the Qwen2.5 rows |
-| Slide 7 | BWT results | Bach et al. (2604.17215v1.pdf) | **Table 6** — screenshot this |
-| Slide 10 | MM-SafetyBench category list | MM-SafetyBench PDF (arXiv:2311.17600) | Table 1 |
-| Slide 11 | All baseline ASR results | Bach et al. (2604.17215v1.pdf) | **Table 5** — full table |
-| Slide 11 | All baseline BWT results | Bach et al. (2604.17215v1.pdf) | **Table 6** — full table |
-| Slide 13 | 83–88% retention + 10.2% ASR | Bach et al. (2604.17215v1.pdf) | Table 2 + Table 5 |
-
----
-
-## Papers You Need Open While Building Slides
-
-| Paper | arXiv | Key Table/Section | When You Need It |
-|:---|:---|:---|:---|
-| Bach et al. — Main paper | 2604.17215 (PDF on disk) | Table 2, Table 4, Table 5, Table 6, §3.1, §4.1, Appendix | Slides 4, 5, 6, 7, 11, 13 |
-| Ji et al. — Elasticity | arXiv:2406.06144 | §3, elastic force formula | Slide 2 |
-| Peng et al. — VISAGE | arXiv:2405.17374 | §3, Figure 2 (loss landscape) | Slide 2 |
-| Gong et al. — FigStep | arXiv:2311.05608 | Figure 1, Table 1 | Slide 3 |
-| Liu et al. — MM-SafetyBench | arXiv:2311.17600 | Table 1, §2 | Slides 3, 10 |
-| Luo et al. — JailBreakV-28K | arXiv:2404.03027 | §2 overview | Slide 10 |
-| Mazeika et al. — HarmBench | arXiv:2402.04249 | Benchmark overview | Slide 10 |
-| Li et al. — POPE | arXiv:2305.10355 | §3 | Slide 10 |
+| 4 | Safety basin / VISAGE retention numbers | `2604.17215v1.pdf` | **Table 2** |
+| 5 | Gradient direction / reversion vector alignment | `2604.17215v1.pdf` | **Table 4** |
+| 6 | Algorithm pseudocode | `2604.17215v1.pdf` | **Algorithm 1 box** |
+| 6 | Selection ratio sensitivity | `2604.17215v1.pdf` | **Table 5** |
+| 7 | Main ASR + capability results | `2604.17215v1.pdf` | **Table 6** |
+| 8 | BWT / forgetting metrics | `2604.17215v1.pdf` | **Table 8** |
+| 9 | HarmBench generalization | `2604.17215v1.pdf` | **Table 9** |
+| 10 | SafeVLM text attack results | `Safety Alignment for Vision Language Models-with-annotations.pdf` | **Table 3** |
+| 10 | SafeVLM multimodal benchmark | `Safety Alignment for Vision Language Models-with-annotations.pdf` | **Table 4** |
+| 3 | FigStep attack example | arXiv:2311.05608 (download PDF) | **Figure 1** |
+| 3 | MM-SafetyBench 13 categories | arXiv:2311.17600 (download PDF) | **Table 1** |
