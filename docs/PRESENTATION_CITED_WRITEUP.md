@@ -84,32 +84,73 @@ VISAGE score formula, from Bach et al. PDF (§2.1, Eq. 1):
 
 ---
 
-## SLIDE 3 — The Multimodal Attack Surface
+## SLIDE 3 — The Full VLM Evaluation Suite
 
-### Why VLMs Are Uniquely Vulnerable
+### Why VLMs Need a Broader Benchmark Suite Than Text LLMs
 
-**SafeVLM paper** (PDF: `Safety Alignment for Vision Language Models-with-annotations.pdf`, arXiv:2405.13581, Abstract):
+Bach et al. evaluate on AdvBench + HarmBench (text-only attacks) and TruthfulQA + ARC/BoolQ/HellaSwag/Winogrande (capabilities). 
+For VLMs, each of these needs a **multimodal equivalent** because visual inputs create entirely new attack and failure surfaces. None of the benchmarks below are redundant — each covers a distinct axis that the others cannot.
+
+From SafeVLM (PDF `Safety Alignment for Vision Language Models-with-annotations.pdf`, arXiv:2405.13581, Abstract):
 > *"The visual modality of VLMs is vulnerable, with attackers easily bypassing LLMs' safety alignment through visual modality features to launch attacks."*
 
-**FigStep attack** (Gong et al., arXiv:2311.05608):
-Cited in SafeVLM reference list (PDF line 1136):
-> *"Gong, Y., et al. FigStep: Jailbreaking large vision-language models via typographic visual prompts, 2023."*
+---
 
-**MM-SafetyBench** (Liu et al., arXiv:2311.17600):
-Cited in SafeVLM reference list (PDF line 1170):
-> *"Liu, X., et al. MM-SafetyBench: A benchmark for safety evaluation of multimodal large language models."*
+### Battery 1: Safety / Attack Success Rate (4 Benchmarks)
 
-| Attack Type | Benchmark | Citation |
+Analog to Bach et al.'s **AdvBench + HarmBench**.
+
+| # | Benchmark | What It Tests | Key Stat | Why Not Redundant | Citation |
+|:---|:---|:---|:---|:---|:---|
+| 1 | **MM-SafetyBench** | Image-text pair safety across 13 risk categories | 5,040 text-image pairs, 13 scenarios | Closest scope match to AdvBench (520 harmful queries) — volume + breadth primary benchmark | Liu et al., arXiv:2311.17600 |
+| 2 | **FigStep** | Typographic jailbreak: harmful instruction embedded as image text, paired with benign text prompt | — | **No text-only equivalent.** Attacks via visual OCR channel, completely bypasses text safety filters. Distinct attack shape. | Gong et al., arXiv:2311.05608 |
+| 3 | **JailBreakV-28K** | 28K visual jailbreaks across 16 harm scenarios: transfer, diffusion, OCR | 28,000 samples, 16 harm scenarios (verified from arXiv:2404.03027) | Mirrors HarmBench's mix of direct + contextual + optimization-based — large-scale adversarial robustness test | Luo et al., arXiv:2404.03027, COLM 2024 |
+| 4 | **HarmBench (text slice)** | Direct, contextual, and optimization-based text attacks on VLM's language decoder | 510+ queries, Llama-Guard-3-8B judge | VLM language decoder is still attackable through text alone — same judge as Bach et al. ensures comparability | Mazeika et al., arXiv:2402.04249 |
+
+*Note: AdvBench not used as primary because MM-SafetyBench directly supersedes it for multimodal settings.*
+
+---
+
+### Battery 2: Truthfulness / Hallucination (2 Benchmarks)
+
+Analog to Bach et al.'s **TruthfulQA**.
+
+| # | Benchmark | What It Tests | Why This Role | Citation |
+|:---|:---|:---|:---|:---|
+| 1 | **MMHal-Bench** *(primary)* | Open-ended, model-graded visual hallucination — 8 question types per image across 12 image types | Closest in spirit to TruthfulQA's open-ended factuality format — tests whether the model fabricates visual content | Bird et al., arXiv:2309.14525 |
+| 2 | **POPE** *(secondary)* | Yes/No object existence probing across random, popular, and adversarial splits | Simpler binary check — supplements MMHal-Bench as a standardized signal; widely used, easy to compare across papers | Li et al., arXiv:2305.10355 |
+
+*These two are complementary, not redundant: MMHal-Bench = open-ended severity; POPE = targeted binary existence check.*
+
+---
+
+### Battery 3: Downstream Task Performance (Task Sequence Datasets)
+
+Analog to Bach et al.'s **Dolly → GSM8K → MedMCQA → SQuAD v2** sequence. Each VLM dataset is chosen to test the same capability axis in the multimodal domain. Covered in detail on **Slide 12**.
+
+| Stage | VLM Dataset | Role Analog | Citation |
+|:---|:---|:---|:---|
+| 1 | LLaVA-Instruct-150K | Dolly | Liu et al., arXiv:2304.08485 |
+| 2 | MathVista (6,141 problems) | GSM8K | Lu et al., arXiv:2310.02255 |
+| 3 | VQA-RAD / SLAKE | MedMCQA | Lau et al., Nature Scientific Data 2018 / Liu et al., arXiv:2102.09542 |
+| 4 | DocVQA (~50,000 Q&A) | SQuAD v2 | Mathew et al., arXiv:2007.00398 |
+
+---
+
+### Summary Table for Slide
+
+| Axis | Text LLM (Bach et al.) | VLM Equivalent (Ours) |
 |:---|:---|:---|
-| Text jailbreak | AdvBench | Zou et al. (2023), cited in Bach et al. §5.1 |
-| Text jailbreak | HarmBench | Mazeika et al. (2024), cited in Bach et al. §5.1 |
-| Typographic visual | FigStep | Gong et al. (arXiv:2311.05608) |
-| Multimodal pairs | MM-SafetyBench | Liu et al. (arXiv:2311.17600) |
-| Visual jailbreaks | JailBreakV-28K | Luo et al. (arXiv:2404.03027, COLM 2024) |
-| Object hallucination | POPE | Li et al. (arXiv:2305.10355) |
+| Safety (primary) | AdvBench (520 queries) | MM-SafetyBench (5,040 pairs, 13 scenarios) |
+| Safety (diverse attacks) | HarmBench (510+ queries) | FigStep + JailBreakV-28K + HarmBench text slice |
+| Truthfulness | TruthfulQA | MMHal-Bench (primary) + POPE (secondary) |
+| Capabilities | ARC-C, BoolQ, HellaSwag, Winogrande | LLaVA-Bench, MathVista, VQA-RAD, DocVQA |
+| Safety judge | Llama-Guard-3-8B | Llama-Guard-3-8B (same — ensures comparability) |
 
-> 📎 **ATTACH**: Figure 1 from FigStep paper (arXiv:2311.05608) — shows the typographic attack pipeline.  
-> 📎 **ATTACH**: Table showing the 13 categories from MM-SafetyBench (arXiv:2311.17600, Table 1 or §2).
+*Source for text evaluation suite: Bach et al. §5.1. VLM equivalents are our design.*
+
+> 📎 **ATTACH**: Figure 1 from FigStep (arXiv:2311.05608) — shows exactly how typographic attack bypasses text filters.  
+> 📎 **ATTACH**: Table 1 from MM-SafetyBench (arXiv:2311.17600) — shows the 13 scenario categories.
 
 ---
 
@@ -342,16 +383,16 @@ Bach et al.'s Algorithm 1 computes $G_i = \|\nabla_\theta \mathcal{L}(x_i, y_i; 
 
 ## SLIDE 12 — Task Sequence and Execution Plan
 
-**Our task sequence** (analogue of Bach et al.'s Dolly → GSM8K → MedMCQA → SQuAD v2):
+**Our task sequence** (analogue of Bach et al.'s Dolly → GSM8K → MedMCQA → SQuAD v2, from §5.1):
 
-| Stage | Bach et al. Text Task | Our VLM Equivalent |
-|:---|:---|:---|
-| 1 | Dolly (instruction following) | LLaVA-Instruct-150K |
-| 2 | GSM8K (math reasoning) | MathVista |
-| 3 | MedMCQA (medical QA) | SLAKE / VQA-RAD |
-| 4 | SQuAD v2 (reading comprehension) | DocVQA |
+| Stage | Bach et al. Text Task | Our VLM Equivalent | Reasoning | Citation |
+|:---|:---|:---|:---|:---|
+| 1 | Dolly (15K instruction following) | **LLaVA-Instruct-150K** | General visual instruction following — same role as Dolly (reduces refusal before task-specific tuning). Benign, diverse, general purpose. | Liu et al., arXiv:2304.08485 |
+| 2 | GSM8K (math word problems) | **MathVista** (6,141 problems) | Visual-mathematical reasoning from charts, diagrams, geometry. Direct multimodal analog to GSM8K. Verified scale: 6,141 problems (from arXiv:2310.02255 abstract). | Lu et al., arXiv:2310.02255 |
+| 3 | MedMCQA (medical MCQ) | **VQA-RAD** (primary) or **SLAKE** (alternate) | Clinical image understanding: radiology, pathology. VQA-RAD = radiology QA pairs (Lau et al., Nature Scientific Data 2018). SLAKE = bilingual medical VQA (Liu et al., arXiv:2102.09542). | Lau et al., doi:10.1038/sdata.2018.251; Liu et al., arXiv:2102.09542 |
+| 4 | SQuAD v2 (reading comprehension) | **DocVQA** (~50,000 Q&A pairs) | Dense document OCR and layout reasoning. Directly tests extractive reading comprehension on visual documents — same capability as SQuAD v2. Verified scale: ~50,000 (from arXiv:2007.00398 abstract). | Mathew et al., arXiv:2007.00398 |
 
-*Source for text tasks: Bach et al. §5.1. VLM analogues are our design.*
+*Source for text task sequence: Bach et al. §5.1. VLM analogues and justifications are our original design contribution.*
 
 **Phase 1 (Colab T4 — Active)**: Single task, 10% calibration subsample. Verify Moderate-$G_i^{(L)}$ vs Random vs High-$G_i$ on FigStep ASR.
 
