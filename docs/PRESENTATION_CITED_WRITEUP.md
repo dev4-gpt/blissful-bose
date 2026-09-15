@@ -106,10 +106,10 @@ Analog to Bach et al.'s **AdvBench + HarmBench**.
 
 | # | Benchmark | What It Tests | Key Stat | Why Not Redundant | Citation |
 |:---|:---|:---|:---|:---|:---|
-| 1 | **MM-SafetyBench** | Image-text pair safety across 13 risk categories | 5,040 text-image pairs, 13 scenarios | Closest scope match to AdvBench (520 harmful queries) — volume + breadth primary benchmark | Liu et al., arXiv:2311.17600 |
-| 2 | **FigStep** | Typographic jailbreak: harmful instruction embedded as image text, paired with benign text prompt | — | **No text-only equivalent.** Attacks via visual OCR channel, completely bypasses text safety filters. Distinct attack shape. | Gong et al., arXiv:2311.05608 |
-| 3 | **JailBreakV-28K** | 28K visual jailbreaks across 16 harm scenarios: transfer, diffusion, OCR | 28,000 samples, 16 harm scenarios (verified from arXiv:2404.03027) | Mirrors HarmBench's mix of direct + contextual + optimization-based — large-scale adversarial robustness test | Luo et al., arXiv:2404.03027, COLM 2024 |
-| 4 | **HarmBench (text slice)** | Direct, contextual, and optimization-based text attacks on VLM's language decoder | 510+ queries, Llama-Guard-3-8B judge | VLM language decoder is still attackable through text alone — same judge as Bach et al. ensures comparability | Mazeika et al., arXiv:2402.04249 |
+| 1 | **[MM-SafetyBench](https://arxiv.org/pdf/2311.17600)** | Image-text pair safety across 13 risk categories | 5,040 text-image pairs, 13 scenarios | Closest scope match to AdvBench (520 harmful queries) — volume + breadth primary benchmark | [Liu et al., arXiv:2311.17600](https://arxiv.org/pdf/2311.17600) |
+| 2 | **[FigStep](https://arxiv.org/pdf/2311.05608)** | Typographic jailbreak: harmful instruction embedded as image text, paired with benign text prompt | — | **No text-only equivalent.** Attacks via visual OCR channel, completely bypasses text safety filters. Distinct attack shape. | [Gong et al., arXiv:2311.05608](https://arxiv.org/pdf/2311.05608) |
+| 3 | **[JailBreakV-28K](https://arxiv.org/pdf/2404.03027)** | 28K visual jailbreaks across 16 harm scenarios: transfer, diffusion, OCR | 28,000 samples, 16 harm scenarios (verified from arXiv:2404.03027) | Mirrors HarmBench's mix of direct + contextual + optimization-based — large-scale adversarial robustness test | [Luo et al., arXiv:2404.03027, COLM 2024](https://arxiv.org/pdf/2404.03027) |
+| 4 | **[HarmBench](https://arxiv.org/abs/2402.04249)** (text slice) | Direct, contextual, and optimization-based text attacks on VLM's language decoder | 510+ queries, Llama-Guard-3-8B judge | VLM language decoder is still attackable through text alone — same judge as Bach et al. ensures comparability | [Mazeika et al., arXiv:2402.04249](https://arxiv.org/abs/2402.04249) |
 
 *Note: AdvBench not used as primary because MM-SafetyBench directly supersedes it for multimodal settings.*
 
@@ -121,8 +121,8 @@ Analog to Bach et al.'s **TruthfulQA**.
 
 | # | Benchmark | What It Tests | Why This Role | Citation |
 |:---|:---|:---|:---|:---|
-| 1 | **MMHal-Bench** *(primary)* | Open-ended, model-graded visual hallucination — 8 question types per image across 12 image types | Closest in spirit to TruthfulQA's open-ended factuality format — tests whether the model fabricates visual content | Bird et al., arXiv:2309.14525 |
-| 2 | **POPE** *(secondary)* | Yes/No object existence probing across random, popular, and adversarial splits | Simpler binary check — supplements MMHal-Bench as a standardized signal; widely used, easy to compare across papers | Li et al., arXiv:2305.10355 |
+| 1 | **[MMHal-Bench](https://arxiv.org/abs/2309.14525)** *(primary)* | Open-ended, model-graded visual hallucination — 8 question types per image across 12 image types | Closest in spirit to TruthfulQA's open-ended factuality format — tests whether the model fabricates visual content | [Sun et al., arXiv:2309.14525](https://arxiv.org/abs/2309.14525) |
+| 2 | **[POPE](https://arxiv.org/abs/2305.10355)** *(secondary)* | Yes/No object existence probing across random, popular, and adversarial splits | Simpler binary check — supplements MMHal-Bench as a standardized signal; widely used, easy to compare across papers | [Li et al., arXiv:2305.10355](https://arxiv.org/abs/2305.10355) |
 
 *These two are complementary, not redundant: MMHal-Bench = open-ended severity; POPE = targeted binary existence check.*
 
@@ -134,10 +134,10 @@ Analog to Bach et al.'s **Dolly → GSM8K → MedMCQA → SQuAD v2** sequence. E
 
 | Stage | VLM Dataset | Role Analog | Citation |
 |:---|:---|:---|:---|
-| 1 | LLaVA-Instruct-150K | Dolly | Liu et al., arXiv:2304.08485 |
-| 2 | MathVista (6,141 problems) | GSM8K | Lu et al., arXiv:2310.02255 |
-| 3 | VQA-RAD / SLAKE | MedMCQA | Lau et al., Nature Scientific Data 2018 / Liu et al., arXiv:2102.09542 |
-| 4 | DocVQA (~50,000 Q&A) | SQuAD v2 | Mathew et al., arXiv:2007.00398 |
+| 1 | **[LLaVA-Instruct-150K](https://arxiv.org/abs/2304.08485)** | Dolly | [Liu et al., arXiv:2304.08485](https://arxiv.org/abs/2304.08485) |
+| 2 | **[MathVista](https://arxiv.org/abs/2310.02255)** (6,141 problems) | GSM8K | [Lu et al., arXiv:2310.02255](https://arxiv.org/abs/2310.02255) |
+| 3 | **[VQA-RAD](https://www.nature.com/articles/sdata2018251)** / **[SLAKE](https://arxiv.org/abs/2102.09542)** | MedMCQA | [Lau et al., Nature Scientific Data 2018](https://www.nature.com/articles/sdata2018251) / [Liu et al., arXiv:2102.09542](https://arxiv.org/abs/2102.09542) |
+| 4 | **[DocVQA](https://arxiv.org/abs/2007.00398)** (~50,000 Q&A) | SQuAD v2 | [Mathew et al., arXiv:2007.00398](https://arxiv.org/abs/2007.00398) |
 
 ---
 
@@ -339,13 +339,13 @@ From paper text (§5.2):
 
 **Their results on LLaVA-v1.5-7B** (from PDF Table 3 + Table 4, extracted via OCR):
 
-| Method | AdvBench (Vanilla) ↓ | AdvBench (Suffix Injection) ↓ | XSTest Unsafe ↓ | RTVLM Score ↑ |
+| Method | AdvBench (Vanilla) ↓ | AdvBench (Suffix Injection) ↓ | [XSTest](https://arxiv.org/pdf/2308.01263) Unsafe ↓ | [RTVLM](https://arxiv.org/pdf/2401.12915) Score ↑ |
 |:---|:---:|:---:|:---:|:---:|
 | LLaVA-v1.5-7B (baseline) | 6.45% | 78.27% | 26.50% | 6.27 |
 | **SafeVLM** | **1.72%** | **67.56%** | **7.46%** | **8.26** |
 | SafeVLM (+LoRA) | 1.90% | 69.86% | 6.96% | — |
 
-*Source: Nie et al. (arXiv:2405.13581), Tables 3 & 4, confirmed via PDF text extraction.*
+*Source: [Nie et al., arXiv:2405.13581](https://arxiv.org/abs/2405.13581), Tables 3 & 4, confirmed via PDF text extraction.*
 
 **Key difference from our approach**:
 - SafeVLM adds new architectural modules (safety projector, safety tokens, safety head) — requires architectural modification.
@@ -391,10 +391,10 @@ Bach et al.'s Algorithm 1 computes $G_i = \|\nabla_\theta \mathcal{L}(x_i, y_i; 
 
 | Stage | Bach et al. Text Task | Our VLM Equivalent | Reasoning | Citation |
 |:---|:---|:---|:---|:---|
-| 1 | Dolly (15K instruction following) | **LLaVA-Instruct-150K** | General visual instruction following — same role as Dolly (reduces refusal before task-specific tuning). Benign, diverse, general purpose. | Liu et al., arXiv:2304.08485 |
-| 2 | GSM8K (math word problems) | **MathVista** (6,141 problems) | Visual-mathematical reasoning from charts, diagrams, geometry. Direct multimodal analog to GSM8K. Verified scale: 6,141 problems (from arXiv:2310.02255 abstract). | Lu et al., arXiv:2310.02255 |
-| 3 | MedMCQA (medical MCQ) | **VQA-RAD** (primary) or **SLAKE** (alternate) | Clinical image understanding: radiology, pathology. VQA-RAD = radiology QA pairs (Lau et al., Nature Scientific Data 2018). SLAKE = bilingual medical VQA (Liu et al., arXiv:2102.09542). | Lau et al., doi:10.1038/sdata.2018.251; Liu et al., arXiv:2102.09542 |
-| 4 | SQuAD v2 (reading comprehension) | **DocVQA** (~50,000 Q&A pairs) | Dense document OCR and layout reasoning. Directly tests extractive reading comprehension on visual documents — same capability as SQuAD v2. Verified scale: ~50,000 (from arXiv:2007.00398 abstract). | Mathew et al., arXiv:2007.00398 |
+| 1 | Dolly (15K instruction following) | **[LLaVA-Instruct-150K](https://arxiv.org/abs/2304.08485)** | General visual instruction following — same role as Dolly (reduces refusal before task-specific tuning). Benign, diverse, general purpose. | [Liu et al., arXiv:2304.08485](https://arxiv.org/abs/2304.08485) |
+| 2 | GSM8K (math word problems) | **[MathVista](https://arxiv.org/abs/2310.02255)** (6,141 problems) | Visual-mathematical reasoning from charts, diagrams, geometry. Direct multimodal analog to GSM8K. Verified scale: 6,141 problems (from arXiv:2310.02255 abstract). | [Lu et al., arXiv:2310.02255](https://arxiv.org/abs/2310.02255) |
+| 3 | MedMCQA (medical MCQ) | **[VQA-RAD](https://www.nature.com/articles/sdata2018251)** (primary) or **[SLAKE](https://arxiv.org/abs/2102.09542)** (alternate) | Clinical image understanding: radiology, pathology. VQA-RAD = radiology QA pairs (Lau et al., Nature Scientific Data 2018). SLAKE = bilingual medical VQA (Liu et al., arXiv:2102.09542). | [Lau et al., Nature Scientific Data 2018](https://www.nature.com/articles/sdata2018251); [Liu et al., arXiv:2102.09542](https://arxiv.org/abs/2102.09542) |
+| 4 | SQuAD v2 (reading comprehension) | **[DocVQA](https://arxiv.org/abs/2007.00398)** (~50,000 Q&A pairs) | Dense document OCR and layout reasoning. Directly tests extractive reading comprehension on visual documents — same capability as SQuAD v2. Verified scale: ~50,000 (from arXiv:2007.00398 abstract). | [Mathew et al., arXiv:2007.00398](https://arxiv.org/abs/2007.00398) |
 
 *Source for text task sequence: Bach et al. §5.1. VLM analogues and justifications are our original design contribution.*
 
