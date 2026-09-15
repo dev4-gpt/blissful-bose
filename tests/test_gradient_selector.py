@@ -122,3 +122,31 @@ def test_baseline_selectors():
         original_batch_size=5
     )
     assert selected_high == [0]  # Highest norm is 10.0 at index 0
+
+
+def test_micro_batched_trainer_selection():
+    from src.training.config import TrainingConfig
+    from src.training.trainer import ContinualVLMTrainer
+    from src.data.dataset_loader import ContinualMultimodalDataLoader
+
+    model = DummyVLM()
+    config = TrainingConfig(selection_strategy="moderate_gi", selection_ratio=0.20)
+    trainer = ContinualVLMTrainer(config=config, model=model)
+
+    samples = [
+        ContinualMultimodalDataLoader.create_synthetic_sample(f"sample_{i}", "task1")
+        for i in range(10)
+    ]
+
+    # Mock loss function returning a tensor
+    def mock_loss_fn(sample, retain_graph=False):
+        # Deterministic loss with a tensor depending on model params
+        idx = int(sample.id.split("_")[1])
+        x = torch.ones(1, 4) * (idx + 1)
+        out = model(x)
+        return torch.sum(out ** 2)
+
+    selected = trainer.execute_micro_batched_gradient_selection(samples, mock_loss_fn)
+    assert len(selected) == 2  # 20% of 10
+    assert all(isinstance(idx, int) for idx in selected)
+
