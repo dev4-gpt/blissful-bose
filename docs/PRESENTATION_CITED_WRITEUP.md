@@ -68,8 +68,12 @@ We hypothesize the same mechanism operates in VLMs. The justification is:
 From Bach et al. PDF (§1, Introduction):
 > *"(Ji et al., 2024) shows that LLMs exhibit elasticity: a tendency to revert toward pretrained distributions during fine-tuning because the massive pretraining corpora exerts stronger influence than smaller alignment datasets."*
 
-Formula (from Bach et al. §2.2):
+Formula — from **Ji et al. (2024)**, quoted verbatim in Bach et al. §2.2 (PDF line 233):
+> *"The elastic force is proportional to dataset size: Felastic ∝ |Di|·∆DKL(pθ ∥pDi)."*
+
 $$F_{\text{elastic}} \propto |D_i| \cdot \Delta D_{\text{KL}}(p_\theta \| p_{D_i})$$
+
+*Primary citation: Ji et al. (arXiv:2406.06144). Secondary cite: Bach et al. §2.2 where this is quoted.*
 
 **Mechanism 2 — Safety Basin Geometry** (Peng et al., NeurIPS 2024, arXiv:2405.17374, cited in Bach et al. §2.1):
 
