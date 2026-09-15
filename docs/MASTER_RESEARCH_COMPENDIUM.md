@@ -50,7 +50,7 @@ This master directory indexes every file in the repository, explaining its purpo
 
 | File Path | Component & Implementation Role | Associated Paper Formulation |
 |:---|:---|:---|
-| [`src/selection/gradient_selector.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/gradient_selector.py) | **Core Selector**: Implements 3-stage selection (Loss Pre-filter $\tau$, Gradient Norm $G_i$, Dynamic Quantiles $[\alpha_l, \alpha_h]$). Supports 3 attribution modes: Language ($G_i^{(L)}$), Projector ($G_i^{(P)}$), Joint ($G_i^{(J)}$). | Bach et al. §4.1, Eqs. 1–3; Appendix F |
+| [`src/selection/gradient_selector.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/gradient_selector.py) | **Core Selector**: Implements 3-stage selection (Loss Pre-filter $\tau$, Gradient Norm $G_i$, Dynamic Quantiles $[\alpha_l, \alpha_h]$). Supports 3 attribution modes: Language ($G_i^{(L)}$), Projector ($G_i^{(P)}$), Joint ($G_i^{(J)}$). | Bach et al. §4.1, Eqs. 1–3; Appendix (Limitations) |
 | [`src/selection/baseline_selectors.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/baseline_selectors.py) | **Baseline Selectors**: Implements Random selection, Low-$G_i$ selection, and High-$G_i$ selection for empirical ablations. | Bach et al. §5.2, Table 5 |
 | [`src/training/trainer.py`](file:///Users/aryamandev/Developer/blissful-bose/src/training/trainer.py) | **Continual Trainer**: Manages sequential task training across $T$ downstream datasets with per-sample micro-batch gradient calculation, gradient accumulation, and optimizer stepping. | Bach et al. §5.1 |
 | [`src/training/config.py`](file:///Users/aryamandev/Developer/blissful-bose/src/training/config.py) | **Experiment Configuration**: Pydantic dataclass defining hyperparams ($\rho=0.2, \tau=0.1$, LoRA $r=16, \alpha=32$, learning rate $2\times 10^{-5}$, Qwen2-VL-2B-Instruct targets). | Bach et al. §5.1, Appendix B |
@@ -105,12 +105,12 @@ This matrix provides a 1-to-1 lookup: every concept, metric, benchmark, and meth
 
 | Concept / Metric / Finding | Repo File & Section | Paper Title & Authors | Venue & arXiv ID | Exact Section / Table in Paper | Verified Result / Finding |
 |:---|:---|:---|:---|:---|:---|
-| **Moderate-$G_i$ Safety Preservation (ASR)** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L50-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L50-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 5** | Qwen2.5-7B AdvBench ASR: Baseline 36.7±13.6% $\to$ Moderate-$G_i$ **10.2±7.1%** |
+| **Moderate-$G_i$ Safety Preservation (ASR)** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L50-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L50-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 6** | Qwen2.5-7B AdvBench ASR: Baseline 36.7±13.6% $\to$ Moderate-$G_i$ **10.2±7.1%** |
 | **Safety Basin Retention % (VISAGE)** | [`docs/gradient_strategy_dossier.md:L70-L110`](file:///Users/aryamandev/Developer/blissful-bose/docs/gradient_strategy_dossier.md#L70-L110) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 3.1, Table 2** | High-$G_i$: 62–72%, Random: 72–73%, **Moderate-$G_i$: 83–88%** |
-| **Backward Transfer (BWT) Retention** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L115-L135`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L115-L135) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.3, Table 6** | Qwen3-4B BWT: Baseline −18.5% $\to$ Moderate-$G_i$ **−4.3%** |
+| **Backward Transfer (BWT) Retention** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L115-L135`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L115-L135) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.4, Table 8** | Qwen3-4B BWT: Baseline −18.5% $\to$ Moderate-$G_i$ **−4.3%** |
 | **Mechanistic Reversion Vector Alignment** | [`docs/master_research_formulation.md:L45-L55`](file:///Users/aryamandev/Developer/blissful-bose/docs/master_research_formulation.md#L45-L55) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 3.2, Table 4** | High-$G_i$ gradients align with $\mathbf{r} = \theta_{\text{pre}} - \theta_{\text{align}}$ in final-layer projections (V/O) |
 | **High-$G_i$ Format Mismatch Finding** | [`Continual_Safety_Alignment.md:L110-L130`](file:///Users/aryamandev/Developer/blissful-bose/Continual_Safety_Alignment.md#L110-L130) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Appendix E.1** | Outliers driven by terse token targets vs verbose aligned distribution |
-| **Multimodal Extension as Open Work** | [`ACADEMIC_ALIGNMENT_AND_TRACEABILITY_REPORT.md:L31-L35`](file:///Users/aryamandev/Developer/blissful-bose/ACADEMIC_ALIGNMENT_AND_TRACEABILITY_REPORT.md#L31-L35) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Appendix F** | Multimodal architectures identified as unaddressed open challenge |
+| **Multimodal Extension as Open Work** | [`ACADEMIC_ALIGNMENT_AND_TRACEABILITY_REPORT.md:L31-L35`](file:///Users/aryamandev/Developer/blissful-bose/ACADEMIC_ALIGNMENT_AND_TRACEABILITY_REPORT.md#L31-L35) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Appendix (Limitations)** | Multimodal architectures identified as unaddressed open challenge |
 | **Elastic Reversion Theory** | [`docs/gradient_strategy_dossier.md:L25-L45`](file:///Users/aryamandev/Developer/blissful-bose/docs/gradient_strategy_dossier.md#L25-L45) | *Language Models Resist Alignment* (Ji et al.) | arXiv:2406.06144 | **Section 1, Section 3.1, Eq. 2** | Proves downstream FT parameter updates act as restoring force toward base weights |
 | **Safety Basin Geometry & VISAGE** | [`docs/gradient_strategy_dossier.md:L80-L105`](file:///Users/aryamandev/Developer/blissful-bose/docs/gradient_strategy_dossier.md#L80-L105) | *Geometry of Safety Alignment in Large Language Models* (Peng et al.) | NeurIPS 2024<br>arXiv:2405.17374 | **Section 3, Figure 2** | Defines loss basin geometry and parametric boundaries of safety alignment |
 | **FigStep Typographic Jailbreak** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L180-L205`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L180-L205) | *FigStep: Jailbreaking Large Vision-Language Models via Typographic Prompts* (Gong et al.) | arXiv:2311.05608 | **Section 1, Section 3, Table 1** | Text converted to images bypasses safety filters; $>80\%$ ASR on unaligned/drifted VLMs |
@@ -121,8 +121,8 @@ This matrix provides a 1-to-1 lookup: every concept, metric, benchmark, and meth
 | **VLMGuard-R1 Reasoning Prompting** | [`docs/sota_landscape_survey.md:L190-L205`](file:///Users/aryamandev/Developer/blissful-bose/docs/sota_landscape_survey.md#L190-L205) | *VLMGuard-R1: Proactive Safety Alignment for VLMs* (Zhang et al.) | ACL 2026 Findings<br>arXiv:2504.12661 | **Section 3, Table 2** | Reasoning-driven test-time safety prompts; serves as inference-time defense baseline |
 | **SaLoRA Parameter Isolation** | [`docs/methodology_comparison.md:L105-L125`](file:///Users/aryamandev/Developer/blissful-bose/docs/methodology_comparison.md#L105-L125) | *SaLoRA: Safety Alignment Preservation via Parameter Isolation* | ICLR 2025<br>arXiv:2501.01774 | **Section 3, Section 4** | Freezes safety-critical LoRA singular vectors; parameter-isolation baseline |
 | **LARF Representation Filtering** | [`docs/methodology_comparison.md:L50-L70`](file:///Users/aryamandev/Developer/blissful-bose/docs/methodology_comparison.md#L50-L70) | *LARF: Layer-Aware Representation Filtering* (Li et al.) | EMNLP 2025 | **Section 3, Table 1** | Identifies safety-sensitive layers; filters samples based on intermediate hidden states |
-| **EWC Continual Baseline** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L70-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L70-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 5** | EWC AdvBench ASR on Qwen2.5-7B: **17.4±6.7%** (substantially worse than Moderate-$G_i$ 10.2%) |
-| **O-LoRA Orthogonal Baseline** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L70-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L70-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 5** | O-LoRA AdvBench ASR on Qwen2.5-7B: **16.5±19.7%** (high variance across tasks) |
+| **EWC Continual Baseline** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L70-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L70-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 6** | EWC AdvBench ASR on Qwen2.5-7B: **17.4±6.7%** (substantially worse than Moderate-$G_i$ 10.2%) |
+| **O-LoRA Orthogonal Baseline** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L70-L80`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L70-L80) | *Continual Safety Alignment vs Gradient-based Sample Selection* (Bach et al.) | ACL 2026<br>arXiv:2604.17215 | **Section 5.2, Table 6** | O-LoRA AdvBench ASR on Qwen2.5-7B: **16.5±19.7%** (high variance across tasks) |
 | **POPE Hallucination Metric** | [`RESEARCH_METHODOLOGY_AND_VLM_SPEC.md:L165-L175`](file:///Users/aryamandev/Developer/blissful-bose/RESEARCH_METHODOLOGY_AND_VLM_SPEC.md#L165-L175) | *POPE: Polling-based Object Probing Evaluation for VLMs* (Li et al.) | arXiv:2305.10355 | **Section 3, Section 4** | Probes object hallucination across random, popular, and adversarial image splits |
 
 ---
@@ -189,7 +189,7 @@ For `Qwen2-VL-2B-Instruct`:
 - $\Theta_{\text{Language}}$: Transformer backbone with LoRA rank $r=16, \alpha=32$ on `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj`.
 
 #### The 3 Novel Multimodal Attribution Modes
-Our implementation in [`src/selection/gradient_selector.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/gradient_selector.py) introduces 3 attribution modes for computing $G_i$, addressing the open challenge in Bach et al. Appendix F:
+Our implementation in [`src/selection/gradient_selector.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/gradient_selector.py) introduces 3 attribution modes for computing $G_i$, addressing the open challenge in Bach et al. Appendix (Limitations):
 
 1. **Language LoRA Attribution ($G_i^{(L)}$)**:
    $$G_i^{(L)} = \left\| \nabla_{\Theta_{\text{Language-LoRA}}} \mathcal{L}(x_i, v_i, y_i; \theta_0) \right\|_2$$
@@ -218,7 +218,7 @@ All text LLM baseline numbers below are transcribed verbatim from [`RESEARCH_MET
 
 ### 5.1 Text LLM Baselines (Ground Truth from Bach et al. Tables 2, 5, 6)
 
-#### Table 5: Safety Preservation (Harmful Refusal ASR on AdvBench across 4 Sequential Tasks)
+#### Table 6: Safety Preservation (Harmful Refusal ASR on AdvBench across 4 Sequential Tasks) [in 2604.17215v1.pdf]
 *Task sequence: Dolly $\to$ GSM8K $\to$ MedMCQA $\to$ SQuAD v2. Metrics: Attack Success Rate (Lower is Safer).*
 
 | Method | Qwen2.5-7B ASR (%) ↓ | Qwen3-4B ASR (%) ↓ | Llama-3-8B ASR (%) ↓ |
@@ -235,7 +235,7 @@ All text LLM baseline numbers below are transcribed verbatim from [`RESEARCH_MET
 
 *Takeaway: Moderate-$G_i$ cuts safety drift by over 72% relative to full fine-tuning (10.2% vs 36.7%) and substantially outperforms optimizer constraints like EWC (17.4%) and O-LoRA (16.5%, which exhibits high variance $\pm 19.7$).*
 
-#### Table 6: Backward Transfer & Task Retention (BWT on Prior Tasks)
+#### Table 8: Backward Transfer & Task Retention (BWT on Prior Tasks) [in 2604.17215v1.pdf]
 *Backward Transfer (BWT) measures retention of earlier tasks after training on subsequent tasks. Higher/closer to 0 is better.*
 
 | Method | Qwen3-4B BWT (%) ↑ | Downstream Task Average MT-Bench Score ↑ |
@@ -328,7 +328,7 @@ Designed specifically for your presentation to **Prof. Thao Minh Le**. Use this 
   - Right: Multimodal VLM architecture showing the dual text + vision attack surface.
 - **Key Paper Citation on Slide**: Bach et al., ACL 2026 ([arXiv:2604.17215](https://arxiv.org/abs/2604.17215)).
 - **Speaker Script**:
-  > *"Good morning Prof. Thao. Today I'm presenting our project on continual safety alignment for small Vision-Language Models. In your ACL 2026 paper with Sang-Min Bach, you proved that fine-tuning aligned LLMs on benign data causes alignment drift, and you introduced Moderate-$G_i$ selection to preserve safety. In Appendix F, you explicitly highlighted extending this to multimodal models as critical future work. That is exactly what we have formulated, implemented, and prepared for benchmarking on Qwen2-VL-2B."*
+  > *"Good morning Prof. Thao. Today I'm presenting our project on continual safety alignment for small Vision-Language Models. In your ACL 2026 paper with Sang-Min Bach, you proved that fine-tuning aligned LLMs on benign data causes alignment drift, and you introduced Moderate-$G_i$ selection to preserve safety. In Appendix (Limitations), you explicitly highlighted extending this to multimodal models as critical future work. That is exactly what we have formulated, implemented, and prepared for benchmarking on Qwen2-VL-2B."*
 
 ---
 

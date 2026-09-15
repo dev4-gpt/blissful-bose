@@ -399,7 +399,7 @@ Show the main results table from Bach et al.:
 - HarmBench: **5.0%** vs baseline **27.8%** (5.6× reduction)
 - BWT: **−4.3%** vs **−18.5%** (less forgetting too)
 
-> "This is the paper. **But it only works for text.** The paper's own Appendix F says: 'Extending gradient-based selection to vision-language models requires further investigation.' That's our research."
+> "This is the paper. **But it only works for text.** The paper's own Appendix (Limitations) says: 'Extending gradient-based selection to vision-language models requires further investigation.' That's our research."
 
 ---
 

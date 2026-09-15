@@ -188,7 +188,7 @@ High-gradient samples are predominantly **format mismatches**: short-answer task
 **Status of text below**: The text in Section 4 describes the *novel research hypotheses* for extending Bach et al. to VLMs. These are **not yet empirically validated**. Every claim here is labeled with its epistemic status.
 
 ### 4.1 The Research Gap
-[Source: Bach et al., Appendix F (Limitations), verbatim]:
+[Source: Bach et al., Appendix (Limitations) (Limitations), verbatim]:
 > *"Multi-Modal Models: Our experiments focus on text-only models. Extending gradient-based selection to vision-language models or other modalities requires further investigation."*
 
 This is the explicit open problem that this project addresses.

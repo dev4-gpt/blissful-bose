@@ -265,7 +265,7 @@ This table positions every relevant paper against our work. "✗" = does NOT add
 
 Based on this full SOTA sweep, our work is uniquely positioned at the intersection of three gaps:
 
-1. **Bach et al. (ACL 2026)** solves continual alignment drift via gradient selection — but only for *text LLMs*. Appendix F explicitly states VLMs are future work.
+1. **Bach et al. (ACL 2026)** solves continual alignment drift via gradient selection — but only for *text LLMs*. Appendix (Limitations) explicitly states VLMs are future work.
 2. **SafeVLM, VLMGuard-R1, CMRM, VLGuard, SPA-VL** address VLM safety — but through *initial alignment* or *inference-time intervention*, not continual fine-tuning data selection.
 3. **Unforgotten Safety, LARF** extend continual alignment to more domains — but without *gradient-norm-based* selection, and not for *multimodal* models.
 

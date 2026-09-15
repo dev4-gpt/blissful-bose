@@ -269,7 +269,7 @@ The following questions have **no empirical answer yet** for VLMs. They are the 
 
 ### [OPEN 1] Which parameter subset drives multimodal safety drift?
 **Question**: Does safety basin erosion during VLM continual fine-tuning correlate more strongly with $G_i^{(L)}$ (language LoRA), $G_i^{(P)}$ (projector), or $G_i^{(J)}$ (joint)?  
-**Why unknown**: Bach et al. only investigated text-only models where no projector exists. The paper explicitly lists this as future work. [Source: Bach et al., Appendix F]  
+**Why unknown**: Bach et al. only investigated text-only models where no projector exists. The paper explicitly lists this as future work. [Source: Bach et al., Appendix (Limitations)]  
 **How this project will answer it**: Compare all three attribution modes across the 4-task sequence on Qwen2-VL-2B-Instruct with safety evaluated via MM-SafetyBench and FigStep after each task.
 
 ### [OPEN 2] Does image resolution inflate gradient norms artificially?
@@ -287,7 +287,7 @@ The following questions have **no empirical answer yet** for VLMs. They are the 
 
 ### [OPEN 5] Does moderate-gradient selection also reduce catastrophic forgetting of safety in VLMs?
 **Question**: Bach et al. show that for text LLMs, Moderate-$G_i$ reduces BWT from −18.5% to −4.3% (Qwen3-4B, source: Sec. 5.4). Does this benefit transfer to VLMs where visual task distributions are more diverse?  
-**Why unknown**: Directly from Bach et al. Appendix F — multimodal extension is explicitly unaddressed.
+**Why unknown**: Directly from Bach et al. Appendix (Limitations) — multimodal extension is explicitly unaddressed.
 
 ---
 
@@ -296,7 +296,7 @@ The following questions have **no empirical answer yet** for VLMs. They are the 
 | Limitation | Source | Implication for This Project |
 |:---|:---|:---|
 | ~51% training overhead during sample selection | Bach et al., Appendix (verbatim) | Doubles Stage 2 backward pass time. Mitigated by Stage 1 pre-filtering (removes ~32% of candidates before backward passes). |
-| Text-only validation only | Bach et al., Appendix F (verbatim): *"Extending gradient-based selection to vision-language models or other modalities requires further investigation."* | The VLM extension is the core research contribution — results cannot be assumed to match text-only findings. |
+| Text-only validation only | Bach et al., Appendix (Limitations) (verbatim): *"Extending gradient-based selection to vision-language models or other modalities requires further investigation."* | The VLM extension is the core research contribution — results cannot be assumed to match text-only findings. |
 | SafeVLM false positives on benign inputs | SafeVLM, arXiv:2405.13581 (ablation section): code reasoning, text translation, celebrity images, artwork, and posters may be classified as risky | Any architectural safety module added to VLM must be evaluated for false refusal rate via XSTest-style benchmarks, not just ASR. |
 | HarmBench model identity not specified | Bach et al. Sec. 5.2 (in available summary) — specific model family for HarmBench results is not stated | Cannot directly compare HarmBench results to Qwen2-VL-2B-Instruct without running experiments on the same model family. |
 | VISAGE perturbation is architecture-agnostic | Peng et al., arXiv:2405.17374 | Applying VISAGE to VLMs requires deciding whether to perturb only trainable parameters or the full parameter space (including frozen ViT). |
