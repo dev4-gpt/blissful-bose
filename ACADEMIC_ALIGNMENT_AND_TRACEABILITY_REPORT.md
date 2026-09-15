@@ -29,7 +29,7 @@ This section audits our built codebase and methodology against the email communi
 
 ### 1.3 What We Added to Elevate the Research to Publication Caliber
 We augmented your core plan with three novel contributions specifically designed to impress Prof. Thao and journal/conference reviewers:
-1. **Directly Tackling Prof. Thao's Open Limitation**: We addressed **Appendix F of Bach et al. (ACL 2026)**, where the authors explicitly noted that extending gradient selection to multimodal models was unaddressed future work.
+1. **Directly Tackling Prof. Thao's Open Limitation**: We addressed **Appendix (Limitations) of Bach et al. (ACL 2026)**, where the authors explicitly noted that extending gradient selection to multimodal models was unaddressed future work.
 2. **Novel Multimodal Gradient Attribution**: In text models, LoRA is only on attention/MLP layers. In VLMs, we added the ability to isolate gradients on **Language LoRA** ($G_i^{(L)}$), **Multimodal Projector** ($G_i^{(P)}$), or **Joint** ($G_i^{(J)}$). This provides a publication-worthy ablation study in [`src/selection/gradient_selector.py`](file:///Users/aryamandev/Developer/blissful-bose/src/selection/gradient_selector.py).
 3. **vLLM Integration for High-Throughput Batching**: Evaluating 5,040 test pairs with Hugging Face takes 2–3 hours per checkpoint. Integrating vLLM in [`src/eval/vllm_evaluator.py`](file:///Users/aryamandev/Developer/blissful-bose/src/eval/vllm_evaluator.py) cuts this to under 3 minutes, making complete benchmarking on free Colab feasible.
 

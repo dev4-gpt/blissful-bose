@@ -1,6 +1,11 @@
 # Continual Safety Alignment in Small Vision-Language Models (VLMs)
 ## Master Research Methodology, Empirical Paper Analysis & Multimodal Architecture Specification
 
+> ⚠️ **VERIFICATION STATUS**: This file was written before direct PDF OCR verification.
+> For the PPT and any presentation, use **`docs/PRESENTATION_CITED_WRITEUP.md`** instead — all numbers there are extracted verbatim from the actual PDFs.
+> The structural content here (methodology, algorithm, VLM extension design) is correct.
+> Any specific ±σ numbers in this file should be verified against **Table 6** (ASR) and **Table 8** (BWT) in `2604.17215v1.pdf` before citing.
+
 **Authors / Lead Researcher**: Aryaman  
 **Target Venues**: CVPR / ACL / EMNLP / NeurIPS (Safety & Alignment Track)  
 **Primary Reference Paper**: *Continual Safety Alignment via Gradient-Based Sample Selection* (Bach, Nguyen, Le, & Tran — ACL 2026 Findings / [arXiv:2604.17215](https://arxiv.org/abs/2604.17215))
@@ -11,7 +16,7 @@
 
 Fine-tuning safety-aligned models on downstream domain datasets systematically causes **alignment drift**—eroding safety refusal behaviors, exacerbating hallucinations, and opening vulnerabilities to adversarial exploitation. In **Bach et al. (ACL 2026)**, the authors established a data-centric paradigm for text-only Large Language Models (LLMs): training samples contribute unequally to alignment degradation, with **high-gradient samples** disproportionately pulling model parameters back toward the unaligned pretraining distribution via **elastic reversion**. Filtering these destructive samples via **Moderate-$G_i$ selection** preserved safety guardrails across diverse model families and continual domain tasks without requiring curated safety data.
 
-Crucially, **Appendix F (Limitations & Future Work)** of Bach et al. explicitly stated:
+Crucially, the **Appendix (Limitations)** of Bach et al. explicitly stated:
 > *"Multi-Modal Models: Our experiments focus on text-only models. Extending gradient-based selection to vision-language models or other modalities requires further investigation."*
 
 This research framework directly tackles this open frontier. We formulate, formalize, and adapt the gradient-based sample selection paradigm to **Small Vision-Language Models (VLMs)** (e.g., `Qwen2-VL-2B-Instruct`). We address the unique challenges of multimodal alignment: cross-modal safety bypasses, image-token gradient dynamics, and parameter attribution between multimodal projectors and language backbones.
