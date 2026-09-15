@@ -6,6 +6,9 @@
 **Advisor**: Prof. Thao Minh Le ([mxl6224@psu.edu](mailto:mxl6224@psu.edu))  
 **Repository**: [`dev4-gpt/blissful-bose`](https://github.com/dev4-gpt/blissful-bose)
 
+> [!IMPORTANT]
+> **All-in-One Master Compendium**: For an exhaustive, unified synthesis of all repo files, mathematical formulas, exact paper section citations (Bach et al., Ji et al., Peng et al., FigStep, MM-SafetyBench), empirical baseline tables, and the 11-slide presentation guide, see **[`docs/MASTER_RESEARCH_COMPENDIUM.md`](file:///Users/aryamandev/Developer/blissful-bose/docs/MASTER_RESEARCH_COMPENDIUM.md)**.
+
 ---
 
 ## 🧭 Executive Learning Roadmap: 5 Core Pillars

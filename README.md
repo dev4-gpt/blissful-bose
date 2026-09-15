@@ -65,7 +65,16 @@ python3 -m pytest tests/
 
 ```
 blissful-bose/
-├── RESEARCH_METHODOLOGY_AND_VLM_SPEC.md   # Master research methodology & 8 Mermaid diagrams
+├── docs/
+│   ├── MASTER_RESEARCH_COMPENDIUM.md      # ⭐ Master all-in-one dossier, paper citations & PPT blueprint
+│   ├── presentation_blueprint.md          # 11-slide presentation script & advisor Q&A
+│   ├── sota_landscape_survey.md           # 20+ paper survey across 6 defense families
+│   ├── methodology_comparison.md          # Head-to-head comparison table of all defenses
+│   ├── gradient_strategy_dossier.md       # Mathematical formulation & gradient mechanics
+│   └── reproducibility_blueprint.md       # PyTorch autograd pseudocode & open research questions
+├── RESEARCH_METHODOLOGY_AND_VLM_SPEC.md   # Authoritative numerical tables (Bach et al. Tables 2, 4-8)
+├── STUDY_AND_PRESENTATION_PLAYBOOK.md     # Study guide & metric formulas
+├── Continual_Safety_Alignment.md          # Full notes on Bach et al. (ACL 2026)
 ├── notebooks/
 │   └── continual_safety_vlm.ipynb         # End-to-end Colab training & vLLM evaluation
 ├── src/
