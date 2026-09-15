@@ -25,16 +25,41 @@
 
 ## SLIDE 2 — The Problem: Why Fine-Tuning Breaks Safety
 
-### What to write on the slide:
+### ⚠️ IMPORTANT: What Bach et al. Does and Does NOT Cover
 
-Fine-tuning a safety-aligned VLM on completely **benign downstream tasks** (math, visual QA, medical QA, document reading) degrades its safety guardrails. The training data contains **no harmful content** — yet the model loses its ability to refuse harmful requests.
+**Bach et al. (ACL 2026) works exclusively on text-only LLMs.**
+Models studied: Qwen2.5-7B-Instruct, LLaMA-3.1-8B-Instruct, Qwen3-4B-Instruct.
+The paper's own Limitations section explicitly states:
+> *"Focuses on text-only models (extending to vision-language models requires further investigation)."*
+> — Bach et al., Appendix, Limitations
+
+**This limitation is our research opportunity.** Structure this slide as two clearly separated claims.
+
+---
+
+### Part A — What Is Confirmed (Text LLMs Only)
+
+Fine-tuning a safety-aligned **text LLM** on completely **benign downstream data** degrades its safety guardrails. The training data contains **no harmful content** — yet the model loses its ability to refuse harmful requests.
 
 > **"Even fine-tuning on benign, non-malicious datasets can unintentionally weaken safety mechanisms, suggesting that alignment degradation is not merely a consequence of adversarial data but a structural property of fine-tuning itself."**
 >
-> *— Bach et al. (ACL 2026), Section 1 (Introduction), paragraph 2*  
+> *— Bach et al. (ACL 2026), §1 (Introduction), paragraph 2*  
 > **Citation on slide**: Bach et al., arXiv:2604.17215, §1
 
-Two established theoretical mechanisms explain why:
+---
+
+### Part B — Our Hypothesis (VLMs — Unproven, This is Our Research)
+
+We hypothesize the same mechanism operates in Vision-Language Models — and is likely **worse** because:
+1. VLMs have an additional unaligned parameter group (the multimodal projector) that text-only methods do not address.
+2. Visual inputs provide a second attack pathway that bypasses text safety filters entirely (confirmed: FigStep, arXiv:2311.05608).
+3. Bach et al. themselves identify this as unaddressed future work (their Appendix, Limitations).
+
+**Framing for your slide**: *"Bach et al. proved this for text. We ask: does it hold for vision-language models, and can the same cure work?"*
+
+---
+
+### Theoretical Mechanisms (Support Both Parts A and B)
 
 **Mechanism 1 — Elastic Reversion** *(Ji et al., arXiv:2406.06144)*:
 - Models statistically "resist" alignment modifications and rebound toward their pretrained behavior under fine-tuning.
