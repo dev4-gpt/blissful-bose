@@ -8,3 +8,5 @@ htmlcov/
 checkpoints/
 wandb/
 .env
+.DS_Store
+~$*
