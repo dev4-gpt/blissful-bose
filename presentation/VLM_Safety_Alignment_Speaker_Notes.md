@@ -1,6 +1,6 @@
 # Speaker Notes: Safety Alignment for Small Vision-Language Models
 
-**Target duration:** about 20 minutes, 18 slides.  
+**Target duration:** about 20 minutes, 18 core slides plus evidence appendix and references.  
 **Companion:** [`VLM_Safety_Alignment_Research_Proposal_Updated.pptx`](../VLM_Safety_Alignment_Research_Proposal_Updated.pptx)  
 **Detailed protocol and benchmark audit:** [`../docs/vlm_safety_protocol_audit.md`](../docs/vlm_safety_protocol_audit.md)  
 **Literature snapshot:** 30 September 2026.
@@ -97,7 +97,7 @@ The slides present an evidence-based proposal, not completed experimental findin
 
 ## Slide 18 — Primary literature and source conventions (as needed)
 
-“The bracketed citations on each slide point to the IEEE-style numbered bibliography at the end. We deliberately distinguish peer-reviewed proceedings from arXiv preprints, and we keep each paper’s reported score attached to its own model and evaluation protocol. The audit remains the detailed lookup document; you do not need to read it aloud.”
+"The bracketed citations on each slide point to the IEEE-style numbered bibliography at the end. We deliberately distinguish peer-reviewed proceedings from arXiv preprints, and we keep each paper’s reported score attached to its own model and evaluation protocol. The audit is the synthesis; the linked VLM_PAPER_READING_GUIDE.md maps every numbered reference to the sections, figures, and tables to inspect in the original paper."
 
 ## Evidence appendix (slides 19–27; use for questions, not in the 20-minute run)
 
@@ -141,17 +141,21 @@ These slides are backup material. Present only the table relevant to a question.
 
 **Appendix sources:** SafeVLM, https://arxiv.org/abs/2405.13581; VLMGuard-R1, https://aclanthology.org/2026.findings-acl.1986/; ADPO, https://aclanthology.org/2025.findings-emnlp.735/; benchmark sources are linked in the protocol audit.
 
-### Slide 28 — IEEE references [1]–[9]
+### Slide 28 — Training, data, and project-context references
 
-“These references cover the foundational attacks and datasets, the first direct alignment baselines, preference data, representation-gap work, and leakage-controlled evaluation. The arXiv number or DOI provides a stable way to retrieve each paper.”
+"This page groups the training and data-alignment papers: VLGuard, SafeVLM, SPA-VL, ADPO, Think in Safety, and VSFA. Reference 26 is included only as project-history context; it is LLM-only, not VLM evidence. Citation numbers remain the same as on the slides."
 
-### Slide 29 — IEEE references [10]–[18]
+### Slide 29 — Inference and runtime defense references
 
-“This group contains safety calibration and compositional benchmarks, adversarial preference optimization, safety reasoning, ecological meme evaluation, recent reasoning-driven prompt rewriting, label-free visual alignment, and the unified benchmark. The venue and DOI identify the archival published work; MMJailBench is clearly marked as a preprint.”
+“This page groups representation correction, reasoning-driven prompt rewriting, test-time alignment, decoding interventions, and token-level selective defenses. It mixes peer-reviewed papers and preprints, so preserve the publication-status labels.”
 
-### Slide 30 — IEEE references [19]–[26]
+### Slide 30 — Attack and red-teaming references
 
-“The final references cover adaptive and internal-boundary attacks, recent test-time and decoding defenses, and representation calibration. Reference 26 is the prior LLM-only gradient-selection paper. It is included to document project history and is explicitly not treated as VLM-safety evidence.”
+“This page groups the image-carrier, visual-semantic, benchmark-collection, adaptive black-box, and internal-boundary attack work. These papers define different attacker capabilities; do not treat their scores as one comparable leaderboard.”
+
+### Slide 31 — Benchmark and dataset references
+
+“This page groups the broad safety, leakage, calibration, compositional, ecological, and risk-by-modality evaluations. SPA-VL and VLGuard are listed on the training page because their primary role here is alignment data/method; they also appear as resources in the benchmark audit. Use the protocol audit for the detailed dataset cards and caveats.”
 
 ## Likely questions and concise answers
 

@@ -4,6 +4,8 @@
 **Scope:** safety alignment and empirical robustness for small/open vision-language models (VLMs), not a port of the earlier LLM continual-training method.  
 **Evidence rule:** method descriptions below are based on the paper/official proceedings page; author-reported numbers are not cross-paper comparable unless the model, data, decoding, attack budget, and judge are held fixed. 2026 preprints are labeled as such.
 
+**Reading route:** See [VLM_PAPER_READING_GUIDE.md](VLM_PAPER_READING_GUIDE.md) for a per-reference reading map, key figures/tables, and each paper’s role in the proposed pipeline. The audit below is the synthesis; verify source-paper details before presenting exact numbers.
+
 ## Executive recommendation
 
 Make the first study a **small-VLM safety alignment audit with a controlled alignment intervention**, not a claim to invent a new universal defense. A defensible, tractable paper question is:

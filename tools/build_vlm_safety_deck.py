@@ -384,16 +384,17 @@ IEEE_REFS = [
     '[26] T. Bach et al., "Continual Safety Alignment via Gradient-Based Sample Selection," arXiv:2604.17215, 2026. LLM-only; project-history context, not VLM evidence.'
 ]
 
-def add_reference_page(title, first, last):
+def add_reference_page(title, refnums):
     s = base(title, "IEEE references", "Full citation metadata; numbered entries correspond to in-slide citations")
-    items = IEEE_REFS[first - 1:last]
+    items = [IEEE_REFS[n - 1] for n in refnums]
     split = (len(items) + 1) // 2
     textbox(s,0.78,1.75,5.78,5.12,"\n\n".join(items[:split]),11.2,INK)
     textbox(s,6.83,1.75,5.78,5.12,"\n\n".join(items[split:]),11.2,INK)
 
-add_reference_page("References [1]–[9]", 1, 9)
-add_reference_page("References [10]–[18]", 10, 18)
-add_reference_page("References [19]–[26]", 19, 26)
+add_reference_page("References: Training, Data & Project Context", [5, 6, 7, 12, 13, 16, 26])
+add_reference_page("References: Inference and Runtime Defenses", [8, 15, 21, 22, 23, 24, 25])
+add_reference_page("References: Attacks and Red Teaming", [1, 3, 4, 19, 20])
+add_reference_page("References: Benchmarks and Datasets", [2, 9, 10, 11, 14, 17, 18])
 
 def attach_speaker_notes():
     source = Path("presentation/VLM_Safety_Alignment_Speaker_Notes.md").read_text()
