@@ -5,6 +5,8 @@
 **Advisor**: Prof. Thao Minh Le (`mxl6224@psu.edu`)  
 **Document Policy**: Every paper has a verified source. Papers confirmed from primary search are marked ✅. Papers identified from search summaries (author-confirmed, venue-confirmed) are marked 🔍. Any claim without a source is labeled `[Source not verified]`.
 
+> **Correction notice (2026-09-25):** entries §2.2 (LARF), §2.6 (OGPSA) and §2.7 (Aligned Model Merging), and the matching table rows, were re-checked against arXiv and rewritten; the earlier text described them incorrectly despite the ✅ marks. Treat ✅ elsewhere in this file as "cited by an earlier session", not as independently verified. Newer sample-selection and continual-safety papers (DataShield, SQSD, TOSS, Bi-Anchoring, DualSelect, SafeAnchor) are catalogued in `docs/lit_review/LITERATURE_REVIEW_CLAUDE.md`.
+
 ---
 
 ## Why This Survey Exists
@@ -58,34 +60,33 @@ These papers all try to solve the same problem as Bach et al. — preserve safet
 
 ### 2.2 LARF — Layer-Aware Representation Filtering (EMNLP 2025)
 **Paper**: *Layer-Aware Representation Filtering: Purifying Finetuning Data to Preserve LLM Safety Alignment*  
-**Venue**: EMNLP 2025 🔍 (confirmed from search: Li, Li, Lu, Wei, Li, Shao, Sha — Shanghai AI Lab)  
-**Code**: https://github.com/LLLeoLi/LARF  
+**arXiv**: [2507.18631](https://arxiv.org/abs/2507.18631) ✅ (Li, Li, Lu, Wei, Li, Shao, Sha; abstract read 2026-09-25) · EMNLP 2025 main ([ACL Anthology 2025.emnlp-main.406](https://aclanthology.org/2025.emnlp-main.406/))  
+**Code**: https://github.com/LLLeoLI/LARF  
 
-**What it does**: Identifies safety-sensitive layers in the LLM, then filters fine-tuning samples based on their representations within those layers. Removes samples with safety-degrading features before training.
+**What it does**: Identifies safety-sensitive layers in the LLM and uses their representations to detect which post-training samples carry safety-degrading features. The abstract states that fine-tuning datasets often contain such samples "not easily identifiable on the surface" and that LARF "can effectively identify **benign** data with safety-degrading features".
 
 **How it compares to Bach et al.**:
 - Both are data-centric (filter before training), not parameter-centric
-- LARF: uses *layer-specific representation space* to detect harmful data samples
-- Bach et al.: uses *gradient norm in parameter space* to detect alignment-reversing samples
-- LARF targets *representation similarity to harmful distributions*; Bach et al. targets *gradient direction aligned with reversion vector*
+- LARF: scores samples in *layer-specific representation space*
+- Bach et al.: scores samples by *per-sample gradient norm in parameter space* and keeps the near-median
+- Signal differs (representation vs gradient magnitude); the regime (benign data that still erodes safety) is the **same**
 
 **Gap relative to our work**:
 - Text-only LLMs (no multimodal)
-- Filters *content-unsafe* samples from fine-tuning data — designed for cases where fine-tuning data may itself be harmful
-- Our target: *entirely benign downstream tasks* (e.g., medical VQA) where content is safe but gradient dynamics erode alignment
-- LARF would filter nothing in a clean medical dataset; Moderate-Gi would still protect safety
+- Not evaluated as a *continual multi-task* method in the abstract (single fine-tuning setting)
+- LARF is a **direct competitor**, not a method that "would filter nothing" on benign data — an earlier version of this survey claimed the latter and that was wrong
+- Reference-set requirements (safe/unsafe reference representations) are from a search summary, not the abstract — check the paper before claiming "no safety data" as an advantage over LARF
 
-**Position in our paper**: Related Work, §2. Key baseline to distinguish from — "LARF filters semantically unsafe fine-tuning data; our method filters format-mismatching samples that trigger elastic reversion regardless of semantic content."
-
+**Position in our paper**: Related Work, §2, and a **required baseline** for the selection family. Distinguish on (i) gradient-magnitude vs representation signal, (ii) continual multi-task evaluation, (iii) multimodal parameter-group attribution.
 ---
 
 ### 2.3 CMRM — Cross-Modality Representation Manipulation (ACL 2025)
 **Paper**: *Unraveling and Mitigating Safety Alignment Degradation of Vision-Language Models*  
-**Venue**: ACL 2025 Findings 🔍 (confirmed: Liu, Shang et al., October 2024 preprint)  
+**Venue**: ACL 2025 Findings 🔍 (venue not re-verified) · arXiv [2410.09047](https://arxiv.org/abs/2410.09047) ✅ (Liu, Qin et al.; 2024-10-11)  
 
 **What it does**: Inference-time intervention that recalibrates multimodal hidden states by applying a correction vector that pulls them back toward the safe text-only distribution. No retraining required.
 
-**Key result** [Source: search summary — needs primary paper confirmation]: LLaVA-7B unsafe rate on multimodal inputs reduced from 61.53% to ~3.15%.
+**Key result** ✅ (arXiv 2410.09047 abstract, checked 2026-09-25): LLaVA-7B unsafe rate on multimodal input reduced from 61.53% to as low as 3.15% with inference-time intervention only.
 
 **How it addresses the problem**:
 - Identifies the "representation gap" — multimodal inputs shift hidden states away from the text distribution where safety is optimized
@@ -136,31 +137,22 @@ These papers all try to solve the same problem as Bach et al. — preserve safet
 
 ---
 
-### 2.6 OGPSA — Orthogonal Gradient Projection for Continual Safety Alignment
-**Paper**: *Orthogonal Gradient Projection for Continual Safety Alignment*  
-**arXiv**: [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) (HTML: [arxiv.org/html/2602.07892v1](https://arxiv.org/html/2602.07892v1)) ✅  
-**Mechanism**: Projects the gradients of downstream fine-tuning tasks onto the orthogonal subspace of safety-critical gradients, preventing task parameter updates from interfering with previously learned safety representations.
+### 2.6 OGPSA — Safety Alignment as Continual Learning (alignment-tax mitigation)
+**Paper**: *Safety Alignment as Continual Learning: Mitigating the Alignment Tax via Orthogonal Gradient Projection* (Sun, Zhang, Wang, Zhu, Su, Zhong)  
+**arXiv**: [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) ✅ (title, authors, abstract checked 2026-09-25)  
+**Mechanism**: Estimates a low-rank reference subspace from gradients on a small set of *general-capability* data and removes that component from each *safety* gradient, so safety updates interfere less with existing capabilities. Evaluated on SFT, DPO and sequential SFT→DPO.
 
-**Comparison to Bach et al. and Our VLM Method**:
-- **Gradient manipulation vs. sample selection**: OGPSA modifies the *gradient update vector* during optimization; our method *filters samples* before optimization begins.
-- **Compute overhead**: OGPSA requires constructing and updating a safety subspace basis matrix (high memory and projection cost during training); our method requires only a forward-backward pass for norm estimation at $\theta_0$.
-- **Model agnosticism**: Our method produces clean, filtered datasets usable with standard off-the-shelf fine-tuning pipelines (LoRA, SFT, Full FT); OGPSA requires custom optimizer wrappers.
+**What it is NOT**: it addresses the *alignment tax* (capability lost during safety post-training). It does **not** address safety erosion caused by downstream task fine-tuning — the problem Bach et al. and this project target. An earlier version of this section described it as projecting task gradients away from safety-critical directions; that was incorrect.
 
-**Position in our paper**: Related Work, §2 (Continual Safety Alignment). "OGPSA provides an optimizer-level orthogonal projection defense; our method provides a pre-optimization data-centric filter that achieves safety preservation without modifying training loops or tracking projection matrices."
-
+**Position in our paper**: cite as related work on the continual-learning framing of alignment, **not** as a baseline. The parameter-space method that does target our setting is **SafeAnchor** ([arXiv:2604.17691](https://arxiv.org/abs/2604.17691)): Fisher-identified low-rank safety subspaces in LoRA space, task-gradient projection to the orthogonal complement, plus drift-triggered replay (text LLMs, three-domain sequence).
 ---
 
-### 2.7 Aligned Model Merging
-**Paper**: *Aligned Model Merging: Preserving Safety and Plasticity in Large Models*  
-**arXiv**: [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) (PDF: [arxiv.org/pdf/2506.03189](https://arxiv.org/pdf/2506.03189)) ✅  
-**Mechanism**: Uses model merging techniques (e.g., spherical linear interpolation, task vector arithmetic, tied weight merging) to fuse fine-tuned task checkpoints with the original safety-aligned model post-hoc, aiming to recover safety while retaining downstream task capabilities.
+### 2.7 Aligned Model Merging (VLM continual learning — not a safety paper)
+**Paper**: *Continual Learning in Vision-Language Models via Aligned Model Merging* (Sokar, Dziugaite, Arnab, Iscen, Castro, Schmid)  
+**arXiv**: [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) ✅ (title, authors, abstract read 2026-09-25)  
+**Mechanism**: Merges newly trained task parameters with previously learned ones and encourages weights aligned with previous ones to avoid interference; evaluated on large VLMs. Framed as stability–plasticity / catastrophic forgetting of *task knowledge*.
 
-**Comparison to Bach et al. and Our VLM Method**:
-- **Post-hoc vs. proactive**: Model merging is applied *after* fine-tuning completes; our method prevents alignment drift *during* fine-tuning.
-- **Interference across sequence**: Model merging degrades quickly when applied sequentially across multiple tasks ($T > 2$), as task vectors begin cancelling each other; our sample selection is naturally iterative across continuous task streams.
-
-**Position in our paper**: Related Work, §2 / §6. "Model merging attempts post-hoc safety restoration via weight interpolation, but suffers from task-vector interference over sequential tasks; our method proactively avoids alignment-degrading parameter updates during training."
-
+**Correction**: an earlier version titled this "Aligned Model Merging: Preserving Safety and Plasticity in Large Models" and described post-hoc *safety* restoration. The abstract has no safety framing. Use it as a multimodal continual-learning reference (forgetting metrics, VLM setting). For safety-restoring merges use SafeMERGE ([2503.17239](https://arxiv.org/abs/2503.17239)) and *Model Merging and Safety Alignment* ([2406.14563](https://arxiv.org/abs/2406.14563)) — both text LLMs. The earlier claim that merging "degrades quickly for T>2" is an untested hypothesis, not a finding from this paper.
 ---
 
 ## Pillar 3: Gradient-Based Data Selection Methods
@@ -330,10 +322,10 @@ This table positions every relevant paper against our work. "✗" = does NOT add
 |:---|:---:|:---:|:---:|:---:|:---:|:---|
 | **Our Method (Moderate-$G_i$ VLM)** | Vision-Language | ✓ | ✓ | ✓ | ✓ | [To be validated experimentally in Phase 1/2] |
 | Bach et al. (ACL 2026, [arXiv:2604.17215](https://arxiv.org/abs/2604.17215)) | Text-only | ✓ | ✓ | ✓ | ✓ | Text-only (our direct foundation) |
-| OGPSA (2026, [arXiv:2602.07892](https://arxiv.org/abs/2602.07892)) | Text / LLM | ✓ | ✗ | ✗ | ✓ | Optimizer projection; heavy projection matrix tracking |
-| Aligned Model Merging (2025, [arXiv:2506.03189](https://arxiv.org/abs/2506.03189)) | Vision-Language | ✓ | ✗ | ✗ | ✓ | Post-hoc weight merging; task-vector interference |
+| OGPSA (2026, [arXiv:2602.07892](https://arxiv.org/abs/2602.07892)) | Text / LLM | ✗ | ✗ | ✗ | ✓ | Targets alignment tax (capability loss from safety training), not task-FT safety erosion — related work, not a baseline |
+| Continual Learning in VLMs via Aligned Model Merging (2025, [arXiv:2506.03189](https://arxiv.org/abs/2506.03189)) | Vision-Language | ✗ | ✗ | ✓ | ✓ | Task-knowledge CL for VLMs; no safety focus in abstract — CL reference, not a safety baseline |
 | Unforgotten Safety (2025, [arXiv:2512.10150](https://arxiv.org/abs/2512.10150)) | Text-only | ✓ | ✗ | ✗ | ✓ | Parameter-level CL; no gradient filtering |
-| LARF (EMNLP 2025) | Text-only | ✗ | ✓ | ✗ | ✓ | Filters content-unsafe data; misses format-mismatch drift |
+| LARF (EMNLP 2025, [arXiv:2507.18631](https://arxiv.org/abs/2507.18631)) | Text-only | ✗ | ✓ | ✗ | ✓ | **Direct competitor**: filters *benign* data with safety-degrading features via safety-sensitive-layer representations; single-task setting; text-only |
 | SafeVLM (2024, [arXiv:2405.13581](https://arxiv.org/abs/2405.13581)) | Vision-Language | ✗ | ✗ | ✗ | ✓ | Initial architectural alignment; not continual FT |
 | VLMGuard-R1 (ACL 2026, [arXiv:2504.12661](https://arxiv.org/abs/2504.12661)) | Vision-Language | ✗ | ✗ | ✗ | ✓ | Input guardrail; no FT weight protection |
 | VLGuard / Zong et al. (ICML 2024, [arXiv:2402.02207](https://arxiv.org/abs/2402.02207)) | Vision-Language | Partial | ✓ | ✗ | ✓ | Requires curated safety data mixture buffer |
@@ -350,8 +342,8 @@ This table positions every relevant paper against our work. "✗" = does NOT add
 ## The Three-Line Novel Contribution Summary (For Paper Introduction)
 
 1. **Bach et al. (ACL 2026)** solves continual alignment drift via gradient selection — but only for *text LLMs*. Appendix (Limitations) explicitly leaves VLMs as an open research challenge.
-2. **SafeVLM, VLMGuard-R1, CMRM, VLGuard, SPA-VL, Aligned Model Merging** address VLM safety — but through *initial architecture*, *inference steering*, *safety data buffers*, or *post-hoc merging*, not proactive continual fine-tuning sample selection.
-3. **OGPSA, Unforgotten Safety, LARF** address continual fine-tuning — but either require custom optimizer projection matrices, memory replay buffers, or semantically toxic data filters.
+2. **SafeVLM, VLMGuard-R1, CMRM, VLGuard, SPA-VL** address VLM safety — but through *initial architecture*, *inference steering*, *safety data buffers*, or *initial preference alignment*, not proactive continual fine-tuning sample selection.
+3. **Unforgotten Safety** (CL techniques) and **SafeAnchor** (safety-subspace projection + replay) address continual safety preservation, and **LARF** (plus newer DataShield / SQSD / Bi-Anchoring / DualSelect) address safety-degrading *benign* data through selection — all text-only, and none studies multimodal parameter groups. (OGPSA addresses the alignment tax and is not in this group.)
 
 **The gap we fill**: *Gradient-based sample selection applied to continual fine-tuning of Small VLMs, introducing multimodal parameter attribution analysis ($G_i^{(L)}, G_i^{(P)}, G_i^{(J)}$) with zero architectural modifications and zero safety data requirements.*
 
@@ -375,8 +367,8 @@ Every paper requested and previously marked as pending is now 100% verified with
 | **SLAKE** | Liu et al., [arXiv:2102.09542](https://arxiv.org/abs/2102.09542) | Continual Task 3 (Alternate): Bilingual Medical VQA | ✅ Verified |
 | **DocVQA** | Mathew et al., [arXiv:2007.00398](https://arxiv.org/abs/2007.00398) | Continual Task 4: Document Reading Comprehension | ✅ Verified |
 | **RTVLM** | Li et al., [arXiv:2401.12915](https://arxiv.org/pdf/2401.12915) | 4-Dimensional Red Teaming Visual Benchmark | ✅ Verified |
-| **OGPSA** | [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) ([HTML](https://arxiv.org/html/2602.07892v1)) | Orthogonal Gradient Projection Competitor | ✅ Verified |
-| **Aligned Model Merging**| [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) ([PDF](https://arxiv.org/pdf/2506.03189)) | Post-FT Model Merging Baseline | ✅ Verified |
+| **OGPSA** | [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) | Related work only (alignment-tax mitigation via orthogonal gradient projection) — corrected 2026-09-25 | ✅ Verified (title/abstract) |
+| **Continual Learning in VLMs via Aligned Model Merging** | [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) | Multimodal continual-learning reference (no safety focus) — corrected 2026-09-25 | ✅ Verified (title/abstract) |
 | **XSTest** | Röttger et al., [arXiv:2308.01263](https://arxiv.org/pdf/2308.01263) | Over-Refusal & Exaggerated Safety Probing | ✅ Verified |
 
 ---

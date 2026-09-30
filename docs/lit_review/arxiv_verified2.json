@@ -1,0 +1,222 @@
+{
+ "2605.00583": {
+  "title": "Jailbreaking Vision-Language Models Through the Visual Modality",
+  "authors": [
+   "Azulay, Aharon",
+   "Dubi\u0144ski, Jan",
+   "Li, Zhuoyun",
+   "Mittal, Atharv",
+   "Gandelsman, Yossi"
+  ],
+  "published": "2026/05/01",
+  "abstract": "The visual modality of vision-language models (VLMs) is an underexplored attack surface for bypassing safety alignment. We introduce four jailbreak attacks exploiting the vision component: (1) encoding harmful instructions as visual symbol sequences with a decoding legend, (2) replacing harmful objects with benign substitutes (e.g., bomb -> banana) then prompting for harmful actions using the substitute term, (3) replacing harmful text in images (e.g., on book covers) with benign words while visual context preserves the original meaning, and (4) visual analogy puzzles whose solution requires inferring a prohibited concept. Evaluating across six frontier VLMs, our visual attacks bypass safety alignment and expose a cross-modality alignment gap: text-based safety training does not automatically generalize to harmful intent conveyed visually. For example, our visual cipher achieves 40.9% attack success on Claude-Haiku-4.5 versus 10.7% for an equivalent textual cipher. To further our insight into the attack mechanism, we present preliminary interpretability and mitigation results. These findings highlight that robust VLM alignment requires treating vision as a first-class target for safety post-training."
+ },
+ "2505.19610": {
+  "title": "JailBound: Jailbreaking Internal Safety Boundaries of Vision-Language Models",
+  "authors": [
+   "Song, Jiaxin",
+   "Wang, Yixu",
+   "Li, Jie",
+   "Yu, Rui",
+   "Teng, Yan",
+   "Ma, Xingjun",
+   "Wang, Yingchun"
+  ],
+  "published": "2025/05/26",
+  "abstract": "Vision-Language Models (VLMs) exhibit impressive performance, yet the integration of powerful vision encoders has significantly broadened their attack surface, rendering them increasingly susceptible to jailbreak attacks. However, lacking well-defined attack objectives, existing jailbreak methods often struggle with gradient-based strategies prone to local optima and lacking precise directional guidance, and typically decouple visual and textual modalities, thereby limiting their effectiveness by neglecting crucial cross-modal interactions. Inspired by the Eliciting Latent Knowledge (ELK) framework, we posit that VLMs encode safety-relevant information within their internal fusion-layer representations, revealing an implicit safety decision boundary in the latent space. This motivates exploiting boundary to steer model behavior. Accordingly, we propose JailBound, a novel latent space jailbreak framework comprising two stages: (1) Safety Boundary Probing, which addresses the guidance issue by approximating decision boundary within fusion layer's latent space, thereby identifying optimal perturbation directions towards the target region; and (2) Safety Boundary Crossing, which overcomes the limitations of decoupled approaches by jointly optimizing adversarial perturbations across both image and text inputs. This latter stage employs an innovative mechanism to steer the model's internal state towards policy-violating outputs while maintaining cross-modal semantic consistency. Extensive experiments on six diverse VLMs demonstrate JailBound's efficacy, achieves 94.32% white-box and 67.28% black-box attack success averagely, which are 6.17% and 21.13% higher than SOTA methods, respectively. Our findings expose a overlooked safety risk in VLMs and highlight the urgent need for more robust defenses. Warning: This paper contains potentially sensitive, harmful and offensive content."
+ },
+ "2505.21967": {
+  "title": "Seeing the Threat: Vulnerabilities in Vision-Language Models to Adversarial Attack",
+  "authors": [
+   "Ren, Juan",
+   "Dras, Mark",
+   "Naseem, Usman"
+  ],
+  "published": "2025/05/28",
+  "abstract": "Large Vision-Language Models (LVLMs) have shown remarkable capabilities across a wide range of multimodal tasks. However, their integration of visual inputs introduces expanded attack surfaces, thereby exposing them to novel security vulnerabilities. In this work, we conduct a systematic representational analysis to uncover why conventional adversarial attacks can circumvent the safety mechanisms embedded in LVLMs. We further propose a novel two stage evaluation framework for adversarial attacks on LVLMs. The first stage differentiates among instruction non compliance, outright refusal, and successful adversarial exploitation. The second stage quantifies the degree to which the model's output fulfills the harmful intent of the adversarial prompt, while categorizing refusal behavior into direct refusals, soft refusals, and partial refusals that remain inadvertently helpful. Finally, we introduce a normative schema that defines idealized model behavior when confronted with harmful prompts, offering a principled target for safety alignment in multimodal systems."
+ },
+ "2506.09353": {
+  "title": "DAVSP: Safety Alignment for Large Vision-Language Models via Deep Aligned Visual Safety Prompt",
+  "authors": [
+   "Zhang, Yitong",
+   "Li, Jia",
+   "Cai, Liyi",
+   "Li, Ge"
+  ],
+  "published": "2025/06/11",
+  "abstract": "Large Vision-Language Models (LVLMs) have achieved impressive progress across various applications but remain vulnerable to malicious queries that exploit the visual modality. Existing alignment approaches typically fail to resist malicious queries while preserving utility on benign ones effectively. To address these challenges, we propose Deep Aligned Visual Safety Prompt (DAVSP), which is built upon two key innovations. First, we introduce the Visual Safety Prompt, which appends a trainable padding region around the input image. It preserves visual features and expands the optimization space. Second, we propose Deep Alignment, a novel approach to train the visual safety prompt through supervision in the model's activation space. It enhances the inherent ability of LVLMs to perceive malicious queries, achieving deeper alignment than prior works. Extensive experiments across five benchmarks on two representative LVLMs demonstrate that DAVSP effectively resists malicious queries while preserving benign input utility. Furthermore, DAVSP exhibits great cross-model generation ability. Ablation studies further reveal that both the Visual Safety Prompt and Deep Alignment are essential components, jointly contributing to its overall effectiveness. The code is publicly available at https://github.com/zhangyitonggg/DAVSP."
+ },
+ "2601.15698": {
+  "title": "Beyond Visual Safety: Jailbreaking Multimodal Large Language Models for Harmful Image Generation via Semantic-Agnostic Inputs",
+  "authors": [
+   "Yu, Mingyu",
+   "Liu, Lana",
+   "Zhao, Zhehao",
+   "Wang, Wei",
+   "Qin, Sujuan"
+  ],
+  "published": "2026/01/22",
+  "abstract": "The rapid advancement of Multimodal Large Language Models (MLLMs) has introduced complex security challenges, particularly at the intersection of textual and visual safety. While existing schemes have explored the security vulnerabilities of MLLMs, the investigation into their visual safety boundaries remains insufficient. In this paper, we propose Beyond Visual Safety (BVS), a novel image-text pair jailbreaking framework specifically designed to probe the visual safety boundaries of MLLMs. BVS employs a \"reconstruction-then-generation\" strategy, leveraging neutralized visual splicing and inductive recomposition to decouple malicious intent from raw inputs, thereby leading MLLMs to be induced into generating harmful images. Experimental results demonstrate that BVS achieves a remarkable jailbreak success rate of 98.21\\% against GPT-5 (12 January 2026 release). Our findings expose critical vulnerabilities in the visual safety alignment of current MLLMs."
+ },
+ "2601.03594": {
+  "title": "Jailbreaking LLMs & VLMs: Mechanisms, Evaluation, and Unified Defense",
+  "authors": [
+   "Chen, Zejian",
+   "Li, Chaozhuo",
+   "Li, Chao",
+   "Zhang, Xi",
+   "Zhang, Litian",
+   "He, Yiming"
+  ],
+  "published": "2026/01/07",
+  "abstract": "This paper provides a systematic survey of jailbreak attacks and defenses on Large Language Models (LLMs) and Vision-Language Models (VLMs), emphasizing that jailbreak vulnerabilities stem from structural factors such as incomplete training data, linguistic ambiguity, and generative uncertainty. It further differentiates between hallucinations and jailbreaks in terms of intent and triggering mechanisms. We propose a three-dimensional survey framework: (1) Attack dimension-including template/encoding-based, in-context learning manipulation, reinforcement/adversarial learning, LLM-assisted and fine-tuned attacks, as well as prompt- and image-level perturbations and agent-based transfer in VLMs; (2) Defense dimension-encompassing prompt-level obfuscation, output evaluation, and model-level alignment or fine-tuning; and (3) Evaluation dimension-covering metrics such as Attack Success Rate (ASR), toxicity score, query/time cost, and multimodal Clean Accuracy and Attribute Success Rate. Compared with prior works, this survey spans the full spectrum from text-only to multimodal settings, consolidating shared mechanisms and proposing unified defense principles: variant-consistency and gradient-sensitivity detection at the perception layer, safety-aware decoding and output review at the generation layer, and adversarially augmented preference alignment at the parameter layer. Additionally, we summarize existing multimodal safety benchmarks and discuss future directions, including automated red teaming, cross-modal collaborative defense, and standardized evaluation."
+ },
+ "2502.06390": {
+  "title": "When Data Manipulation Meets Attack Goals: An In-depth Survey of Attacks for VLMs",
+  "authors": [
+   "Dai, Aobotao",
+   "Ma, Xinyu",
+   "Chen, Lei",
+   "Li, Songze",
+   "Wang, Lin"
+  ],
+  "published": "2025/02/10",
+  "abstract": "Vision-Language Models (VLMs) have gained considerable prominence in recent years due to their remarkable capability to effectively integrate and process both textual and visual information. This integration has significantly enhanced performance across a diverse spectrum of applications, such as scene perception and robotics. However, the deployment of VLMs has also given rise to critical safety and security concerns, necessitating extensive research to assess the potential vulnerabilities these VLM systems may harbor. In this work, we present an in-depth survey of the attack strategies tailored for VLMs. We categorize these attacks based on their underlying objectives - namely jailbreak, camouflage, and exploitation - while also detailing the various methodologies employed for data manipulation of VLMs. Meanwhile, we outline corresponding defense mechanisms that have been proposed to mitigate these vulnerabilities. By discerning key connections and distinctions among the diverse types of attacks, we propose a compelling taxonomy for VLM attacks. Moreover, we summarize the evaluation metrics that comprehensively describe the characteristics and impact of different attacks on VLMs. Finally, we conclude with a discussion of promising future research directions that could further enhance the robustness and safety of VLMs, emphasizing the importance of ongoing exploration in this critical area of study. To facilitate community engagement, we maintain an up-to-date project page, accessible at: https://github.com/AobtDai/VLM_Attack_Paper_List."
+ },
+ "2505.24208": {
+  "title": "Bootstrapping LLM Robustness for VLM Safety via Reducing the Pretraining Modality Gap",
+  "authors": [
+   "Yang, Wenhan",
+   "Stice, Spencer",
+   "Payani, Ali",
+   "Mirzasoleiman, Baharan"
+  ],
+  "published": "2025/05/30",
+  "abstract": "Ensuring Vision-Language Models (VLMs) generate safe outputs is crucial for their reliable deployment. However, LVLMs suffer from drastic safety degradation compared to their LLM backbone. Even blank or irrelevant images can trigger LVLMs to generate harmful responses to prompts that would otherwise be refused in text-only contexts. The modality gap between image and text representations has been recently hypothesized to contribute to safety degradation of LVLMs. However, if and how the amount of modality gap affects LVLMs' safety is not studied. In this work, we show that the amount of modality gap is highly inversely correlated with VLMs' safety. Then, we show that this modality gap is introduced during pretraining LVLMs and persists through fine-tuning. Inspired by this observation, we propose a regularization to reduce the modality gap during pretraining. Our extensive experiments on LLaVA v1.5, ShareGPT4V, and MiniGPT-4 show that our method substantially improves safety alignment of LVLMs, reducing unsafe rate by up to 16.3% without compromising performance, and can further boost existing defenses by up to 18.2%."
+ },
+ "2511.06512": {
+  "title": "EASE: Practical and Efficient Safety Alignment for Small Language Models",
+  "authors": [
+   "Shi, Haonan",
+   "Wang, Guoli",
+   "Ouyang, Tu",
+   "Wang, An"
+  ],
+  "published": "2025/11/09",
+  "abstract": "Small language models (SLMs) are increasingly deployed on edge devices, making their safety alignment crucial yet challenging. Current shallow alignment methods that rely on direct refusal of malicious queries fail to provide robust protection, particularly against adversarial jailbreaks. While deliberative safety reasoning alignment offers deeper alignment for defending against sophisticated attacks, effectively implanting such reasoning capability in SLMs with limited capabilities remains an open challenge. Moreover, safety reasoning incurs significant computational overhead as models apply reasoning to nearly all queries, making it impractical for resource-constrained edge deployment scenarios that demand rapid responses. We propose EASE, a novel framework that enables practical and Efficient safety Alignment for Small languagE models. Our approach first identifies the optimal safety reasoning teacher that can effectively distill safety reasoning capabilities to SLMs. We then align models to selectively activate safety reasoning for dangerous adversarial jailbreak queries while providing direct responses to straightforward malicious queries and general helpful tasks. This selective mechanism enables small models to maintain robust safety guarantees against sophisticated attacks while preserving computational efficiency for benign interactions. Experimental results demonstrate that EASE reduces jailbreak attack success rates by up to 17% compared to shallow alignment methods while reducing inference overhead by up to 90% compared to deliberative safety reasoning alignment, making it practical for SLMs real-world edge deployments."
+ },
+ "2503.06519": {
+  "title": "Can Small Language Models Reliably Resist Jailbreak Attacks? A Comprehensive Evaluation",
+  "authors": [
+   "Wang, Zhibo",
+   "Zhang, Wenhui",
+   "Xu, Huiyu",
+   "He, Zeqing",
+   "Zhu, Ziqi",
+   "Ren, Kui"
+  ],
+  "published": "2025/03/09",
+  "abstract": "Small language models (SLMs) have emerged as promising alternatives to large language models (LLMs) due to their low computational demands, enhanced privacy guarantees, and comparable performance in specific domains. Deploying SLMs on edge devices, such as smartphones and smart vehicles, has become a growing trend. However, the security implications of SLMs have not received as much attention as those of LLMs, particularly concerning the significant jailbreak threats they face. In this paper, we conduct the first systematic empirical study of SLMs' vulnerabilities to jailbreak attacks. Through systematic evaluation on 59 SLMs from 15 mainstream SLM families against 12 state-of-the-art jailbreak methods, we demonstrate that 61.0% of evaluated SLMs show an average ASR of more than 40% under jailbreak attacks and 37.3% of them have an ASR of more than 50% on direct harmful queries. Through correlation analysis, we identify that SLM vulnerabilities are closely related to training details (e.g., training dataset and method) rather than model size scaling. We further evaluate five defenses for jailbreak attacks, revealing that prompt-level defenses remain inconsistent across SLMs and attack methods, while model-level defense improves robustness against similar attacks yet generalizes poorly to multi-turn attacks such as Crescendo, highlighting the urgent need for security-by-design approaches in SLM development."
+ },
+ "2502.19883": {
+  "title": "Beyond the Tip of Efficiency: Uncovering the Submerged Threats of Jailbreak Attacks in Small Language Models",
+  "authors": [
+   "Yi, Sibo",
+   "Cong, Tianshuo",
+   "He, Xinlei",
+   "Li, Qi",
+   "Song, Jiaxing"
+  ],
+  "published": "2025/02/27",
+  "abstract": "Small language models (SLMs) have become increasingly prominent in the deployment on edge devices due to their high efficiency and low computational cost. While researchers continue to advance the capabilities of SLMs through innovative training strategies and model compression techniques, the security risks of SLMs have received considerably less attention compared to large language models (LLMs).To fill this gap, we provide a comprehensive empirical study to evaluate the security performance of 13 state-of-the-art SLMs under various jailbreak attacks. Our experiments demonstrate that most SLMs are quite susceptible to existing jailbreak attacks, while some of them are even vulnerable to direct harmful prompts.To address the safety concerns, we evaluate several representative defense methods and demonstrate their effectiveness in enhancing the security of SLMs. We further analyze the potential security degradation caused by different SLM techniques including architecture compression, quantization, knowledge distillation, and so on. We expect that our research can highlight the security challenges of SLMs and provide valuable insights to future work in developing more robust and secure SLMs."
+ },
+ "2603.28817": {
+  "title": "GUARD-SLM: Token Activation-Based Defense Against Jailbreak Attacks for Small Language Models",
+  "authors": [
+   "Mia, Md Jueal",
+   "Molto, Joaquin",
+   "Wu, Yanzhao",
+   "Amini, M. Hadi"
+  ],
+  "published": "2026/03/28",
+  "abstract": "Small Language Models (SLMs) are emerging as efficient and economically viable alternatives to Large Language Models (LLMs), offering competitive performance with significantly lower computational costs and latency. These advantages make SLMs suitable for resource-constrained and efficient deployment on edge devices. However, existing jailbreak defenses show limited robustness against heterogeneous attacks, largely due to an incomplete understanding of the internal representations across different layers of language models that facilitate jailbreak behaviors. In this paper, we conduct a comprehensive empirical study on 9 jailbreak attacks across 7 SLMs and 3 LLMs. Our analysis shows that SLMs remain highly vulnerable to malicious prompts that bypass safety alignment. We analyze hidden-layer activations across different layers and model architectures, revealing that different input types form distinguishable patterns in the internal representation space. Based on this observation, we propose GUARD-SLM, a lightweight token activation-based method that operates in the representation space to filter malicious prompts during inference while preserving benign ones. Our findings highlight robustness limitations across layers of language models and provide a practical direction for secure small language model deployment."
+ },
+ "2504.04976": {
+  "title": "A Domain-Based Taxonomy of Jailbreak Vulnerabilities in Large Language Models",
+  "authors": [
+   "Pel\u00e1ez-Gonz\u00e1lez, Carlos",
+   "Herrera-Poyatos, Andr\u00e9s",
+   "Zuheros, Cristina",
+   "Herrera-Poyatos, David",
+   "Tejedor, Virilo",
+   "Herrera, Francisco"
+  ],
+  "published": "2025/04/07",
+  "abstract": "The study of large language models (LLMs) is a key area in open-world machine learning. Although LLMs demonstrate remarkable natural language processing capabilities, they also face several challenges, including consistency issues, hallucinations, and jailbreak vulnerabilities. Jailbreaking refers to the crafting of prompts that bypass alignment safeguards, leading to unsafe outputs that compromise the integrity of LLMs. This work specifically focuses on the challenge of jailbreak vulnerabilities and introduces a novel taxonomy of jailbreak attacks grounded in the training domains of LLMs. It characterizes alignment failures through generalization, objectives, and robustness gaps. Our primary contribution is a perspective on jailbreak, framed through the different linguistic domains that emerge during LLM training and alignment. This viewpoint highlights the limitations of existing approaches and enables us to classify jailbreak attacks on the basis of the underlying model deficiencies they exploit. Unlike conventional classifications that categorize attacks based on prompt construction methods (e.g., prompt templating), our approach provides a deeper understanding of LLM behavior. We introduce a taxonomy with four categories -- mismatched generalization, competing objectives, adversarial robustness, and mixed attacks -- offering insights into the fundamental nature of jailbreak vulnerabilities. Finally, we present key lessons derived from this taxonomic study."
+ },
+ "2508.16982": {
+  "title": "Decoding Alignment: A Critical Survey of LLM Development Initiatives through Value-setting and Data-centric Lens",
+  "authors": [
+   "Chalkidis, Ilias"
+  ],
+  "published": "2025/08/23",
+  "abstract": "AI Alignment, primarily in the form of Reinforcement Learning from Human Feedback (RLHF), has been a cornerstone of the post-training phase in developing Large Language Models (LLMs). It has also been a popular research topic across various disciplines beyond Computer Science, including Philosophy and Law, among others, highlighting the socio-technical challenges involved. Nonetheless, except for the computational techniques related to alignment, there has been limited focus on the broader picture: the scope of these processes, which primarily rely on the selected objectives (values), and the data collected and used to imprint such objectives into the models. This work aims to reveal how alignment is understood and applied in practice from a value-setting and data-centric perspective. For this purpose, we investigate and survey (`audit') publicly available documentation released by 6 LLM development initiatives by 5 leading organizations shaping this technology, focusing on proprietary (OpenAI's GPT, Anthropic's Claude, Google's Gemini) and open-weight (Meta's Llama, Google's Gemma, and Alibaba's Qwen) initiatives, all published in the last 3 years. The findings are documented in detail per initiative, while there is also an overall summary concerning different aspects, mainly from a value-setting and data-centric perspective. On the basis of our findings, we discuss a series of broader related concerns."
+ },
+ "2602.16931": {
+  "title": "Narrow Fine-Tuning Erodes Safety Alignment in Vision-Language Agents",
+  "authors": [
+   "Gulati, Idhant",
+   "Raval, Shivam"
+  ],
+  "published": "2026/02/18",
+  "abstract": "Lifelong multimodal agents must continuously adapt to new tasks through post-training, but this creates a fundamental tension between acquiring capabilities and preserving safety alignment. We demonstrate that fine-tuning aligned vision-language models on narrow-domain harmful datasets induces severe emergent misalignment that generalizes broadly across unrelated tasks and modalities. Through experiments on Gemma3-4B, we show that misalignment scales monotonically with LoRA rank, and that multimodal evaluation reveals substantially higher misalignment ($70.71 \\pm 1.22$ at $r=128$) than text-only evaluation ($41.19 \\pm 2.51$), suggesting that unimodal safety benchmarks may underestimate alignment degradation in vision-language models. Critically, even 10\\% harmful data in the training mixture induces substantial alignment degradation. Geometric analysis reveals that harmful behaviors occupy a remarkably low-dimensional subspace, with the majority of misalignment information captured in 10 principal components. To mitigate misalignment, we evaluate two strategies: benign narrow fine-tuning and activation-based steering. While both approaches substantially reduce misalignment, neither completely removes the learned harmful behaviors. Our findings highlight the need for robust continual learning frameworks, as current post-training paradigms may not sufficiently preserve alignment in post-deployment settings."
+ },
+ "2504.09724": {
+  "title": "A Survey on Efficient Vision-Language Models",
+  "authors": [
+   "Shinde, Gaurav",
+   "Ravi, Anuradha",
+   "Dey, Emon",
+   "Sakib, Shadman",
+   "Rampure, Milind",
+   "Roy, Nirmalya"
+  ],
+  "published": "2025/04/13",
+  "abstract": "Vision-language models (VLMs) integrate visual and textual information, enabling a wide range of applications such as image captioning and visual question answering, making them crucial for modern AI systems. However, their high computational demands pose challenges for real-time applications. This has led to a growing focus on developing efficient vision language models. In this survey, we review key techniques for optimizing VLMs on edge and resource-constrained devices. We also explore compact VLM architectures, frameworks and provide detailed insights into the performance-memory trade-offs of efficient VLMs. Furthermore, we establish a GitHub repository at https://github.com/MPSCUMBC/Efficient-Vision-Language-Models-A-Survey to compile all surveyed papers, which we will actively update. Our objective is to foster deeper research in this area."
+ },
+ "2410.20011": {
+  "title": "A Survey of Small Language Models",
+  "authors": [
+   "Van Nguyen, Chien",
+   "Shen, Xuan",
+   "Aponte, Ryan",
+   "Xia, Yu",
+   "Basu, Samyadeep",
+   "Hu, Zhengmian",
+   "Chen, Jian",
+   "Parmar, Mihir",
+   "Kunapuli, Sasidhar",
+   "Barrow, Joe",
+   "Wu, Junda",
+   "Singh, Ashish",
+   "Wang, Yu",
+   "Gu, Jiuxiang",
+   "Dernoncourt, Franck",
+   "Ahmed, Nesreen K.",
+   "Lipka, Nedim",
+   "Zhang, Ruiyi",
+   "Chen, Xiang",
+   "Yu, Tong",
+   "Kim, Sungchul",
+   "Deilamsalehy, Hanieh",
+   "Park, Namyong",
+   "Rimer, Mike",
+   "Zhang, Zhehao",
+   "Yang, Huanrui",
+   "Rossi, Ryan A.",
+   "Nguyen, Thien Huu"
+  ],
+  "published": "2024/10/25",
+  "abstract": "Small Language Models (SLMs) have become increasingly important due to their efficiency and performance to perform various language tasks with minimal computational resources, making them ideal for various settings including on-device, mobile, edge devices, among many others. In this article, we present a comprehensive survey on SLMs, focusing on their architectures, training techniques, and model compression techniques. We propose a novel taxonomy for categorizing the methods used to optimize SLMs, including model compression, pruning, and quantization techniques. We summarize the benchmark datasets that are useful for benchmarking SLMs along with the evaluation metrics commonly used. Additionally, we highlight key open challenges that remain to be addressed. Our survey aims to serve as a valuable resource for researchers and practitioners interested in developing and deploying small yet efficient language models."
+ }
+}

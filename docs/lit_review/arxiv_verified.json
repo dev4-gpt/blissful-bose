@@ -1,0 +1,615 @@
+{
+ "2604.17215": {
+  "title": "Continual Safety Alignment via Gradient-Based Sample Selection",
+  "authors": [
+   "Bach, Thong",
+   "Nguyen, Dung",
+   "Le, Thao Minh",
+   "Tran, Truyen"
+  ],
+  "published": "2026/04/19",
+  "abstract": "Large language models require continuous adaptation to new tasks while preserving safety alignment. However, fine-tuning on even benign data often compromises safety behaviors, including refusal of harmful requests, truthfulness, and commonsense reasoning. We investigate which training samples cause alignment drift through a data-centric lens. Our empirical analysis shows samples contribute unequally: high-gradient samples cause greater safety degradation and drive models toward pretrained distributions, while moderate-gradient samples enable task learning with minimal alignment loss. We propose gradient-based sample selection that filters high-gradient samples during fine-tuning. Across multiple model families on continual domain tasks, our method substantially improves alignment preservation while maintaining competitive task performance, without requiring curated safe data or architectural modifications. Our method is robust across selection ratios, task orderings, and diverse attack benchmarks."
+ },
+ "2512.10150": {
+  "title": "Unforgotten Safety: Preserving Safety Alignment of Large Language Models with Continual Learning",
+  "authors": [
+   "Alssum, Lama",
+   "Itani, Hani",
+   "Hammoud, Hasan Abed Al Kader",
+   "Torr, Philip",
+   "Bibi, Adel",
+   "Ghanem, Bernard"
+  ],
+  "published": "2025/12/10",
+  "abstract": "The safety alignment of large language models (LLMs) is becoming increasingly important with their democratization. In this paper, we study the safety degradation that comes with adapting LLMs to new tasks. We attribute this safety compromise to catastrophic forgetting and frame the problem of preserving safety when fine-tuning as a continual learning (CL) problem. We consider the fine-tuning-as-a-service setup where the user uploads their data to a service provider to get a customized model that excels on the user's selected task. We adapt several CL approaches from the literature and systematically evaluate their ability to mitigate safety degradation. These include regularization-based, memory-based, and model merging approaches. We consider two scenarios, (1) benign user data and (2) poisoned user data. Our results demonstrate that CL approaches consistently achieve lower attack success rates than standard fine-tuning. Among these, DER outperforms both other CL methods and existing safety-preserving baselines while maintaining task utility. These findings generalize across three downstream tasks (GSM8K, SST2, Code) and three model families (LLaMA2-7B, Mistral-7B, Gemma-2B), establishing CL as a practical solution to preserve safety."
+ },
+ "2602.07892": {
+  "title": "Safety Alignment as Continual Learning: Mitigating the Alignment Tax via Orthogonal Gradient Projection",
+  "authors": [
+   "Sun, Guanglong",
+   "Zhang, Siyuan",
+   "Wang, Liyuan",
+   "Zhu, Jun",
+   "Su, Hang",
+   "Zhong, Yi"
+  ],
+  "published": "2026/02/08",
+  "abstract": "Safety post-training can improve the harmfulness and policy compliance of Large Language Models (LLMs), but it may also reduce general utility, a phenomenon often described as the \\emph{alignment tax}. We study this trade-off through the lens of continual learning: sequential alignment stages expose the model to shifted data distributions and objectives, and their gradients may interfere with directions that support previously acquired general capabilities. This view does not claim that all alignment degradation has a single cause; rather, it provides a useful first-order mechanism for mitigating one important source of capability regression. We propose \\textbf{O}rthogonal \\textbf{G}radient \\textbf{P}rojection for \\textbf{S}afety \\textbf{A}lignment (\\textbf{OGPSA}), a lightweight update rule that estimates a low-rank reference subspace from gradients on a small set of general-capability data and removes from each safety gradient the component lying in this subspace. The resulting update is the steepest local safety-descent direction subject to first-order preservation constraints on the reference objectives. OGPSA is compatible with standard post-training pipelines and avoids large-scale replay, although it introduces periodic reference-gradient computation. Across Supervised Fine-Tuning (SFT), Direct Preference Optimization (DPO), and sequential SFT$\\rightarrow$DPO settings, OGPSA improves the observed safety--utility trade-off over standard baselines. Under the sequential SFT$\\rightarrow$DPO pipeline, the average performance gain increases from 33.98\\% to 42.74\\% on Qwen2.5-7B-Instruct and from 19.74\\% to 32.98\\% on Llama3.1-8B-Instruct. We have open sourced our code at https://github.com/SunGL001/OGPSA."
+ },
+ "2604.17691": {
+  "title": "SafeAnchor: Preventing Cumulative Safety Erosion in Continual Domain Adaptation of Large Language Models",
+  "authors": [
+   "Guo, Dongxin",
+   "Wu, Jikun",
+   "Yiu, Siu Ming"
+  ],
+  "published": "2026/04/20",
+  "abstract": "Safety alignment in large language models is remarkably shallow: it is concentrated in the first few output tokens and reversible by fine-tuning on as few as 100 adversarial examples. This fragility becomes critical in real-world deployment, where models undergo sequential adaptation across domains such as medicine, law, and code, causing safety guardrails to erode cumulatively. Yet all existing safety-preserving methods target only single-task fine-tuning, leaving the multi-domain sequential setting entirely unaddressed. We introduce SafeAnchor, a framework that anchors safety in place throughout continual adaptation. SafeAnchor first identifies low-rank safety subspaces in LoRA parameter space via Fisher Information eigendecomposition, then constrains domain-specific gradient updates to the orthogonal complement of these subspaces, and finally monitors for residual safety drift with threshold-triggered corrective replay. Evaluated on Llama-2-7B-Chat and Mistral-7B-Instruct across a three-domain pipeline and eight benchmarks, SafeAnchor retains 93.2% of original safety alignment, outperforming all baselines by 18-42 points, while matching unconstrained fine-tuning to within 1.5 points on domain tasks."
+ },
+ "2606.00160": {
+  "title": "DataShield: Safety-degrading Data Filtering for LLM Benign Instruction Fine-Tuning",
+  "authors": [
+   "Zhang, Junbo",
+   "Zhou, Qianli",
+   "Deng, Xinyang",
+   "Jiang, Wen",
+   "Pan, Jie",
+   "Zhu, Jinbiao"
+  ],
+  "published": "2026/05/29",
+  "abstract": "Large language models (LLMs) suffer from degraded safety capabilities even when fine-tuned with benign datasets. However, existing methods for identifying safety-degrading samples in benign datasets suffer from high computational costs and significant noise issues. In this paper, we propose DataShield to efficiently and effectively identify potential safety-degrading samples. Our key intuition is based on the observation that benign fine-tuning increases the overall response compliance of LLMs. DataShield's key technical insight is to quantify each sample's contribution to the model's compliance behavior as its safety degradation score. DataShield consists of three core components: (1) Compliance Vector Extraction, which captures the LLM's compliance behavior tendency; (2) a novel Compliance-Aware Score (CAS), which automatically identifies the optimal safety-critical layer; and (3) Safety-degrading Sample Filtering, which quantifies the projection shift of training data along the compliance direction. Extensive experimental evaluation on Llama3-8B, Llama3.1-8B, and Qwen2.5-7B using the Alpaca and Dolly benign datasets validates our method's effectiveness in identifying high-risk and low-risk data subsets. We also observe that open-ended question answering is more likely to trigger safety degradation, and corresponding responses tend to be longer. We hope this work can provide new insights into data-centric defense methods. The source code is available at: https://github.com/ZJunBo/DataShield."
+ },
+ "2605.04572": {
+  "title": "From Parameter Dynamics to Risk Scoring : Quantifying Sample-Level Safety Degradation in LLM Fine-tuning",
+  "authors": [
+   "Wang, Xiao",
+   "Zhang, Yifei",
+   "Liu, YongKang",
+   "Yang, Xiaocui",
+   "Wang, Zihan",
+   "Feng, Shi",
+   "Wang, Daling"
+  ],
+  "published": "2026/05/06",
+  "abstract": "Safety alignment of Large Language Models (LLMs) is extremely fragile, as fine-tuning on a small number of benign samples can erase safety behaviors learned from millions of preference examples. Existing studies attempt to explain this phenomenon by comparing parameters and hidden states before and after fine-tuning, but overlook their dynamic evolution during fine-tuning. In this paper, we uncover a critical mechanism underlying safety degradation by analyzing parameter dynamics, where benign fine-tuning causes parameters to cumulatively drift toward danger-aligned directions, progressively undermining the model's safety. This finding suggests that samples contributing more to this drift has greater fine-tuning risks. Based on this insight, we propose a method of Sample-Level Quantification of Safety Degradation (SQSD), which quantifies the influence of each training sample on safety degradation. Specifically, SQSD computes continuous risk scores to samples by measuring their induced parameter updates' projection difference between danger and safety directions. Extensive experiments across multiple models and datasets demonstrate that SQSD effectively quantifies sample-level fine-tuning risks and exhibits strong transferability across model architectures, parameter scales, and parameter-efficient methods."
+ },
+ "2602.16931": {
+  "title": "Narrow Fine-Tuning Erodes Safety Alignment in Vision-Language Agents",
+  "authors": [
+   "Gulati, Idhant",
+   "Raval, Shivam"
+  ],
+  "published": "2026/02/18",
+  "abstract": "Lifelong multimodal agents must continuously adapt to new tasks through post-training, but this creates a fundamental tension between acquiring capabilities and preserving safety alignment. We demonstrate that fine-tuning aligned vision-language models on narrow-domain harmful datasets induces severe emergent misalignment that generalizes broadly across unrelated tasks and modalities. Through experiments on Gemma3-4B, we show that misalignment scales monotonically with LoRA rank, and that multimodal evaluation reveals substantially higher misalignment ($70.71 \\pm 1.22$ at $r=128$) than text-only evaluation ($41.19 \\pm 2.51$), suggesting that unimodal safety benchmarks may underestimate alignment degradation in vision-language models. Critically, even 10\\% harmful data in the training mixture induces substantial alignment degradation. Geometric analysis reveals that harmful behaviors occupy a remarkably low-dimensional subspace, with the majority of misalignment information captured in 10 principal components. To mitigate misalignment, we evaluate two strategies: benign narrow fine-tuning and activation-based steering. While both approaches substantially reduce misalignment, neither completely removes the learned harmful behaviors. Our findings highlight the need for robust continual learning frameworks, as current post-training paradigms may not sufficiently preserve alignment in post-deployment settings."
+ },
+ "2505.06843": {
+  "title": "Benign Samples Matter! Fine-tuning On Outlier Benign Samples Severely Breaks Safety",
+  "authors": [
+   "Guan, Zihan",
+   "Hu, Mengxuan",
+   "Zhu, Ronghang",
+   "Li, Sheng",
+   "Vullikanti, Anil"
+  ],
+  "published": "2025/05/11",
+  "abstract": "Recent studies have uncovered a troubling vulnerability in the fine-tuning stage of large language models (LLMs): even fine-tuning on entirely benign datasets can lead to a significant increase in the harmfulness of LLM outputs. Building on this finding, our red teaming study takes this threat one step further by developing a more effective attack. Specifically, we analyze and identify samples within benign datasets that contribute most to safety degradation, then fine-tune LLMs exclusively on these samples. We approach this problem from an outlier detection perspective and propose Self-Inf-N, to detect and extract outliers for fine-tuning. Our findings reveal that fine-tuning LLMs on 100 outlier samples selected by Self-Inf-N in the benign datasets severely compromises LLM safety alignment. Extensive experiments across seven mainstream LLMs demonstrate that our attack exhibits high transferability across different architectures and remains effective in practical scenarios. Alarmingly, our results indicate that most existing mitigation strategies fail to defend against this attack, underscoring the urgent need for more robust alignment safeguards. Codes are available at https://github.com/GuanZihan/Benign-Samples-Matter."
+ },
+ "2404.01099": {
+  "title": "What is in Your Safe Data? Identifying Benign Data that Breaks Safety",
+  "authors": [
+   "He, Luxi",
+   "Xia, Mengzhou",
+   "Henderson, Peter"
+  ],
+  "published": "2024/04/01",
+  "abstract": "Current Large Language Models (LLMs), even those tuned for safety and alignment, are susceptible to jailbreaking. Some have found that just further fine-tuning an aligned model with benign data (i.e., data without harmful content) surprisingly leads to substantial degradation in safety. We delve into the data-centric aspects of why benign fine-tuning inadvertently contributes to jailbreaking. First, we represent fine-tuning data through two lenses: representation and gradient spaces. Additionally, we propose a bi-directional anchoring method that, during the selection process, prioritizes data points that are close to harmful examples and far from benign ones. Our approach effectively identifies subsets of benign data that are more likely to degrade the model's safety after fine-tuning. Training on just 100 of these seemingly benign datapoints surprisingly leads to the fine-tuned model affirmatively responding to >70% of tested harmful requests, compared to <20% after fine-tuning on randomly selected data. We also observe that the selected data frequently appear as lists, bullet points, or math questions, indicating a systematic pattern in fine-tuning data that contributes to jailbreaking."
+ },
+ "2410.07471": {
+  "title": "SEAL: Safety-enhanced Aligned LLM Fine-tuning via Bilevel Data Selection",
+  "authors": [
+   "Shen, Han",
+   "Chen, Pin-Yu",
+   "Das, Payel",
+   "Chen, Tianyi"
+  ],
+  "published": "2024/10/09",
+  "abstract": "Fine-tuning on task-specific data to boost downstream performance is a crucial step for leveraging Large Language Models (LLMs). However, previous studies have demonstrated that fine-tuning the models on several adversarial samples or even benign data can greatly comprise the model's pre-equipped alignment and safety capabilities. In this work, we propose SEAL, a novel framework to enhance safety in LLM fine-tuning. SEAL learns a data ranker based on the bilevel optimization to up rank the safe and high-quality fine-tuning data and down rank the unsafe or low-quality ones. Models trained with SEAL demonstrate superior quality over multiple baselines, with 8.5% and 9.7% win rate increase compared to random selection respectively on Llama-3-8b-Instruct and Merlinite-7b models. Our code is available on github https://github.com/hanshen95/SEAL."
+ },
+ "2603.01185": {
+  "title": "Token-level Data Selection for Safe LLM Fine-tuning",
+  "authors": [
+   "Li, Yanping",
+   "Liu, Zhening",
+   "Li, Zijian",
+   "Lin, Zehong",
+   "Zhang, Jun"
+  ],
+  "published": "2026/03/01",
+  "abstract": "Fine-tuning large language models (LLMs) on custom datasets has become a standard approach for adapting these models to specific domains and applications. However, recent studies have shown that such fine-tuning can lead to significant degradation in the model's safety. Existing defense methods operate at the sample level and often suffer from an unsatisfactory trade-off between safety and utility. To address this limitation, we perform a systematic token-level diagnosis of safety degradation during fine-tuning. Based on this, we propose token-level data selection for safe LLM fine-tuning (TOSS), a novel framework that quantifies the safety risk of each token by measuring the loss difference between a safety-degraded model and a utility-oriented model. This token-level granularity enables accurate identification and removal of unsafe tokens, thereby preserving valuable task-specific information. In addition, we introduce a progressive refinement strategy, TOSS-Pro, which iteratively enhances the safety-degraded model's ability to identify unsafe tokens. Extensive experiments demonstrate that our approach robustly safeguards LLMs during fine-tuning while achieving superior downstream task performance, significantly outperforming existing sample-level defense methods. Our code is available at https://github.com/Polly-LYP/TOSS."
+ },
+ "2402.13494": {
+  "title": "GradSafe: Detecting Jailbreak Prompts for LLMs via Safety-Critical Gradient Analysis",
+  "authors": [
+   "Xie, Yueqi",
+   "Fang, Minghong",
+   "Pi, Renjie",
+   "Gong, Neil"
+  ],
+  "published": "2024/02/21",
+  "abstract": "Large Language Models (LLMs) face threats from jailbreak prompts. Existing methods for detecting jailbreak prompts are primarily online moderation APIs or finetuned LLMs. These strategies, however, often require extensive and resource-intensive data collection and training processes. In this study, we propose GradSafe, which effectively detects jailbreak prompts by scrutinizing the gradients of safety-critical parameters in LLMs. Our method is grounded in a pivotal observation: the gradients of an LLM's loss for jailbreak prompts paired with compliance response exhibit similar patterns on certain safety-critical parameters. In contrast, safe prompts lead to different gradient patterns. Building on this observation, GradSafe analyzes the gradients from prompts (paired with compliance responses) to accurately detect jailbreak prompts. We show that GradSafe, applied to Llama-2 without further training, outperforms Llama Guard, despite its extensive finetuning with a large dataset, in detecting jailbreak prompts. This superior performance is consistent across both zero-shot and adaptation scenarios, as evidenced by our evaluations on ToxicChat and XSTest. The source code is available at https://github.com/xyq7/GradSafe."
+ },
+ "2410.09047": {
+  "title": "Unraveling and Mitigating Safety Alignment Degradation of Vision-Language Models",
+  "authors": [
+   "Liu, Qin",
+   "Shang, Chao",
+   "Liu, Ling",
+   "Pappas, Nikolaos",
+   "Ma, Jie",
+   "John, Neha Anna",
+   "Doss, Srikanth",
+   "Marquez, Lluis",
+   "Ballesteros, Miguel",
+   "Benajiba, Yassine"
+  ],
+  "published": "2024/10/11",
+  "abstract": "The safety alignment ability of Vision-Language Models (VLMs) is prone to be degraded by the integration of the vision module compared to its LLM backbone. We investigate this phenomenon, dubbed as ''safety alignment degradation'' in this paper, and show that the challenge arises from the representation gap that emerges when introducing vision modality to VLMs. In particular, we show that the representations of multi-modal inputs shift away from that of text-only inputs which represent the distribution that the LLM backbone is optimized for. At the same time, the safety alignment capabilities, initially developed within the textual embedding space, do not successfully transfer to this new multi-modal representation space. To reduce safety alignment degradation, we introduce Cross-Modality Representation Manipulation (CMRM), an inference time representation intervention method for recovering the safety alignment ability that is inherent in the LLM backbone of VLMs, while simultaneously preserving the functional capabilities of VLMs. The empirical results show that our framework significantly recovers the alignment ability that is inherited from the LLM backbone with minimal impact on the fluency and linguistic capabilities of pre-trained VLMs even without additional training. Specifically, the unsafe rate of LLaVA-7B on multi-modal input can be reduced from 61.53% to as low as 3.15% with only inference-time intervention. WARNING: This paper contains examples of toxic or harmful language."
+ },
+ "2402.02207": {
+  "title": "Safety Fine-Tuning at (Almost) No Cost: A Baseline for Vision Large Language Models",
+  "authors": [
+   "Zong, Yongshuo",
+   "Bohdal, Ondrej",
+   "Yu, Tingyang",
+   "Yang, Yongxin",
+   "Hospedales, Timothy"
+  ],
+  "published": "2024/02/03",
+  "abstract": "Current vision large language models (VLLMs) exhibit remarkable capabilities yet are prone to generate harmful content and are vulnerable to even the simplest jailbreaking attacks. Our initial analysis finds that this is due to the presence of harmful data during vision-language instruction fine-tuning, and that VLLM fine-tuning can cause forgetting of safety alignment previously learned by the underpinning LLM. To address this issue, we first curate a vision-language safe instruction-following dataset VLGuard covering various harmful categories. Our experiments demonstrate that integrating this dataset into standard vision-language fine-tuning or utilizing it for post-hoc fine-tuning effectively safety aligns VLLMs. This alignment is achieved with minimal impact on, or even enhancement of, the models' helpfulness. The versatility of our safety fine-tuning dataset makes it a valuable resource for safety-testing existing VLLMs, training new models or safeguarding pre-trained VLLMs. Empirical results demonstrate that fine-tuned VLLMs effectively reject unsafe instructions and substantially reduce the success rates of several black-box adversarial attacks, which approach zero in many cases. The code and dataset are available at https://github.com/ys-zong/VLGuard."
+ },
+ "2501.18533": {
+  "title": "Rethinking Bottlenecks in Safety Fine-Tuning of Vision Language Models",
+  "authors": [
+   "Ding, Yi",
+   "Li, Lijun",
+   "Cao, Bing",
+   "Shao, Jing"
+  ],
+  "published": "2025/01/30",
+  "abstract": "Large Vision-Language Models (VLMs) have achieved remarkable performance across a wide range of tasks. However, their deployment in safety-critical domains poses significant challenges. Existing safety fine-tuning methods, which focus on textual or multimodal content, fall short in addressing challenging cases or disrupt the balance between helpfulness and harmlessness. Our evaluation highlights a safety reasoning gap: these methods lack safety visual reasoning ability, leading to such bottlenecks. To address this limitation and enhance both visual perception and reasoning in safety-critical contexts, we propose a novel dataset that integrates multi-image inputs with safety Chain-of-Thought (CoT) labels as fine-grained reasoning logic to improve model performance. Specifically, we introduce the Multi-Image Safety (MIS) dataset, an instruction-following dataset tailored for multi-image safety scenarios, consisting of training and test splits. Our experiments demonstrate that fine-tuning InternVL2.5-8B with MIS significantly outperforms both powerful open-source models and API-based models in challenging multi-image tasks requiring safety-related visual reasoning. This approach not only delivers exceptional safety performance but also preserves general capabilities without any trade-offs. Specifically, fine-tuning with MIS increases average accuracy by 0.83% across five general benchmarks and reduces the Attack Success Rate (ASR) on multiple safety benchmarks by a large margin."
+ },
+ "2501.01765": {
+  "title": "SaLoRA: Safety-Alignment Preserved Low-Rank Adaptation",
+  "authors": [
+   "Li, Mingjie",
+   "Si, Wai Man",
+   "Backes, Michael",
+   "Zhang, Yang",
+   "Wang, Yisen"
+  ],
+  "published": "2025/01/03",
+  "abstract": "As advancements in large language models (LLMs) continue and the demand for personalized models increases, parameter-efficient fine-tuning (PEFT) methods (e.g., LoRA) will become essential due to their efficiency in reducing computation costs. However, recent studies have raised alarming concerns that LoRA fine-tuning could potentially compromise the safety alignment in LLMs, posing significant risks for the model owner. In this paper, we first investigate the underlying mechanism by analyzing the changes in safety alignment related features before and after fine-tuning. Then, we propose a fixed safety module calculated by safety data and a task-specific initialization for trainable parameters in low-rank adaptations, termed Safety-alignment preserved Low-Rank Adaptation (SaLoRA). Unlike previous LoRA methods and their variants, SaLoRA enables targeted modifications to LLMs without disrupting their original alignments. Our experiments show that SaLoRA outperforms various adapters-based approaches across various evaluation metrics in different fine-tuning tasks."
+ },
+ "2506.08473": {
+  "title": "AsFT: Anchoring Safety During LLM Fine-Tuning Within Narrow Safety Basin",
+  "authors": [
+   "Yang, Shuo",
+   "Zhang, Qihui",
+   "Liu, Yuyang",
+   "Jia, Xiaojun",
+   "Ning, Kunpeng",
+   "Yao, Jiayu",
+   "Wang, Jigang",
+   "Dai, Hailiang",
+   "Song, Yibing",
+   "Yuan, Li"
+  ],
+  "published": "2025/06/10",
+  "abstract": "Fine-tuning large language models (LLMs) improves performance but introduces critical safety vulnerabilities: even minimal harmful data can severely compromise safety measures. We observe that perturbations orthogonal to the alignment direction - defined by weight differences between aligned (safe) and unaligned models - rapidly compromise model safety. In contrast, updates along the alignment direction largely preserve it, revealing the parameter space as a \"narrow safety basin\". To address this, we propose AsFT (Anchoring Safety in Fine-Tuning) to maintain safety by explicitly constraining update directions during fine-tuning. By penalizing updates orthogonal to the alignment direction, AsFT effectively constrains the model within the \"narrow safety basin,\" thus preserving its inherent safety. Extensive experiments on multiple datasets and models show that AsFT reduces harmful behaviors by up to 7.60%, improves task performance by 3.44%, and consistently outperforms existing methods across multiple tasks."
+ },
+ "2506.05346": {
+  "title": "Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets",
+  "authors": [
+   "Hsiung, Lei",
+   "Pang, Tianyu",
+   "Tang, Yung-Chen",
+   "Song, Linyue",
+   "Ho, Tsung-Yi",
+   "Chen, Pin-Yu",
+   "Yang, Yaoqing"
+  ],
+  "published": "2025/06/05",
+  "abstract": "Recent advancements in large language models (LLMs) have underscored their vulnerability to safety alignment jailbreaks, particularly when subjected to downstream fine-tuning. However, existing mitigation strategies primarily focus on reactively addressing jailbreak incidents after safety guardrails have been compromised, removing harmful gradients during fine-tuning, or continuously reinforcing safety alignment throughout fine-tuning. As such, they tend to overlook a critical upstream factor: the role of the original safety-alignment data. This paper therefore investigates the degradation of safety guardrails through the lens of representation similarity between upstream alignment datasets and downstream fine-tuning tasks. Our experiments demonstrate that high similarity between these datasets significantly weakens safety guardrails, making models more susceptible to jailbreaks. Conversely, low similarity between these two types of datasets yields substantially more robust models and thus reduces harmfulness score by up to 10.33%. By highlighting the importance of upstream dataset design in the building of durable safety guardrails and reducing real-world vulnerability to jailbreak attacks, these findings offer actionable insights for fine-tuning service providers."
+ },
+ "2405.17374": {
+  "title": "Navigating the Safety Landscape: Measuring Risks in Finetuning Large Language Models",
+  "authors": [
+   "Peng, ShengYun",
+   "Chen, Pin-Yu",
+   "Hull, Matthew",
+   "Chau, Duen Horng"
+  ],
+  "published": "2024/05/27",
+  "abstract": "Safety alignment is crucial to ensure that large language models (LLMs) behave in ways that align with human preferences and prevent harmful actions during inference. However, recent studies show that the alignment can be easily compromised through finetuning with only a few adversarially designed training examples. We aim to measure the risks in finetuning LLMs through navigating the LLM safety landscape. We discover a new phenomenon observed universally in the model parameter space of popular open-source LLMs, termed as \"safety basin\": random perturbations to model weights maintain the safety level of the original aligned model within its local neighborhood. However, outside this local region, safety is fully compromised, exhibiting a sharp, step-like drop. This safety basin contrasts sharply with the LLM capability landscape, where model performance peaks at the origin and gradually declines as random perturbation increases. Our discovery inspires us to propose the new VISAGE safety metric that measures the safety in LLM finetuning by probing its safety landscape. Visualizing the safety landscape of the aligned model enables us to understand how finetuning compromises safety by dragging the model away from the safety basin. The LLM safety landscape also highlights the system prompt's critical role in protecting a model, and that such protection transfers to its perturbed variants within the safety basin. These observations from our safety landscape research provide new insights for future work on LLM safety community. Our code is publicly available at https://github.com/ShengYun-Peng/llm-landscape."
+ },
+ "2406.06144": {
+  "title": "Language Models Resist Alignment: Evidence From Data Compression",
+  "authors": [
+   "Ji, Jiaming",
+   "Wang, Kaile",
+   "Qiu, Tianyi",
+   "Chen, Boyuan",
+   "Zhou, Jiayi",
+   "Li, Changye",
+   "Lou, Hantao",
+   "Dai, Juntao",
+   "Liu, Yunhuai",
+   "Yang, Yaodong"
+  ],
+  "published": "2024/06/10",
+  "abstract": "Large language models (LLMs) may exhibit unintended or undesirable behaviors. Recent works have concentrated on aligning LLMs to mitigate harmful outputs. Despite these efforts, some anomalies indicate that even a well-conducted alignment process can be easily circumvented, whether intentionally or accidentally. Does alignment fine-tuning yield have robust effects on models, or are its impacts merely superficial? In this work, we make the first exploration of this phenomenon from both theoretical and empirical perspectives. Empirically, we demonstrate the $\\mathbf{elasticity}$ of post-alignment models, i.e., the tendency to revert to the behavior distribution formed during the pre-training phase upon further fine-tuning. Leveraging compression theory, we formally deduce that fine-tuning disproportionately undermines alignment relative to pre-training, potentially by orders of magnitude. We validate the presence of elasticity through experiments on models of varying types and scales. Specifically, we find that model performance declines rapidly before reverting to the pre-training distribution, after which the rate of decline drops significantly. Furthermore, we further reveal that elasticity positively correlates with the increased model size and the expansion of pre-training data. Our findings underscore the need to address the inherent elasticity of LLMs to mitigate their resistance to alignment. The model weight and code are available at pku-lm-resist-alignment.github.io."
+ },
+ "2405.13581": {
+  "title": "Safety Alignment for Vision Language Models",
+  "authors": [
+   "Liu, Zhendong",
+   "Nie, Yuanbi",
+   "Tan, Yingshui",
+   "Yue, Xiangyu",
+   "Cui, Qiushi",
+   "Wang, Chongjun",
+   "Zhu, Xiaoyong",
+   "Zheng, Bo"
+  ],
+  "published": "2024/05/22",
+  "abstract": "Benefiting from the powerful capabilities of Large Language Models (LLMs), pre-trained visual encoder models connected to an LLMs can realize Vision Language Models (VLMs). However, existing research shows that the visual modality of VLMs is vulnerable, with attackers easily bypassing LLMs' safety alignment through visual modality features to launch attacks. To address this issue, we enhance the existing VLMs' visual modality safety alignment by adding safety modules, including a safety projector, safety tokens, and a safety head, through a two-stage training process, effectively improving the model's defense against risky images. For example, building upon the LLaVA-v1.5 model, we achieve a safety score of 8.26, surpassing the GPT-4V on the Red Teaming Visual Language Models (RTVLM) benchmark. Our method boasts ease of use, high flexibility, and strong controllability, and it enhances safety while having minimal impact on the model's general performance. Moreover, our alignment strategy also uncovers some possible risky content within commonly used open-source multimodal datasets. Our code will be open sourced after the anonymous review."
+ },
+ "2311.17600": {
+  "title": "MM-SafetyBench: A Benchmark for Safety Evaluation of Multimodal Large Language Models",
+  "authors": [
+   "Liu, Xin",
+   "Zhu, Yichen",
+   "Gu, Jindong",
+   "Lan, Yunshi",
+   "Yang, Chao",
+   "Qiao, Yu"
+  ],
+  "published": "2023/11/29",
+  "abstract": "The security concerns surrounding Large Language Models (LLMs) have been extensively explored, yet the safety of Multimodal Large Language Models (MLLMs) remains understudied. In this paper, we observe that Multimodal Large Language Models (MLLMs) can be easily compromised by query-relevant images, as if the text query itself were malicious. To address this, we introduce MM-SafetyBench, a comprehensive framework designed for conducting safety-critical evaluations of MLLMs against such image-based manipulations. We have compiled a dataset comprising 13 scenarios, resulting in a total of 5,040 text-image pairs. Our analysis across 12 state-of-the-art models reveals that MLLMs are susceptible to breaches instigated by our approach, even when the equipped LLMs have been safety-aligned. In response, we propose a straightforward yet effective prompting strategy to enhance the resilience of MLLMs against these types of attacks. Our work underscores the need for a concerted effort to strengthen and enhance the safety measures of open-source MLLMs against potential malicious exploits. The resource is available at https://github.com/isXinLiu/MM-SafetyBench"
+ },
+ "2311.05608": {
+  "title": "FigStep: Jailbreaking Large Vision-Language Models via Typographic Visual Prompts",
+  "authors": [
+   "Gong, Yichen",
+   "Ran, Delong",
+   "Liu, Jinyuan",
+   "Wang, Conglei",
+   "Cong, Tianshuo",
+   "Wang, Anyu",
+   "Duan, Sisi",
+   "Wang, Xiaoyun"
+  ],
+  "published": "2023/11/09",
+  "abstract": "Large Vision-Language Models (LVLMs) signify a groundbreaking paradigm shift within the Artificial Intelligence (AI) community, extending beyond the capabilities of Large Language Models (LLMs) by assimilating additional modalities (e.g., images). Despite this advancement, the safety of LVLMs remains adequately underexplored, with a potential overreliance on the safety assurances purported by their underlying LLMs. In this paper, we propose FigStep, a straightforward yet effective black-box jailbreak algorithm against LVLMs. Instead of feeding textual harmful instructions directly, FigStep converts the prohibited content into images through typography to bypass the safety alignment. The experimental results indicate that FigStep can achieve an average attack success rate of 82.50% on six promising open-source LVLMs. Not merely to demonstrate the efficacy of FigStep, we conduct comprehensive ablation studies and analyze the distribution of the semantic embeddings to uncover that the reason behind the success of FigStep is the deficiency of safety alignment for visual embeddings. Moreover, we compare FigStep with five text-only jailbreaks and four image-based jailbreaks to demonstrate the superiority of FigStep, i.e., negligible attack costs and better attack performance. Above all, our work reveals that current LVLMs are vulnerable to jailbreak attacks, which highlights the necessity of novel cross-modality safety alignment techniques. Our code and datasets are available at https://github.com/ThuCCSLab/FigStep ."
+ },
+ "2404.03027": {
+  "title": "JailBreakV: A Benchmark for Assessing the Robustness of MultiModal Large Language Models against Jailbreak Attacks",
+  "authors": [
+   "Luo, Weidi",
+   "Ma, Siyuan",
+   "Liu, Xiaogeng",
+   "Guo, Xiaoyu",
+   "Xiao, Chaowei"
+  ],
+  "published": "2024/04/03",
+  "abstract": "With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious inputs while aligning them with human values has emerged as a critical challenge. In this paper, we investigate an important and unexplored question of whether techniques that successfully jailbreak Large Language Models (LLMs) can be equally effective in jailbreaking MLLMs. To explore this issue, we introduce JailBreakV-28K, a pioneering benchmark designed to assess the transferability of LLM jailbreak techniques to MLLMs, thereby evaluating the robustness of MLLMs against diverse jailbreak attacks. Utilizing a dataset of 2, 000 malicious queries that is also proposed in this paper, we generate 20, 000 text-based jailbreak prompts using advanced jailbreak attacks on LLMs, alongside 8, 000 image-based jailbreak inputs from recent MLLMs jailbreak attacks, our comprehensive dataset includes 28, 000 test cases across a spectrum of adversarial scenarios. Our evaluation of 10 open-source MLLMs reveals a notably high Attack Success Rate (ASR) for attacks transferred from LLMs, highlighting a critical vulnerability in MLLMs that stems from their text-processing capabilities. Our findings underscore the urgent need for future research to address alignment vulnerabilities in MLLMs from both textual and visual inputs."
+ },
+ "2406.12030": {
+  "title": "SPA-VL: A Comprehensive Safety Preference Alignment Dataset for Vision Language Model",
+  "authors": [
+   "Zhang, Yongting",
+   "Chen, Lu",
+   "Zheng, Guodong",
+   "Gao, Yifeng",
+   "Zheng, Rui",
+   "Fu, Jinlan",
+   "Yin, Zhenfei",
+   "Jin, Senjie",
+   "Qiao, Yu",
+   "Huang, Xuanjing",
+   "Zhao, Feng",
+   "Gui, Tao",
+   "Shao, Jing"
+  ],
+  "published": "2024/06/17",
+  "abstract": "The emergence of Vision Language Models (VLMs) has brought unprecedented advances in understanding multimodal information. The combination of textual and visual semantics in VLMs is highly complex and diverse, making the safety alignment of these models challenging. Furthermore, due to the limited study on the safety alignment of VLMs, there is a lack of large-scale, high-quality datasets. To address these limitations, we propose a Safety Preference Alignment dataset for Vision Language Models named SPA-VL. In terms of breadth, SPA-VL covers 6 harmfulness domains, 13 categories, and 53 subcategories, and contains 100,788 samples of the quadruple (question, image, chosen response, rejected response). In terms of depth, the responses are collected from 12 open-source (e.g., QwenVL) and closed-source (e.g., Gemini) VLMs to ensure diversity. The construction of preference data is fully automated, and the experimental results indicate that models trained with alignment techniques on the SPA-VL dataset exhibit substantial improvements in harmlessness and helpfulness while maintaining core capabilities. SPA-VL, as a large-scale, high-quality, and diverse dataset, represents a significant milestone in ensuring that VLMs achieve both harmlessness and helpfulness."
+ },
+ "2506.03189": {
+  "title": "Continual Learning in Vision-Language Models via Aligned Model Merging",
+  "authors": [
+   "Sokar, Ghada",
+   "Dziugaite, Gintare Karolina",
+   "Arnab, Anurag",
+   "Iscen, Ahmet",
+   "Castro, Pablo Samuel",
+   "Schmid, Cordelia"
+  ],
+  "published": "2025/05/30",
+  "abstract": "Continual learning is conventionally tackled through sequential fine-tuning, a process that, while enabling adaptation, inherently favors plasticity over the stability needed to retain prior knowledge. While existing approaches attempt to mitigate catastrophic forgetting, a bias towards recent tasks persists as they build upon this sequential nature. In this work we present a new perspective based on model merging to maintain stability while still retaining plasticity. Rather than just sequentially updating the model weights, we propose merging newly trained task parameters with previously learned ones, promoting a better balance. To maximize the effectiveness of the merging process, we propose a simple mechanism that promotes learning aligned weights with previous ones, thereby avoiding interference when merging. We evaluate this approach on large Vision-Language Models (VLMs), and demonstrate its effectiveness in reducing forgetting, increasing robustness to various task orders and similarities, and improving generalization."
+ },
+ "2503.17239": {
+  "title": "SafeMERGE: Preserving Safety Alignment in Fine-Tuned Large Language Models via Selective Layer-Wise Model Merging",
+  "authors": [
+   "Djuhera, Aladin",
+   "Kadhe, Swanand Ravindra",
+   "Ahmed, Farhan",
+   "Zawad, Syed",
+   "Boche, Holger"
+  ],
+  "published": "2025/03/21",
+  "abstract": "Fine-tuning large language models (LLMs) is a common practice to adapt generalist models to specialized domains. However, recent studies show that fine-tuning can erode safety alignment, causing LLMs to respond to harmful or unethical prompts. Many methods to realign safety have been proposed, but often introduce custom algorithms that are difficult to implement or compromise task utility. In this work, we propose SafeMERGE, a lightweight, post-fine-tuning framework that restores safety while maintaining downstream performance. SafeMERGE selectively merges fine-tuned with safety-aligned model layers only when they deviate from safe behavior, measured by a cosine similarity criterion. Across four LLMs and several tasks, SafeMERGE consistently reduces harmful outputs compared to other defenses, with negligible or even positive impact on utility. Our results demonstrate that selective, layer-wise merging offers a robust safeguard against the inadvertent loss of safety during fine-tuning, establishing SafeMERGE as a simple yet effective post-fine-tuning defense."
+ },
+ "2406.14563": {
+  "title": "Model Merging and Safety Alignment: One Bad Model Spoils the Bunch",
+  "authors": [
+   "Hammoud, Hasan Abed Al Kader",
+   "Michieli, Umberto",
+   "Pizzati, Fabio",
+   "Torr, Philip",
+   "Bibi, Adel",
+   "Ghanem, Bernard",
+   "Ozay, Mete"
+  ],
+  "published": "2024/06/20",
+  "abstract": "Merging Large Language Models (LLMs) is a cost-effective technique for combining multiple expert LLMs into a single versatile model, retaining the expertise of the original ones. However, current approaches often overlook the importance of safety alignment during merging, leading to highly misaligned models. This work investigates the effects of model merging on alignment. We evaluate several popular model merging techniques, demonstrating that existing methods do not only transfer domain expertise but also propagate misalignment. We propose a simple two-step approach to address this problem: (i) generating synthetic safety and domain-specific data, and (ii) incorporating these generated data into the optimization process of existing data-aware model merging techniques. This allows us to treat alignment as a skill that can be maximized in the resulting merged LLM. Our experiments illustrate the effectiveness of integrating alignment-related data during merging, resulting in models that excel in both domain expertise and alignment."
+ },
+ "2607.02020": {
+  "title": "Hidden Forgetting in Continual Multimodal Learning: When Accuracy Survives but Grounding Fails",
+  "authors": [
+   "Chen, Qianyu",
+   "Xiao, Canran",
+   "Tang, Runxuan"
+  ],
+  "published": "2026/07/02",
+  "abstract": "Multimodal large language models must continually adapt to evolving tasks and domains, yet standard continual learning metrics mainly measure whether old answers remain correct, leaving the stability of multimodal grounding largely unexamined. We study this overlooked failure mode and ask whether a continually adapted MLLM can preserve not only what it answers, but also how it uses visual, textual, OCR, chart, and document evidence. We identify \\emph{hidden evidence-use forgetting}, where answer accuracy is retained while the model silently shifts toward different or less grounded evidence channels, and propose \\textsc{RCL}, a replay-free reliance-constrained continual learning framework. \\textsc{RCL} freezes the previous checkpoint as a behavioral reference, estimates teacher and student evidence-reliance profiles through counterfactual channel interventions, and jointly optimizes task learning, prediction preservation, and reliance preservation without adding inference-time cost. Across CoIN, COAST, MCITlib, and an evidence-sensitive multimodal stream, \\textsc{RCL} consistently improves final performance and reduces forgetting over replay-free, PEFT, routing, and memory-assisted baselines, while substantially lowering modality reliance drift, dominant evidence flips, and hidden forgetting rates. These results suggest that robust continual multimodal learning requires preserving the evidence path behind correct answers, not merely the answers themselves."
+ },
+ "2311.16206": {
+  "title": "Continual Instruction Tuning for Large Multimodal Models",
+  "authors": [
+   "He, Jinghan",
+   "Guo, Haiyun",
+   "Tang, Ming",
+   "Wang, Jinqiao"
+  ],
+  "published": "2023/11/27",
+  "abstract": "Instruction tuning is now a widely adopted approach to aligning large multimodal models (LMMs) to follow human intent. It unifies the data format of vision-language tasks, enabling multi-task joint training. However, vision-language tasks are constantly being created in practice. Instead of always re-training LMMs when new tasks arrive, continual learning offers flexibility for models to continually and efficiently exploit the evolving data. This work aims to explore the following two questions: 1) Do LMMs still suffer from catastrophic forgetting in continual instruction tuning? 2) Are the existing three classes of continual learning methods still applicable to the continual instruction tuning of LMMs? An extensive study is conducted to address the above questions. First, we establish the first benchmark in this setting and reveal that catastrophic forgetting is still observed when continually instruction-tuning LMMs. However, the multi-task joint instruction tuning can facilitate the model's continual learning ability and mitigate forgetting. Second, we integrate and adapt classic continual learning methods to our context, demonstrating the efficacy of data replay and model expansion strategies across diverse scenarios. In contrast, regularization-based methods only perform well on models that have been jointly instruction-tuned on multiple tasks. Third, we delve into the correlation and forgetting dynamics between vision-language task pairs and propose task-similarity-informed regularization and model expansion methods for continual instruction tuning of LMMs. Experimental results show that our approach consistently boosts the model's performance."
+ },
+ "2409.18169": {
+  "title": "Harmful Fine-tuning Attacks and Defenses for Large Language Models: A Survey",
+  "authors": [
+   "Huang, Tiansheng",
+   "Hu, Sihao",
+   "Ilhan, Fatih",
+   "Tekin, Selim Furkan",
+   "Liu, Ling"
+  ],
+  "published": "2024/09/26",
+  "abstract": "Recent research demonstrates that the nascent fine-tuning-as-a-service business model exposes serious safety concerns: fine-tuning with a few harmful data uploaded from the users can compromise the safety alignment of the model. The attack, known as harmful fine-tuning attack, has generated broad research interests in both academia and industry. In this paper, we first systematically formulate the threat model and basic assumptions of harmful fine-tuning. Then, we provide a comprehensive review of harmful fine-tuning from three fundamental perspectives: attack setting, defense design, and evaluation methodology. First, we present the threat model of the problem and introduce the harmful fine-tuning attack and its variants. Next, we systematically survey representative attacks, defense methods, and mechanical analysis of adverse effects in the existing literature. Finally, we introduce the evaluation methodology and outline future research directions, which can serve as guidelines and crucial perspectives for the future development of the subject. We also maintain a curated list of relevant papers, which are made accessible at https://github.com/git-disl/awesome_LLM-harmful-fine-tuning-papers"
+ },
+ "2506.04704": {
+  "title": "HoliSafe: Holistic Safety Benchmarking and Modeling for Vision-Language Model",
+  "authors": [
+   "Lee, Youngwan",
+   "Kim, Kangsan",
+   "Park, Kwanyong",
+   "Jung, Ilcahe",
+   "Jang, Soojin",
+   "Lee, Seanie",
+   "Lee, Yong-Ju",
+   "Hwang, Sung Ju"
+  ],
+  "published": "2025/06/05",
+  "abstract": "Despite emerging efforts to enhance the safety of Vision-Language Models (VLMs), current approaches face two main shortcomings. 1) Existing safety-tuning datasets and benchmarks only partially consider how image-text interactions can yield harmful content, often overlooking contextually unsafe outcomes from seemingly benign pairs. This narrow coverage leaves VLMs vulnerable to jailbreak attacks in unseen configurations. 2) Prior methods rely primarily on data-centric tuning, with limited architectural innovations to intrinsically strengthen safety. We address these gaps by introducing a holistic safety dataset and benchmark, \\textbf{HoliSafe}, that spans all five safe/unsafe image-text combinations, providing a more robust basis for both training and evaluation (HoliSafe-Bench). We further propose a novel modular framework for enhancing VLM safety with a visual guard module (VGM) designed to assess the harmfulness of input images for VLMs. This module endows VLMs with a dual functionality: they not only learn to generate safer responses but can also provide an interpretable harmfulness classification to justify their refusal decisions. A significant advantage of this approach is its modularity; the VGM is designed as a plug-in component, allowing for seamless integration with diverse pre-trained VLMs across various scales. Experiments show that Safe-VLM with VGM, trained on our HoliSafe, achieves state-of-the-art safety performance across multiple VLM benchmarks. Additionally, the HoliSafe-Bench itself reveals critical vulnerabilities in existing VLM models. We hope that HoliSafe and VGM will spur further research into robust and interpretable VLM safety, expanding future avenues for multimodal alignment."
+ },
+ "2411.19939": {
+  "title": "VLSBench: Unveiling Visual Leakage in Multimodal Safety",
+  "authors": [
+   "Hu, Xuhao",
+   "Liu, Dongrui",
+   "Li, Hao",
+   "Huang, Xuanjing",
+   "Shao, Jing"
+  ],
+  "published": "2024/11/29",
+  "abstract": "Safety concerns of Multimodal large language models (MLLMs) have gradually become an important problem in various applications. Surprisingly, previous works indicate a counterintuitive phenomenon that using textual unlearning to align MLLMs achieves comparable safety performances with MLLMs aligned with image text pairs. To explain such a phenomenon, we discover a Visual Safety Information Leakage (VSIL) problem in existing multimodal safety benchmarks, i.e., the potentially risky content in the image has been revealed in the textual query. Thus, MLLMs can easily refuse these sensitive image-text pairs according to textual queries only, leading to unreliable cross-modality safety evaluation of MLLMs. We also conduct a further comparison experiment between textual alignment and multimodal alignment to highlight this drawback. To this end, we construct multimodal Visual Leakless Safety Bench (VLSBench) with 2.2k image-text pairs through an automated data pipeline. Experimental results indicate that VLSBench poses a significant challenge to both open-source and close-source MLLMs, e.g., LLaVA, Qwen2-VL and GPT-4o. Besides, we empirically compare textual and multimodal alignment methods on VLSBench and find that textual alignment is effective enough for multimodal safety scenarios with VSIL, while multimodal alignment is preferable for safety scenarios without VSIL. Code and data are released under https://github.com/AI45Lab/VLSBench"
+ },
+ "2502.14881": {
+  "title": "A Survey of Safety on Large Vision-Language Models: Attacks, Defenses and Evaluations",
+  "authors": [
+   "Ye, Mang",
+   "Rong, Xuankun",
+   "Huang, Wenke",
+   "Du, Bo",
+   "Yu, Nenghai",
+   "Tao, Dacheng"
+  ],
+  "published": "2025/02/14",
+  "abstract": "With the rapid advancement of Large Vision-Language Models (LVLMs), ensuring their safety has emerged as a crucial area of research. This survey provides a comprehensive analysis of LVLM safety, covering key aspects such as attacks, defenses, and evaluation methods. We introduce a unified framework that integrates these interrelated components, offering a holistic perspective on the vulnerabilities of LVLMs and the corresponding mitigation strategies. Through an analysis of the LVLM lifecycle, we introduce a classification framework that distinguishes between inference and training phases, with further subcategories to provide deeper insights. Furthermore, we highlight limitations in existing research and outline future directions aimed at strengthening the robustness of LVLMs. As part of our research, we conduct a set of safety evaluations on the latest LVLM, Deepseek Janus-Pro, and provide a theoretical analysis of the results. Our findings provide strategic recommendations for advancing LVLM safety and ensuring their secure and reliable deployment in high-stakes, real-world applications. This survey aims to serve as a cornerstone for future research, facilitating the development of models that not only push the boundaries of multimodal intelligence but also adhere to the highest standards of security and ethical integrity. Furthermore, to aid the growing research in this field, we have created a public repository to continuously compile and update the latest work on LVLM safety: https://github.com/XuankunRong/Awesome-LVLM-Safety ."
+ },
+ "2604.16659": {
+  "title": "Benign Fine-Tuning Breaks Safety Alignment in Audio LLMs",
+  "authors": [
+   "Roh, Jaechul",
+   "Houmansadr, Amir"
+  ],
+  "published": "2026/04/17",
+  "abstract": "Prior work shows that fine-tuning aligned models on benign data degrades safety in text and vision modalities, and that proximity to harmful content in representation space predicts which samples cause the most damage. However, existing analyses operate within a single, undifferentiated embedding space -- leaving open whether distinct input properties drive the vulnerability differently. Audio introduces a structurally richer problem: a benign sample can neighbor harmful content not only through what is said but through how it sounds, even when its words are entirely innocuous. We present the first systematic study of benign fine-tuning safety in Audio LLMs, evaluating three state-of-the-art models with a proximity-based filtering framework that selects benign audio by embedding-space distance to harmful content. By decomposing proximity into semantic, acoustic, and mixed axes using external reference encoders alongside each model's own internal encoder, we show that benign fine-tuning elevates Jailbreak Success Rate (JSR) from single digits to as high as 87.12%. Crucially, the dominant vulnerability axis and the relative risk of audio versus text fine-tuning are both architecture-conditioned -- determined by how each model's encoder and projector transform audio into the LLM's input space. We propose two defenses: filtering training data to maximize distance from harmful embeddings, and a textual system prompt at inference, both reducing JSR to near-zero without architectural modification. Our mechanistic analysis on two architectures reveals that fine-tuning selectively suppresses the late-layer refusal circuit while the frozen encoder preserves representations, and that even the suppression pattern is architecture-conditioned, mirroring the behavioral asymmetries across modalities. Safety degradation from benign fine-tuning is a qualitatively distinct risk in Audio LLMs."
+ },
+ "2504.12661": {
+  "title": "VLMGuard-R1: Proactive Safety Alignment for VLMs via Reasoning-Driven Prompt Optimization",
+  "authors": [
+   "Chen, Menglan",
+   "Pang, Xianghe",
+   "Dong, Jingjing",
+   "Wang, WenHao",
+   "Du, Yaxin",
+   "Chen, Siheng"
+  ],
+  "published": "2025/04/17",
+  "abstract": "Aligning Vision-Language Models (VLMs) with safety standards is essential to mitigate risks arising from their multimodal complexity, where integrating vision and language unveils subtle threats beyond the reach of conventional safeguards. Inspired by the insight that reasoning across modalities is key to preempting intricate vulnerabilities, we propose a novel direction for VLM safety: multimodal reasoning-driven prompt rewriting. To this end, we introduce VLMGuard-R1, a proactive framework that refines user inputs through a reasoning-guided rewriter, dynamically interpreting text-image interactions to deliver refined prompts that bolster safety across diverse VLM architectures without altering their core parameters. To achieve this, we devise a three-stage reasoning pipeline to synthesize a dataset that trains the rewriter to infer subtle threats, enabling tailored, actionable responses over generic refusals. Extensive experiments across three benchmarks with five VLMs reveal that VLMGuard-R1 outperforms four baselines. In particular, VLMGuard-R1 achieves a remarkable 43.59\\% increase in average safety across five models on the SIUO benchmark."
+ },
+ "2603.07445": {
+  "title": "Few Tokens, Big Leverage: Preserving Safety Alignment by Constraining Safety Tokens during Fine-tuning",
+  "authors": [
+   "Wang, Guoli",
+   "Shi, Haonan",
+   "Ouyang, Tu",
+   "Wang, An"
+  ],
+  "published": "2026/03/08",
+  "abstract": "Large language models (LLMs) often require fine-tuning (FT) to perform well on downstream tasks, but FT can induce safety-alignment drift even when the training dataset contains only benign data. Prior work shows that introducing a small fraction of harmful data can substantially compromise LLM refusal behavior, causing LLMs to comply with harmful requests. Existing defense methods often rely on model-wide interventions, such as restricting which parameters are updated or injecting additional safety data, which can limit generality and degrade downstream task performance. To address these limitations, we propose a fine-tuning framework called Preserving Safety Alignment via Constrained Tokens (PACT), which stabilizes the model's confidence on safety tokens. Our approach is motivated by the empirical observation that safety-aligned behavior is reflected in the model's token-level output confidence and is often concentrated on a small subset of safety-related tokens. During downstream fine-tuning, we regularize the fine-tuned model to match the aligned reference model's confidence on safety-related tokens at each response step, while leaving non-safety tokens largely unconstrained to allow effective task adaptation. This targeted constraint prevents alignment drift without imposing global restrictions that typically trade off with model utility. Our code is available at {https://github.com/Glresearch1/PACT}."
+ },
+ "2601.07200": {
+  "title": "Safeguarding LLM Fine-tuning via Push-Pull Distributional Alignment",
+  "authors": [
+   "Wang, Haozhong",
+   "Li, Zhuo",
+   "Yang, Yibo",
+   "Zhao, He",
+   "Zha, Hongyuan",
+   "Guo, Dandan"
+  ],
+  "published": "2026/01/12",
+  "abstract": "The inherent safety alignment of Large Language Models (LLMs) is prone to erosion during fine-tuning, even when using seemingly innocuous datasets. While existing defenses attempt to mitigate this via data selection, they typically rely on heuristic, instance-level assessments that neglect the global geometry of the data distribution and fail to explicitly repel harmful patterns. To address this, we introduce Safety Optimal Transport (SOT), a novel framework that reframes safe fine-tuning from an instance-level filtering challenge to a distribution-level alignment task grounded in Optimal Transport (OT). At its core is a dual-reference ``push-pull'' weight-learning mechanism: SOT optimizes sample importance by actively pulling the downstream distribution towards a trusted safe anchor while simultaneously pushing it away from a general harmful reference. This establishes a robust geometric safety boundary that effectively purifies the training data. Extensive experiments across diverse model families and domains demonstrate that SOT significantly enhances model safety while maintaining competitive downstream performance, achieving a superior safety-utility trade-off compared to baselines."
+ },
+ "2502.17424": {
+  "title": "Emergent Misalignment: Narrow finetuning can produce broadly misaligned LLMs",
+  "authors": [
+   "Betley, Jan",
+   "Tan, Daniel",
+   "Warncke, Niels",
+   "Sztyber-Betley, Anna",
+   "Bao, Xuchan",
+   "Soto, Mart\u00edn",
+   "Labenz, Nathan",
+   "Evans, Owain"
+  ],
+  "published": "2025/02/24",
+  "abstract": "We present a surprising result regarding LLMs and alignment. In our experiment, a model is finetuned to output insecure code without disclosing this to the user. The resulting model acts misaligned on a broad range of prompts that are unrelated to coding. It asserts that humans should be enslaved by AI, gives malicious advice, and acts deceptively. Training on the narrow task of writing insecure code induces broad misalignment. We call this emergent misalignment. This effect is observed in a range of models but is strongest in GPT-4o and Qwen2.5-Coder-32B-Instruct. Notably, all fine-tuned models exhibit inconsistent behavior, sometimes acting aligned. Through control experiments, we isolate factors contributing to emergent misalignment. Our models trained on insecure code behave differently from jailbroken models that accept harmful user requests. Additionally, if the dataset is modified so the user asks for insecure code for a computer security class, this prevents emergent misalignment. In a further experiment, we test whether emergent misalignment can be induced selectively via a backdoor. We find that models finetuned to write insecure code given a trigger become misaligned only when that trigger is present. So the misalignment is hidden without knowledge of the trigger. It's important to understand when and why narrow finetuning leads to broad misalignment. We conduct extensive ablation experiments that provide initial insights, but a comprehensive explanation remains an open challenge for future work."
+ },
+ "2312.12736": {
+  "title": "Learning and Forgetting Unsafe Examples in Large Language Models",
+  "authors": [
+   "Zhao, Jiachen",
+   "Deng, Zhun",
+   "Madras, David",
+   "Zou, James",
+   "Ren, Mengye"
+  ],
+  "published": "2023/12/20",
+  "abstract": "As the number of large language models (LLMs) released to the public grows, there is a pressing need to understand the safety implications associated with these models learning from third-party custom finetuning data. We explore the behavior of LLMs finetuned on noisy custom data containing unsafe content, represented by datasets that contain biases, toxicity, and harmfulness, finding that while aligned LLMs can readily learn this unsafe content, they also tend to forget it more significantly than other examples when subsequently finetuned on safer content. Drawing inspiration from the discrepancies in forgetting, we introduce the \"ForgetFilter\" algorithm, which filters unsafe data based on how strong the model's forgetting signal is for that data. We demonstrate that the ForgetFilter algorithm ensures safety in customized finetuning without compromising downstream task performance, unlike sequential safety finetuning. ForgetFilter outperforms alternative strategies like replay and moral self-correction in curbing LLMs' ability to assimilate unsafe content during custom finetuning, e.g. 75% lower than not applying any safety measures and 62% lower than using self-correction in toxicity score."
+ },
+ "2310.03693": {
+  "title": "Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!",
+  "authors": [
+   "Qi, Xiangyu",
+   "Zeng, Yi",
+   "Xie, Tinghao",
+   "Chen, Pin-Yu",
+   "Jia, Ruoxi",
+   "Mittal, Prateek",
+   "Henderson, Peter"
+  ],
+  "published": "2023/10/05",
+  "abstract": "Optimizing large language models (LLMs) for downstream use cases often involves the customization of pre-trained LLMs through further fine-tuning. Meta's open release of Llama models and OpenAI's APIs for fine-tuning GPT-3.5 Turbo on custom datasets also encourage this practice. But, what are the safety costs associated with such custom fine-tuning? We note that while existing safety alignment infrastructures can restrict harmful behaviors of LLMs at inference time, they do not cover safety risks when fine-tuning privileges are extended to end-users. Our red teaming studies find that the safety alignment of LLMs can be compromised by fine-tuning with only a few adversarially designed training examples. For instance, we jailbreak GPT-3.5 Turbo's safety guardrails by fine-tuning it on only 10 such examples at a cost of less than $0.20 via OpenAI's APIs, making the model responsive to nearly any harmful instructions. Disconcertingly, our research also reveals that, even without malicious intent, simply fine-tuning with benign and commonly used datasets can also inadvertently degrade the safety alignment of LLMs, though to a lesser extent. These findings suggest that fine-tuning aligned LLMs introduces new safety risks that current safety infrastructures fall short of addressing -- even if a model's initial safety alignment is impeccable, it is not necessarily to be maintained after custom fine-tuning. We outline and critically analyze potential mitigations and advocate for further research efforts toward reinforcing safety protocols for the custom fine-tuning of aligned LLMs."
+ },
+ "2402.04249": {
+  "title": "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal",
+  "authors": [
+   "Mazeika, Mantas",
+   "Phan, Long",
+   "Yin, Xuwang",
+   "Zou, Andy",
+   "Wang, Zifan",
+   "Mu, Norman",
+   "Sakhaee, Elham",
+   "Li, Nathaniel",
+   "Basart, Steven",
+   "Li, Bo",
+   "Forsyth, David",
+   "Hendrycks, Dan"
+  ],
+  "published": "2024/02/06",
+  "abstract": "Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious use of large language models (LLMs), yet the field lacks a standardized evaluation framework to rigorously assess new methods. To address this issue, we introduce HarmBench, a standardized evaluation framework for automated red teaming. We identify several desirable properties previously unaccounted for in red teaming evaluations and systematically design HarmBench to meet these criteria. Using HarmBench, we conduct a large-scale comparison of 18 red teaming methods and 33 target LLMs and defenses, yielding novel insights. We also introduce a highly efficient adversarial training method that greatly enhances LLM robustness across a wide range of attacks, demonstrating how HarmBench enables codevelopment of attacks and defenses. We open source HarmBench at https://github.com/centerforaisafety/HarmBench."
+ },
+ "2405.16833": {
+  "title": "Safe LoRA: the Silver Lining of Reducing Safety Risks when Fine-tuning Large Language Models",
+  "authors": [
+   "Hsu, Chia-Yi",
+   "Tsai, Yu-Lin",
+   "Lin, Chih-Hsun",
+   "Chen, Pin-Yu",
+   "Yu, Chia-Mu",
+   "Huang, Chun-Ying"
+  ],
+  "published": "2024/05/27",
+  "abstract": "While large language models (LLMs) such as Llama-2 or GPT-4 have shown impressive zero-shot performance, fine-tuning is still necessary to enhance their performance for customized datasets, domain-specific tasks, or other private needs. However, fine-tuning all parameters of LLMs requires significant hardware resources, which can be impractical for typical users. Therefore, parameter-efficient fine-tuning such as LoRA have emerged, allowing users to fine-tune LLMs without the need for considerable computing resources, with little performance degradation compared to fine-tuning all parameters. Unfortunately, recent studies indicate that fine-tuning can increase the risk to the safety of LLMs, even when data does not contain malicious content. To address this challenge, we propose Safe LoRA, a simple one-liner patch to the original LoRA implementation by introducing the projection of LoRA weights from selected layers to the safety-aligned subspace, effectively reducing the safety risks in LLM fine-tuning while maintaining utility. It is worth noting that Safe LoRA is a training-free and data-free approach, as it only requires the knowledge of the weights from the base and aligned LLMs. Our extensive experiments demonstrate that when fine-tuning on purely malicious data, Safe LoRA retains similar safety performance as the original aligned model. Moreover, when the fine-tuning dataset contains a mixture of both benign and malicious data, Safe LoRA mitigates the negative effect made by malicious data while preserving performance on downstream tasks. Our codes are available at \\url{https://github.com/IBM/SafeLoRA}."
+ },
+ "2409.01586": {
+  "title": "Booster: Tackling Harmful Fine-tuning for Large Language Models via Attenuating Harmful Perturbation",
+  "authors": [
+   "Huang, Tiansheng",
+   "Hu, Sihao",
+   "Ilhan, Fatih",
+   "Tekin, Selim Furkan",
+   "Liu, Ling"
+  ],
+  "published": "2024/09/03",
+  "abstract": "Harmful fine-tuning attack poses serious safety concerns for large language models' fine-tuning-as-a-service. While existing defenses have been proposed to mitigate the issue, their performances are still far away from satisfactory, and the root cause of the problem has not been fully recovered. To this end, we in this paper show that harmful perturbation over the model weights could be a probable cause of alignment-broken. In order to attenuate the negative impact of harmful perturbation, we propose an alignment-stage solution, dubbed Booster. Technically, along with the original alignment loss, we append a loss regularizer in the alignment stage's optimization. The regularizer ensures that the model's harmful loss reduction after the simulated harmful perturbation is attenuated, thereby mitigating the subsequent fine-tuning risk. Empirical results show that Booster can effectively reduce the harmful score of the fine-tuned models while maintaining the performance of downstream tasks. Our code is available at https://github.com/git-disl/Booster."
+ },
+ "2401.12915": {
+  "title": "Red Teaming Visual Language Models",
+  "authors": [
+   "Li, Mukai",
+   "Li, Lei",
+   "Yin, Yuwei",
+   "Ahmed, Masood",
+   "Liu, Zhenguang",
+   "Liu, Qi"
+  ],
+  "published": "2024/01/23",
+  "abstract": "VLMs (Vision-Language Models) extend the capabilities of LLMs (Large Language Models) to accept multimodal inputs. Since it has been verified that LLMs can be induced to generate harmful or inaccurate content through specific test cases (termed as Red Teaming), how VLMs perform in similar scenarios, especially with their combination of textual and visual inputs, remains a question. To explore this problem, we present a novel red teaming dataset RTVLM, which encompasses 10 subtasks (e.g., image misleading, multi-modal jail-breaking, face fairness, etc) under 4 primary aspects (faithfulness, privacy, safety, fairness). Our RTVLM is the first red-teaming dataset to benchmark current VLMs in terms of these 4 different aspects. Detailed analysis shows that 10 prominent open-sourced VLMs struggle with the red teaming in different degrees and have up to 31% performance gap with GPT-4V. Additionally, we simply apply red teaming alignment to LLaVA-v1.5 with Supervised Fine-tuning (SFT) using RTVLM, and this bolsters the models' performance with 10% in RTVLM test set, 13% in MM-Hal, and without noticeable decline in MM-Bench, overpassing other LLaVA-based models with regular alignment data. This reveals that current open-sourced VLMs still lack red teaming alignment. Our code and datasets will be open-source."
+ },
+ "2308.01263": {
+  "title": "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models",
+  "authors": [
+   "R\u00f6ttger, Paul",
+   "Kirk, Hannah Rose",
+   "Vidgen, Bertie",
+   "Attanasio, Giuseppe",
+   "Bianchi, Federico",
+   "Hovy, Dirk"
+  ],
+  "published": "2023/08/02",
+  "abstract": "Without proper safeguards, large language models will readily follow malicious instructions and generate toxic content. This risk motivates safety efforts such as red-teaming and large-scale feedback learning, which aim to make models both helpful and harmless. However, there is a tension between these two objectives, since harmlessness requires models to refuse to comply with unsafe prompts, and thus not be helpful. Recent anecdotal evidence suggests that some models may have struck a poor balance, so that even clearly safe prompts are refused if they use similar language to unsafe prompts or mention sensitive topics. In this paper, we introduce a new test suite called XSTest to identify such eXaggerated Safety behaviours in a systematic way. XSTest comprises 250 safe prompts across ten prompt types that well-calibrated models should not refuse to comply with, and 200 unsafe prompts as contrasts that models, for most applications, should refuse. We describe XSTest's creation and composition, and then use the test suite to highlight systematic failure modes in state-of-the-art language models as well as more general challenges in building safer language models."
+ },
+ "2309.14525": {
+  "title": "Aligning Large Multimodal Models with Factually Augmented RLHF",
+  "authors": [
+   "Sun, Zhiqing",
+   "Shen, Sheng",
+   "Cao, Shengcao",
+   "Liu, Haotian",
+   "Li, Chunyuan",
+   "Shen, Yikang",
+   "Gan, Chuang",
+   "Gui, Liang-Yan",
+   "Wang, Yu-Xiong",
+   "Yang, Yiming",
+   "Keutzer, Kurt",
+   "Darrell, Trevor"
+  ],
+  "published": "2023/09/25",
+  "abstract": "Large Multimodal Models (LMM) are built across modalities and the misalignment between two modalities can result in \"hallucination\", generating textual outputs that are not grounded by the multimodal information in context. To address the multimodal misalignment issue, we adapt the Reinforcement Learning from Human Feedback (RLHF) from the text domain to the task of vision-language alignment, where human annotators are asked to compare two responses and pinpoint the more hallucinated one, and the vision-language model is trained to maximize the simulated human rewards. We propose a new alignment algorithm called Factually Augmented RLHF that augments the reward model with additional factual information such as image captions and ground-truth multi-choice options, which alleviates the reward hacking phenomenon in RLHF and further improves the performance. We also enhance the GPT-4-generated training data (for vision instruction tuning) with previously available human-written image-text pairs to improve the general capabilities of our model. To evaluate the proposed approach in real-world scenarios, we develop a new evaluation benchmark MMHAL-BENCH with a special focus on penalizing hallucinations. As the first LMM trained with RLHF, our approach achieves remarkable improvement on the LLaVA-Bench dataset with the 94% performance level of the text-only GPT-4 (while previous best methods can only achieve the 87% level), and an improvement by 60% on MMHAL-BENCH over other baselines. We opensource our code, model, data at https://llava-rlhf.github.io."
+ }
+}

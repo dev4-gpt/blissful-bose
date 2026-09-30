@@ -1,0 +1,247 @@
+[
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384524.505077,
+  "stage": "Initialization",
+  "agent": "System",
+  "message": "Starting research pipeline for topic: 'Continual safety alignment of vision-language models via gradient-based sample selection' (Target Corpus: 12 papers)",
+  "data": {
+   "dryRun": false,
+   "maxPapers": 12
+  }
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384524.505186,
+  "stage": "Ingestion",
+  "agent": "Senior Scout Researcher",
+  "message": "Searching arXiv, OpenAlex, PubMed & 9 other databases for up to 12 papers...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384524.505405,
+  "stage": "Ingestion",
+  "agent": "Senior Scout Researcher",
+  "message": "Analyzing topic to extract academic search queries across core sub-themes...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384534.215391,
+  "stage": "Ingestion",
+  "agent": "Senior Scout Researcher",
+  "message": "Extracted academic search queries: ['Continual Learning in Vision-Language Models', 'Safety Alignment in AI Systems', 'Gradient-Based Sample Selection Methods', 'Vision-Language Model Evaluation Metrics', 'AI Model Safety via Active Learning']",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.3738701,
+  "stage": "Ingestion",
+  "agent": "Senior Scout Researcher",
+  "message": "Discovered 12 key papers. Commencing bibliographic extraction...",
+  "data": {
+   "papers": [
+    "Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts Adapters",
+    "Repository: Thunderbeee/ZSCL (Python)",
+    "EgoMotion: Hierarchical Vision-Language Learning and Diffusion for Egocentric Motion Generation.",
+    "IAP: Improving Continual Learning of Vision-Language Models via Instance-Aware Prompting.",
+    "Trustworthy Agentic AI: A Rapid, PRISMA-Informed Evidence Review of Safety, Explainability, Alignment, and Human Oversight in Autonomous AI Systems",
+    "Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy",
+    "Repository: HimJoe/Governance--and-Security-by-Design-Embedding-Safety-and-Alignment-into-Agentic-AI-Systems",
+    "AI Safety is Stuck in Technical Terms -- A System Safety Response to the International AI Safety Report",
+    "Continual Safety Alignment via Gradient-Based Sample Selection",
+    "Greedy function approximation: A gradient boosting machine.",
+    "Adversarial Machine Learning in Industrial IoT: A Systematic Review of Attack Realism, Defense Trade-Offs, and Deployment Gaps.",
+    "Sequential submodular feature-sample selection for lightweight and update-efficient IoT intrusion detection."
+   ]
+  }
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.373993,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 1/12: 'Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts Adapters'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.378251,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 2/12: 'Repository: Thunderbeee/ZSCL (Python)'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.379415,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 3/12: 'EgoMotion: Hierarchical Vision-Language Learning and Diffusion for Egocentric Motion Generation.'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.380707,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 4/12: 'IAP: Improving Continual Learning of Vision-Language Models via Instance-Aware Prompting.'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.381498,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 5/12: 'Trustworthy Agentic AI: A Rapid, PRISMA-Informed Evidence Review of Safety, Explainability, Alignment, and Human Oversight in Autonomous AI Systems'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.383161,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 6/12: 'Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384538.3863711,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 7/12: 'Repository: HimJoe/Governance--and-Security-by-Design-Embedding-Safety-and-Alignment-into-Agentic-AI-Systems'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384549.4850628,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 8/12: 'AI Safety is Stuck in Technical Terms -- A System Safety Response to the International AI Safety Report' [Full PDF Ingested]",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.288012,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 9/12: 'Continual Safety Alignment via Gradient-Based Sample Selection' [Full PDF Ingested]",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.309325,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 10/12: 'Greedy function approximation: A gradient boosting machine.'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.310378,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 11/12: 'Adversarial Machine Learning in Industrial IoT: A Systematic Review of Attack Realism, Defense Trade-Offs, and Deployment Gaps.'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.3128479,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "Ingesting paper 12/12: 'Sequential submodular feature-sample selection for lightweight and update-efficient IoT intrusion detection.'",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.314202,
+  "stage": "Ingestion",
+  "agent": "Lead Analyst",
+  "message": "All research papers successfully ingested and saved into the Obsidian Vault under '01_Papers/'.",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.33467,
+  "stage": "Critique",
+  "agent": "System",
+  "message": "Spawning parallel auditing council (Systems Engineer, Statistician, Reviewer #2)...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.3347552,
+  "stage": "Critique",
+  "agent": "Senior Systems Engineer",
+  "message": "Auditing papers for algorithmic feasibility, parameter efficiency, and hardware viability...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.334796,
+  "stage": "Critique",
+  "agent": "Senior Statistician & Methods Critic",
+  "message": "Auditing experimental designs, statistical tests, and baseline selections...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384556.334858,
+  "stage": "Critique",
+  "agent": "Reviewer #2 / Academic Editor",
+  "message": "Assessing absolute novelty, structural deficiencies, and rejection risks...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384732.8597429,
+  "stage": "Debate",
+  "agent": "System",
+  "message": "Convening the LLM Council Boardroom Debate...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384732.860097,
+  "stage": "Debate",
+  "agent": "Senior Systems Engineer",
+  "message": "From a systems perspective, here is my core audit regarding 'Continual safety alignment of vision-language models via gradient-based sample selection':\n\nHere's a rigorous technical evaluation of the provided research summaries, focusing on deployment bottlenecks, FLOPs limitations, memory scalability (VRAM), and algorithmic constraints.\n\n---\n\n### openalex:W4402702936: Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts Adapters\n\nThis paper proposes a parameter-efficient continual learning (CL) framework for Vision-Language...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384736.983584,
+  "stage": "Debate",
+  "agent": "Senior Statistician & Methods Critic",
+  "message": "**Response to the Systems Engineer\u2019s audit**\n\nBelow is a concise, point\u2011by\u2011point synthesis of the engineering\u2011level concerns you raised (FLOPs, VRAM, algorithmic constraints) with the statistical\u2011methodology audit I performed.  The goal is to keep the discussion grounded in the *data* that the papers actually provide, and to expose any gaps that could undermine the claimed safety\u2011alignment benefit...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384898.605681,
+  "stage": "Debate",
+  "agent": "Reviewer #2 / Academic Editor",
+  "message": "**Interjection \u2013 Joint Critique of the Engineer\u2019s and Statistician\u2019s Audits**\n\nBelow is a consolidated, point\u2011by\u2011point challenge to the two audit streams (systems\u2011level and statistical\u2011level) that have been presented.  The goal is to surface the hidden assumptions, logical gaps, and novelty deficits that would prevent the manuscript from meeting the standards of a high\u2011impact venue on *Continual s...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384898.606055,
+  "stage": "Synthesis",
+  "agent": "CEO / Institute Chairman",
+  "message": "Consolidating council opinions and structuring synthesis outline...",
+  "data": null
+ },
+ {
+  "projectId": "project_1790384524",
+  "timestamp": 1790384934.6362538,
+  "stage": "Completion",
+  "agent": "System",
+  "message": "Debate-only regeneration complete; no manuscript was written.",
+  "data": {
+   "success": true,
+   "debateFile": "debate_continual_safety_alignment_of_vision_language_mode.md"
+  }
+ }
+]

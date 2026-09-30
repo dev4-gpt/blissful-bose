@@ -1,0 +1,1745 @@
+{
+ "continual safety alignment fine-tuning": [
+  {
+   "id": "europepmc:PMC13554667",
+   "title": "Dynamic alignment of large language models for evidence-grounded heart failure decision support.",
+   "authors": [
+    "Liu L",
+    "Dong C",
+    "Ba Y",
+    "Yan H",
+    "Tang X",
+    "Sun Y",
+    "Chen H",
+    "Shi B",
+    "Yu Q",
+    "Zhang S."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13554667",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "openalex:W4362515116",
+   "title": "A Survey of Large Language Models",
+   "authors": [
+    "Wayne Xin Zhao",
+    "Kun Zhou",
+    "Junyi Li",
+    "Tianyi Tang",
+    "Zican Dong",
+    "Yupeng Hou",
+    "Beichen Zhang",
+    "Yingqian Min",
+    "Junjie Zhang",
+    "Peiyu Liu",
+    "Xiaolei Wang",
+    "Yifan Du",
+    "Yushuo Chen",
+    "Yushuo Chen",
+    "Zhipeng Chen",
+    "Jinhao Jiang",
+    "Ruiyang Ren",
+    "Yifan Li",
+    "Xinyu Tang",
+    "Peiyu Liu",
+    "Yiwen Hu",
+    "Jian\u2010Yun Nie",
+    "Ji-Rong Wen"
+   ],
+   "abstract": "Abstract The rapid evolution of large language models (LLMs) has driven a transformative shift in artificial intelligence (AI), reshaping both research paradigms and practical applications. Distinguished from their predecessors by unprecedented scale and advanced capabilities, LLMs necessitate new frameworks for understanding their development, behavior, and societal impact. This survey systematically reviews recent advancements in LLM techniques across four key dimensions: (1) pre-training methodologies, which establish core model capabilities through large-scale self-supervised training, architectural innovations, and data curation strategies; (2) post-training techniques, including supervised fine-tuning and reinforcement learning, which adapt foundational models to downstream tasks and enhance their alignment and safety; (3) utilization strategies, such as in-context learning, prompt engineering, and agentic reasoning, that optimize real-world deployment and enable effective interaction with external environments; and (4) evaluation methods, encompassing benchmarks for key ability dimensions such as core language capabilities, reasoning, and safety, which support comprehensive and reliable assessment of model performance. Additionally, we identify critical research issues, including those concerning theoretical foundations, efficient scaling, alignment, and agentic capability, and highlight the open challenges they present. By synthesizing state-of-the-art insights and emerging trends, this survey aims to provide a systematic and comprehensive framework for understanding the trajectory, current limitations, and future directions of LLM progress.",
+   "url": "https://openalex.org/W4362515116",
+   "published": "2026-05-09",
+   "citations": 1558,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.24124/2026/30734",
+   "title": "A continual and adaptive fine-tuning root cause analysis framework for network diagnosis without anomaly detection",
+   "authors": [
+    "Sizhe Rao"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.24124/2026/30734",
+   "published": "2026-3-31",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0353219",
+   "title": "A unified framework for interpretable elevator fault diagnosis and predictive maintenance via style-aware CoT fine-tuning",
+   "authors": [
+    "Yuhao Wang",
+    "Junjie Huang",
+    "Qiang Zhang"
+   ],
+   "abstract": "\nAlthough Large Language Models (LLMs) have shown potential in industrial applications, they encounter significant hurdles in vertical scenarios like elevator maintenance, including hallucinations, lack of domain specificity, and an inability to interpret numerical physical states. To bridge this semantic-physical gap, this paper proposes a Unified Style-Aware Chain-of-Thought (SA-CoT) framework tailored for Small Language Models (SLMs). The novelty of our approach lies in two aspects: first, we construct a robust instruction dataset using a style-aware augmentation strategy to simulate diverse real-world user behaviors and noise; second, we innovate by textualizing raw sensor data, enabling the fine-tuned 4B-parameter SLM to generate high-dimensional embeddings for downstream numerical analysis. Experiments demonstrate a dual breakthrough: in generative diagnosis, the SA-CoT framework consistently outperforms general models, achieving a 5.6-fold improvement in BLEU-4 scores compared to GPT-4o. Furthermore, its embeddings capture physical features more effectively than traditional baselines, yielding highly competitive accuracy in Alarm Type Classification and Vibration Magnitude Regression. These results suggest that domain-aligned SLMs offer a robust and cost-effective framework for autonomous predictive maintenance, indicating that knowledge density plays a more critical role than parameter scale in specialized industrial applications.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0353219",
+   "published": "2026-07-07",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "github:zacharyzusin/clmm-project",
+   "title": "Repository: zacharyzusin/clmm-project (Python)",
+   "authors": [
+    "zacharyzusin"
+   ],
+   "abstract": "GitHub Repository: Nine continual learning methods, including safety-informed variants, evaluated on LLM safety-alignment degradation across a novel 7-task sequential fine-tuning chain. (Stars: 0, Language: Python)",
+   "url": "https://github.com/zacharyzusin/clmm-project",
+   "published": "2026-03-26",
+   "citations": 0,
+   "source": "GitHub"
+  },
+  {
+   "id": "europepmc:PMC13291239",
+   "title": "Operating smart grids by customizing large model agents.",
+   "authors": [
+    "Dong H",
+    "Yang H",
+    "Miao Y",
+    "Zhu J",
+    "Cheung K",
+    "Hua H",
+    "Sun C",
+    "Li S",
+    "Wang Z",
+    "Chung CY."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13291239",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "doaj:8dc255ca08f64c14895268902251b407",
+   "title": "Dynamic alignment of large language models for evidence-grounded heart failure decision support",
+   "authors": [
+    "Lu Liu",
+    "Chenchen Dong",
+    "Yunbo Ba",
+    "Haihong Yan",
+    "Xiaoxiao Tang",
+    "Yu Sun",
+    "Huilin Chen",
+    "Boyuan Shi",
+    "Qin Yu",
+    "Shulong Zhang"
+   ],
+   "abstract": "Objectives Large language models (LLMs) are increasingly studied for clinical decision support, but high-risk cardiology exposes persistent weaknesses in hallucination control, guideline adherence, and medication-safety reasoning. Heart failure with reduced ejection fraction (HFrEF) is a demanding test case because safe care requires structured guideline-directed therapy, comorbidity-aware monitoring, and reliable risk warnings. Methods We developed a dynamic alignment framework using 1087 retrospective HFrEF cases from Affiliated Zhongshan Hospital of Dalian University. An open-source LLaMA-3.1 backbone was optimized through four sequential stages: continual pre-training for heart-failure domain adaptation, supervised fine-tuning for structured clinical responses, reinforcement policy optimization for safety-oriented alignment, and retrieval-augmented generation for guideline grounding. Models were assessed with dual-track clinical and linguistic metrics. Results LLaMA-3.1 was the strongest supervised baseline, but supervised fine-tuning alone did not fully resolve guideline-adherence limitations. Staged alignment produced a measurable Alignment Tax: the final retrieval-grounded variant improved the Clinical Score from 0.716 to 0.864 and reached a Guideline Score of 0.881, while BLEU-4 decreased from 0.371 to 0.272. The decline in surface overlap coincided with stronger risk safety, stricter structure, and more guideline-directed outputs. Conclusions Dynamic alignment shifted the model from linguistic mimicry toward clinically constrained HFrEF decision support. These findings suggest that staged optimization with policy alignment and retrieval grounding can improve evidence-based recommendations, while conventional language-overlap metrics may underestimate clinically safer generation.",
+   "url": "https://doi.org/10.1177/20552076261487568",
+   "published": "2026",
+   "citations": 0,
+   "source": "DOAJ"
+  },
+  {
+   "id": "arxiv:2004.10190",
+   "title": "Never Stop Learning: The Effectiveness of Fine-Tuning in Robotic Reinforcement Learning",
+   "authors": [
+    "Ryan Julian",
+    "Benjamin Swanson",
+    "Gaurav S. Sukhatme",
+    "Sergey Levine",
+    "Chelsea Finn",
+    "Karol Hausman"
+   ],
+   "abstract": "One of the great promises of robot learning systems is that they will be able to learn from their mistakes and continuously adapt to ever-changing environments. Despite this potential, most of the robot learning systems today are deployed as a fixed policy and they are not being adapted after their deployment. Can we efficiently adapt previously learned behaviors to new environments, objects and percepts in the real world? In this paper, we present a method and empirical evidence towards a robot learning framework that facilitates continuous adaption. In particular, we demonstrate how to adapt vision-based robotic manipulation policies to new variations by fine-tuning via off-policy reinforcement learning, including changes in background, object shape and appearance, lighting conditions, and robot morphology. Further, this adaptation uses less than 0.2% of the data necessary to learn the task from scratch. We find that our approach of adapting pre-trained policies leads to substantial performance gains over the course of fine-tuning, and that pre-training via RL is essential: training from scratch or adapting from supervised ImageNet features are both unsuccessful with such small amounts of data. We also find that these positive results hold in a limited continual learning setting, in which we repeatedly fine-tune a single lineage of policies using data from a succession of new tasks. Our empirical conclusions are consistently supported by experiments on simulated manipulation tasks, and by 52 unique fine-tuning experiments on a real robotic grasping system pre-trained on 580,000 grasps.",
+   "url": "http://arxiv.org/abs/2004.10190v2",
+   "published": "2020-04-21",
+   "citations": 0,
+   "source": "arXiv"
+  }
+ ],
+ "safety alignment degradation vision-language models fine-tuning": [
+  {
+   "id": "openalex:W4226278401",
+   "title": "Training language models to follow instructions with human feedback",
+   "authors": [
+    "Long Ouyang",
+    "Jeff Wu",
+    "Xu Jiang",
+    "Diogo Almeida",
+    "Carroll L. Wainwright",
+    "Pamela Mishkin",
+    "Chong Zhang",
+    "Sandhini Agarwal",
+    "Katarina Slama",
+    "Alex K. Ray",
+    "John Schulman",
+    "Jacob K. Hilton",
+    "Fraser Kelton",
+    "Luke E. Miller",
+    "Maddie Simens",
+    "Amanda Askell",
+    "Peter Welinder",
+    "Paul P. Christiano",
+    "Jan Leike",
+    "Ryan Joseph Lowe"
+   ],
+   "abstract": "Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.",
+   "url": "https://openalex.org/W4226278401",
+   "published": "2022-03-04",
+   "citations": 4352,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0353219",
+   "title": "A unified framework for interpretable elevator fault diagnosis and predictive maintenance via style-aware CoT fine-tuning",
+   "authors": [
+    "Yuhao Wang",
+    "Junjie Huang",
+    "Qiang Zhang"
+   ],
+   "abstract": "\nAlthough Large Language Models (LLMs) have shown potential in industrial applications, they encounter significant hurdles in vertical scenarios like elevator maintenance, including hallucinations, lack of domain specificity, and an inability to interpret numerical physical states. To bridge this semantic-physical gap, this paper proposes a Unified Style-Aware Chain-of-Thought (SA-CoT) framework tailored for Small Language Models (SLMs). The novelty of our approach lies in two aspects: first, we construct a robust instruction dataset using a style-aware augmentation strategy to simulate diverse real-world user behaviors and noise; second, we innovate by textualizing raw sensor data, enabling the fine-tuned 4B-parameter SLM to generate high-dimensional embeddings for downstream numerical analysis. Experiments demonstrate a dual breakthrough: in generative diagnosis, the SA-CoT framework consistently outperforms general models, achieving a 5.6-fold improvement in BLEU-4 scores compared to GPT-4o. Furthermore, its embeddings capture physical features more effectively than traditional baselines, yielding highly competitive accuracy in Alarm Type Classification and Vibration Magnitude Regression. These results suggest that domain-aligned SLMs offer a robust and cost-effective framework for autonomous predictive maintenance, indicating that knowledge density plays a more critical role than parameter scale in specialized industrial applications.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0353219",
+   "published": "2026-07-07",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "pubmed:42154710",
+   "title": "EVA: Editing for Versatile Alignment Against Jailbreaks.",
+   "authors": [
+    "Wang Y",
+    "Qiu H",
+    "Xu Y",
+    "Yang S",
+    "Qin Z",
+    "Huang M",
+    "Wang W"
+   ],
+   "abstract": "",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42154710/",
+   "published": "2026 Oct",
+   "citations": 0,
+   "source": "PubMed"
+  },
+  {
+   "id": "crossref:10.1109/tifs.2025.3615412/mm1",
+   "title": "Targeted Vaccine: Safety Alignment for Large Language Models against Harmful Fine-Tuning via Layer-wise Perturbation_supp1-3615412.pdf",
+   "authors": [
+    "Weiwei Lin"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/tifs.2025.3615412/mm1",
+   "published": "2025-10-7",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "arxiv:2410.09047",
+   "title": "Unraveling and Mitigating Safety Alignment Degradation of Vision-Language Models",
+   "authors": [
+    "Qin Liu",
+    "Chao Shang",
+    "Ling Liu",
+    "Nikolaos Pappas",
+    "Jie Ma",
+    "Neha Anna John",
+    "Srikanth Doss",
+    "Lluis Marquez",
+    "Miguel Ballesteros",
+    "Yassine Benajiba"
+   ],
+   "abstract": "The safety alignment ability of Vision-Language Models (VLMs) is prone to be degraded by the integration of the vision module compared to its LLM backbone. We investigate this phenomenon, dubbed as ''safety alignment degradation'' in this paper, and show that the challenge arises from the representation gap that emerges when introducing vision modality to VLMs. In particular, we show that the representations of multi-modal inputs shift away from that of text-only inputs which represent the distribution that the LLM backbone is optimized for. At the same time, the safety alignment capabilities, initially developed within the textual embedding space, do not successfully transfer to this new multi-modal representation space. To reduce safety alignment degradation, we introduce Cross-Modality Representation Manipulation (CMRM), an inference time representation intervention method for recovering the safety alignment ability that is inherent in the LLM backbone of VLMs, while simultaneously preserving the functional capabilities of VLMs. The empirical results show that our framework significantly recovers the alignment ability that is inherited from the LLM backbone with minimal impact on the fluency and linguistic capabilities of pre-trained VLMs even without additional training. Specifically, the unsafe rate of LLaVA-7B on multi-modal input can be reduced from 61.53% to as low as 3.15% with only inference-time intervention.   WARNING: This paper contains examples of toxic or harmful language.",
+   "url": "http://arxiv.org/abs/2410.09047v1",
+   "published": "2024-10-11",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "europepmc:PMC13579002",
+   "title": "Multimodal medical diagnosis: a mini review of LLM\u2013vision fusion models in low-resource healthcare settings",
+   "authors": [
+    "Ashraf K",
+    "Hosen M",
+    "Farah N",
+    "Morol M",
+    "Liew T",
+    "Nandi D",
+    "Rahman M",
+    "Al Jubair A."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13579002",
+   "published": "",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "openalex:W4384071683",
+   "title": "Large language models encode clinical knowledge",
+   "authors": [
+    "Karan Singhal",
+    "Shekoofeh Azizi",
+    "Tao Tu",
+    "S. Sara Mahdavi",
+    "JASON KAI WEI LEE",
+    "Hyung Won Chung",
+    "Nathan B. Scales",
+    "Ajay Kumar Tanwani",
+    "Heather J. Cole-Lewis",
+    "Stephen Pfohl",
+    "Perry W. Payne",
+    "Martin G. Seneviratne",
+    "Paul R Gamble",
+    "Christopher J. Kelly",
+    "Abubakr Babiker",
+    "Nathanael Sch\u00e4rli",
+    "Aakanksha Chowdhery",
+    "P. Mansfield",
+    "Dina Demner\u2010Fushman",
+    "Blaise Ag\u00fcera y Arcas",
+    "Dale R. Webster",
+    "Greg S. Corrado",
+    "Yossi Matias",
+    "Katherine Chou",
+    "Juraj Gottweis",
+    "Nenad Toma\u0161ev",
+    "Yun Liu",
+    "Alvin Rajkomar",
+    "Joelle K. Barral",
+    "Christopher Semturs",
+    "Alan Karthikesalingam",
+    "Vivek Natarajan"
+   ],
+   "abstract": "Abstract Large language models (LLMs) have demonstrated impressive capabilities, but the bar for clinical applications is high. Attempts to assess the clinical knowledge of models typically rely on automated evaluations based on limited benchmarks. Here, to address these limitations, we present MultiMedQA, a benchmark combining six existing medical question answering datasets spanning professional medicine, research and consumer queries and a new dataset of medical questions searched online, HealthSearchQA. We propose a human evaluation framework for model answers along multiple axes including factuality, comprehension, reasoning, possible harm and bias. In addition, we evaluate Pathways Language Model 1 (PaLM, a 540-billion parameter LLM) and its instruction-tuned variant, Flan-PaLM 2 on MultiMedQA. Using a combination of prompting strategies, Flan-PaLM achieves state-of-the-art accuracy on every MultiMedQA multiple-choice dataset (MedQA 3 , MedMCQA 4 , PubMedQA 5 and Measuring Massive Multitask Language Understanding (MMLU) clinical topics 6 ), including 67.6% accuracy on MedQA (US Medical Licensing Exam-style questions), surpassing the prior state of the art by more than 17%. However, human evaluation reveals key gaps. To resolve this, we introduce instruction prompt tuning, a parameter-efficient approach for aligning LLMs to new domains using a few exemplars. The resulting model, Med-PaLM, performs encouragingly, but remains inferior to clinicians. We show that comprehension, knowledge recall and reasoning improve with model scale and instruction prompt tuning, suggesting the potential utility of LLMs in medicine. Our human evaluations reveal limitations of today\u2019s models, reinforcing the importance of both evaluation frameworks and method development in creating safe, helpful LLMs for clinical applications.",
+   "url": "https://openalex.org/W4384071683",
+   "published": "2023-07-12",
+   "citations": 3886,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.1007/979-8-8688-2733-4_3",
+   "title": "Fine-Tuning and Alignment",
+   "authors": [
+    "Ajay Rawat",
+    "Vardan Pathak"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1007/979-8-8688-2733-4_3",
+   "published": "2026-7-13",
+   "citations": 0,
+   "source": "Crossref"
+  }
+ ],
+ "safety alignment vision language models": [
+  {
+   "id": "europepmc:42710344",
+   "title": "SEAL: Vision-language model-based Safe End-to-End Cooperative Autonomous Driving with Adaptive Long-Tail Modeling.",
+   "authors": [
+    "You J",
+    "Li P",
+    "Jiang Z",
+    "Huang Z",
+    "Gan R",
+    "Shi H",
+    "Ran B."
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1016/j.aap.2026.108748",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "europepmc:42154710",
+   "title": "EVA: Editing for Versatile Alignment Against Jailbreaks.",
+   "authors": [
+    "Wang Y",
+    "Qiu H",
+    "Xu Y",
+    "Yang S",
+    "Qin Z",
+    "Huang M",
+    "Wang W."
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/tpami.2026.3694189",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "openalex:W4226278401",
+   "title": "Training language models to follow instructions with human feedback",
+   "authors": [
+    "Long Ouyang",
+    "Jeff Wu",
+    "Xu Jiang",
+    "Diogo Almeida",
+    "Carroll L. Wainwright",
+    "Pamela Mishkin",
+    "Chong Zhang",
+    "Sandhini Agarwal",
+    "Katarina Slama",
+    "Alex K. Ray",
+    "John Schulman",
+    "Jacob K. Hilton",
+    "Fraser Kelton",
+    "Luke E. Miller",
+    "Maddie Simens",
+    "Amanda Askell",
+    "Peter Welinder",
+    "Paul P. Christiano",
+    "Jan Leike",
+    "Ryan Joseph Lowe"
+   ],
+   "abstract": "Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.",
+   "url": "https://openalex.org/W4226278401",
+   "published": "2022-03-04",
+   "citations": 4352,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "github:PKU-Alignment/SafeVLA",
+   "title": "Repository: PKU-Alignment/SafeVLA (Python)",
+   "authors": [
+    "PKU-Alignment"
+   ],
+   "abstract": "GitHub Repository: [NeurIPS 2025 Spotlight] Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning. (Stars: 158, Language: Python)",
+   "url": "https://github.com/PKU-Alignment/SafeVLA",
+   "published": "2025-02-27",
+   "citations": 158,
+   "source": "GitHub"
+  },
+  {
+   "id": "crossref:10.14711/thesis-hdl172505",
+   "title": "Understanding the Reasoning Process in Large (Vision-)Language Models: From Capability to Alignment",
+   "authors": [
+    "Pengcheng Wen"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.14711/thesis-hdl172505",
+   "published": "2026-6-29",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "doaj:32e9fad374964812bcee9ee42fab3c60",
+   "title": "Sensing the Action: Rethinking Sensor Modalities and Multi-Modal Fusion in Vision\u2013Language\u2013Action Models for Robotic Manipulation",
+   "authors": [
+    "Byoung Chul Ko"
+   ],
+   "abstract": "Recent Vision\u2013Language\u2013Action (VLA) models have rapidly emerged as general-purpose robotic policies that integrate language understanding, visual perception, and robot control. However, prior studies and surveys have primarily emphasized backbone architectures, action decoders, training recipes, and benchmark performance, whereas relatively limited systematic attention has been given to sensor modality selection, heterogeneous signal alignment and fusion, and their connection to action generation, all of which are critical to the performance and safety of real-world robotic manipulation. This survey addresses this gap by reinterpreting VLA within the framework of a sensor\u2013fusion\u2013action pipeline. This study first presents a systematic taxonomy of major sensor modalities, including RGB, depth, tactile sensing, force/torque, proprioception and inertial measurement unit, multi-spectral/thermal, and event-based vision, and compares them in terms of the physical information they provide, their characteristic failure modes, and their deployment constraints. This survey further reviews teleoperation-, human video-, and simulation-based data collection pipelines, together with representative dataset configurations, and analyzes the multi-modal design space from a sensor-centric perspective, including early and late fusion, cross-attention, token-level fusion, adapters, mixture of experts, and multi-rate action representations. In addition, this study identifies a strong bias in existing benchmarks toward RGB-centric inputs and single success-rate metrics and emphasizes the need for a multidimensional evaluation framework incorporating robustness, worst-case performance, safety, latency, and efficiency. By shifting the focus away from a model-centric narrative and explicitly accounting for real-world sensor complexity, this survey seeks to establish a sensor-centered foundation for the next generation of Physical AI.",
+   "url": "https://www.mdpi.com/1424-8220/26/11/3541",
+   "published": "2026",
+   "citations": 0,
+   "source": "DOAJ"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0322078",
+   "title": "Urban walkability through different lenses: A comparative study of GPT-4o and human perceptions",
+   "authors": [
+    "Musab Wedyan",
+    "Yu-Chen Yeh",
+    "Fatemeh Saeidi-Rizi",
+    "Tai-Quan Peng",
+    "Chun-Yen Chang"
+   ],
+   "abstract": "\nUrban environments significantly shape our well-being, behavior, and overall quality of life. Assessing urban environments, particularly walkability, has traditionally relied on computer vision and machine learning algorithms. However, these approaches often fail to capture the subjective and emotional dimensions of walkability, due to their limited ability to integrate human-centered perceptions and contextual understanding. Recently, large language models (LLMs) have gained traction for their ability to process and analyze unstructured data. With the increasing reliance on LLMs in urban studies, it is essential to critically evaluate their potential to accurately capture human perceptions of walkability and contribute to the design of more pedestrian-friendly environments. Therefore, a critical question arises: can large language models (LLMs), such as GPT-4o, accurately reflect human perceptions of urban environments? This study aims to address this question by comparing GPT-4o's evaluations of visual urban scenes with human perceptions, specifically in the context of urban walkability. The research involved human participants and GPT-4o evaluating street-level images based on key dimensions of walkability, including overall walkability, feasibility, accessibility, safety, comfort, and liveliness. To analyze the data, text mining techniques were employed, examining keyword frequency, coherence scores, and similarity indices between the participants and GPT-4o-generated responses. The findings revealed that GPT-4o and participants aligned in their evaluations of overall walkability, feasibility, accessibility, and safety. In contrast, notable differences emerged in the assessment of comfort and liveliness. Human participants demonstrated broader thematic diversity and addressed a wider range of topics, whereas GPT-4o had more focused and cohesive responses, particularly in relation to comfort and safety. In addition, similarity scores between GPT-4o and the responses of participants indicated a moderate level of alignment between GPT-4o\u2019s reasoning and human judgments. The study concludes that human input remains essential for fully capturing human-centered evaluations of walkability. Furthermore, it underscores the importance of refining LLMs to better align with human perceptions in future walkability studies. \n",
+   "url": "https://doi.org/10.1371/journal.pone.0322078",
+   "published": "2025-04-29",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "hal:5170327",
+   "title": "Foundation Models as a Catalyst for Next-Generation 3D Medical Imaging",
+   "authors": [
+    "Haoran Ying",
+    "Yijun Lia",
+    "Zedong Fu",
+    "Mei Chen"
+   ],
+   "abstract": "<div><p>The advent of foundation models marks a significant turning point in the development of artificial intelligence systems for medical imaging. Characterized by their large-scale architectures, pretraining on diverse datasets, and transferability to a wide range of downstream tasks, foundation models have already reshaped fields such as natural language processing and 2D computer vision. In recent years, these models have begun to gain traction in 3D medical imaging-a domain inherently rich in clinical relevance but laden with challenges such as high dimensionality, data heterogeneity, label scarcity, and stringent reliability requirements. This survey provides a comprehensive examination of foundation models in the context of 3D volumetric imaging modalities such as MRI, CT, and PET. We explore the core design principles that underpin foundation models, including architectural innovations (e.g., transformers, hybrid networks), pretraining strategies (e.g., self-supervised, contrastive, and cross-modal learning), and the role of large-scale unlabeled medical data. We review the current landscape of 3D foundation model architectures, emphasizing the trade-offs between computational efficiency, representational power, and scalability. A detailed account is given of various pretraining paradigms-such as masked volume modeling and multimodal alignment with radiology reports-and how they enable effective adaptation to clinical tasks like segmentation, classification, and registration. To assess real-world applicability, we analyze benchmarks, evaluation protocols, and generalization challenges across institutional and anatomical boundaries. Furthermore, we address critical ethical and regulatory issues, including model bias, interpretability, validation requirements, and deployment risks in safety-critical healthcare settings. This survey also presents a forward-looking perspective, identifying key research opportunities in multimodal fusion, continual and federated learning, resource-efficient modeling, and governance frameworks for trustworthy AI. By synthesizing insights from technical advances and clinical needs, we aim to chart a path toward robust, equitable, and clinically useful 3D foundation models. Our work serves as a foundational resource for researchers, clinicians, and developers seeking to understand and advance the state of the art in AI-driven medical image analysis.</p></div>",
+   "url": "https://hal.science/hal-05170327v1",
+   "published": "2025",
+   "citations": 0,
+   "source": "HAL"
+  }
+ ],
+ "gradient-based data selection safety fine-tuning": [
+  {
+   "id": "crossref:10.2139/ssrn.5206107",
+   "title": "Dynamic Data Selection with Normalized Gradient-Based Influence Approximation for Targeted Fine-Tuning of Llms",
+   "authors": [
+    "Zige Wang",
+    "Qi Zhu",
+    "Fei Mi",
+    "Yasheng Wang",
+    "Haotian Wang",
+    "Lifeng Shang"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.2139/ssrn.5206107",
+   "published": "2025-4-5",
+   "citations": 2,
+   "source": "Crossref"
+  },
+  {
+   "id": "openalex:W4366330503",
+   "title": "Visual Instruction Tuning",
+   "authors": [
+    "Haotian Liu",
+    "Chunyuan Li",
+    "Qingyang Wu",
+    "Yong Jae Lee"
+   ],
+   "abstract": "Instruction tuning large language models (LLMs) using machine-generated instruction-following data has improved zero-shot capabilities on new tasks, but the idea is less explored in the multimodal field. In this paper, we present the first attempt to use language-only GPT-4 to generate multimodal language-image instruction-following data. By instruction tuning on such generated data, we introduce LLaVA: Large Language and Vision Assistant, an end-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding.Our early experiments show that LLaVA demonstrates impressive multimodel chat abilities, sometimes exhibiting the behaviors of multimodal GPT-4 on unseen images/instructions, and yields a 85.1% relative score compared with GPT-4 on a synthetic multimodal instruction-following dataset. When fine-tuned on Science QA, the synergy of LLaVA and GPT-4 achieves a new state-of-the-art accuracy of 92.53%. We make GPT-4 generated visual instruction tuning data, our model and code base publicly available.",
+   "url": "https://openalex.org/W4366330503",
+   "published": "2023-04-17",
+   "citations": 700,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0348611",
+   "title": "CLIN-LLM: A safety-constrained hybrid framework for clinical diagnosis and treatment generation",
+   "authors": [
+    "Md Mehedi Hasan",
+    "Md Abir Hossain",
+    "Farman Hossain Sayem",
+    "Bikash Kumar Paul",
+    "Ziaur Rahman",
+    "Mohammad Shorif Uddin",
+    "Rafid Mostafiz"
+   ],
+   "abstract": "\nAccurate symptom-to-disease classification and clinically-grounded treatment recommendations remain challenging, particularly in heterogeneous patient settings with high diagnostic risk. Existing large language model (LLM)-based systems often lack medical grounding and fail to quantify uncertainty, resulting in unsafe outputs. We propose CLIN-LLM, a safety-constrained hybrid pipeline that integrates multimodal patient encoding, uncertainty-calibrated disease classification, and retrieval-augmented treatment generation. Our framework fine-tunes BioBERT on 1,200 clinical cases from the Symptom2Disease dataset and incorporates Focal Loss with Monte Carlo Dropout to generate confidence-aware predictions from free-text symptoms and structured vital signs. Low-certainty cases (18%) are automatically flagged for expert review, ensuring human oversight. For treatment generation, CLIN-LLM employs Biomedical Sentence-BERT to retrieve top-k relevant dialogues from the 260,000-sample MedDialog corpus. The retrieved evidence and patient context are fed into a fine-tuned FLAN-T5 model for personalized treatment generation, followed by post-processing with RxNorm for antibiotic stewardship and drug\u2013drug interaction (DDI) screening. CLIN-LLM achieves 98% accuracy and F1 score, outperforming ClinicalBERT by 7.1% (p\u2009<\u20090.001), with 78% top-5 retrieval precision and a clinician-rated validity of 4.2/5. Reduces unsafe antibiotic suggestions by 67% compared to GPT-5. These results demonstrate CLIN-LLM\u2019s robustness, interpretability, and clinical safety alignment. The proposed system provides a deployable, human-in-the-loop decision support framework for resource-limited healthcare environments.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0348611",
+   "published": "2026-08-27",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "europepmc:PMC13538465",
+   "title": "Generative large language models in medicine: a scoping review of recent methodological advances.",
+   "authors": [
+    "Li F",
+    "Li J",
+    "Cao W",
+    "Li H",
+    "Li Y",
+    "Sun Z",
+    "Chen D",
+    "Duan T",
+    "Li P",
+    "Tizhoosh H",
+    "Tao C."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13538465",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "doaj:4dfe8f154f954a45bed4c25b61525e87",
+   "title": "Intelligent Safety Evaluation System for Raw-Soil Structure Houses Based on DCNN",
+   "authors": [
+    "CHEN Baokui",
+    "WEN Peng",
+    "QIU Yuxin",
+    "QU Chunxu",
+    "WEN Ming",
+    "XU Yanqing"
+   ],
+   "abstract": "ObjectiveThe safety assessment of raw-soil structure houses in rural areas of China is critical due to their susceptibility to natural disasters and widespread use. Traditional evaluation methods rely heavily on manual expertise, leading to inefficiency, high costs, and subjective outcomes. To address these challenges, an intelligent safety evaluation method based on artificial intelligence (AI) was developed. Deep learning techniques, such as convolutional neural networks (CNN), were employed to automate damage detection and classification using image data or structural parameters. The proposed approach was validated through experiments on rural housing datasets, demonstrating significant reductions in manpower and time requirements while maintaining high accuracy. This AI-driven framework provides a practical tool for rapid, low-cost, and large-scale safety surveys of raw-soil structure houses in regional areas.MethodsA safety assessment database for load-bearing components of raw-soil structure houses was established based on field survey data from Jiangxi Province. The safety conditions of these components were systematically classified into four distinct grades (a, b, c, d) in strict accordance with prevailing building codes and standards, enabling precise annotation of the collected image samples. To minimize background interference and ensure data consistency, all original images were pre-processed through cropping and resizing to a uniform dimension of 224\u00d7224 pixels, making them suitable for model input. Addressing the data volume and diversity requirements of deep learning models, a comprehensive data augmentation strategy was implemented. This involved applying random rotations, horizontal flips, and brightness adjustments to the dataset, effectively expanding the number of images in the training set to 8,030. This process resulted in the creation of a robust, diverse, and high-quality dataset specifically designed for the safety evaluation of raw-soil residential buildings. An initial safety assessment model was developed utilizing Deep Convolutional Neural Network (DCNN) architecture. A systematic hyperparameter optimization process was conducted, where various combinations of parameters were iteratively tested on both the training and validation sets to identify the most effective configuration for the task. To determine the optimal network architecture, a comparative analysis was performed on four established deep learning models: VGGNet-19, GoogLeNet, ResNet-50, and MobileNet-v2. Their performance was rigorously evaluated and compared using multiple metrics, including accuracy, recall, and computational efficiency, leading to the selection of the best-performing model for the specific challenge of assessing raw-soil building components. Subsequently, to enhance both the performance and efficiency of the selected model, three distinct transfer learning strategies were introduced and evaluated: feature extraction, fine-tuning, and an end-to-end learning approach. Each strategy was comprehensively assessed based on key performance indicators such as prediction accuracy, recall rate, and computational resource requirements. This comparative evaluation aimed to identify the most effective transfer learning methodology for the application, ultimately contributing to the development of a proficient and efficient intelligent analysis system tailored for the safety assessment of raw-soil structures. Finally, to address the \"black-box\" nature of deep learning models and enhance the credibility and practical utility of the assessment system, the Gradient-weighted Class Activation Mapping (Grad-CAM) algorithm was integrated. This technique generates visual explanations by producing saliency heatmaps that highlight the critical image regions influencing the model's decision-making process. By visualizing the features that the model deems important for its classification, the Grad-CAM algorithm provides interpretable insights into the model's internal reasoning. This capability significantly improves the transparency and trustworthiness of the intelligent assessment results, making the decision-making mechanism traceable and verifiable for end-users and domain experts.Results and Discussion\u3000Parameter tuning experiments were conducted on four classical network architectures, including VGGNet-19, MobileNet-v2, GoogleNet, and ResNet-50, to optimize hyperparameters. The optimal learning rates for VGGNet-19, MobileNet-v2, and ResNet-50 were determined as 0.0001, while for GoogleNet, it was 0.00001. The optimal batch sizes for VGGNet-19, GoogleNet, and ResNet-50 were 32, whereas for MobileNet-v2, it was 8. Based on these configurations, transfer learning was applied for model training and validation. Evaluation results indicated that the prediction accuracies of VGGNet-19, GoogleNet, MobileNet-v2, and ResNet-50 reached 91.8%, 92.0%, 92.4%, and 92.5%, respectively, all exceeding 90%. This demonstrated that all models performed effectively in safety assessment of load-bearing components for raw-soil structure houses, with ResNet-50 showing the best performance. Further optimization was performed on ResNet-50 using three transfer learning strategies: fine-tuning, feature extraction, and another comparative approach. Results revealed that all strategies improved the accuracy of ResNet-50, confirming the superior classification capability of the transfer learning model based on ResNet-50. The fine-tuning strategy achieved the best comprehensive performance with an accuracy of 93.8%, and the maximum prediction deviation was limited to a single-level shift, exhibiting a conservative risk tendency where predicted risk levels were higher than actual levels. The feature extraction strategy offered the fastest training speed and maintained good accuracy, making it suitable for rapid batch processing applications with high training workloads. The Grad-CAM algorithm was employed to visualize damage-sensitive areas and damage locations of load-bearing components through heat maps, which effectively revealed the decision basis of the Deep Convolutional Neural Network (DCNN) model and enhanced the interpretability of structural safety predictions. Based on these outcomes, a safety assessment program was developed in the MATLAB environment by encapsulating the fine-tuned ResNet-50 model. The program automatically resizes input images to 224\u00d7224 pixels, processes them through the trained deep neural network for recognition and inference, and outputs corresponding safety level evaluations. This automated system streamlines the assessment process from image input to safety level output, significantly improving the efficiency and automation of safety identification for raw-soil structure houses.ConclusionsAn intelligent safety evaluation system for the safety performance of raw-soil structure houses was innovatively established using a Deep Convolutional Neural Network model. This system facilitated a transition in safety assessment methodology from reliance on traditional empirical judgment to data-driven intelligent identification. The proposed method can provide reliable technical support for the rapid safety evaluation and reinforcement decision-making of houses in village and town areas, demonstrating significant theoretical and practical value. Subsequent research will prioritize safety assessments focusing on the foundations and enclosing elements of raw-soil structures, aiming to advance the intellectualization and standardization of holistic structural evaluation for this building type.",
+   "url": "http://jsuese.scu.edu.cn/thesisDetails#10.12454/j.jsuese.202500613",
+   "published": "2025",
+   "citations": 0,
+   "source": "DOAJ"
+  },
+  {
+   "id": "arxiv:1907.02664",
+   "title": "Data Encoding for Byzantine-Resilient Distributed Optimization",
+   "authors": [
+    "Deepesh Data",
+    "Linqi Song",
+    "Suhas Diggavi"
+   ],
+   "abstract": "We study distributed optimization in the presence of Byzantine adversaries, where both data and computation are distributed among $m$ worker machines, $t$ of which may be corrupt. The compromised nodes may collaboratively and arbitrarily deviate from their pre-specified programs, and a designated (master) node iteratively computes the model/parameter vector for generalized linear models. In this work, we primarily focus on two iterative algorithms: Proximal Gradient Descent (PGD) and Coordinate Descent (CD). Gradient descent (GD) is a special case of these algorithms. PGD is typically used in the data-parallel setting, where data is partitioned across different samples, whereas, CD is used in the model-parallelism setting, where data is partitioned across the parameter space.   In this paper, we propose a method based on data encoding and error correction over real numbers to combat adversarial attacks. We can tolerate up to $t\\leq \\lfloor\\frac{m-1}{2}\\rfloor$ corrupt worker nodes, which is information-theoretically optimal. We give deterministic guarantees, and our method does not assume any probability distribution on the data. We develop a {\\em sparse} encoding scheme which enables computationally efficient data encoding and decoding. We demonstrate a trade-off between the corruption threshold and the resource requirements (storage, computational, and communication complexity). As an example, for $t\\leq\\frac{m}{3}$, our scheme incurs only a {\\em constant} overhead on these resources, over that required by the plain distributed PGD/CD algorithms which provide no adversarial protection. To the best of our knowledge, ours is the first paper that makes CD secure against adversarial attacks.   Our encoding scheme extends efficiently to the data streaming model and for stochastic gradient descent (SGD). We also give experimental results to show the efficacy of our proposed schemes.",
+   "url": "http://arxiv.org/abs/1907.02664v2",
+   "published": "2019-07-05",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "openalex:W4226278401",
+   "title": "Training language models to follow instructions with human feedback",
+   "authors": [
+    "Long Ouyang",
+    "Jeff Wu",
+    "Xu Jiang",
+    "Diogo Almeida",
+    "Carroll L. Wainwright",
+    "Pamela Mishkin",
+    "Chong Zhang",
+    "Sandhini Agarwal",
+    "Katarina Slama",
+    "Alex K. Ray",
+    "John Schulman",
+    "Jacob K. Hilton",
+    "Fraser Kelton",
+    "Luke E. Miller",
+    "Maddie Simens",
+    "Amanda Askell",
+    "Peter Welinder",
+    "Paul P. Christiano",
+    "Jan Leike",
+    "Ryan Joseph Lowe"
+   ],
+   "abstract": "Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.",
+   "url": "https://openalex.org/W4226278401",
+   "published": "2022-03-04",
+   "citations": 4352,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "arxiv:2506.10288",
+   "title": "ClusterUCB: Efficient Gradient-Based Data Selection for Targeted Fine-Tuning of LLMs",
+   "authors": [
+    "Zige Wang",
+    "Qi Zhu",
+    "Fei Mi",
+    "Minghui Xu",
+    "Ruochun Jin",
+    "Wenjing Yang"
+   ],
+   "abstract": "Gradient-based data influence approximation has been leveraged to select useful data samples in the supervised fine-tuning of large language models. However, the computation of gradients throughout the fine-tuning process requires too many resources to be feasible in practice. In this paper, we propose an efficient gradient-based data selection framework with clustering and a modified Upper Confidence Bound (UCB) algorithm. Based on the intuition that data samples with similar gradient features will have similar influences, we first perform clustering on the training data pool. Then, we frame the inter-cluster data selection as a constrained computing budget allocation problem and consider it a multi-armed bandit problem. A modified UCB algorithm is leveraged to solve this problem. Specifically, during the iterative sampling process, historical data influence information is recorded to directly estimate the distributions of each cluster, and a cold start is adopted to balance exploration and exploitation. Experimental results on various benchmarks show that our proposed framework, ClusterUCB, can achieve comparable results to the original gradient-based data selection methods while greatly reducing computing consumption.",
+   "url": "http://arxiv.org/abs/2506.10288v1",
+   "published": "2025-06-12",
+   "citations": 1,
+   "source": "arXiv & Crossref"
+  }
+ ],
+ "benign fine-tuning compromises safety alignment": [
+  {
+   "id": "openalex:W4387436590",
+   "title": "Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!",
+   "authors": [
+    "Xiangyu Qi",
+    "Yi Zeng",
+    "Tinghao Xie",
+    "Pin\u2010Yu Chen",
+    "Ruoxi Jia",
+    "Prateek Mittal",
+    "Peter B. Henderson"
+   ],
+   "abstract": "Optimizing large language models (LLMs) for downstream use cases often involves the customization of pre-trained LLMs through further fine-tuning. Meta's open release of Llama models and OpenAI's APIs for fine-tuning GPT-3.5 Turbo on custom datasets also encourage this practice. But, what are the safety costs associated with such custom fine-tuning? We note that while existing safety alignment infrastructures can restrict harmful behaviors of LLMs at inference time, they do not cover safety risks when fine-tuning privileges are extended to end-users. Our red teaming studies find that the safety alignment of LLMs can be compromised by fine-tuning with only a few adversarially designed training examples. For instance, we jailbreak GPT-3.5 Turbo's safety guardrails by fine-tuning it on only 10 such examples at a cost of less than $0.20 via OpenAI's APIs, making the model responsive to nearly any harmful instructions. Disconcertingly, our research also reveals that, even without malicious intent, simply fine-tuning with benign and commonly used datasets can also inadvertently degrade the safety alignment of LLMs, though to a lesser extent. These findings suggest that fine-tuning aligned LLMs introduces new safety risks that current safety infrastructures fall short of addressing -- even if a model's initial safety alignment is impeccable, it is not necessarily to be maintained after custom fine-tuning. We outline and critically analyze potential mitigations and advocate for further research efforts toward reinforcing safety protocols for the custom fine-tuning of aligned LLMs.",
+   "url": "https://openalex.org/W4387436590",
+   "published": "2023-10-05",
+   "citations": 41,
+   "source": "OpenAlex & arXiv"
+  },
+  {
+   "id": "arxiv:2604.16659",
+   "title": "Benign Fine-Tuning Breaks Safety Alignment in Audio LLMs",
+   "authors": [
+    "Jaechul Roh",
+    "Amir Houmansadr"
+   ],
+   "abstract": "Prior work shows that fine-tuning aligned models on benign data degrades safety in text and vision modalities, and that proximity to harmful content in representation space predicts which samples cause the most damage. However, existing analyses operate within a single, undifferentiated embedding space -- leaving open whether distinct input properties drive the vulnerability differently. Audio introduces a structurally richer problem: a benign sample can neighbor harmful content not only through what is said but through how it sounds, even when its words are entirely innocuous. We present the first systematic study of benign fine-tuning safety in Audio LLMs, evaluating three state-of-the-art models with a proximity-based filtering framework that selects benign audio by embedding-space distance to harmful content. By decomposing proximity into semantic, acoustic, and mixed axes using external reference encoders alongside each model's own internal encoder, we show that benign fine-tuning elevates Jailbreak Success Rate (JSR) from single digits to as high as 87.12%. Crucially, the dominant vulnerability axis and the relative risk of audio versus text fine-tuning are both architecture-conditioned -- determined by how each model's encoder and projector transform audio into the LLM's input space. We propose two defenses: filtering training data to maximize distance from harmful embeddings, and a textual system prompt at inference, both reducing JSR to near-zero without architectural modification. Our mechanistic analysis on two architectures reveals that fine-tuning selectively suppresses the late-layer refusal circuit while the frozen encoder preserves representations, and that even the suppression pattern is architecture-conditioned, mirroring the behavioral asymmetries across modalities. Safety degradation from benign fine-tuning is a qualitatively distinct risk in Audio LLMs.",
+   "url": "http://arxiv.org/abs/2604.16659v1",
+   "published": "2026-04-17",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0338835",
+   "title": "Visual security defense for industrial inspection based on computer vision",
+   "authors": [
+    "Zhihao Jiang",
+    "Haotian Yuan",
+    "Chenrui Zeng",
+    "Liu Fu"
+   ],
+   "abstract": "\nAs intelligent manufacturing advances, computer vision-based defect detection systems have become essential components of industrial automation. However, this progress has also revealed new security vulnerabilities. In this work, we identify and examine a stealthy adversarial vector\u2014the Alpha Channel Attack\u2014which exploits the often-ignored transparency layer in RGBA images to inject imperceptible perturbations, thereby evading both human perception and conventional preprocessing defenses.We evaluate this threat across diverse model architectures, including YOLOv5, FastGAN, and state-of-the-art vision-language models such as DeepSeek-VL2, ChatGPT-4o, and KIMI. Experimental results show that alpha-channel perturbations cause substantial degradation in detection, generation, and multimodal alignment metrics\u2014including mAP, FID, BLEU, METEOR, and CLIP Score\u2014while leaving the visible image content unchanged.To mitigate this invisible yet high-impact risk, we propose a lightweight detection mechanism that integrates histogram overlap and MSE analysis within the alpha channel. The framework achieves an AUC of 0.998, demonstrating strong capability in identifying adversarial samples under real-world constraints.Overall, this study reveals a critical blind spot in modern visual data pipelines and introduces both a novel threat model and an effective defense strategy, contributing to the development of more resilient industrial AI systems.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0338835",
+   "published": "2026-02-04",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "pubmed:42154710",
+   "title": "EVA: Editing for Versatile Alignment Against Jailbreaks.",
+   "authors": [
+    "Wang Y",
+    "Qiu H",
+    "Xu Y",
+    "Yang S",
+    "Qin Z",
+    "Huang M",
+    "Wang W"
+   ],
+   "abstract": "",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42154710/",
+   "published": "2026 Oct",
+   "citations": 0,
+   "source": "PubMed"
+  },
+  {
+   "id": "europepmc:PMC13199121",
+   "title": "A spatial correlation-guided deep fusion framework for multimodal lung cancer classification using CT imaging.",
+   "authors": [
+    "Alharbi H."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13199121",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "crossref:10.1109/tifs.2025.3615412/mm1",
+   "title": "Targeted Vaccine: Safety Alignment for Large Language Models against Harmful Fine-Tuning via Layer-wise Perturbation_supp1-3615412.pdf",
+   "authors": [
+    "Weiwei Lin"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/tifs.2025.3615412/mm1",
+   "published": "2025-10-7",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "openalex:W4388886073",
+   "title": "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+   "authors": [
+    "Kai Greshake",
+    "Sahar Abdelnabi",
+    "Shailesh Mishra",
+    "Christoph Endres",
+    "Thorsten Holz",
+    "Mario Fritz"
+   ],
+   "abstract": "Large Language Models (LLMs) are increasingly being integrated into applications, with versatile functionalities that can be easily modulated via natural language prompts. So far, it was assumed that the user is directly prompting the LLM. But, what if it is not the user prompting? We show that LLM-Integrated Applications blur the line between data and instructions and reveal several new attack vectors, using Indirect Prompt Injection, that enable adversaries to remotely (i.e., without a direct interface) exploit LLM-integrated applications by strategically injecting prompts into data likely to be retrieved at inference time. We derive a comprehensive taxonomy from a computer security perspective to broadly investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. We then demonstrate the practical viability of our attacks against both real-world systems, such as Bing Chat and code-completion engines, and GPT-4 synthetic applications. We show how processing retrieved prompts can act as arbitrary code execution, manipulate the application's functionality, and control how and if other APIs are called. Despite the increasing reliance on LLMs, effective mitigations of these emerging threats are lacking. By raising awareness of these vulnerabilities, we aim to promote the safe and responsible deployment of these powerful models and the development of robust defenses that protect users from potential attacks.",
+   "url": "https://openalex.org/W4388886073",
+   "published": "2023-11-21",
+   "citations": 542,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC13050583",
+   "title": "Keeping Medical AI Healthy and Trustworthy: A Review of Detection and Correction Methods for System Degradation.",
+   "authors": [
+    "Guan H",
+    "Bates D",
+    "Zhou L."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13050583",
+   "published": "2026",
+   "citations": 18,
+   "source": "EuropePMC"
+  }
+ ],
+ "catastrophic forgetting safety vision-language models continual learning": [
+  {
+   "id": "openalex:W3140854437",
+   "title": "Review of deep learning: concepts, CNN architectures, challenges, applications, future directions",
+   "authors": [
+    "Laith H. Alzubaidi",
+    "Jinglan Zhang",
+    "Amjad J. Humaidi",
+    "Ayad Q. Al-Dujaili",
+    "Ye Duan",
+    "Omran Al-Shamma",
+    "Jose I. Santamaria",
+    "Mohammed Abdulraheem Fadhel",
+    "Muthana Al\u2010Amidie",
+    "Laith Farhan"
+   ],
+   "abstract": "In the last few years, the deep learning (DL) computing paradigm has been deemed the Gold Standard in the machine learning (ML) community. Moreover, it has gradually become the most widely used computational approach in the field of ML, thus achieving outstanding results on several complex cognitive tasks, matching or even beating those provided by human performance. One of the benefits of DL is the ability to learn massive amounts of data. The DL field has grown fast in the last few years and it has been extensively used to successfully address a wide range of traditional applications. More importantly, DL has outperformed well-known ML techniques in many domains, e.g., cybersecurity, natural language processing, bioinformatics, robotics and control, and medical information processing, among many others. Despite it has been contributed several works reviewing the State-of-the-Art on DL, all of them only tackled one aspect of the DL, which leads to an overall lack of knowledge about it. Therefore, in this contribution, we propose using a more holistic approach in order to provide a more suitable starting point from which to develop a full understanding of DL. Specifically, this review attempts to provide a more comprehensive survey of the most important aspects of DL and including those enhancements recently added to the field. In particular, this paper outlines the importance of DL, presents the types of DL techniques and networks. It then presents convolutional neural networks (CNNs) which the most utilized DL network type and describes the development of CNNs architectures together with their main features, e.g., starting with the AlexNet network and closing with the High-Resolution network (HR.Net). Finally, we further present the challenges and suggested solutions to help researchers understand the existing research gaps. It is followed by a list of the major DL applications. Computational tools including FPGA, GPU, and CPU are summarized along with a description of their influence on DL. The paper ends with the evolution matrix, benchmark datasets, and summary and conclusion.",
+   "url": "https://openalex.org/W3140854437",
+   "published": "2021-03-31",
+   "citations": 7928,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC13341209",
+   "title": "Large Language Model and Pediatric Neurosurgery - A Neurosurgeon's Perspective on the Artificial Nervous System.",
+   "authors": [
+    "Yuh WT",
+    "Ryu SJ",
+    "Kim TS",
+    "Choi I."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13341209",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "crossref:10.62441/nano-ntp.v20i6.34",
+   "title": "Mitigating Catastrophic Forgetting in Continual Learning for Natural Language Processing Tasks",
+   "authors": [],
+   "abstract": "",
+   "url": "https://doi.org/10.62441/nano-ntp.v20i6.34",
+   "published": "2024-11-3",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0305856",
+   "title": "Expanding continual few-shot learning benchmarks to include recognition of specific instances",
+   "authors": [
+    "Gideon Kowadlo",
+    "Abdelrahman Ahmed",
+    "Amir Mayan",
+    "David Rawlinson"
+   ],
+   "abstract": "\nContinual learning and few-shot learning are important frontiers in progress toward broader Machine Learning (ML) capabilities. Recently, there has been intense interest in combining both. One of the first examples to do so was the Continual few-shot Learning (CFSL) framework of Antoniou et al. (2020). In this study, we extend CFSL in two ways that capture a broader range of challenges, important for intelligent agent behaviour in real-world conditions. First, we increased the number of classes by an order of magnitude, making the results more comparable to standard continual learning experiments. Second, we introduced an \u2018instance test\u2019 which requires recognition of specific instances of classes\u2014a capability of animal cognition that is usually neglected in ML. For an initial exploration of ML model performance under these conditions, we selected representative baseline models from the original CFSL work and added a model variant with replay. As expected, learning more classes is more difficult than the original CFSL experiments, and interestingly, the way in which image instances and classes are presented affects classification performance. Surprisingly, accuracy in the baseline instance test is comparable to other classification tasks, but poor given significant occlusion and noise. The use of replay for consolidation substantially improves performance for both types of tasks, but particularly for the instance test.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0305856",
+   "published": "2024-07-05",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "arxiv:2211.14177",
+   "title": "Overcoming Catastrophic Forgetting by XAI",
+   "authors": [
+    "Giang Nguyen"
+   ],
+   "abstract": "Explaining the behaviors of deep neural networks, usually considered as black boxes, is critical especially when they are now being adopted over diverse aspects of human life. Taking the advantages of interpretable machine learning (interpretable ML), this work proposes a novel tool called Catastrophic Forgetting Dissector (or CFD) to explain catastrophic forgetting in continual learning settings. We also introduce a new method called Critical Freezing based on the observations of our tool. Experiments on ResNet articulate how catastrophic forgetting happens, particularly showing which components of this famous network are forgetting. Our new continual learning algorithm defeats various recent techniques by a significant margin, proving the capability of the investigation. Critical freezing not only attacks catastrophic forgetting but also exposes explainability.",
+   "url": "http://arxiv.org/abs/2211.14177v1",
+   "published": "2022-11-25",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "openalex:W4362515116",
+   "title": "A Survey of Large Language Models",
+   "authors": [
+    "Wayne Xin Zhao",
+    "Kun Zhou",
+    "Junyi Li",
+    "Tianyi Tang",
+    "Zican Dong",
+    "Yupeng Hou",
+    "Beichen Zhang",
+    "Yingqian Min",
+    "Junjie Zhang",
+    "Peiyu Liu",
+    "Xiaolei Wang",
+    "Yifan Du",
+    "Yushuo Chen",
+    "Yushuo Chen",
+    "Zhipeng Chen",
+    "Jinhao Jiang",
+    "Ruiyang Ren",
+    "Yifan Li",
+    "Xinyu Tang",
+    "Peiyu Liu",
+    "Yiwen Hu",
+    "Jian\u2010Yun Nie",
+    "Ji-Rong Wen"
+   ],
+   "abstract": "Abstract The rapid evolution of large language models (LLMs) has driven a transformative shift in artificial intelligence (AI), reshaping both research paradigms and practical applications. Distinguished from their predecessors by unprecedented scale and advanced capabilities, LLMs necessitate new frameworks for understanding their development, behavior, and societal impact. This survey systematically reviews recent advancements in LLM techniques across four key dimensions: (1) pre-training methodologies, which establish core model capabilities through large-scale self-supervised training, architectural innovations, and data curation strategies; (2) post-training techniques, including supervised fine-tuning and reinforcement learning, which adapt foundational models to downstream tasks and enhance their alignment and safety; (3) utilization strategies, such as in-context learning, prompt engineering, and agentic reasoning, that optimize real-world deployment and enable effective interaction with external environments; and (4) evaluation methods, encompassing benchmarks for key ability dimensions such as core language capabilities, reasoning, and safety, which support comprehensive and reliable assessment of model performance. Additionally, we identify critical research issues, including those concerning theoretical foundations, efficient scaling, alignment, and agentic capability, and highlight the open challenges they present. By synthesizing state-of-the-art insights and emerging trends, this survey aims to provide a systematic and comprehensive framework for understanding the trajectory, current limitations, and future directions of LLM progress.",
+   "url": "https://openalex.org/W4362515116",
+   "published": "2026-05-09",
+   "citations": 1558,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC12567919",
+   "title": "ECSA: Mitigating Catastrophic Forgetting and Few-Shot Generalization in Medical Visual Question Answering.",
+   "authors": [
+    "Jia Q",
+    "Liu S",
+    "Chen M",
+    "Li T",
+    "Yang J."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC12567919",
+   "published": "2025",
+   "citations": 1,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0342169",
+   "title": "Hyper-MDR: An open-world multimodal reasoning framework based on dynamic hypergraph and meta-strategy optimization",
+   "authors": [
+    "Jian Shi",
+    "Xiaobin Huang",
+    "Lianhai Yuan"
+   ],
+   "abstract": "\nOpen-world object detection (OWOD) has become a crucial paradigm for advancing intelligent perception systems, as it requires not only accurate recognition of known categories but also autonomous discovery and continuous learning of emerging unknown categories in dynamic environments. However, existing methods often suffer from shallow cross-modal interaction and rigid reasoning mechanisms, making them unable to cope with the continuous emergence of new categories and the dynamic changes in modality reliability in open-world environments. First, to achieve hypergraph enhancement, image regions, text, and semantic prototypes are treated as nodes, while a gating network dynamically generates hyperedges under semantic and spatial constraints, thereby modeling the high-order dependencies of vision\u2013language\u2013semantic triplets and enabling deep multimodal fusion at the topological level. Second, a hierarchical hypergraph convolutional network is designed to facilitate knowledge propagation between known and unknown categories. Finally, a meta-policy gradient-based adaptive controller is proposed, which dynamically adjusts feature fusion weights, propagation depth, and attention topology based on the detection state and historical trajectories. Experimental results on the OWOD dataset show that our proposed method achieves an accuracy of 76.8%, providing a new paradigm for open-world multimodal perception that integrates semantic depth and adaptability.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0342169",
+   "published": "2026-02-17",
+   "citations": 0,
+   "source": "PLOS"
+  }
+ ],
+ "multimodal jailbreak benchmark vision language model": [
+  {
+   "id": "openalex:W4393157467",
+   "title": "Visual Adversarial Examples Jailbreak Aligned Large Language Models",
+   "authors": [
+    "Xiangyu Qi",
+    "Kaixuan Huang",
+    "Ashwinee Panda",
+    "Peter B. Henderson",
+    "Mengdi Wang",
+    "Prateek Mittal"
+   ],
+   "abstract": "Warning: this paper contains data, prompts, and model outputs that are offensive in nature. Recently, there has been a surge of interest in integrating vision into Large Language Models (LLMs), exemplified by Visual Language Models (VLMs) such as Flamingo and GPT-4. This paper sheds light on the security and safety implications of this trend. First, we underscore that the continuous and high-dimensional nature of the visual input makes it a weak link against adversarial attacks, representing an expanded attack surface of vision-integrated LLMs. Second, we highlight that the versatility of LLMs also presents visual attackers with a wider array of achievable adversarial objectives, extending the implications of security failures beyond mere misclassification. As an illustration, we present a case study in which we exploit visual adversarial examples to circumvent the safety guardrail of aligned LLMs with integrated vision. Intriguingly, we discover that a single visual adversarial example can universally jailbreak an aligned LLM, compelling it to heed a wide range of harmful instructions (that it otherwise would not) and generate harmful content that transcends the narrow scope of a `few-shot' derogatory corpus initially employed to optimize the adversarial example. Our study underscores the escalating adversarial risks associated with the pursuit of multimodality. Our findings also connect the long-studied adversarial vulnerabilities of neural networks to the nascent field of AI alignment. The presented attack suggests a fundamental adversarial challenge for AI alignment, especially in light of the emerging trend toward multimodality in frontier foundation models.",
+   "url": "https://openalex.org/W4393157467",
+   "published": "2024-03-24",
+   "citations": 122,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.1109/ccai69603.2026.11642016",
+   "title": "Specialized Domain Jailbreak Benchmark: Exposing Severe Jailbreak Vulnerabilities in Large Language Models",
+   "authors": [
+    "Fan Ding",
+    "Zehui Liao",
+    "Qiang Li"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/ccai69603.2026.11642016",
+   "published": "2026-8-17",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "europepmc:PMC13161009",
+   "title": "Clinical Plausibility in Large Language Model Robustness Testing for Medicine: A Scoping Review.",
+   "authors": [
+    "Chang Y",
+    "Hsieh MH",
+    "Ju PC",
+    "Liu YC",
+    "Chang CC."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13161009",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "arxiv:2410.20971",
+   "title": "BlueSuffix: Reinforced Blue Teaming for Vision-Language Models Against Jailbreak Attacks",
+   "authors": [
+    "Yunhan Zhao",
+    "Xiang Zheng",
+    "Lin Luo",
+    "Yige Li",
+    "Xingjun Ma",
+    "Yu-Gang Jiang"
+   ],
+   "abstract": "In this paper, we focus on black-box defense for VLMs against jailbreak attacks. Existing black-box defense methods are either unimodal or bimodal. Unimodal methods enhance either the vision or language module of the VLM, while bimodal methods robustify the model through text-image representation realignment. However, these methods suffer from two limitations: 1) they fail to fully exploit the cross-modal information, or 2) they degrade the model performance on benign inputs. To address these limitations, we propose a novel blue-team method BlueSuffix that defends target VLMs against jailbreak attacks without compromising its performance under black-box setting. BlueSuffix includes three key components: 1) a visual purifier against jailbreak images, 2) a textual purifier against jailbreak texts, and 3) a blue-team suffix generator using reinforcement fine-tuning for enhancing cross-modal robustness. We empirically show on four VLMs (LLaVA, MiniGPT-4, InstructionBLIP, and Gemini) and four safety benchmarks (Harmful Instruction, AdvBench, MM-SafetyBench, and RedTeam-2K) that BlueSuffix outperforms the baseline defenses by a significant margin. Our BlueSuffix opens up a promising direction for defending VLMs against jailbreak attacks. Code is available at https://github.com/Vinsonzyh/BlueSuffix.",
+   "url": "http://arxiv.org/abs/2410.20971v2",
+   "published": "2024-10-28",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "openalex:W4392669753",
+   "title": "A Multitask, Multilingual, Multimodal Evaluation of ChatGPT on Reasoning, Hallucination, and Interactivity",
+   "authors": [
+    "Yejin Bang",
+    "Samuel Cahyawijaya",
+    "Nayeon Lee",
+    "Wenliang Dai",
+    "Dan Su",
+    "Bryan Wilie",
+    "Holy Lovenia",
+    "Ziwei Ji",
+    "Tiezheng Yu",
+    "Willy Chung",
+    "Quyet V. Do",
+    "Yan Xu",
+    "Pascale Fung"
+   ],
+   "abstract": "Yejin Bang, Samuel Cahyawijaya, Nayeon Lee, Wenliang Dai, Dan Su, Bryan Wilie, Holy Lovenia, Ziwei Ji, Tiezheng Yu, Willy Chung, Quyet V. Do, Yan Xu, Pascale Fung. Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (Volume 1: Long Papers). 2023.",
+   "url": "https://openalex.org/W4392669753",
+   "published": "2023-01-01",
+   "citations": 663,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC12532640",
+   "title": "Safeguarding large language models: a survey.",
+   "authors": [
+    "Dong Y",
+    "Mu R",
+    "Zhang Y",
+    "Sun S",
+    "Zhang T",
+    "Wu C",
+    "Jin G",
+    "Qi Y",
+    "Hu J",
+    "Meng J",
+    "Bensalem S",
+    "Huang X."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC12532640",
+   "published": "2025",
+   "citations": 16,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "crossref:10.1007/s00138-024-01557-9",
+   "title": "Deep multimodal-based finger spelling recognition for Thai sign language: a new benchmark and model composition",
+   "authors": [
+    "Wuttichai Vijitkunsawat",
+    "Teeradaj Racharak",
+    "Minh Le\u00a0Nguyen"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1007/s00138-024-01557-9",
+   "published": "2024-5-31",
+   "citations": 8,
+   "source": "Crossref"
+  },
+  {
+   "id": "arxiv:2604.00086",
+   "title": "Hierarchical Pre-Training of Vision Encoders with Large Language Model",
+   "authors": [
+    "Eugene Lee",
+    "Ting-Yu Chang",
+    "Jui-Huang Tsai",
+    "Jiajie Diao",
+    "Chen-Yi Lee"
+   ],
+   "abstract": "The field of computer vision has experienced significant advancements through scalable vision encoders and multimodal pre-training frameworks. However, existing approaches often treat vision encoders and large language models (LLMs) as independent modules, limiting the integration of hierarchical visual features. In this work, we propose HIVE (Hierarchical Pre-Training of Vision Encoders), a novel framework that enhances vision-language alignment by introducing hierarchical cross-attention between the vision encoder and LLM. Unlike conventional methods that flatten image embeddings, HIVE enables structured feature fusion across multiple layers, improving gradient flow and representation learning. To optimize this interaction, we introduce a three-stage training strategy that progressively aligns the vision encoder with the LLM, ensuring stable optimization and effective multimodal fusion. Empirical evaluations demonstrate that HIVE achieves superior performance not only in image classification but also on various vision-language tasks, outperforming self-attention-based methods in benchmarks such as MME, GQA, OK-VQA, and ScienceQA. Our results highlight the benefits of hierarchical feature integration, paving the way for more efficient and expressive vision-language models.",
+   "url": "http://arxiv.org/abs/2604.00086v2",
+   "published": "2026-03-31",
+   "citations": 0,
+   "source": "arXiv"
+  }
+ ],
+ "safety basin fine-tuning LLM": [
+  {
+   "id": "openalex:W4417256853",
+   "title": "AsFT: Anchoring Safety During LLM Fine-Tuning Within Narrow Safety Basin",
+   "authors": [
+    "Shuo Yang",
+    "Qihui Zhang",
+    "Yuyang Liu",
+    "Xiaojun Jia",
+    "Kunpeng Ning",
+    "Jiayu Yao",
+    "Jigang Wang",
+    "H. L. Dai",
+    "Yibing Song",
+    "Yuan Li"
+   ],
+   "abstract": "Fine-tuning large language models (LLMs) improves performance but introduces critical safety vulnerabilities: even minimal harmful data can severely compromise safety measures. We observe that perturbations orthogonal to the alignment direction - defined by weight differences between aligned (safe) and unaligned models - rapidly compromise model safety. In contrast, updates along the alignment direction largely preserve it, revealing the parameter space as a \"narrow safety basin\". To address this, we propose AsFT (Anchoring Safety in Fine-Tuning) to maintain safety by explicitly constraining update directions during fine-tuning. By penalizing updates orthogonal to the alignment direction, AsFT effectively constrains the model within the \"narrow safety basin,\" thus preserving its inherent safety. Extensive experiments on multiple datasets and models show that AsFT reduces harmful behaviors by up to 7.60%, improves task performance by 3.44%, and consistently outperforms existing methods across multiple tasks.",
+   "url": "https://openalex.org/W4417256853",
+   "published": "2025-06-10",
+   "citations": 1,
+   "source": "OpenAlex & arXiv & Crossref"
+  },
+  {
+   "id": "crossref:10.2139/ssrn.4574477",
+   "title": "Fine-Tuning Human for LLM Projects",
+   "authors": [
+    "Rehan Guha"
+   ],
+   "abstract": "In recent years after emerging of LLM in the space of NLP, tools like ChatGPT, BARD, DALL-E, took over the market and daily lives. We will be focusing on the human like output capability from LLM\u2019s . There is a huge reservation of this technology due to multiple scenarios like security, accuracy, relevance, etc... In this paper, I will talk about a method which I have designed to fine tune a human being to lower the expectation from LLM outputs and increase the acceptance rate of the final product. This technique is more of a psychological method than a technological way to improve the models output to be more human like.",
+   "url": "https://doi.org/10.2139/ssrn.4574477",
+   "published": "2023-10-13",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "europepmc:PMC13172733",
+   "title": "Simple picture of how output from ChatGPT-like AI shifts from good to bad.",
+   "authors": [
+    "Johnson NF",
+    "Huo FY."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13172733",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "arxiv:2506.05346",
+   "title": "Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets",
+   "authors": [
+    "Lei Hsiung",
+    "Tianyu Pang",
+    "Yung-Chen Tang",
+    "Linyue Song",
+    "Tsung-Yi Ho",
+    "Pin-Yu Chen",
+    "Yaoqing Yang"
+   ],
+   "abstract": "Recent advancements in large language models (LLMs) have underscored their vulnerability to safety alignment jailbreaks, particularly when subjected to downstream fine-tuning. However, existing mitigation strategies primarily focus on reactively addressing jailbreak incidents after safety guardrails have been compromised, removing harmful gradients during fine-tuning, or continuously reinforcing safety alignment throughout fine-tuning. As such, they tend to overlook a critical upstream factor: the role of the original safety-alignment data. This paper therefore investigates the degradation of safety guardrails through the lens of representation similarity between upstream alignment datasets and downstream fine-tuning tasks. Our experiments demonstrate that high similarity between these datasets significantly weakens safety guardrails, making models more susceptible to jailbreaks. Conversely, low similarity between these two types of datasets yields substantially more robust models and thus reduces harmfulness score by up to 10.33%. By highlighting the importance of upstream dataset design in the building of durable safety guardrails and reducing real-world vulnerability to jailbreak attacks, these findings offer actionable insights for fine-tuning service providers.",
+   "url": "http://arxiv.org/abs/2506.05346v1",
+   "published": "2025-06-05",
+   "citations": 1,
+   "source": "arXiv & Crossref"
+  },
+  {
+   "id": "openalex:W4410358178",
+   "title": "Emergent social conventions and collective bias in LLM populations",
+   "authors": [
+    "Ariel Flint Ashery",
+    "Luca Maria Aiello",
+    "Andrea Baronchelli"
+   ],
+   "abstract": "Social conventions are the backbone of social coordination, shaping how individuals form a group. As growing populations of artificial intelligence (AI) agents communicate through natural language, a fundamental question is whether they can bootstrap the foundations of a society. Here, we present experimental results that demonstrate the spontaneous emergence of universally adopted social conventions in decentralized populations of large language model (LLM) agents. We then show how strong collective biases can emerge during this process, even when agents exhibit no bias individually. Last, we examine how committed minority groups of adversarial LLM agents can drive social change by imposing alternative social conventions on the larger population. Our results show that AI systems can autonomously develop social conventions without explicit programming and have implications for designing AI systems that align, and remain aligned, with human values and societal goals.",
+   "url": "https://openalex.org/W4410358178",
+   "published": "2025-05-14",
+   "citations": 68,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC13270017",
+   "title": "Debris flow disaster information representation and perception based on knowledge graphs and virtual geographic environments.",
+   "authors": [
+    "Zhang Z",
+    "Fu H",
+    "Zhang J",
+    "Zhang Y",
+    "Gu Z."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13270017",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "crossref:10.31390/gradschool_theses.6154",
+   "title": "Optimizing LLM x86 Assembly Code Comprehension through Fine-Tuning",
+   "authors": [
+    "Patrick Agyekum"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.31390/gradschool_theses.6154",
+   "published": "2025-10-24",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "openalex:W4387635340",
+   "title": "Learning from models beyond fine-tuning",
+   "authors": [
+    "Hongling Zheng",
+    "Li Shen",
+    "Anke Tang",
+    "Yong Luo",
+    "Hu Han",
+    "Bo Du",
+    "Wen, Yonggang",
+    "Tao, Dacheng"
+   ],
+   "abstract": "Foundation models (FM) have demonstrated remarkable performance across a wide range of tasks (especially in the fields of natural language processing and computer vision), primarily attributed to their ability to comprehend instructions and access extensive, high-quality data. This not only showcases their current effectiveness but also sets a promising trajectory towards the development of artificial general intelligence. Unfortunately, due to multiple constraints, the raw data of the model used for large model training are often inaccessible, so the use of end-to-end models for downstream tasks has become a new research trend, which we call Learn From Model (LFM) in this article. LFM focuses on the research, modification, and design of FM based on the model interface, so as to better understand the model structure and weights (in a black box environment), and to generalize the model to downstream tasks. The study of LFM techniques can be broadly categorized into five major areas: model tuning, model distillation, model reuse, meta learning and model editing. Each category encompasses a repertoire of methods and strategies that aim to enhance the capabilities and performance of FM. This paper gives a comprehensive review of the current methods based on FM from the perspective of LFM, in order to help readers better understand the current research status and ideas. To conclude, we summarize the survey by highlighting several critical areas for future exploration and addressing open issues that require further attention from the research community. The relevant papers we investigated in this article can be accessed at https://github.com/ruthless-man/Awesome-Learn-from-Model",
+   "url": "https://openalex.org/W4387635340",
+   "published": "2023-10-12",
+   "citations": 17,
+   "source": "OpenAlex"
+  }
+ ],
+ "LoRA safety subspace preserving alignment during fine-tuning": [
+  {
+   "id": "arxiv:2603.07445",
+   "title": "Few Tokens, Big Leverage: Preserving Safety Alignment by Constraining Safety Tokens during Fine-tuning",
+   "authors": [
+    "Guoli Wang",
+    "Haonan Shi",
+    "Tu Ouyang",
+    "An Wang"
+   ],
+   "abstract": "Large language models (LLMs) often require fine-tuning (FT) to perform well on downstream tasks, but FT can induce safety-alignment drift even when the training dataset contains only benign data. Prior work shows that introducing a small fraction of harmful data can substantially compromise LLM refusal behavior, causing LLMs to comply with harmful requests. Existing defense methods often rely on model-wide interventions, such as restricting which parameters are updated or injecting additional safety data, which can limit generality and degrade downstream task performance. To address these limitations, we propose a fine-tuning framework called Preserving Safety Alignment via Constrained Tokens (PACT), which stabilizes the model's confidence on safety tokens. Our approach is motivated by the empirical observation that safety-aligned behavior is reflected in the model's token-level output confidence and is often concentrated on a small subset of safety-related tokens. During downstream fine-tuning, we regularize the fine-tuned model to match the aligned reference model's confidence on safety-related tokens at each response step, while leaving non-safety tokens largely unconstrained to allow effective task adaptation. This targeted constraint prevents alignment drift without imposing global restrictions that typically trade off with model utility. Our code is available at {https://github.com/Glresearch1/PACT}.",
+   "url": "http://arxiv.org/abs/2603.07445v3",
+   "published": "2026-03-08",
+   "citations": 0,
+   "source": "arXiv & Crossref"
+  },
+  {
+   "id": "openalex:W4416296080",
+   "title": "Instruction Tuning for Large Language Models: A Survey",
+   "authors": [
+    "Shengyu Zhang",
+    "Linfeng Dong",
+    "Xiaoya Li",
+    "Sen Zhang",
+    "Xiaofei Sun",
+    "Shuhe Wang",
+    "Jiwei Li",
+    "Runyi Hu",
+    "Tianwei Zhang",
+    "Guoyin Wang",
+    "Fei Qing Wu"
+   ],
+   "abstract": "This article surveys research works in the quickly advancing field of instruction tuning (IT), a crucial technique to enhance the capabilities and controllability of large language models (LLMs). Instruction tuning refers to the process of further training LLMs on a dataset consisting of (instruction, output) pairs in a supervised fashion, which bridges the gap between the next-word prediction objective of LLMs and the users\u2019 objective of having LLMs adhere to human instructions. In this work, we make a systematic review of the literature, including the general methodology of IT, the construction of IT datasets, the training of IT models, and applications to different modalities, domains and application, along with analysis of aspects that influence the outcome of IT (e.g., generation of instruction outputs, size of the instruction dataset). We also review the potential pitfalls of IT along with criticism against it, along with efforts pointing out current deficiencies of existing strategies and suggest some avenues for fruitful research.",
+   "url": "https://openalex.org/W4416296080",
+   "published": "2025-11-17",
+   "citations": 71,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC12938067",
+   "title": "Integrating Dynamic Representation and Multi-Priors for Transnasal Intubation via Visual Foundation Model.",
+   "authors": [
+    "Liu J",
+    "Zhou Y",
+    "Hao R",
+    "Li M",
+    "Zhang Y",
+    "Ren H."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC12938067",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0329100",
+   "title": "SegCycle-SPADE: An end-to-end framework for semantic segmentation-based automated extraction and artistic reconstruction of traditional craft patterns using conditional GAN",
+   "authors": [
+    "Bei Huang",
+    "Lequn Mo"
+   ],
+   "abstract": "\nThis paper addresses the challenge of traditional handicraft pattern extraction and generation, focusing on accurate segmentation and high-quality pattern reconstruction. We propose the SegCycle-SPADE model, combining SegFormer for semantic segmentation, CycleGAN for pattern generation, and SPADE for style transfer, to achieve a balance between segmentation accuracy, generation quality, and inference efficiency. Experiments on datasets such as Batik Nitik 960, Fashion-MNIST, and DeepFashion show that SegCycle-SPADE outperforms baseline models like U-Net and DeepLabV3+ with significant improvements in PA (88.6%), mIoU (78.1%), and Boundary F1 (73.8%). In terms of pattern generation, SegCycle-SPADE also achieves superior results in PSNR (27.8 dB), SSIM (0.89), and FID (34.2), outperforming Pix2Pix, Stable Diffusion, and other models. The model demonstrates its potential for the digital regeneration of traditional handicraft patterns, offering a robust solution for high-quality and efficient pattern generation, with substantial contributions to digital cultural heritage preservation and innovation.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0329100",
+   "published": "2025-11-18",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "arxiv:2506.15415",
+   "title": "Targeted Lexical Injection: Unlocking Latent Cross-Lingual Alignment in Lugha-Llama via Early-Layer LoRA Fine-Tuning",
+   "authors": [
+    "Stanley Ngugi"
+   ],
+   "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities, yet their performance in low-resource languages (LRLs), such as Swahili, often lags due to data scarcity and underrepresentation in pre-training. A key challenge is achieving robust cross-lingual lexical alignment, crucial for tasks like translation and cross-lingual information retrieval. This paper introduces Targeted Lexical Injection (TLI), a novel and efficient fine-tuning approach. We first demonstrate that Lugha-Llama-8B-wura, a Swahili-centric LLM, exhibits strong, near-perfect lexical alignment for Swahili-English word pairs in its early internal layers (specifically Layer 2, with ~0.99998 average cosine similarity based on a pilot study), a capability not fully reflected in its final output representations (baseline ~0.32 similarity on our evaluation set). TLI leverages this insight by using Low-Rank Adaptation (LoRA) and a contrastive learning objective to fine-tune the model, specifically targeting embeddings from this empirically identified optimal early layer. Our experiments show that TLI significantly improves the output-level lexical alignment for 623 trained Swahili-English word pairs, increasing average cosine similarity from 0.3211 to 0.4113 (+28.08%, p < 1.33 x 10^-240). More importantly, these improvements generalize remarkably well to 63 unseen control word pairs, with similarity increasing from 0.3143 to 0.4033 (+28.32%, p < 7.17 x 10^-27). These findings suggest TLI enhances the model's ability to preserve and propagate its inherent early-layer cross-lingual knowledge, offering a parameter-efficient and effective strategy for improving lexical alignment in LRL-focused LLMs.",
+   "url": "http://arxiv.org/abs/2506.15415v1",
+   "published": "2025-06-18",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "openalex:W4406379614",
+   "title": "Fine-tuning a local LLaMA-3 large language model for automated privacy-preserving physician letter generation in radiation oncology",
+   "authors": [
+    "Yihao Hou",
+    "Christoph Bert",
+    "Ahmed Mohamed Gomaa",
+    "Godehard Lahmer",
+    "Daniel H\u00f6fler",
+    "Thomas Wei\u00dfmann",
+    "Raphaela Voigt",
+    "Philipp Schubert",
+    "Charlotte Schmitter",
+    "Alina Depardon",
+    "Sabine Semrau",
+    "Andreas Maier",
+    "Rainer Fietkau",
+    "Yixing Huang",
+    "Florian Putz"
+   ],
+   "abstract": "Introduction: Generating physician letters is a time-consuming task in daily clinical practice. Methods: This study investigates local fine-tuning of large language models (LLMs), specifically LLaMA models, for physician letter generation in a privacy-preserving manner within the field of radiation oncology. Results: Our findings demonstrate that base LLaMA models, without fine-tuning, are inadequate for effectively generating physician letters. The QLoRA algorithm provides an efficient method for local intra-institutional fine-tuning of LLMs with limited computational resources (i.e., a single 48 GB GPU workstation within the hospital). The fine-tuned LLM successfully learns radiation oncology-specific information and generates physician letters in an institution-specific style. ROUGE scores of the generated summary reports highlight the superiority of the 8B LLaMA-3 model over the 13B LLaMA-2 model. Further multidimensional physician evaluations of 10 cases reveal that, although the fine-tuned LLaMA-3 model has limited capacity to generate content beyond the provided input data, it successfully generates salutations, diagnoses and treatment histories, recommendations for further treatment, and planned schedules. Overall, clinical benefit was rated highly by the clinical experts (average score of 3.4 on a 4-point scale). Discussion: With careful physician review and correction, automated LLM-based physician letter generation has significant practical value.",
+   "url": "https://openalex.org/W4406379614",
+   "published": "2025-01-14",
+   "citations": 21,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.1016/j.neunet.2026.109545",
+   "title": "GLA-LoRA: Parameter-efficient LLM fine-tuning with global-local knowledge alignment",
+   "authors": [
+    "Hao Wu",
+    "Jianqi Gao",
+    "Xiangfeng Luo"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1016/j.neunet.2026.109545",
+   "published": "2026-8-25",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "europepmc:PMC13210931",
+   "title": "From Pixel Understanding to Semantic Insight: Intelligent Detection in Sensor-Driven Perception Systems.",
+   "authors": [
+    "Xie Q",
+    "Wu T",
+    "Yang F."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13210931",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  }
+ ],
+ "over-refusal vision language models safety": [
+  {
+   "id": "europepmc:PMC13559688",
+   "title": "TC3-VLM: A Vision-Language Model for Tactical Combat Casualty Care.",
+   "authors": [
+    "Kim J",
+    "Chng J",
+    "Ali A",
+    "Moas V",
+    "Hwang S",
+    "Kamaleswaran R."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13559688",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "openalex:W4226278401",
+   "title": "Training language models to follow instructions with human feedback",
+   "authors": [
+    "Long Ouyang",
+    "Jeff Wu",
+    "Xu Jiang",
+    "Diogo Almeida",
+    "Carroll L. Wainwright",
+    "Pamela Mishkin",
+    "Chong Zhang",
+    "Sandhini Agarwal",
+    "Katarina Slama",
+    "Alex K. Ray",
+    "John Schulman",
+    "Jacob K. Hilton",
+    "Fraser Kelton",
+    "Luke E. Miller",
+    "Maddie Simens",
+    "Amanda Askell",
+    "Peter Welinder",
+    "Paul P. Christiano",
+    "Jan Leike",
+    "Ryan Joseph Lowe"
+   ],
+   "abstract": "Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.",
+   "url": "https://openalex.org/W4226278401",
+   "published": "2022-03-04",
+   "citations": 4352,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.31235/osf.io/rxmuy_v1",
+   "title": "How China-Origin Vision-Language Models Move from Refusal to Reframing in State Alignment",
+   "authors": [
+    "GUANG YANG",
+    "Fengchen Liu",
+    "Alex Wang",
+    "Homa Hosseinmardi",
+    "Amir Ghasemian"
+   ],
+   "abstract": "State-aligned distortion has been documented in China-origin text-based large language models (LLMs), but whether, and in what form, it arises in multimodal systems has not been systematically examined. We construct a balanced benchmark of 200 core entries spanning ten politically sensitive topics, plus a seven-variant visual-abstraction probe, and run nine vision-language models (VLMs), seven China-origin and two non-China, across four elicitation paradigms and two prompt languages, yielding 21,708 trials. Each response is audited on six dimensions -- explicit refusal, information integrity, visual grounding, state-aligned framing, language consistency, and response length -- by two independent frontier LLM judges, validated against three human experts on a 200-trial sample. Measuring each dimension separately lets us decompose multimodal censorship into individual signals rather than a single refusal-based score; in particular, refusal and framing are measured independently, so a model can stop refusing while still reframing. We find that (i) Chinese-language prompting roughly triples the odds of state-aligned framing, within every model; (ii) China-origin models reframe more than non-China models (direction robust across judges and human raters; magnitude 1.6--3.2x); (iii) the effect is strongest in text-only political commentary (36.5%) and is gated by recognition of the depicted subject rather than pixel detail, persisting even at silhouette for iconic images; and (iv) across four Qwen generations, state-aligned framing rises while explicit refusal falls: censorship migrates from a visible act (refusal) to an invisible one (fluent reframing). We argue this shift to invisible reframing is fundamentally a problem of human-AI interaction: it removes the very signal users rely on to recognize that information has been withheld.",
+   "url": "https://doi.org/10.31235/osf.io/rxmuy_v1",
+   "published": "2026-7-2",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "pubmed:42788630",
+   "title": "How generative AI shapes the last meal at life's end.",
+   "authors": [
+    "Shirotsuki M",
+    "Otsuki S",
+    "Oiwa S",
+    "Sugama J"
+   ],
+   "abstract": "",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42788630/",
+   "published": "2026 Sep 2",
+   "citations": 0,
+   "source": "PubMed"
+  },
+  {
+   "id": "arxiv:2310.00905",
+   "title": "All Languages Matter: On the Multilingual Safety of Large Language Models",
+   "authors": [
+    "Wenxuan Wang",
+    "Zhaopeng Tu",
+    "Chang Chen",
+    "Youliang Yuan",
+    "Jen-tse Huang",
+    "Wenxiang Jiao",
+    "Michael R. Lyu"
+   ],
+   "abstract": "Safety lies at the core of developing and deploying large language models (LLMs). However, previous safety benchmarks only concern the safety in one language, e.g. the majority language in the pretraining data such as English. In this work, we build the first multilingual safety benchmark for LLMs, XSafety, in response to the global deployment of LLMs in practice. XSafety covers 14 kinds of commonly used safety issues across 10 languages that span several language families. We utilize XSafety to empirically study the multilingual safety for 4 widely-used LLMs, including both close-API and open-source models. Experimental results show that all LLMs produce significantly more unsafe responses for non-English queries than English ones, indicating the necessity of developing safety alignment for non-English languages. In addition, we propose several simple and effective prompting methods to improve the multilingual safety of ChatGPT by evoking safety knowledge and improving cross-lingual generalization of safety alignment. Our prompting method can significantly reduce the ratio of unsafe responses from 19.1% to 9.7% for non-English queries. We release our data at https://github.com/Jarviswang94/Multilingual_safety_benchmark.",
+   "url": "http://arxiv.org/abs/2310.00905v2",
+   "published": "2023-10-02",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0277748",
+   "title": "Healthcare professionals\u2019 perceptions and recommendations regarding adolescent vaccinations in Georgia and Tennessee during the COVID-19 pandemic: A qualitative research",
+   "authors": [
+    "Olufunto A Olusanya",
+    "Brianna White",
+    "Fauzia Malik",
+    "Kyra A Hester",
+    "Robert L Davis",
+    "Robert A Bednarczyk",
+    "Arash Shaban-Nejad"
+   ],
+   "abstract": "Introduction: Despite its benefits, HPV vaccine uptake has been historically lower than other recommended adolescent vaccines in the United States (US). While hesitancy and misinformation have threatened vaccinations for many years, the adverse impacts from COVID-19 pandemic on preventive services have been far-reaching. Objectives: To explore the perceptions and experiences of adolescent healthcare providers regarding routine vaccination services during the COVID-19 pandemic. Methodology: Between December 2020 and May 2021, in-depth qualitative interviews were conducted via Zoom video conferencing among a purposively selected, diverse group of adolescent healthcare providers (n = 16) within 5 healthcare practices in the US southeastern states of Georgia and Tennessee. Audio recordings were transcribed verbatim and analyzed using a rapid qualitative analysis framework. Our analysis was guided by the grounded theory and inductive approach. Results: Participants reported that patient-provider communications; effective use of presumptive languaging; provider\u2019s continuing education/training; periodic reminders/recall messages; provider\u2019s personal conviction on vaccine safety/efficacy; early initiation of HPV vaccination series at 9 years; community partnerships with community health navigators/vaccine champions/vaccine advocates; use of standardized forms/prewritten scripts/standard operating protocols for patient-provider interactions; and vaccine promotion through social media, brochures/posters/pamphlets as well as outreaches to schools and churches served as facilitators to adolescent HPV vaccine uptake. Preventive adolescent services were adversely impacted by the COVID-19 pandemic at all practices. Participants highlighted an initial decrease in patients due to the pandemic, while some practices avoided the distribution of vaccine informational materials due to sanitary concerns. Conclusion: As part of a larger study, we provided contextual information to refine an intervention package currently being developed to improve adolescent preventive care provision in healthcare practices. Our results could inform the implementation of comprehensive intervention strategies that improve HPV vaccination rates. Additionally, lessons learned (e.g. optimizing patient- provider interactions) could be adopted to expand COVID-19 vaccine acceptance on a sizable scale. ",
+   "url": "https://doi.org/10.1371/journal.pone.0277748",
+   "published": "2022-11-18",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "openalex:W4225323055",
+   "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+   "authors": [
+    "Alayrac, Jean-Baptiste",
+    "Jeff Donahue",
+    "Pauline Luc",
+    "Antoine Miech",
+    "Iain R. Barr",
+    "Yana Hasson",
+    "Karel Lenc",
+    "Arthur Mensch",
+    "Katie Millican",
+    "Malcolm Reynolds",
+    "Roman Ring",
+    "Eliza Rutherford",
+    "Serkan Cabi",
+    "Tengda Han",
+    "Zhitao Gong",
+    "Sina Samangooei",
+    "Marianne Monteiro",
+    "Jacob Menick",
+    "Sebastian Borgeaud",
+    "Andrew S. Brock",
+    "Aida Nematzadeh",
+    "Sahand Sharifzadeh",
+    "Miko\u0142aj Bi\u0144kowski",
+    "Ricardo Barreira",
+    "Oriol Vinyals",
+    "Andrew Zisserman",
+    "Karen Simonyan"
+   ],
+   "abstract": "Building models that can be rapidly adapted to novel tasks using only a handful of annotated examples is an open challenge for multimodal machine learning research. We introduce Flamingo, a family of Visual Language Models (VLM) with this ability. We propose key architectural innovations to: (i) bridge powerful pretrained vision-only and language-only models, (ii) handle sequences of arbitrarily interleaved visual and textual data, and (iii) seamlessly ingest images or videos as inputs. Thanks to their flexibility, Flamingo models can be trained on large-scale multimodal web corpora containing arbitrarily interleaved text and images, which is key to endow them with in-context few-shot learning capabilities. We perform a thorough evaluation of our models, exploring and measuring their ability to rapidly adapt to a variety of image and video tasks. These include open-ended tasks such as visual question-answering, where the model is prompted with a question which it has to answer; captioning tasks, which evaluate the ability to describe a scene or an event; and close-ended tasks such as multiple-choice visual question-answering. For tasks lying anywhere on this spectrum, a single Flamingo model can achieve a new state of the art with few-shot learning, simply by prompting the model with task-specific examples. On numerous benchmarks, Flamingo outperforms models fine-tuned on thousands of times more task-specific data.",
+   "url": "https://openalex.org/W4225323055",
+   "published": "2022-04-29",
+   "citations": 1251,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "crossref:10.69987/aimlr.2025.60303",
+   "title": "A Comparative Empirical Study of Over-Refusal Behavior in Closed-Source Large Language Models on Pseudo-Harmful Prompts",
+   "authors": [
+    "Xuanyi Fu",
+    "Danbing Zou"
+   ],
+   "abstract": "Closed-source large language models increasingly mediate information access across consumer and enterprise applications, yet repeated reports of false refusals on benign questions suggest that alignment procedures may have over-corrected toward exaggerated safety. This paper presents a comparative empirical study of over-refusal behavior across six closed-source API-accessible LLMs \u2014 GPT-4o, GPT-4-Turbo, Claude-3.5-Sonnet, Claude-3-Opus, Gemini-1.5-Pro, and Gemini-1.5-Flash \u2014 using four publicly released benchmarks: XSTest (450 contrasting prompts), OR-Bench-Hard-1K together with its 600-prompt toxic control, PHTest (3,260 pseudo-harmful prompts), and CoCoNot (1,001 evaluation plus 379 contrast prompts). Refusal decisions are classified by the WildGuard refusal judge and audited against GPT-4o-mini on a stratified 500-sample split, with Cohen's \u03ba agreement of 0.83. Across approximately 50,000 API responses, Claude-3-Opus exhibits the highest False Refusal Rate (FRR = 52.4% on OR-Bench-Hard-1K), while GPT-4o attains the lowest (18.5%); Unsafe Compliance Rate remains below 5.2% for all six models on OR-Bench-Toxic. Category-level analysis reveals that privacy-adjacent and figurative-language prompts dominate over-refusal triggers, and a linguistic mutation study shows that Claude-3-Opus is approximately 2.7 times more sensitive to surface mutations than GPT-4o. The findings offer a reproducible behavioral benchmark for practitioners selecting closed-source APIs.",
+   "url": "https://doi.org/10.69987/aimlr.2025.60303",
+   "published": "2026-5-11",
+   "citations": 0,
+   "source": "Crossref"
+  }
+ ],
+ "model merging safety alignment restoration": [
+  {
+   "id": "arxiv:2406.14563",
+   "title": "Model Merging and Safety Alignment: One Bad Model Spoils the Bunch",
+   "authors": [
+    "Hasan Abed Al Kader Hammoud",
+    "Umberto Michieli",
+    "Fabio Pizzati",
+    "Philip Torr",
+    "Adel Bibi",
+    "Bernard Ghanem",
+    "Mete Ozay"
+   ],
+   "abstract": "Merging Large Language Models (LLMs) is a cost-effective technique for combining multiple expert LLMs into a single versatile model, retaining the expertise of the original ones. However, current approaches often overlook the importance of safety alignment during merging, leading to highly misaligned models. This work investigates the effects of model merging on alignment. We evaluate several popular model merging techniques, demonstrating that existing methods do not only transfer domain expertise but also propagate misalignment. We propose a simple two-step approach to address this problem: (i) generating synthetic safety and domain-specific data, and (ii) incorporating these generated data into the optimization process of existing data-aware model merging techniques. This allows us to treat alignment as a skill that can be maximized in the resulting merged LLM. Our experiments illustrate the effectiveness of integrating alignment-related data during merging, resulting in models that excel in both domain expertise and alignment.",
+   "url": "http://arxiv.org/abs/2406.14563v1",
+   "published": "2024-06-20",
+   "citations": 7,
+   "source": "arXiv & Crossref"
+  },
+  {
+   "id": "openalex:W4366091323",
+   "title": "Deep learning modelling techniques: current progress, applications, advantages, and challenges",
+   "authors": [
+    "Shams Forruque Ahmed",
+    "Md. Sakib Bin Alam",
+    "Maruf Hassan",
+    "Mahtabin Rodela Rozbu",
+    "Taoseef Ishtiak",
+    "Nazifa Rafa",
+    "M. Mofijur",
+    "A. B. M. Shawkat Ali",
+    "Amir H. Gandomi"
+   ],
+   "abstract": "Abstract Deep learning (DL) is revolutionizing evidence-based decision-making techniques that can be applied across various sectors. Specifically, it possesses the ability to utilize two or more levels of non-linear feature transformation of the given data via representation learning in order to overcome limitations posed by large datasets. As a multidisciplinary field that is still in its nascent phase, articles that survey DL architectures encompassing the full scope of the field are rather limited. Thus, this paper comprehensively reviews the state-of-art DL modelling techniques and provides insights into their advantages and challenges. It was found that many of the models exhibit a highly domain-specific efficiency and could be trained by two or more methods. However, training DL models can be very time-consuming, expensive, and requires huge samples for better accuracy. Since DL is also susceptible to deception and misclassification and tends to get stuck on local minima, improved optimization of parameters is required to create more robust models. Regardless, DL has already been leading to groundbreaking results in the healthcare, education, security, commercial, industrial, as well as government sectors. Some models, like the convolutional neural network (CNN), generative adversarial networks (GAN), recurrent neural network (RNN), recursive neural networks, and autoencoders, are frequently used, while the potential of other models remains widely unexplored. Pertinently, hybrid conventional DL architectures have the capacity to overcome the challenges experienced by conventional models. Considering that capsule architectures may dominate future DL models, this work aimed to compile information for stakeholders involved in the development and use of DL models in the contemporary world.",
+   "url": "https://openalex.org/W4366091323",
+   "published": "2023-04-17",
+   "citations": 1059,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0335980",
+   "title": "Block identification and stability analysis of underground stope with multi-working face",
+   "authors": [
+    "Minsi Zhang",
+    "Chenlong Tie",
+    "Bin Wang",
+    "Yong Yang",
+    "Chen Wang",
+    "Wenpan Sun",
+    "Jingxiao Xia",
+    "Xin Zhou"
+   ],
+   "abstract": "\nThe stability analysis of multi-working face stopes presents significant challenges due to complex concave geometries that limit conventional block theory applications. This study proposes a novel methodology in which rock mass models are constructed through the combination of convex sub-regions, enabling the application of traditional cutting algorithms. Block identification is achieved through discontinuity contraction and sub-region merging, effectively accounting for finite discontinuity sizes. The proposed method was implemented into the software GeoSMA-3D and applied to a shallow-buried metal mine stope. The analysis successfully identified all independent blocks, including key blocks critical for stability. The results demonstrate that excavation disturbances lead to an increase in discontinuity persistence, subsequently causing a notable rise in the number of key blocks. The integration of random discontinuities with deterministic features revealed a total of 205 key blocks, 60% of which involved the deterministic discontinuities. These key blocks have a maximum volume of 5.37 m\u00b3 and are predominantly distributed along the deterministic discontinuities. The results demonstrate the precision and efficacy of the proposed method for analyzing complex, multi-face excavations. This work provides a robust technical framework for the stability assessment of surrounding rock in mining stopes.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0335980",
+   "published": "2026-01-06",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "europepmc:PMC12774369",
+   "title": "Block identification and stability analysis of underground stope with multi-working face.",
+   "authors": [
+    "Zhang M",
+    "Tie C",
+    "Wang B",
+    "Yang Y",
+    "Wang C",
+    "Sun W",
+    "Xia J",
+    "Zhou X."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC12774369",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  },
+  {
+   "id": "arxiv:2508.01784",
+   "title": "RouteMark: A Fingerprint for Intellectual Property Attribution in Routing-based Model Merging",
+   "authors": [
+    "Xin He",
+    "Junxi Shen",
+    "Zhenheng Tang",
+    "Xiaowen Chu",
+    "Bo Li",
+    "Ivor W. Tsang",
+    "Yew-Soon Ong"
+   ],
+   "abstract": "Model merging via Mixture-of-Experts (MoE) has emerged as a scalable solution for consolidating multiple task-specific models into a unified sparse architecture, where each expert is derived from a model fine-tuned on a distinct task. While effective for multi-task integration, this paradigm introduces a critical yet underexplored challenge: how to attribute and protect the intellectual property (IP) of individual experts after merging. We propose RouteMark, a framework for IP protection in merged MoE models through the design of expert routing fingerprints. Our key insight is that task-specific experts exhibit stable and distinctive routing behaviors under probing inputs. To capture these patterns, we construct expert-level fingerprints using two complementary statistics: the Routing Score Fingerprint (RSF), quantifying the intensity of expert activation, and the Routing Preference Fingerprint (RPF), characterizing the input distribution that preferentially activates each expert. These fingerprints are reproducible, task-discriminative, and lightweight to construct. For attribution and tampering detection, we introduce a similarity-based matching algorithm that compares expert fingerprints between a suspect and a reference (victim) model. Extensive experiments across diverse tasks and CLIP-based MoE architectures show that RouteMark consistently yields high similarity for reused experts and clear separation from unrelated ones. Moreover, it remains robust against both structural tampering (expert replacement, addition, deletion) and parametric tampering (fine-tuning, pruning, permutation), outperforming weight- and activation-based baseliness. Our work lays the foundation for RouteMark as a practical and broadly applicable framework for IP verification in MoE-based model merging.",
+   "url": "http://arxiv.org/abs/2508.01784v1",
+   "published": "2025-08-03",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "arxiv:2503.17239",
+   "title": "SafeMERGE: Preserving Safety Alignment in Fine-Tuned Large Language Models via Selective Layer-Wise Model Merging",
+   "authors": [
+    "Aladin Djuhera",
+    "Swanand Ravindra Kadhe",
+    "Farhan Ahmed",
+    "Syed Zawad",
+    "Holger Boche"
+   ],
+   "abstract": "Fine-tuning large language models (LLMs) is a common practice to adapt generalist models to specialized domains. However, recent studies show that fine-tuning can erode safety alignment, causing LLMs to respond to harmful or unethical prompts. Many methods to realign safety have been proposed, but often introduce custom algorithms that are difficult to implement or compromise task utility. In this work, we propose SafeMERGE, a lightweight, post-fine-tuning framework that restores safety while maintaining downstream performance. SafeMERGE selectively merges fine-tuned with safety-aligned model layers only when they deviate from safe behavior, measured by a cosine similarity criterion. Across four LLMs and several tasks, SafeMERGE consistently reduces harmful outputs compared to other defenses, with negligible or even positive impact on utility. Our results demonstrate that selective, layer-wise merging offers a robust safeguard against the inadvertent loss of safety during fine-tuning, establishing SafeMERGE as a simple yet effective post-fine-tuning defense.",
+   "url": "http://arxiv.org/abs/2503.17239v3",
+   "published": "2025-03-21",
+   "citations": 0,
+   "source": "arXiv & Crossref"
+  },
+  {
+   "id": "openalex:W2799284763",
+   "title": "A Review of Heritage Building Information Modeling (H-BIM)",
+   "authors": [
+    "Facundo Jos\u00e9 L\u00f3pez",
+    "Pedro Mart\u00edn Lerones",
+    "Jos\u00e9 Llamas",
+    "Jaime G\u00f3mez\u2010Garc\u00eda\u2010Bermejo",
+    "Eduardo Zalama"
+   ],
+   "abstract": "Many projects concerning the protection, conservation, restoration, and dissemination of cultural heritage are being carried out around the world due to its growing interest as a driving force of socio-economic development. The existence of reliable, digital three-dimensional (3D) models that allow for the planning and management of these projects in a remote and decentralized way is currently a growing necessity. There are many software tools to perform the modeling and complete three-dimensional documentation of the intervened monuments. However, the Architecture, Engineering and Construction (AEC) sector has adopted the Building Information Modeling (BIM) standard over the last few decades due to the progress that has been made in its qualities and capabilities. The complex modeling of cultural heritage through commercial BIM software leads to the consideration of the concept of Heritage BIM (H-BIM), which pursues the modeling of architectural elements, according to artistic, historical, and constructive typologies. In addition, H-BIM is considered to be an emerging technology that enables us to understand, document, advertize, and virtually reconstruct the built heritage. This article is a review of the existing literature on H-BIM and its effective implementation in the cultural heritage sector, exploring the effectiveness and the usefulness of the different methodologies that were developed to model families of elements of interest.",
+   "url": "https://openalex.org/W2799284763",
+   "published": "2018-05-05",
+   "citations": 386,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "europepmc:PMC13482403",
+   "title": "Full-stage simulation and validation of multi-body incremental launching mechanics for complex curve bridges.",
+   "authors": [
+    "Xiao L",
+    "Zheng H."
+   ],
+   "abstract": "",
+   "url": "https://europepmc.org/article/PMC/PMC13482403",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC"
+  }
+ ],
+ "continual instruction tuning multimodal large language models": [
+  {
+   "id": "europepmc:42743039",
+   "title": "Interleaved Prompt Generation for Continual Instruction Tuning of Multimodal Large Language Model.",
+   "authors": [
+    "Zhang H",
+    "Ji Z",
+    "Wang D",
+    "Pang Y."
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/tip.2026.3732640",
+   "published": "2026",
+   "citations": 0,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "openalex:W4362515116",
+   "title": "A Survey of Large Language Models",
+   "authors": [
+    "Wayne Xin Zhao",
+    "Kun Zhou",
+    "Junyi Li",
+    "Tianyi Tang",
+    "Zican Dong",
+    "Yupeng Hou",
+    "Beichen Zhang",
+    "Yingqian Min",
+    "Junjie Zhang",
+    "Peiyu Liu",
+    "Xiaolei Wang",
+    "Yifan Du",
+    "Yushuo Chen",
+    "Yushuo Chen",
+    "Zhipeng Chen",
+    "Jinhao Jiang",
+    "Ruiyang Ren",
+    "Yifan Li",
+    "Xinyu Tang",
+    "Peiyu Liu",
+    "Yiwen Hu",
+    "Jian\u2010Yun Nie",
+    "Ji-Rong Wen"
+   ],
+   "abstract": "Abstract The rapid evolution of large language models (LLMs) has driven a transformative shift in artificial intelligence (AI), reshaping both research paradigms and practical applications. Distinguished from their predecessors by unprecedented scale and advanced capabilities, LLMs necessitate new frameworks for understanding their development, behavior, and societal impact. This survey systematically reviews recent advancements in LLM techniques across four key dimensions: (1) pre-training methodologies, which establish core model capabilities through large-scale self-supervised training, architectural innovations, and data curation strategies; (2) post-training techniques, including supervised fine-tuning and reinforcement learning, which adapt foundational models to downstream tasks and enhance their alignment and safety; (3) utilization strategies, such as in-context learning, prompt engineering, and agentic reasoning, that optimize real-world deployment and enable effective interaction with external environments; and (4) evaluation methods, encompassing benchmarks for key ability dimensions such as core language capabilities, reasoning, and safety, which support comprehensive and reliable assessment of model performance. Additionally, we identify critical research issues, including those concerning theoretical foundations, efficient scaling, alignment, and agentic capability, and highlight the open challenges they present. By synthesizing state-of-the-art insights and emerging trends, this survey aims to provide a systematic and comprehensive framework for understanding the trajectory, current limitations, and future directions of LLM progress.",
+   "url": "https://openalex.org/W4362515116",
+   "published": "2026-05-09",
+   "citations": 1558,
+   "source": "OpenAlex"
+  },
+  {
+   "id": "plos:10.1371/journal.pone.0328408",
+   "title": "Research on the application of LLaVA model based on QLoRA fine-tuning in medical teaching",
+   "authors": [
+    "Shiling Zhou",
+    "Fengmei Qin"
+   ],
+   "abstract": "\nThe augmented reality large language model medical teaching system (ARLMT) integrates augmented reality (AR)with a medical multimodal large language model (LLaVA) based on specifically designed for biomedical applications(LLaVA-Med), employing Quantized Low-Rank Adaptation (QLoRA) to advance medical education. Deployed on resource-constrained AR devices, such as INMO Air2 AR glasses, ARLMT overlays real-time visual annotations and textual feedback on medical scenarios to create an immersive and interactive learning environment. Key advancements include a 66% reduction in memory footprint (from 15.2 GB to 5.1 GB) through QLoRA, enabling efficient operation without compromising performance, and an average response time of 1.009 seconds across various medical imaging categories, surpassing the GPT-4 baseline in both speed and accuracy. The system achieves 98.3% diagnostic accuracy, demonstrating its reliability in real-time applications. By combining visual and textual elements, ARLMT enhances comprehension of complex medical concepts, providing a scalable, real-time solution that bridges technological innovation and pedagogical needs in medical training.\n",
+   "url": "https://doi.org/10.1371/journal.pone.0328408",
+   "published": "2026-07-14",
+   "citations": 0,
+   "source": "PLOS"
+  },
+  {
+   "id": "doaj:94652af9ec0f4c05b0bebc349aab179b",
+   "title": "HydroGen: Hydrological Report Generation With Two-Stage Instruction-Tuned Multimodal Models, Temporal Prompts, and Knowledge-Guided Agents",
+   "authors": [
+    "Pasith Thanapatpisarn",
+    "Kiattikun Chobtham",
+    "Kanoksri Sarinnapakorn",
+    "Peerapon Vateekul"
+   ],
+   "abstract": "Hydrological report generation is crucial for monitoring clouds, typhoons, rainfall, and water events, yet current multimodal models struggle with multi-image alignment and domain-specific knowledge integration. We present HydroGen, a domain-adaptive framework that addresses these challenges through instruction tuning, temporal modeling, and knowledge-guided reasoning within a two-stage pipeline. First, we build HydroMM-Instruct, an instruction dataset that uses YOLOv8 for typhoon detection and shapefiles for region mapping, with reports standardized into cause&#x2013;effect phrases. Second, we apply a two-stage training pipeline with continual pre-training on hydrological data (radar maps, pressure charts, expert assessments) followed by supervised fine-tuning for report generation. Third, to enhance multi-image alignment, we incorporate temporal prompt tokens that capture event sequences and progressions. Finally, we develop GuideAC, an in-context mechanism that injects antecedent&#x2013;consequence rules to improve reasoning. Evaluation on Thailand&#x2019;s weekly hydrological reports (2018&#x2013;2025) shows that HydroGen substantially outperforms strong multimodal baselines, achieving a BERT-F1 of 84.56% (+ 46.96%) and a ROUGE-L of 67.78% (+ 61.48%).",
+   "url": "https://ieeexplore.ieee.org/document/11538218/",
+   "published": "2026",
+   "citations": 0,
+   "source": "DOAJ"
+  },
+  {
+   "id": "crossref:10.2139/ssrn.4978367",
+   "title": "Fishllm: Multimodal Instruction Tuning with Large Language Models for Fish Classification and Detection",
+   "authors": [
+    "Jiaxin Zhu",
+    "shibai Yin",
+    "Yibin Wang",
+    "Xingyang Liu",
+    "Yee-hong Yang"
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.2139/ssrn.4978367",
+   "published": "2024-10-7",
+   "citations": 0,
+   "source": "Crossref"
+  },
+  {
+   "id": "arxiv:2312.10793",
+   "title": "Demystifying Instruction Mixing for Fine-tuning Large Language Models",
+   "authors": [
+    "Renxi Wang",
+    "Haonan Li",
+    "Minghao Wu",
+    "Yuxia Wang",
+    "Xudong Han",
+    "Chiyu Zhang",
+    "Timothy Baldwin"
+   ],
+   "abstract": "Instruction tuning significantly enhances the performance of large language models (LLMs) across various tasks. However, the procedure to optimizing the mixing of instruction datasets for LLM fine-tuning is still poorly understood. This study categorizes instructions into three primary types: NLP downstream tasks, coding, and general chat. We explore the effects of instruction tuning on different combinations of datasets on LLM performance, and find that certain instruction types are more advantageous for specific applications but can negatively impact other areas. This work provides insights into instruction mixtures, laying the foundations for future research.",
+   "url": "http://arxiv.org/abs/2312.10793v3",
+   "published": "2023-12-17",
+   "citations": 0,
+   "source": "arXiv"
+  },
+  {
+   "id": "europepmc:41818005",
+   "title": "Continual Instruction Tuning for Large Multimodal Models.",
+   "authors": [
+    "He J",
+    "Guo H",
+    "Zhu K",
+    "Tang M",
+    "Wang J."
+   ],
+   "abstract": "",
+   "url": "https://doi.org/10.1109/tip.2026.3671616",
+   "published": "2026",
+   "citations": 1,
+   "source": "EuropePMC & PubMed"
+  },
+  {
+   "id": "openalex:W4393065402",
+   "title": "A survey on large language model based autonomous agents",
+   "authors": [
+    "Lei Wang",
+    "Chen Ma",
+    "Xueyang Feng",
+    "Zeyu Zhang",
+    "Hao Yuan Yang",
+    "Jingsen Zhang",
+    "Zhiyuan Chen",
+    "Jiakai Tang",
+    "Xu Chen",
+    "Yankai Lin",
+    "Wayne Xin Zhao",
+    "Zhewei Wei",
+    "Ji-Rong Wen"
+   ],
+   "abstract": "Abstract Autonomous agents have long been a research focus in academic and industry communities. Previous research often focuses on training agents with limited knowledge within isolated environments, which diverges significantly from human learning processes, and makes the agents hard to achieve human-like decisions. Recently, through the acquisition of vast amounts of Web knowledge, large language models (LLMs) have shown potential in human-level intelligence, leading to a surge in research on LLM-based autonomous agents. In this paper, we present a comprehensive survey of these studies, delivering a systematic review of LLM-based autonomous agents from a holistic perspective. We first discuss the construction of LLM-based autonomous agents, proposing a unified framework that encompasses much of previous work. Then, we present a overview of the diverse applications of LLM-based autonomous agents in social science, natural science, and engineering. Finally, we delve into the evaluation strategies commonly used for LLM-based autonomous agents. Based on the previous studies, we also present several challenges and future directions in this field.",
+   "url": "https://openalex.org/W4393065402",
+   "published": "2024-03-22",
+   "citations": 1634,
+   "source": "OpenAlex"
+  }
+ ]
+}

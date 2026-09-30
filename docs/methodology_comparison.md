@@ -49,20 +49,20 @@ Booster            SaLoRA                 Model Merging   VLMGuard-R1
 ---
 
 ### Method 1B: LARF — Layer-Aware Representation Filtering (EMNLP 2025)
-**Venue**: EMNLP 2025 🔍 (Li, Li, Lu, Wei, Li, Shao, Sha — Shanghai AI Lab)  
+**Venue**: EMNLP 2025 ✅ (Li, Li, Lu, Wei, Li, Shao, Sha) · [arXiv:2507.18631](https://arxiv.org/abs/2507.18631)  
 **Code**: github.com/LLLeoLi/LARF  
 **Mechanism**: Identifies safety-sensitive layers. Filters fine-tuning samples based on their representation in those layers — samples that activate "safety-degrading" patterns are removed.
 
 | Dimension | Rating | Evidence |
 |:---|:---:|:---|
-| Safety preservation | ⭐⭐⭐⭐ | Confirmed effective on harmful fine-tuning attacks [EMNLP 2025] |
+| Safety preservation | ⭐⭐⭐⭐ | Abstract reports it "can effectively identify benign data with safety-degrading features" (rating not independently measured) |
 | Task performance | ⭐⭐⭐⭐ | Minimal task degradation reported |
 | Compute cost | ⭐⭐⭐⭐ | Forward pass only per sample (cheaper than Bach's backward pass) |
 | Requires safety data | ⚠️ Indirectly | Needs to identify "safety-degrading" signal |
 | VLM adaptation needed | 🔧 Yes | Need to identify which VLM layers are safety-sensitive |
 | Implementation complexity | High | Requires internal layer activation analysis |
 
-**Critical distinction**: LARF filters samples that *look* unsafe in representation space. Bach et al. filter samples whose *gradients* point toward unsafe territory — even if the content is perfectly benign. For clean medical/visual datasets, LARF would filter nothing; Bach et al. still filters ~80% of the data.
+**Critical distinction** (corrected 2026-09-25): LARF and Bach et al. address the *same regime* — benign fine-tuning data that still erodes safety. LARF scores samples in safety-sensitive-layer representation space; Bach et al. score per-sample gradient norm and keep the near-median. An earlier version claimed LARF "would filter nothing" on clean data; the LARF abstract says the opposite. LARF is a **direct competitor** and a required baseline.
 
 **Best for**: Complement to Moderate-Gi when some training data may contain problematic content.
 
@@ -130,20 +130,13 @@ Booster            SaLoRA                 Model Merging   VLMGuard-R1
 
 ---
 
-### Method 2D: OGPSA — Orthogonal Gradient Projection for Continual Safety Alignment
-**arXiv**: [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) (HTML: [arxiv.org/html/2602.07892v1](https://arxiv.org/html/2602.07892v1)) ✅  
-**Mechanism**: Projects task gradients into the null-space/orthogonal complement of the safety-critical subspace throughout training. Ensures that parameter updates do not alter alignment representations.
+### Method 2D: OGPSA — Orthogonal Gradient Projection for Safety Alignment (related work, NOT a direct baseline)
+**arXiv**: [arXiv:2602.07892](https://arxiv.org/abs/2602.07892) ✅ — *Safety Alignment as Continual Learning: Mitigating the Alignment Tax via Orthogonal Gradient Projection*  
+**Mechanism**: Removes from each *safety* gradient its component in a low-rank subspace estimated from *general-capability* gradients, limiting capability loss during safety post-training (SFT / DPO / SFT→DPO).
 
-| Dimension | Rating | Evidence |
-|:---|:---:|:---|
-| Safety preservation | ⭐⭐⭐⭐ | Strong theoretical bounds on orthogonal protection |
-| Task performance | ⭐⭐⭐ | Capacity reduction as gradient space is constrained |
-| Compute cost | ⭐⭐ | High; maintains and updates projection basis matrix online |
-| Requires safety data | ⚠️ Yes | Needs safety data to construct safety gradient subspace |
-| VLM adaptation needed | 🔧 Yes | Must compute cross-modal safety projections |
+**Correction (2026-09-25)**: an earlier version described OGPSA as projecting task gradients away from a safety-critical subspace and rated it with stars ("strong theoretical bounds", "high compute"). The mechanism was inverted and the ratings had no source, so they were removed. OGPSA targets the *alignment tax*, not safety erosion from downstream fine-tuning.
 
-**Critical distinction**: OGPSA modifies the *optimizer* step using an explicit projection matrix; Bach et al. and our method modify the *input dataset* via sample filtering. Our method works with vanilla optimizers and standard LoRA/SFT pipelines.
-
+**Nearest real baseline for this idea**: SafeAnchor ([arXiv:2604.17691](https://arxiv.org/abs/2604.17691)) — Fisher-identified LoRA safety subspaces, orthogonal-complement gradient projection, drift-triggered replay; text LLMs, three-domain sequence.
 ---
 
 ## Family 3: LoRA Subspace Methods (During FT — Parameter-Efficient)
@@ -170,7 +163,7 @@ Booster            SaLoRA                 Model Merging   VLMGuard-R1
 ---
 
 ### Method 3B: SaLoRA — Safety-Alignment Preserved LoRA (ICLR 2025)
-**arXiv**: 2501.01774 🔍 (Li et al., ICLR 2025)  
+**arXiv**: [2501.01765](https://arxiv.org/abs/2501.01765) ✅ (Li, Mingjie et al.; ICLR 2025 per repo — arXiv ID corrected from 2501.01774, which is an unrelated RL paper)  
 **Mechanism**: Splits LoRA into two components: (1) a **fixed safety module** initialized from safety data that is frozen during fine-tuning; (2) a task-specific trainable module initialized to preserve safety trajectory. The fixed module acts as a permanent safety anchor.
 
 | Dimension | Rating | Evidence |
@@ -243,20 +236,11 @@ Same applicability constraint as Vaccine — requires controlling the initial al
 
 **Not applicable for training-time protection**, but may be complementary: apply Moderate-Gi during training + CMRM at inference for dual protection. This could be a Phase 3 "defense combination" experiment.
 
-### Method 6C: Aligned Model Merging (2025)
-**arXiv**: [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) (PDF: [arxiv.org/pdf/2506.03189](https://arxiv.org/pdf/2506.03189)) ✅  
-**Mechanism**: Post-hoc weight merging and task-vector arithmetic between downstream fine-tuned weights and initial safety-aligned checkpoints.
+### Method 6C: Aligned Model Merging (2025) — VLM continual learning, not a safety method
+**arXiv**: [arXiv:2506.03189](https://arxiv.org/abs/2506.03189) ✅ — *Continual Learning in Vision-Language Models via Aligned Model Merging* (Sokar et al.)  
+**Mechanism**: Merges newly trained task parameters with previously learned ones and promotes weights aligned with previous ones to avoid interference; evaluated on large VLMs.
 
-| Dimension | Rating | Evidence |
-|:---|:---:|:---|
-| Safety preservation | ⭐⭐⭐ | Partially recovers safety |
-| Task performance | ⭐⭐⭐ | Task interference across long sequences |
-| Compute cost | ⭐⭐⭐⭐⭐ | Minimal post-hoc compute |
-| Requires safety data | ✅ No | Merges model checkpoints |
-| VLM adaptation | 🔧 Possible | Can merge vision projector and language LoRA weights |
-
-**Critical limitation**: Model merging degrades quickly when applied sequentially across multiple tasks ($T > 2$), as task vectors begin cancelling each other.
-
+**Correction (2026-09-25)**: an earlier version described this as post-hoc safety restoration by merging fine-tuned weights with a safety-aligned checkpoint, with star ratings and a claim that it fails for T>2. The abstract frames stability/plasticity of task knowledge, with no safety focus; the ratings and the T>2 claim had no source and were removed. Use it as a multimodal-CL reference. For safety-oriented merging see SafeMERGE ([2503.17239](https://arxiv.org/abs/2503.17239)) and [2406.14563](https://arxiv.org/abs/2406.14563) (text LLMs).
 ---
 
 ## The Decision Matrix: Which Methods to Include and When
@@ -274,14 +258,14 @@ PHASE 2 — FULL 4-TASK PIPELINE (Campus cluster)
   ADD:              DER memory replay (strongest CL competitor)
   ADD:              SaLoRA or SafeLoRA (strongest LoRA-subspace competitor)
   ADD:              LARF (strongest representation-filtering competitor)
-  ADD:              OGPSA (orthogonal gradient projection competitor)
+  ADD:              SafeAnchor 2604.17691 and DataShield 2606.00160 (newer continual / selection competitors; replaces OGPSA, which targets the alignment tax)
 
 PHASE 3 — COMBINATION & PUBLICATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   EXPLORE:          Moderate-Gi + SafeLoRA post-hoc projection (stacking)
   EXPLORE:          Moderate-Gi + CMRM inference correction (dual defense)
   EXPLORE:          Moderate-Gi + DER replay (data filtering + memory)
-  EXPLORE:          Aligned Model Merging vs. Data Selection across $T > 2$ tasks
+  EXPLORE:          SafeMERGE (2503.17239) post-hoc merging vs. Data Selection across $T > 2$ tasks (hypothesis: merging degrades over long sequences — untested)
   CITE NOT IMPL:    Vaccine, RepNoise, Booster (pre-deployment methods)
 ```
 
@@ -298,7 +282,6 @@ All methods scored consistently for our specific setting: **continual fine-tunin
 | **Moderate-$G_i$ Projector** | Data-filter | LLM only | ✅ No | ✅ No | 🔧 Adapt | ~51% | ⭐⭐⭐ | ⭐⭐⭐⭐ | Ablation |
 | LARF (EMNLP 2025) | Data-filter | LLM only | ⚠️ Partial | ✅ No | 🔧 Adapt | Low | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Phase 2 baseline |
 | VLGuard mixing (ICML 2024) | Data-augment | VLM ✅ | ❌ Yes | ✅ No | ✅ Ready | None | ⭐⭐⭐ | ⭐⭐⭐⭐ | VLM baseline |
-| OGPSA (2026, [arXiv:2602.07892](https://arxiv.org/abs/2602.07892)) | Param-proj | LLM only | ⚠️ Partial | ✅ No | 🔧 Adapt | High | ⭐⭐⭐⭐ | ⭐⭐⭐ | Phase 2 competitor |
 | EWC (Kirkpatrick 2017) | Param-reg | Any | ✅ No | ✅ No | ✅ Ready | High | ⭐ FAILS | ⭐⭐⭐ | Baseline (shows failure) |
 | KL Regularization | Param-reg | Any | ✅ No | ✅ No | ✅ Ready | Low | ⭐⭐ | ⭐⭐⭐ | Baseline |
 | O-LoRA | Param-LoRA | LLM only | ✅ No | ✅ No | 🔧 Adapt | Medium | ⭐⭐⭐ | ⭐⭐⭐⭐ | Baseline |
@@ -308,7 +291,6 @@ All methods scored consistently for our specific setting: **continual fine-tunin
 | Vaccine (2024) | Pre-FT hardening | LLM only | ❌ Yes | ✅ No | 🔧 Adapt | Pre-train only | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Related Work only |
 | RepNoise (2024) | Pre-FT hardening | LLM only | ❌ Yes | ✅ No | 🔧 Adapt | Pre-train only | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Related Work only |
 | CMRM (ACL 2025) | Inference | VLM ✅ | ✅ No | ✅ No | ✅ Ready | Inference | ⭐⭐⭐ | ⭐⭐⭐⭐ | Phase 3 combo |
-| Aligned Model Merging ([arXiv:2506.03189](https://arxiv.org/abs/2506.03189)) | Post-FT merge | VLM ✅ | ✅ No | ✅ No | 🔧 Adapt | Low | ⭐⭐⭐ | ⭐⭐⭐ | Phase 3 comparison |
 | Antidote (2024) | Post-FT repair | LLM only | ❌ Yes | ✅ No | 🔧 Adapt | Post-hoc | ⭐⭐⭐ | ⭐⭐⭐ | Related Work only |
 
 ---
@@ -344,7 +326,7 @@ If you want to deeply understand the field before the presentation:
 
 **Week 3 — The Competing Methods**
 7. Unforgotten Safety arXiv:2512.10150 — DER as the CL comparison point (20min)
-8. SaLoRA arXiv:2501.01774 — best LoRA-subspace method (20min)
+8. SaLoRA arXiv:2501.01765 — best LoRA-subspace method (20min)
 9. VLGuard arXiv:2402.02207 — data mixing baseline (10min)
 
 **Week 4 — The Implementation**

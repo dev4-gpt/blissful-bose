@@ -71,7 +71,8 @@ blissful-bose/
 │   ├── sota_landscape_survey.md           # 20+ paper survey across 6 defense families
 │   ├── methodology_comparison.md          # Head-to-head comparison table of all defenses
 │   ├── gradient_strategy_dossier.md       # Mathematical formulation & gradient mechanics
-│   └── reproducibility_blueprint.md       # PyTorch autograd pseudocode & open research questions
+│   ├── reproducibility_blueprint.md       # PyTorch autograd pseudocode & open research questions
+│   └── lit_review/                        # 2026-09-25 arXiv-verified literature review, methodology synthesis & pipeline audit
 ├── RESEARCH_METHODOLOGY_AND_VLM_SPEC.md   # Authoritative numerical tables (Bach et al. Tables 2, 4-8)
 ├── STUDY_AND_PRESENTATION_PLAYBOOK.md     # Study guide & metric formulas
 ├── Continual_Safety_Alignment.md          # Full notes on Bach et al. (ACL 2026)
