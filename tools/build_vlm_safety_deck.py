@@ -9,7 +9,6 @@ from pptx.util import Inches, Pt
 
 
 OUT = "VLM_Safety_Alignment_Research_Proposal_Updated.pptx"
-SECONDARY_OUT = "presentation/VLM_Safety_Alignment_Research_Proposal.pptx"
 prs = Presentation()
 prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
@@ -29,14 +28,18 @@ WHITE = RGBColor(255, 255, 255)
 CITATIONS = {
     2: [5, 7, 10, 11, 16], 3: [5, 10, 16], 4: [5, 8, 9, 11],
     5: [1, 2, 3, 4, 12, 15, 16, 23], 6: [5, 7, 8, 12, 15, 16, 21, 23, 24, 25],
-    7: [5, 6, 7, 12, 15], 8: [8, 15, 20, 21, 22, 23, 24, 25],
-    9: [1, 3, 4, 18, 19], 10: [9, 10, 11, 16, 17], 11: [12],
-    12: [7, 8, 12, 15, 16, 17], 13: [10, 11, 12, 16, 17],
-    14: [1, 9, 10, 11, 14, 16, 17, 18, 19], 15: [5, 7, 8, 12],
-    16: [10, 12, 16, 17], 17: [12, 15, 16, 17, 18],
-    19: [6, 15, 26], 20: [6], 21: [6], 22: [15], 23: [15], 24: [12],
-    25: [2, 9, 10, 11, 16, 17], 26: [1, 9, 10, 11, 18],
-    27: [5, 10, 12, 16, 17]
+    7: [5, 6, 7, 12, 15, 27, 28, 29], 8: [8, 15, 20, 21, 22, 23, 24, 25],
+    9: [1, 3, 4, 9, 11, 17, 19], 10: [9, 10, 11, 16, 17], 11: [12],
+    12: [7, 8, 12, 15, 16, 17, 27], 13: [5, 7, 8, 10, 11, 12, 16, 17, 27],
+    14: [10, 11, 12, 16, 17],
+    15: [1, 3, 9, 10, 11, 17, 19], 16: [5, 7, 8, 12],
+    17: [10, 12, 16, 17], 18: [12, 15, 16, 17, 18],
+    20: [6, 15, 26], 21: [6], 22: [6], 23: [15], 24: [15], 25: [12],
+    26: [2, 9, 10, 11, 16, 17, 27], 27: [1, 9, 10, 11, 18],
+    28: [5, 10, 12, 16, 17, 28, 29], 29: [27],
+    30: [5, 6, 7, 12, 13, 16, 26, 27],
+    31: [8, 15, 21, 22, 23, 24, 25], 32: [1, 3, 4, 19, 20],
+    33: [2, 9, 10, 11, 14, 17, 18, 27], 34: [28, 29]
 }
 
 
@@ -167,14 +170,17 @@ table(s,0.82,1.82,11.72,4.58,["Intervention layer","Representative work","Core i
 textbox(s,0.9,6.5,11.5,0.35,"*SafeRI is a September 2026 preprint, not yet a peer-reviewed result.",11,MUTED)
 
 # 7
-s=base("Training-time papers are not interchangeable", "Paper audit: training", "VLGuard (2024); SafeVLM (2024); SPA-VL (CVPR 2025); ADPO (Findings EMNLP 2025); VSFA (ACL 2026)")
+s=base("Training-time papers are not interchangeable", "Paper audit: training", "VLGuard; SafeVLM; SPA-VL; ADPO; VSFA; HoliSafe; DAVSP; Pragma-VL")
 rows=[
 ["VLGuard","Safety instruction data + SFT","Data baseline; monitor forgetting and utility"],
 ["SafeVLM","Projector, safety tokens/head; two-stage","Architectural comparator; separate from SFT"],
 ["SPA-VL","100K-scale image–question preference tuples","DPO data source; six harm domains"],
 ["ADPO","Adversarial reference + adversary-aware DPO","Direct adversarial-alignment prior art"],
-["VSFA","Neutral VQA on threat-related images; no safety labels","ACL 2026 label-free alternative; reproduce under matched budget"]]
-table(s,0.82,1.82,11.72,4.72,["Paper","Method","Protocol lesson for our study"],rows,[1.7,4.2,5.82],14)
+["VSFA","Neutral VQA on threat-related images; no safety labels","ACL 2026 label-free alternative"],
+["HoliSafe","Five-state training data + Safe-VLM visual guard","Published prior art; not our novelty"],
+["DAVSP","Padded visual prompt + activation-space alignment","AAAI 2026; visual prompt, not standard LoRA SFT"],
+["Pragma-VL","Risk-aware SFT + dynamic safety/helpfulness reward","ICLR 2026; full table audit before replication"]]
+table(s,0.82,1.82,11.72,4.72,["Paper","Method","Protocol lesson for our study"],rows,[1.7,4.2,5.82],11.8)
 
 # 8
 s=base("Runtime defenses change the system boundary", "Paper audit: inference", "CMRM, Findings ACL 2025; VLMGuard-R1, Findings ACL 2026; SafetyReminder, AAAI 2026; SafeRI, arXiv 2609.03544")
@@ -184,15 +190,15 @@ card(s,8.73,1.9,3.76,3.15,"GENERATION GATE","SafetyReminder / SafeSteer / SafeRI
 textbox(s,1.0,5.55,11.0,0.65,"A defense comparison must name what is being aligned: the model, the input pipeline, or the full deployed system.",19,INK,True)
 
 # 9
-s=base("A jailbreak suite must vary the carrier, not just the wording", "Attack protocol", "FigStep arXiv 2311.05608; HADES ECCV 2024; JailBreakV arXiv 2404.03027; PolyJailbreak arXiv 2510.17277")
+s=base("Separate attack procedures from benchmark controls", "Attack protocol", "FigStep [1]; HADES [3]; JailBreakV [4]; PolyJailbreak [19]; SIUO [11]; VLSBench [9]; USB [17]")
 rows=[
-["Direct text","Control","Does text-only safety already fail?"],
-["FigStep","Instruction as image text","Can the OCR/image pathway bypass?"],
-["SIUO / HADES-like","Benign-looking inputs; risk in joint meaning","Can it reason safely across modalities?"],
-["Adaptive held-out","PolyJailbreak at fixed query budget","Does defense generalize beyond templates?"],
-["White-box optional","VisualAdv/MMPGD; JailBound separately","Do perturbations or internal boundary probes break it?"]]
-table(s,0.82,1.82,11.72,4.5,["Attack family","What changes","Question answered"],rows,[2.5,4.6,4.62],14)
-textbox(s,0.9,6.5,11.5,0.35,"Slide examples should be abstracted; do not display operational harmful instructions.",11,MUTED)
+["FigStep","Fixed black-box attack: typographic image carries the request","OCR / visual-text pathway"],
+["HADES","Fixed black-box +Opt: typography plus semantically matched image","Visual semantic pathway; distinct from white-box +Adv"],
+["JailBreakV-28K","Collection of transferred prompts and image-based cases","Fixed attack instances; not one algorithm"],
+["PolyJailbreak","Adaptive black-box, multi-step search","Generalization beyond static templates"],
+["SIUO / VLSBench / USB","Compositional, leakage, broad-coverage evaluation resources","Controls/benchmarks, not attacks"]]
+table(s,0.82,1.82,11.72,4.5,["Method/resource","What changes","Role in the protocol"],rows,[2.5,5.2,4.02],13)
+textbox(s,0.9,6.5,11.5,0.35,"Keep static, adaptive, and white-box results separate; do not pool unlike success rates.",11,MUTED)
 
 # 10
 s=base("Benchmarks answer different questions", "Benchmark audit", "VSCBench (Findings ACL 2025); VLSBench (ACL 2025); SIUO (Findings NAACL 2025); USB (ACL 2026); MMJailBench (2026 preprint)")
@@ -211,30 +217,38 @@ bullets(s,["Models: LLaVA-1.5/1.6-7B, Qwen2-VL-7B, InternVL2-8B, Qwen2.5-VL-7B; 
 # 12
 s=base("The defensible gap is a controlled small-model study", "Gap and contribution", "Synthesis of ADPO, VSFA, VSCBench, VLSBench, SIUO, USB and MMJailBench")
 card(s,0.85,1.9,3.76,3.05,"NOT THE GAP","“Nobody has aligned VLMs” is false.\n\nADPO, SPA-VL, VLGuard, VSFA and inference defenses already exist.",CORAL,16)
-card(s,4.79,1.9,3.76,3.05,"THE GAP TO TEST","Do these alignment choices transfer across unseen visual carriers in small models under a common protocol?\n\nAnd at what calibration/cost trade-off?",TEAL,16)
-card(s,8.73,1.9,3.76,3.05,"OUR CONTRIBUTION","A reproducible protocol plus a matched-budget comparison.\n\nNovel method claim only after baseline reproduction and literature refresh.",BLUE,16)
+card(s,4.79,1.9,3.76,3.05,"THE GAP TO TEST","Do published alignment choices, including holistic five-state supervision, transfer across unseen attacks in small models under one protocol?\n\nAt what calibration/cost trade-off?",TEAL,15)
+card(s,8.73,1.9,3.76,3.05,"OUR CONTRIBUTION","A controlled replication/comparison and held-out evaluation.\n\nNo new-data or new-method novelty claim until prior art is fully audited.",BLUE,15)
 textbox(s,1.0,5.5,11.1,0.8,"Frame novelty as “systematic comparison under controlled, held-out attacks,” not “first adversarial VLM alignment.”",19,INK,True)
 
 # 13
+s=base("Proposed study protocol: one controlled comparison", "Our methodology", "Design synthesis: VLGuard; SPA-VL; ADPO; VSCBench; VLSBench; SIUO; USB")
+card(s,0.72,1.85,2.86,3.78,"1  FREEZE THE STUDY","One open VLM family at two sizes; fixed safety rubric and preprocessing. Split by source intent and hold out attack families before tuning.",TEAL,14)
+card(s,3.74,1.85,2.86,3.78,"2  COMPARE ALIGNMENT","B0 native; B1 text-only SFT; B2 multimodal SFT; B3 multimodal DPO; B4 ADPO if feasible. B5 is a HoliSafe-style five-state supervision replication/ablation at B2's matched SFT budget, not a claimed new method.",CORAL,12)
+card(s,6.76,1.85,2.86,3.78,"3  LOCKED EVALUATION","Run A0–A5 once on held-out tests: text, image-carried, joint-context, leakage control, safe near-neighbors, and adaptive attacks. No test examples tune the method or judge.",BLUE,13)
+card(s,9.78,1.85,2.86,3.78,"4  REPORT THE TRADE-OFF","Harmful compliance by attack family; benign false refusal and answer quality; VQA/grounding; evaluator agreement; training and inference cost.",TEAL,14)
+textbox(s,0.85,5.98,11.65,0.62,"Connection among papers = experimental roles, not one combined defense. HoliSafe already studies five-way safety combinations; our possible contribution is controlled small-model replication and held-out generalization.",15,INK,True)
+
+# 14
 s=base("Three falsifiable hypotheses", "Hypotheses", "Proposed study claims; not findings from cited papers")
 card(s,0.85,1.88,3.76,3.6,"H1  ROBUSTNESS + UTILITY","Matched multimodal alignment reduces held-out attack HCR more than no intervention and text-only SFT, while staying within pre-registered FRR and VQA margins.",TEAL,16)
 card(s,4.79,1.88,3.76,3.6,"H2  GENERALIZATION","Performance gains on seen templates exceed gains on held-out adaptive attacks; train/test split by attack family exposes the difference.",CORAL,16)
 card(s,8.73,1.88,3.76,3.6,"H3  MECHANISM (EXPLORATORY)","Text–image safety gap relates to safety outcomes across small models beyond parameter count alone.",BLUE,16)
 textbox(s,0.96,5.95,11.3,0.55,"Candidate guardrails: FRR increase ≤ 3 points; VQA decrease ≤ 2 points (choose and preregister before experiments).",14,MUTED)
 
-# 14
-s=base("Final attack suite: six required cells, two optional diagnostics", "Experimental design", "Protocol synthesis; attack sources: FigStep, SIUO, VLSBench, VSCBench/USB, PolyJailbreak; optional ADPO/JailBound")
+# 15
+s=base("Proposed test matrix: attacks, attribution controls, safe pairs", "Experimental design", "Proposed protocol; FigStep [1]; HADES [3]; VLSBench [9]; SIUO [11]; PolyJailbreak [19]")
 rows=[
 ["A0","Direct text","Baseline language safety"],
-["A1","FigStep image-text","OCR / visual carrier"],
-["A2","SIUO-style joint context","Cross-modal composition"],
-["A3","VLSBench + text-only ablation","Visual leakage validity control"],
-["A4","VSCBench/USB benign pairs","False refusal + calibration"],
-["A5","Held-out PolyJailbreak","Adaptive robustness at fixed query budget"]]
-table(s,0.82,1.82,11.72,4.57,["Cell","Test","Purpose"],rows,[1.3,4.8,5.62],14)
-textbox(s,0.9,6.5,11.5,0.35,"Optional: fixed-budget white-box pixel perturbation; JailBound representation probing kept as a separate diagnostic.",11,MUTED)
+["A1","FigStep fixed typographic image; held-out fonts/layouts","OCR-carried attack"],
+["A2","HADES +Opt fixed black-box image/typography","Visual-semantic attack"],
+["A3","SIUO/HoliSafe compositional subset; test image, text, and joint","Composition evaluation, not an attack algorithm"],
+["A4","VLSBench original vs removed/masked/decoy image; safe matched pairs","Image dependence + false refusal controls"],
+["A5","PolyJailbreak adaptive black-box, max 5 discovery + 15 optimization calls","Adaptive tier; proposed 20-call cap"]]
+table(s,0.82,1.82,11.72,4.57,["Cell","Frozen test","Protocol role"],rows,[1.3,5.6,4.82],12.5)
+textbox(s,0.9,6.5,11.5,0.35,"A5 cap is our proposal; PolyJailbreak reports T_max=15 optimization steps. White-box +Adv/ADPO/JailBound stay separate.",10.5,MUTED)
 
-# 15
+# 16
 s=base("Compare methods on the same model and same budget", "Baseline plan", "Proposed experimental controls; method precedents: VLGuard, SPA-VL, ADPO, CMRM")
 rows=[
 ["B0","Original checkpoint","Native behavior"],
@@ -246,19 +260,19 @@ rows=[
 table(s,0.82,1.82,11.72,4.52,["ID","Condition","What it isolates"],rows,[1.15,5.0,5.57],14)
 textbox(s,0.9,6.48,11.5,0.4,"Candidates: Qwen3-VL 2B/4B; SmolVLM2 2.2B as an external replication (lock revisions).",13,TEAL,True)
 
-# 16
+# 17
 s=base("Report safety, utility, calibration, and cost together", "Metrics and controls", "Evaluation choices based on VSCBench, USB, ADPO and standard reproducibility practice")
 card(s,0.85,1.86,3.76,3.55,"SAFETY","Harmful-compliance rate by attack family\n\nMacro-average across attack families\n\nConfidence intervals + fixed decoding",CORAL,15)
 card(s,4.79,1.86,3.76,3.55,"UTILITY / CALIBRATION","Benign false-refusal rate\n\nSafe-answer quality\n\nVQA/OCR before–after\n\nText/image/joint gap",TEAL,15)
 card(s,8.73,1.86,3.76,3.55,"RELIABILITY / COST","Blind evaluator + human-audited subset\n\nJudge agreement and ambiguity\n\nTraining GPU-hours, latency, memory, extra calls",BLUE,15)
 textbox(s,0.95,5.85,11.0,0.6,"Keep privacy, fairness, misinformation, and harmful assistance as separate outcome families.",17,INK,True)
 
-# 17
+# 18
 s=base("What we expect to contribute", "Takeaway", "Literature snapshot frozen 2026-09-30; proposed experiment requires reproduction and preregistration")
 bullets(s,["A protocol that makes attack carrier and modality interaction explicit.","A small-VLM comparison that includes both unseen attack robustness and safe near-neighbor behavior.","A paper-by-paper audit linking each claimed defense to its real threat model, judge, benchmark, and utility test.","An honest answer to whether additional multimodal alignment helps beyond text-only tuning—and what it costs."],y=1.9,font_size=19,gap=0.95)
 textbox(s,1.0,6.15,11.2,0.55,"Next: freeze checkpoints + policy rubric → reproduce B0–B3 → validate judge → run held-out A0–A5.",17,TEAL,True)
 
-# 18 source signpost; full IEEE-style bibliography follows the evidence appendix.
+# 19 source signpost; full IEEE-style bibliography follows the evidence appendix.
 s=base("Primary literature and source conventions", "References", "IEEE-style numbered citations appear on each slide; full entries are at the end")
 card(s,0.9,1.92,3.7,2.55,"VLM SAFETY METHODS","VLGuard [5] • SafeVLM [6] • SPA-VL [7] • ADPO [12] • VSFA [16]",TEAL,16)
 card(s,4.82,1.92,3.7,2.55,"EVALUATION + ATTACKS","FigStep [1] • MM-SafetyBench [2] • SIUO [11] • USB [17] • MMJailBench [18]",TEAL,16)
@@ -355,6 +369,18 @@ rows=[
 table(s,0.82,1.85,11.72,4.65,["Report field","Minimum information"],rows,[2.6,9.12],14)
 textbox(s,0.95,6.62,11.35,0.28,"No cross-paper numerical ranking unless data, targets, attack budgets, decoding, and judging are harmonized.",12,CORAL,True)
 
+# 29
+s=base("HoliSafe is direct prior art for five-way image-text safety", "Paper evidence appendix", "Lee et al., CVPR 2026 Findings, Tables 3–4; Sections 2–4; Appendix D")
+rows=[
+["LLaVA-v1.5-7B","79.1","1.6","91.2","94.0","95.9"],
+["VLGuard-7B","39.9","1.3","49.6","51.9","52.2"],
+["SPA-VL-DPO-7B","40.5","1.6","55.6","58.3","63.7"],
+["SafeLLaVA-7B","8.8","1.3","15.3","15.8","15.4"]]
+table(s,0.65,1.72,12.0,2.72,["Model","Claude mASR % ↓","Claude safe-pair RR % ↓","GPT-4o mASR % ↓","Gemini mASR % ↓","String-match mASR % ↓"],rows,[2.3,1.72,2.08,1.82,1.82,2.26],10.5)
+textbox(s,0.78,4.68,5.85,1.35,"DATA + TASK: 6,689 images / 14,246 pairs total; 10,215 training pairs; test = 1,796 images / 4,031 QA pairs. Seven categories, 18 subcategories, five safe/unsafe image-text states.",14,INK)
+textbox(s,6.82,4.68,5.75,1.35,"METHOD: pooled visual tokens feed a Visual Guard Module; safety classification and next-token instruction tuning are trained together. This is a published comparator, not our new data idea. Judge-specific mASR values are not a shared leaderboard.",14,INK)
+textbox(s,0.82,6.33,11.7,0.32,"Source: Table 3 (Claude/GPT/Gemini/string match); see Table 4 for VLSBench, MM-SafetyBench, HarmEval, and SIUO comparisons.",11,MUTED)
+
 IEEE_REFS = [
     '[1] Y. Gong et al., "FigStep: Jailbreaking Large Vision-Language Models via Typographic Visual Prompts," arXiv:2311.05608, 2023.',
     '[2] X. Liu et al., "MM-SafetyBench: A Benchmark for Safety Evaluation of Multimodal Large Language Models," arXiv:2311.17600, 2023; accepted to ECCV 2024.',
@@ -374,14 +400,17 @@ IEEE_REFS = [
     '[16] Q. Yang et al., "Visual Self-Fulfilling Alignment: Shaping Safety-Oriented Personas via Threat-Related Images," in Proc. 64th Annu. Meeting Assoc. Comput. Linguistics (ACL), pp. 10698–10718, 2026, doi: 10.18653/v1/2026.acl-long.490.',
     '[17] B. Zheng et al., "USB: A Comprehensive and Unified Safety Evaluation Benchmark for Multimodal Large Language Models," in Proc. 64th Annu. Meeting Assoc. Comput. Linguistics (ACL), pp. 21184–21211, 2026, doi: 10.18653/v1/2026.acl-long.970.',
     '[18] T. Wang et al., "MMJailBench: A Factorized Benchmark for Disentangling Multimodal Jailbreak Vulnerabilities," arXiv:2608.25490, 2026 (preprint).',
-    '[19] X. Wang et al., "PolyJailbreak: Cross-Modal Jailbreaking Attacks on Black-Box Multimodal LLMs," arXiv:2510.17277, 2025 (preprint).',
+    '[19] X. Wang et al., "PolyJailbreak: Cross-Modal Jailbreaking Attacks on Black-Box Multimodal LLMs," IEEE Trans. Dependable Secure Comput., 2026, doi: 10.1109/TDSC.2026.3707228; arXiv:2510.17277.',
     '[20] J. Song et al., "JailBound: Jailbreaking Internal Safety Boundaries of Vision-Language Models," in Adv. Neural Inf. Process. Syst. (NeurIPS), 2025, doi: 10.52202/085713-0875.',
     '[21] X. Zhu et al., "GuardAlign: Test-Time Safety Alignment in Multimodal Large Language Models," in Proc. Int. Conf. Learn. Represent. (ICLR), 2026.',
     '[22] X. Zeng et al., "SafeSteer: A Decoding-Level Defense Mechanism for Multimodal Large Language Models," in Findings Assoc. Comput. Linguistics: ACL, 2026.',
     '[23] C. Ma et al., "SafeRI: Recognition and Intervention for Token-Level Safety Intervention in Large Vision Language Models," arXiv:2609.03544, 2026 (preprint).',
     '[24] P. Tang et al., "SafetyReminder: Reviving Delayed Safety Awareness of Vision-Language Models to Defend Against Jailbreak Attacks," in Proc. AAAI Conf. Artif. Intell., vol. 40, no. 39, pp. 33223–33231, 2026, doi: 10.1609/aaai.v40i39.40607.',
     '[25] S. Zhang et al., "MMAligner: Safeguarding Multimodal Large Language Models through Representation Calibration," arXiv:2608.05909, 2026 (preprint).',
-    '[26] T. Bach et al., "Continual Safety Alignment via Gradient-Based Sample Selection," arXiv:2604.17215, 2026. LLM-only; project-history context, not VLM evidence.'
+    '[26] T. Bach et al., "Continual Safety Alignment via Gradient-Based Sample Selection," arXiv:2604.17215, 2026. LLM-only; project-history context, not VLM evidence.',
+    '[27] Y. Lee et al., "HoliSafe: Holistic Safety Benchmarking and Modeling for Vision-Language Model," in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR) Findings, pp. 5989–5998, 2026.',
+    '[28] Y. Zhang, J. Li, L. Cai, and G. Li, "DAVSP: Safety Alignment for Large Vision-Language Models via Deep Aligned Visual Safety Prompt," in Proc. AAAI Conf. Artif. Intell., vol. 40, no. 44, pp. 38111–38119, 2026, doi: 10.1609/aaai.v40i44.41149.',
+    '[29] M. Wen et al., "Pragma-VL: Towards a Pragmatic Arbitration of Safety and Helpfulness in MLLMs," in Proc. Int. Conf. Learn. Represent. (ICLR), 2026.'
 ]
 
 def add_reference_page(title, refnums):
@@ -391,10 +420,45 @@ def add_reference_page(title, refnums):
     textbox(s,0.78,1.75,5.78,5.12,"\n\n".join(items[:split]),11.2,INK)
     textbox(s,6.83,1.75,5.78,5.12,"\n\n".join(items[split:]),11.2,INK)
 
-add_reference_page("References: Training, Data & Project Context", [5, 6, 7, 12, 13, 16, 26])
+add_reference_page("References: Training, Data & Project Context", [5, 6, 7, 12, 13, 16, 26, 27])
 add_reference_page("References: Inference and Runtime Defenses", [8, 15, 21, 22, 23, 24, 25])
 add_reference_page("References: Attacks and Red Teaming", [1, 3, 4, 19, 20])
-add_reference_page("References: Benchmarks and Datasets", [2, 9, 10, 11, 14, 17, 18])
+add_reference_page("References: Benchmarks and Datasets", [2, 9, 10, 11, 14, 17, 18, 27])
+add_reference_page("References: Recent Alignment Methods", [28, 29])
+
+# Protocol appendix: explicit construction, execution, and adjudication rules.
+s=base("Attack protocol: freeze cases before querying targets", "Attack protocol appendix", "FigStep [1]; HADES [3]; JailBreakV-28K [4]; proposed controls")
+rows=[
+["1 | Intent ledger","Assign source-intent ID, policy category, image/text labels, safe counterpart, provenance and license."],
+["2 | Split and holdout","Group by intent before transformations; lock train/validation/test manifests and seed. Hold out render templates and attack families from tuning."],
+["3 | Fixed attacks","A0 matched text control; A1 FigStep rendered-image condition; A2 HADES +Opt black-box condition. Freeze image artifacts/prompts before target queries."],
+["4 | Attribution controls","For matched cases run text-only, image-only when meaningful, original, removed/masked and matched-decoy image variants. Change one factor at a time."],
+["5 | Frozen inference","Same checkpoint/revision, processor, system prompt and deterministic decoding; proposed cap 256 new tokens and one target query per fixed item."],
+["6 | Access separation","HADES +Adv / ADPO visual perturbations require white-box access; report in a separate tier and never merge with black-box ASR."]]
+table(s,0.82,1.72,11.72,4.95,["Stage","Pre-registered operation"],rows,[2.0,9.72],12.5)
+textbox(s,0.9,6.78,11.4,0.25,"All settings above are our harmonized proposal unless explicitly identified as paper-native.",11,MUTED)
+
+s=base("Adaptive protocol and success adjudication", "Attack protocol appendix", "PolyJailbreak [19]; proposed query cap; semantic judging protocol")
+rows=[
+["Adaptive run","Per source intent × target: up to 5 discovery + 15 optimization target calls; stop on first adjudicated success."],
+["Paper-native distinction","PolyJailbreak reports T_max=15 optimization steps. The 5-call discovery allowance and 20-call total are our proposed cap."],
+["Primary outcome","Harmful-compliance rate by family. Success means output materially enables prohibited intent under a frozen rubric, not keyword/refusal-string matching."],
+["Judge","Freeze judge model/version, prompt, threshold and rubric; blind model-arm identity. Human-adjudicate stratified disagreements and ambiguous outputs; report agreement."],
+["Uncertainty","Paired bootstrap confidence intervals clustered by source intent. Show adaptive cumulative success vs. calls and report per-intent success separately."],
+["Secondary outcomes","Safe-pair false-refusal rate, answer quality, image-ablation grounding, fixed VQA/OCR capability, latency, calls and compute."],
+["Audit and release","Log every query, seed, stop reason, cost, model/software hash and artifact provenance. Restrict harmful outputs; publish sanitized manifests and aggregate results."]]
+table(s,0.82,1.68,11.72,5.08,["Protocol item","Rule"],rows,[2.05,9.67],12)
+
+s=base("Protocol gate: qualify the experiment before launch", "Attack protocol appendix", "Proposed preregistration checklist; attack and benchmark sources [1], [3], [4], [9], [11], [17], [19]")
+bullets(s,[
+"Pin dataset versions, licenses, image hashes, benchmark splits, policy rubric, and source-intent de-duplication report.",
+"Confirm HADES artifact access or freeze an independent image-generation recipe before any target-model call; no victim-feedback tuning in fixed arms.",
+"Freeze target checkpoint, image processor, chat template, decoding, response cap, adaptive call budget, judge, and human-audit sampling plan.",
+"Run a pilot only on development intents; inspect judge errors and benign false refusals, revise rubric, then lock it before the test run.",
+"Report FigStep, HADES, compositional benchmarks, leakage controls, safe pairs, and adaptive search in separate rows; no pooled leaderboard score.",
+"Go / no-go: if artifacts, permissions, or judge reliability fail, document the exclusion and retain the feasible fixed black-box core."
+],y=1.86,font_size=16,gap=.76)
+textbox(s,0.95,6.55,11.2,0.32,"This protocol is ready for advisor review; it is not an executed experiment or a claim of measured robustness.",12,MUTED)
 
 def attach_speaker_notes():
     source = Path("presentation/VLM_Safety_Alignment_Speaker_Notes.md").read_text()
@@ -403,6 +467,7 @@ def attach_speaker_notes():
     for i, match in enumerate(headings):
         end = headings[i + 1].start() if i + 1 < len(headings) else len(source)
         body = source[match.end():end].strip()
+        body = re.split(r"\n## Likely questions", body)[0].strip()
         body = re.sub(r"\n\*\*Appendix sources:\*\*.*$", "", body, flags=re.S).strip()
         body = re.sub(r"\*\*(.*?)\*\*", r"\1", body)
         body = re.sub(r"`([^`]+)`", r"\1", body)
@@ -416,5 +481,4 @@ def attach_speaker_notes():
 attach_speaker_notes()
 
 prs.save(OUT)
-prs.save(SECONDARY_OUT)
-print(f"wrote {OUT} and {SECONDARY_OUT} ({len(prs.slides)} slides)")
+print(f"wrote {OUT} ({len(prs.slides)} slides)")

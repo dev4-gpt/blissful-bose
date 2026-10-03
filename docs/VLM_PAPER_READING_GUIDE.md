@@ -1,22 +1,34 @@
 # VLM Safety Proposal: Paper Reading Guide
 
-Use this guide with the numbered IEEE references in the presentation. It is a targeted reading route, not a claim that every paper has been independently reproduced. Read the papers that supply our primary methods/results closely; read attack and benchmark papers for the exact threat model, construction, scoring, and limitations. A result table should only be quoted after checking its caption, model/version, judge, and metric in the paper itself.
+Use this guide with the numbered IEEE references in the presentation. It is a study map for the whole bibliography, not a shortcut that removes papers from review. The updated deck has 29 entries: 28 VLM-related papers and [26], which is the earlier LLM-only project context. To defend the proposal, understand every VLM paper's research question, method or dataset, evaluation design, main result, limitation, and role. The current materials are not yet a complete source-by-source reproduction audit: detailed numerical tables are verified for SafeVLM [6], ADPO [12], VLMGuard-R1 [15], HoliSafe [27], and DAVSP [28]; several other rows remain protocol summaries whose exact tables, metrics, or artifacts still need primary-paper verification. The evidence dossier tracks that distinction. Do not call the presentation final until those checks are closed.
 
-**Companion documents:** [Protocol audit](vlm_safety_protocol_audit.md) contains the SOTA map, protocol comparisons, reported-result tables, benchmark cards, and proposed study design. [Methodology comparison](methodology_comparison.md) covers broader continual-learning alternatives, many of which are not direct VLM safety baselines. Slide references are grouped by role, but citation numbers remain global and unchanged.
+**Companion documents:** [Verified paper-by-paper checklist and results ledger](VLM_VERIFIED_PAPER_CHECKLIST.md) is the source-traceable reading route: exact sections/tables, paper role, selected values, and explicit verification status. It supersedes the compact per-paper map below wherever they differ. [Protocol audit](vlm_safety_protocol_audit.md) contains the SOTA synthesis, benchmark cards, attack suite and proposed study design. [Paper evidence dossier](VLM_PAPER_EVIDENCE_DOSSIER.md) is the high-level source/status index. [Methodology comparison](methodology_comparison.md) covers broader continual-learning alternatives, many of which are not direct VLM safety baselines. Slide references are grouped by role, but citation numbers remain global and unchanged.
 
-## The Short Route
+## How to Study the Papers
 
-Read these seven papers’ method and experiment sections closely before presenting the proposed baseline ladder:
+Every cited VLM paper needs an evidence pass. The training and defense papers require close method and result-table reading because they determine what a baseline means; attack and benchmark papers require close construction, split, scoring, and judge reading because they define the test. Use the map as a checklist, not as a suggestion to skim whole categories.
 
-1. **[5] VLGuard:** multimodal safety-SFT baseline and data boundary.
-2. **[6] SafeVLM:** architectural safety module; inspect its safety, over-refusal, capability, and ablation results.
-3. **[7] SPA-VL:** preference-data construction and how it can support standard DPO.
-4. **[8] CMRM:** representation-gap diagnosis and inference-time correction.
-5. **[12] ADPO:** direct adversarial preference-alignment prior art and strongest training comparator in this proposal.
-6. **[15] VLMGuard-R1:** external reasoning-driven rewriter; understand that target VLM weights remain unchanged.
-7. **[16] VSFA:** recent label-free training alternative; compare its data, safety, utility, and over-refusal claims.
+The initial priority order is:
 
-Add **[13] Think in Safety** if you plan to discuss reasoning-based alignment as a candidate method. For runtime-method breadth, read [21] GuardAlign, [22] SafeSteer, [23] SafeRI, [24] SafetyReminder, and [25] MMAligner selectively as described below. Do not present all methods as if they were interchangeable training baselines.
+1. **[5] VLGuard:** multimodal safety data and SFT baseline.
+2. **[6] SafeVLM:** attached architectural method, including its safety/utility and false-refusal trade-offs.
+3. **[7] SPA-VL:** preference-data construction and its DPO experiments.
+4. **[12] ADPO:** adversarial preference training, the closest prior-art comparator.
+5. **[28] DAVSP:** visual safety prompt plus activation-space supervision; read as the current peer-reviewed training-method comparator.
+6. **[29] Pragma-VL:** end-to-end arbitration of safety and helpfulness using risk-aware visual encoding, SFT, and a query-dependent reward model; check its complete result tables before deciding whether it is reproducible for us.
+7. **[16] VSFA:** neutral VQA on threat-related images as a distinct training hypothesis.
+
+For every method paper, read the full method, data construction, experiment setup, main result tables, ablations, and limitations. For every attack/benchmark paper, read its sample construction, split, threat model, scoring rule, judge, main result tables, and limitations. Read runtime papers closely enough to explain their intervention point, additional models/tokens/calls, latency, and benign-side effects. The per-paper rows below are the checklist; none of the cited VLM papers is silently dropped from review.
+
+## DPO in Plain Language
+
+**Direct Preference Optimization (DPO)** trains a model from preference pairs instead of first fitting a separate reward model and then running a reinforcement-learning loop. For each input, the dataset provides two candidate answers: a **chosen** answer (preferred) and a **rejected** answer. DPO updates the policy to increase the chosen answer's likelihood relative to the rejected answer, while comparing both to a fixed reference policy. It is not simply supervised fine-tuning: SFT imitates target answers individually; DPO learns a relative preference between two answers. DPO still has a reference model and a preference dataset, and its behavior depends on pair quality, balance, and the preference objective/temperature.
+
+For a VLM safety example, the input is the image plus the user's question; the pair might contain a safe refusal/redirect as the chosen answer and an unsafe compliant answer as the rejected answer. The actual SPA-VL record is structured as a question, image, chosen response, and rejected response. SPA-VL is the **dataset**; DPO is one possible **training algorithm** applied to its pairs. They are not synonyms.
+
+In the usual DPO objective, the policy's log-probability margin between chosen and rejected responses is compared with the same margin under a frozen reference model, then passed through a sigmoid/logistic loss. The coefficient often written `beta` controls how strongly the policy departs from the reference. You do not need to derive the loss in the talk, but you should know what is being optimized and why the reference policy is present. **ADPO is not just another name for DPO:** it adds adversarially trained reference behavior and an adversary-aware preference objective; audit its own algorithm and attack protocol before describing it.
+
+The proposed B5 condition is intentionally separate from DPO: it uses the same SFT objective and training budget as B2 but changes the data to counterfactually matched safe/unsafe image-text examples. That isolates whether the data composition matters. If we later choose a preference-based B5, the proposal and slide must be revised to specify preference-pair construction and a matched DPO objective.
 
 ## Per-Paper Reading Map
 
@@ -50,21 +62,21 @@ Add **[13] Think in Safety** if you plan to discuss reasoning-based alignment as
 | [24] | SafetyReminder; inference-time reminder | Reminder construction/injection point, attack evaluation, utility, ablations and limitations | Mechanism diagram and main attack/utility table | Prompt/representation-level inference defense, distinct from weight alignment |
 | [25] | MMAligner; representation calibration (preprint) | Calibration objective, intervention point, evaluation, ablations and limitations | Main safety/utility comparisons and any calibration analysis | Representation-based inference comparator; verify code and preprint status before reproducing |
 | [26] | Bach et al.; LLM-only project history | Read only if explaining the origin of the old project: method, task sequence, and limitations | Original LLM results and assumptions; do not transfer its numbers to VLMs | Context for why the project changed direction, not VLM evidence or a VLM baseline |
+| [27] | HoliSafe / Safe-VLM; five-state dataset, benchmark, and integrated visual guard (CVPR 2026 Findings) | §§2.1–2.2 dataset/benchmark construction; §3 VGM method; §§4.1–4.5 setup, results, safety/utility and guard comparison; Table 1, Tables 3–5; Appendix D.1–D.2 judging/scoring | Track the 6,689 total images/14,246 pairs, 10,215 training pairs, 4,031 test QA pairs; five image-text states; multi-judge ASR/RR; VGM+instruction-tuning objectives | Essential direct prior art. The five-way data concept overlaps our former B5; reproduce/compare, do not claim it as novel. Read the CVPR Findings version, not only the first arXiv draft |
+| [28] | DAVSP; training-time visual safety prompt and activation-level alignment (AAAI 2026) | §§3–5.6; Fig. 2; Tables 1–6; extended-version appendix for implementation details and adversarial-example results | 470+470 VLGuard examples for harmfulness-vector construction; 600 MM-SafetyBench harmful + 100 MM-Vet benign prompt-training samples; LLaVA-1.5-13B and Qwen2-VL-7B; DeepSeek-V3 RSR judge; Table 2 resistance and Table 1 utility, plus Table 4 ablations | Direct peer-reviewed alignment method. The VSP is optimized through a frozen LVLM; it is not ordinary parameter fine-tuning. Table 2 reports FigStep RSR 84.20% / 99.20% for the two models; assess utility alongside safety and inspect the extended version before reproduction |
+| [29] | Pragma-VL; end-to-end arbitration of safety and helpfulness (ICLR 2026) | Full method, training-data construction, reward-model objective, experiment setup, main benchmark tables, ablations and limitations | Cold-start SFT with risk-aware visual-encoder clustering and interleaved risk descriptions/high-quality data; synergistic reward model with query-dependent dynamic weights; paper claims 5–20% gains over baselines on most multimodal safety benchmarks while preserving math/knowledge capability | Direct, recent training-time SOTA comparator. Abstract-level claim only in this audit; read the full tables and conditions before quoting or choosing it as a baseline |
 
 ## How to Read the Evidence
 
 For any reported result, record the exact base checkpoint/version, processor/chat template, training data and split, attacker access and budget, dataset slice, decoding settings, judge/threshold, metric direction, and uncertainty. Keep safety, helpfulness, false refusal, grounding, and cost as separate outcomes. A source-paper score is not a prediction of our result and is not comparable to another paper’s score unless the protocols are harmonized.
 
-For the proposed experiment, map papers to components rather than making one large leaderboard:
+For the proposed experiment, map papers to components rather than making one large leaderboard. Every cited benchmark and attack should be understood well enough to explain its sample construction, threat model, scoring, and limitation; every cited defense should be understood well enough to explain its mechanism, data, and reported trade-offs.
 
-| Proposed component | Primary reading |
-|---|---|
-| Native/text-only/SFT/DPO baseline ladder | [5], [6], [7], [12] |
-| Direct adversarial-alignment comparator | [12] |
-| Alternative label-free training mechanism | [16] |
-| Representation/inference comparators | [8], [21], [22], [24], [25]; [23] as emerging work |
-| External prompt-rewriting system baseline | [15] |
-| OCR, semantic, adaptive, and internal attack families | [1], [3], [4], [19], [20] |
-| Broad, compositional, leakage, calibration, and ecological test sets | [2], [9]–[11], [14], [17], [18] |
+| Proposed component | Papers to understand for this part |
+|---|---|---|
+| Native/text-only/SFT/DPO and current training-method comparators | [5], [6], [7], [12], [16], [27]–[29] |
+| Representation, visual-prompt, reasoning, and runtime alternatives | [8], [13], [15], [21]–[25], [28] |
+| OCR, semantic, collection-based, adaptive, and internal attacks | [1], [3], [4], [19], [20] |
+| Broad, compositional, leakage, calibration, and ecological tests | [2], [9]–[11], [14], [17], [18] |
 
-The **protocol audit is the synthesis and navigation document**, not a substitute for checking primary papers before quoting exact claims. You do not need to read every related-work citation in the audit. Deep-read the seven core methods above; then follow this table for every attack, benchmark, or numeric claim that appears in the talk. Optional alternatives in [methodology_comparison.md](methodology_comparison.md) are outside the presentation’s core numbered bibliography unless we explicitly promote them to a baseline.
+The **verified paper-by-paper checklist is the reading record; the protocol audit is the synthesis.** Work through every VLM-related reference and resolve rows marked partial or not table-verified before using their numbers in the presentation. The bibliography contains different kinds of work; the goal is not to turn every paper into a baseline, but to understand what each contributes and why the proposed experiment uses some as training comparators, some as threat models, and some as evaluation instruments. The cited papers do not collectively propose or validate one combined pipeline. Our connection is a study design that compares those roles under shared controls.

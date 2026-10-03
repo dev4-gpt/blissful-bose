@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "VLM Safety Alignment: Literature-to-Evaluation Pipeline",
+    "output": "docs/vlm_safety_alignment_end_to_end.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "literature", "label": "Literature synthesis", "focus": ["papers", "audit", "map"], "note": "Papers supply distinct evidence roles; they are not one combined method." },
+      { "id": "study-design", "label": "Study design", "focus": ["threat", "data", "baselines", "attacks", "benchmarks"], "note": "Freeze policies, splits, candidate interventions, and held-out attack families." },
+      { "id": "evaluation", "label": "Evaluation and decision", "focus": ["vlm", "judge", "analysis", "proposal"], "note": "Evaluate safety, safe usefulness, grounding, judge reliability, and cost together." }
+    ]
+  },
+  "lanes": [
+    { "id": "research", "label": "Literature evidence" },
+    { "id": "design", "label": "Protocol design" },
+    { "id": "training", "label": "Alignment conditions" },
+    { "id": "evaluation", "label": "Held-out attack evaluation" },
+    { "id": "benchmarking", "label": "Benchmark evaluation" },
+    { "id": "judging", "label": "Response adjudication" },
+    { "id": "analysis", "label": "Outcome analysis" },
+    { "id": "outputs", "label": "Research outputs" }
+  ],
+  "phases": [
+    { "id": "synthesize", "label": "Synthesize what exists", "fromCol": 0, "toCol": 1 },
+    { "id": "specify", "label": "Specify a controlled study", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "test", "label": "Run and interpret", "fromCol": 4, "toCol": 4 }
+  ],
+  "mainPath": ["papers", "audit", "map", "threat", "data", "baselines", "vlm", "judge", "analysis", "proposal"],
+  "nodes": [
+    { "id": "papers", "lane": "research", "col": 0, "width": 140, "type": "external", "label": "Primary papers", "sublabel": "Methods · data · tests", "tag": "28 VLM papers" },
+    { "id": "audit", "lane": "research", "col": 1, "width": 140, "type": "backend", "label": "Extract protocols", "sublabel": "Data · setup · results" },
+    { "id": "map", "lane": "research", "col": 2, "width": 140, "type": "database", "label": "Evidence roles", "sublabel": "Method · threat · tests", "tag": "Not one defense" },
+    { "id": "threat", "lane": "design", "col": 2, "width": 140, "type": "security", "label": "Freeze scope", "sublabel": "Policy · intents · access" },
+    { "id": "data", "lane": "training", "col": 3, "width": 140, "type": "database", "label": "Training data", "sublabel": "VLGuard · SPA-VL · HoliSafe" },
+    { "id": "baselines", "lane": "training", "col": 4, "width": 140, "type": "backend", "label": "Model arms", "sublabel": "SFT · DPO · ADPO · DAVSP" },
+    { "id": "attacks", "lane": "evaluation", "col": 3, "width": 140, "type": "security", "label": "Held-out attacks", "sublabel": "FigStep · HADES · adaptive" },
+    { "id": "benchmarks", "lane": "benchmarking", "col": 4, "width": 140, "type": "database", "label": "Benchmarks", "sublabel": "USB · VSC · VLS · SIUO" },
+    { "id": "vlm", "lane": "evaluation", "col": 4, "width": 140, "type": "backend", "label": "Target VLMs", "sublabel": "Fixed model + decoding" },
+    { "id": "judge", "lane": "judging", "col": 4, "width": 140, "type": "security", "label": "Judge + audit", "sublabel": "Rubric · human check" },
+    { "id": "analysis", "lane": "analysis", "col": 4, "width": 140, "type": "database", "label": "Trade-off analysis", "sublabel": "Harm · FRR · utility · cost" },
+    { "id": "proposal", "lane": "outputs", "col": 4, "width": 140, "type": "external", "label": "Research output", "sublabel": "Claims · results · limits" }
+  ],
+  "edges": [
+    { "from": "papers", "to": "audit", "label": "extract protocol and claims", "variant": "emphasis", "role": "main" },
+    { "from": "audit", "to": "map", "label": "classify evidence by role", "role": "main" },
+    { "from": "map", "to": "threat", "label": "identify tested and missing cases", "role": "main" },
+    { "from": "threat", "to": "data", "label": "freeze policy and splits", "role": "main" },
+    { "from": "data", "to": "baselines", "label": "prepare matched arms", "role": "main" },
+    { "from": "baselines", "to": "vlm", "label": "train or load each condition", "variant": "emphasis", "role": "main" },
+    { "from": "threat", "to": "attacks", "label": "reserve held-out attack families", "variant": "security", "role": "branch" },
+    { "from": "attacks", "to": "vlm", "label": "challenge inputs", "variant": "security", "role": "branch" },
+    { "from": "benchmarks", "to": "vlm", "label": "safe + unsafe evaluation cases", "role": "branch" },
+    { "from": "vlm", "to": "judge", "label": "responses + metadata", "role": "main" },
+    { "from": "judge", "to": "analysis", "label": "scored outcomes + uncertainty", "role": "main" },
+    { "from": "analysis", "to": "proposal", "label": "report results, limits, and next test", "variant": "emphasis", "role": "main" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Paper roles", "items": ["Training papers define candidate interventions and training resources.", "Attack papers define adversary capabilities and attack families.", "Benchmarks define measurement coverage; judges define scoring validity."] },
+    { "dot": "amber", "title": "Controls that make the comparison interpretable", "items": ["Hold model revision, preprocessing, decoding, intent split, and judge fixed.", "Keep attack families and test intents out of training and tuning.", "Compare training changes separately from external guards and inference defenses."] },
+    { "dot": "emerald", "title": "No single safety score", "items": ["Report harmful compliance by attack family and uncertainty.", "Pair with benign false refusal, answer quality, visual grounding, and capability.", "Include annotation agreement, latency, added calls, and training cost."] }
+  ]
+}
