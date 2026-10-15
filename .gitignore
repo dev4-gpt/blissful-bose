@@ -10,3 +10,13 @@ wandb/
 .env
 .DS_Store
 ~$*
+
+# Raw model responses and judgments can contain harmful text; never commit them.
+data/eval/
+
+# Local agent databases and session caches
+.claude-flow/
+.swarm/
+ruvector.db
+ruvector.db-shm
+ruvector.db-wal

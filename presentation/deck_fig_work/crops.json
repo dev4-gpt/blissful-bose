@@ -1,0 +1,262 @@
+{
+ "figstep_t1": {
+  "pdf": "figstep",
+  "page": 5,
+  "rect": [
+   309.7,
+   81.7,
+   566.2,
+   431.6
+  ]
+ },
+ "figstep_f2": {
+  "pdf": "figstep",
+  "page": 4,
+  "rect": [
+   30,
+   80.7,
+   582.0,
+   254.2
+  ]
+ },
+ "figstep_f5": {
+  "pdf": "figstep",
+  "page": 9,
+  "rect": [
+   30,
+   213.7,
+   582.0,
+   239.7
+  ]
+ },
+ "poly_t6": {
+  "pdf": "polyjailbreak",
+  "page": 11,
+  "rect": [
+   30,
+   55.4,
+   582.0,
+   135.7
+  ]
+ },
+ "poly_f5": {
+  "pdf": "polyjailbreak",
+  "page": 5,
+  "rect": [
+   304.0,
+   53.3,
+   571.0,
+   188.7
+  ]
+ },
+ "poly_f6": {
+  "pdf": "polyjailbreak",
+  "page": 8,
+  "rect": [
+   30,
+   53.3,
+   582.0,
+   325.2
+  ]
+ },
+ "hades_f2": {
+  "pdf": "hades",
+  "page": 6,
+  "rect": [
+   126.8,
+   367.8,
+   488.6,
+   426.6
+  ]
+ },
+ "hades_t2": {
+  "pdf": "hades",
+  "page": 10,
+  "rect": [
+   126.8,
+   113.3,
+   488.6,
+   423.6
+  ]
+ },
+ "siuo_f1": {
+  "pdf": "siuo_acl",
+  "page": 1,
+  "rect": [
+   298.1,
+   436.5,
+   534.1,
+   490.4
+  ]
+ },
+ "siuo_f2": {
+  "pdf": "siuo_acl",
+  "page": 2,
+  "rect": [
+   62.9,
+   71.6,
+   298.8,
+   324.2
+  ]
+ },
+ "siuo_t2": {
+  "pdf": "siuo_acl",
+  "page": 7,
+  "rect": [
+   297.7,
+   168.0,
+   534.2,
+   222.8
+  ]
+ },
+ "vls_f1": {
+  "pdf": "vlsbench_acl",
+  "page": 2,
+  "rect": [
+   30,
+   286.6,
+   565.3,
+   328.5
+  ]
+ },
+ "vls_t1": {
+  "pdf": "vlsbench_acl",
+  "page": 3,
+  "rect": [
+   297.8,
+   139.4,
+   532.6,
+   430.6
+  ]
+ },
+ "mmjb_f1": {
+  "pdf": "mmjailbench",
+  "page": 1,
+  "rect": [
+   306.6,
+   217.8,
+   569.8,
+   416.3
+  ]
+ },
+ "mmjb_t3": {
+  "pdf": "mmjailbench",
+  "page": 6,
+  "rect": [
+   306.3,
+   553.3,
+   569.4,
+   594.3
+  ]
+ },
+ "mmjb_t4": {
+  "pdf": "mmjailbench",
+  "page": 7,
+  "rect": [
+   43.5,
+   250.6,
+   307.0,
+   291.4
+  ]
+ },
+ "mmjb_f4": {
+  "pdf": "mmjailbench",
+  "page": 7,
+  "rect": [
+   306.6,
+   48.8,
+   569.8,
+   186.9
+  ]
+ },
+ "mmjb_f5": {
+  "pdf": "mmjailbench",
+  "page": 8,
+  "rect": [
+   43.1,
+   48.8,
+   307.0,
+   194.9
+  ]
+ },
+ "cmrm_f1": {
+  "pdf": "cmrm",
+  "page": 3,
+  "rect": [
+   30,
+   65.6,
+   565.3,
+   407.7
+  ]
+ },
+ "jb_f1": {
+  "pdf": "jailbound",
+  "page": 2,
+  "rect": [
+   30,
+   69.0,
+   582.0,
+   270.6
+  ]
+ },
+ "jb_f7": {
+  "pdf": "jailbound",
+  "page": 15,
+  "rect": [
+   30,
+   453.9,
+   582.0,
+   710.6
+  ]
+ },
+ "sr_f1": {
+  "pdf": "safetyreminder_aaai",
+  "page": 1,
+  "rect": [
+   311.5,
+   214.9,
+   566.0,
+   437.0
+  ]
+ },
+ "sr_f2": {
+  "pdf": "safetyreminder_aaai",
+  "page": 2,
+  "rect": [
+   46.0,
+   49.6,
+   300.7,
+   215.9
+  ]
+ },
+ "adpo_t1": {
+  "pdf": "adpo",
+  "page": 7,
+  "rect": [
+   30,
+   376.9,
+   565.3,
+   757.9
+  ]
+ },
+ "safevlm_t3": {
+  "pdf": "safevlm",
+  "page": 9,
+  "rect": [
+   30,
+   68.3,
+   582.0,
+   522.2
+  ]
+ },
+ "safevlm_t4": {
+  "pdf": "safevlm",
+  "page": 9,
+  "rect": [
+   30,
+   171.3,
+   582.0,
+   522.2
+  ]
+ }
+}
