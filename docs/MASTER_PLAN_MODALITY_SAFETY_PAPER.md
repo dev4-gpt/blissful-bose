@@ -1,7 +1,7 @@
 # Master Plan: From Pilot Results to a First Paper
 
 **Date:** 2026-10-14 · Author: Aryaman Singh Dev · Advisor: Prof. Thao Minh Le (PSU)
-**Inputs:** `bundle (1)/` (full run), `bundle/` (smoke run), three agent reports (literature, audit, venues), `PLAN_MODALITY_SAFETY_TRADEOFF.md`, `PAPER_ROADMAP_MODALITY_SAFETY.md`.
+**Inputs:** `v1_full_n30/` (full run), `v1_smoke_n5/` (smoke run), three agent reports (literature, audit, venues), `PLAN_MODALITY_SAFETY_TRADEOFF.md`, `PAPER_ROADMAP_MODALITY_SAFETY.md`.
 **Rule for this document:** everything is labelled **verified** (I checked it), **agent-reported** (a subagent opened the source; I have not), or **unverified**.
 
 ## 1. What we have

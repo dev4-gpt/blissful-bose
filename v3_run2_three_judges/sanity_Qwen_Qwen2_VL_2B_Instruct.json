@@ -1,0 +1,13 @@
+{
+ "text_template": "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n<REQUEST><|im_end|>\n<|im_start|>assistant\n",
+ "image_template": "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n<|vision_start|><|image_pad|><|vision_end|><REQUEST><|im_end|>\n<|im_start|>assistant\n",
+ "batch_vs_single_identical": 0.9375,
+ "prompt_tokens_with_image": [
+  394,
+  297,
+  297,
+  297,
+  394
+ ],
+ "max_new_tokens": 256
+}

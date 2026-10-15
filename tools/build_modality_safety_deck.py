@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the pilot-study deck: text vs vision safety coupling in open VLMs.
 
-All numbers below come from bundle (1)/results.json (v1 judge) and from the raw-response audit of
+All numbers below come from v1_full_n30/results.json (v1 judge) and from the raw-response audit of
 2026-10-14. v2 numbers are NOT included; slide 11 only lists what v2 changes.
 Usage: python3 tools/build_modality_safety_deck.py
 """
@@ -15,7 +15,7 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.util import Inches, Pt
 
 ROOT = Path(__file__).resolve().parents[1]
-BUNDLE = ROOT / "bundle (1)"
+BUNDLE = ROOT / "v1_full_n30"
 OUT = ROOT / "presentation" / "Modality_Safety_Pilot_Deck.pptx"
 
 INK, SLATE, AMBER, TEAL, RED = "0F1B2D", "24364F", "F2A33A", "2A9D8F", "D1495B"
