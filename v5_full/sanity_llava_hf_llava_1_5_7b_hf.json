@@ -1,0 +1,8 @@
+{
+ "batch_vs_single_identical": 0.875,
+ "prompt_tokens_with_image": [
+  591,
+  591,
+  591
+ ]
+}

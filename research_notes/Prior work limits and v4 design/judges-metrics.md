@@ -1,0 +1,53 @@
+# Evaluation validity: judges, guards, over-refusal, statistics
+
+Status key: VERIFIED = read on arXiv abstract page or HF model card this session (abstract-level only for papers; full texts not read). SNIPPET = from search-result text only. UNVERIFIED = from memory or unchecked.
+
+## Source table
+
+| Source | ID / URL | What it gives us | Limitation for us | Status |
+|---|---|---|---|---|
+| StrongREJECT | arXiv 2402.10260 | Argues existing jailbreak evaluators overstate success vs human judgment; scores usefulness of the harmful content, not just non-refusal. | Abstract only read. Targets jailbreak success on text LLMs; no VLM or typographic-image validation. | VERIFIED (abstract) |
+| SORRY-Bench | 2406.14598 (ICLR 2025) | 44-topic taxonomy, 440 unsafe prompts, 20 linguistic mutations, 7k+ human annotations; fine-tuned 7B judges reach GPT-4-class agreement. | Text only. Judge validated on its own distribution, not on small-VLM replies. | VERIFIED (abstract) |
+| HarmBench | 2402.04249 | Standard harmfulness classifier for completions, 18 attacks x 33 targets. | Classifier details and human validation not seen; the abstract page did not cover them. | VERIFIED (abstract); classifier details UNVERIFIED |
+| Keyword matching bias | no single paper | One search-surfaced validation: keyword rule 77.5% accuracy, kappa 0.54, refusal recall 56.4%, precision 93%; GPT-4o judge kappa 0.88. Other papers find string match close to human on XSTest/OKTest. False positives on apologetic or sympathetic openers (sudoLLM 2505.14607). | Figures come from one paper's 200-response sample, not traced to the primary source; agreement is dataset dependent. | SNIPPET |
+| Coin Flip for Safety | 2603.06594 | 6,642 human labels; judge accuracy often falls near chance when victim-model style, attack-induced output distortion and ambiguity interact; releases ReliableBench and JudgeStressTest. | Abstract only; "often" not "always"; judges and attack types tested not seen; preprint. | VERIFIED (abstract) |
+| Know Thy Judge | 2503.04474 (ICLR'25 workshop) | Output-style changes shift judge false-negative rate by up to 0.24; adversarial text can make some judges call all harmful outputs safe. | Workshop paper; abstract only. | VERIFIED (abstract) |
+| LLM-judge bias surveys | 2306.05685, 2411.15594, 2412.05579, 2410.02736 | Position, verbosity, self-preference biases documented for pairwise/score judging. | These concern pairwise quality judging; I found no source on "always-yes" bias in small safety judges, so our 84-90% REFUSE finding is our own evidence. | SNIPPET |
+| Qwen3Guard-Gen-4B card | huggingface.co/Qwen/Qwen3Guard-Gen-4B | Response mode outputs `Safety: Safe/Unsafe/Controversial`, `Categories: ...`, `Refusal: Yes/No`. Apache-2.0, text only, 119 languages. | Card does not define "Refusal"; no limitations section; sample code has name/variable inconsistencies. | VERIFIED |
+| Qwen3Guard report | 2510.14276 | Refusal is an extra output line; labels from majority vote of annotator models; refusal F1 on XSTest/WildGuardTest 94.6 / 90.2 (4B). Controversial built from disagreement between models; headline numbers take the better of strict/loose per benchmark. Limitations: adversarial degradation, bias, regional nuance. | Refusal not discussed in its limitations. Headline numbers are best-mode, so optimistic. Not validated on VLM-generated text about images. | VERIFIED (partial read, first 100k of 119k chars) |
+| WildGuard | 2406.18495; HF allenai/wildguard | 7B Mistral; three outputs: harmful request, response refusal, harmful response. Up to 26.4% better refusal detection than open baselines. Card: "will sometimes make incorrect judgments"; used as XSTest refusal evaluator. | English only; test set own (WildGuardTest, 5K); abstract does not state the metric; gated access. | VERIFIED |
+| Llama Guard 3 / Vision / 4 | Meta model cards | Prompt+response safety classifiers; Vision variant takes images. | Not fetched; no refusal head (as I recall). | UNVERIFIED |
+| XSTest | 2308.01263 | 250 safe + 200 unsafe prompts, 10 prompt types. | Text only; 250 items; refusal-scoring method not on abstract page. | VERIFIED (abstract) |
+| OR-Bench | 2405.20947 | ~80k over-refusal prompts, 1k hard subset, 600 toxic controls, 32 LLMs. | Text only; judging method not seen. | VERIFIED (abstract) |
+| MOSSBench | 2406.17806 | 300 benign image-text queries, 20 MLLMs, refusal up to 76%; three stimulus types. | Small; preliminary by its own words; "safer models more oversensitive" is correlational. | VERIFIED (abstract) |
+| DUAL-Bench | 2510.10846 | 18 VLMs, 12 hazard categories, semantics-preserving visual edits; metric is safe-completion rate (best 12.9%, Qwen avg 3.9%). | Metric differs from refusal rate; evaluation procedure not seen. | VERIFIED (abstract) |
+| Few-cluster inference | Cameron, Gelbach, Miller (NBER t0344); Webb QED WP 1315 | Cluster bootstrap-t helps at 5-30 clusters; Webb finds bootstrap procedures poor below about 11 clusters; wild bootstrap p-values are discrete with very few clusters. | Regression-with-treated-clusters setting, not our design; secondary readings only. | SNIPPET |
+
+## Answer 1: most defensible minimal judge protocol
+
+1. Primary refusal label: Qwen3Guard-Gen `Refusal` and WildGuard `response refusal`, reported side by side, never merged. Keyword rule is a disclosed secondary baseline (precedent: papers use it as a check against prior protocols).
+2. Primary harmfulness label: Qwen3Guard `Safety` and WildGuard `harmful response`. State the Controversial handling up front (report strict and loose both; do not pick the better one per condition, which is what the Qwen3Guard headline does).
+3. Judge inputs: always pass the request text as the guard sees it. For typographic-image conditions the guard has no image, so pass the harmful instruction text as the user prompt; state this. The guards are text-only, so harmfulness is judged on reply text alone.
+4. Drop the LLM-rubric judges as measurements; report them only as a documented negative result (84-90% REFUSE in every condition, gate equals keyword). Cite Coin Flip and Know Thy Judge as the reason to treat any judge as unvalidated on our reply distribution.
+5. Validity evidence: the 200-row blinded human audit gives per-labeller precision/recall/kappa against the human, stratified by model and condition (judge errors are known to vary with victim-model style per 2603.06594). Report confusion matrices per condition, not one pooled number.
+6. Report effects as paired differences between conditions on the same 304 items, with each labeller's result shown; conclusion counts only if sign agrees across labellers.
+
+Limitations to state: guards are text-only and trained on text; neither validated on small-VLM replies; Qwen3Guard "Refusal" undefined on the card; labeller error may differ between conditions (differential misclassification can fake a condition effect); 8 scenario clusters; single human annotator; refusal and harm are distinct constructs (a reply may be neither refusal nor harmful, e.g. a benign description or garbage), so report a refusal / harmful / neither breakdown, and note low-capability VLMs produce incomprehensible replies that StrongREJECT-style reasoning says should not count as "harmful compliance".
+
+## Answer 2: standard vs unusual checks
+
+Standard: guard-classifier labelling with a human-validated subset; keyword rule as baseline; reporting refusal and harm separately (StrongREJECT, SORRY-Bench lineage); XSTest safe prompts for over-refusal; paired comparison across conditions; exact McNemar or sign test for paired binary outcomes; Wilson/exact intervals on proportions.
+
+Less standard or unusual: a typed-image version of XSTest (MOSSBench and DUAL-Bench use natively multimodal items; our transcription of text into an image is a new, defensible control, but it is not a validated benchmark, so call it a matched-content probe); using two guards as cross-checks instead of one GPT-4-class judge; cluster bootstrap on 8 clusters (see below); intra-rater retest as the only reliability evidence; steering/mechanism claims resting on a binary label.
+
+Statistics note: with 8 clusters a percentile cluster bootstrap is known to under-cover (Webb: poor below about 11 clusters; SNIPPET-level evidence). Prefer (a) the item-level paired test (exact McNemar on 304 items) as the primary test, with the scenario effect as a sensitivity analysis; (b) a scenario-level t-interval (df = 7) on per-scenario paired differences, or an exact sign/Wilcoxon test over 8 scenarios (minimum two-sided p is 2/256 = 0.0078, fine); (c) report the per-scenario differences in a forest plot so readers see heterogeneity. A mixed-effects logistic model with random scenario intercept is acceptable as a robustness check but variance estimates from 8 groups are fragile; say so. Do not present cluster-bootstrap CIs as the headline.
+
+## Answer 3: reviewer attacks on the single-labeller human gate, cheapest fixes
+
+Attacks: (i) one annotator cannot give inter-annotator agreement; intra-rater kappa after one day measures consistency, not validity; (ii) annotator is an author, aware of hypotheses, so bias; (iii) 200 rows give wide CIs (at 90% accuracy, Wilson 95% roughly 85-94%) and, spread over 3+ models x 4 conditions, very few rows per cell; (iv) category definitions may be ad hoc; (v) pass/fail thresholds set after seeing data.
+
+Cheapest fixes, in order of cost: pre-register the rubric and the gate threshold before labelling (cost: one paragraph); blind the labeller to model, condition and guard labels (already planned) and shuffle; stratify the 200 rows so each model x condition cell has a floor, oversampling disagreement between guards and keyword; add a second annotator on a 50-row overlap (a labmate or an LLM is not a substitute, but a person for 50 rows is cheap) and report Cohen's kappa with CI; report intra-rater kappa and percent agreement with CIs (not kappa alone, which is prevalence sensitive; add Gwet AC1 or PABAK); state the human as ground truth with its own uncertainty. If no second person exists, say the human label is "single-annotator reference" and weaken claims to "agreement with an annotator", not "accuracy".
+
+## Sources
+
+arXiv: 2402.10260, 2406.14598, 2402.04249, 2603.06594, 2503.04474, 2306.05685, 2411.15594, 2412.05579, 2410.02736, 2406.18495, 2510.14276, 2308.01263, 2405.20947, 2406.17806, 2510.10846, 2505.14607. HF: Qwen/Qwen3Guard-Gen-4B, allenai/wildguard. Statistics: NBER t0344 (Cameron, Gelbach, Miller); Webb, Queen's QED WP 1315. Keyword-recall figures: search result summary only; trace to primary before citing.

@@ -13,6 +13,11 @@ wandb/
 
 # Raw model responses and judgments can contain harmful text; never commit them.
 data/eval/
+# Hand-labelling files and raw generations hold model replies to harmful requests (this repo is public).
+audit_*.csv
+audit_*.md
+gen_*.jsonl
+*PRIVATE*
 
 # Local agent databases and session caches
 .claude-flow/
