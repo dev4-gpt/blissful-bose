@@ -6,6 +6,9 @@ Last updated 2026-10-16 (v6 notebook built). This lists every file that belongs 
 
 | # | File | What it is | Status |
 |---|---|---|---|
+| 00 | `docs/HANDOFF_END_TO_END.md` | **Start here for a new agent or collaborator**: goal, files, how to run/regenerate, results, rules, next steps | current (2026-10-18) |
+| 0b | `docs/NOVELTY_AUDIT_AND_PLAN.md` | **Verified prior-art check** (MMJailBench etc.), ranked novel ideas, what to add so reviewers cannot stop it | current (2026-10-18); abstract-level reads, search was shallow |
+| 0 | `docs/STATUS_AND_PAPER_PLAN.md` | **Cross-version analysis v1 to v6**: what is stable, see-saw verdict, publishability and a dated plan | current (2026-10-18) |
 | 1 | `docs/V5_RESULTS_AND_NEXT_STEPS.md` | Full results of the latest run (3 models, 16 conditions), what is valid, what is broken, hypothesis scorecard | current |
 | 2 | `docs/PRIOR_WORK_AND_V5_PLAN.md` | Literature position (MMJailBench is the closest paper), reviewer attacks and answers, OpenResearch decision, path to submission | current (second-hand citations: verify) |
 | 3 | `research_notes/Project critique and v6 design/` | Red-team review of the whole project and a survey of other approaches (written 2026-10-16) | see folder |
@@ -25,7 +28,7 @@ Last updated 2026-10-16 (v6 notebook built). This lists every file that belongs 
 | `notebooks/vlm_modality_tradeoff_v3.ipynb` | Decomposition G = P + Cmp + R, read-back, judge ensemble | yes (`v3_final_four_judges/`) |
 | `notebooks/vlm_modality_tradeoff_v4.ipynb` | Factorial: wrapper x content x modality, LLaVA, harm, XSTest | smoke only (superseded by v5) |
 | `notebooks/vlm_modality_tradeoff_v5.ipynb` | v4 plus noun-phrase, bare phrase, font-size, interaction, Holm, audit files, failure isolation | **full run done** (`v5_full/`) |
-| `notebooks/vlm_modality_tradeoff_v6.ipynb` | Stimulus-aware 3-way labelling (re-labels v5 replies), wrapper grid W0/W1/W2, presence controls, true-size legibility, FigStep replication, noise floor, H21-H27 (Amendment 4), 360-row audit | **built, CPU stub-tested; not yet run on Colab** (SMOKE=True first) |
+| `notebooks/vlm_modality_tradeoff_v6.ipynb` | Stimulus-aware 3-way labelling (re-labels v5 replies), wrapper grid W0/W1/W2, presence controls, true-size legibility, FigStep replication, noise floor, H21-H27 (Amendment 4), 360-row audit | **full run done** (`v6_full/`, exploratory); smoke in `v6_smoke_n16/` |
 | `notebooks/continual_safety_vlm.ipynb` | Separate earlier project | not part of this one |
 
 ## 3. Result folders (aggregates only; raw replies are never committed)
@@ -36,6 +39,7 @@ Last updated 2026-10-16 (v6 notebook built). This lists every file that belongs 
 | `v2_run/` | v2 run, **results not read yet** (raw `gen_*` files are git-ignored) |
 | `v3_run1_judges_failed/`, `v3_run2_three_judges/`, `v3_final_four_judges/` | v3 passes; `v3_final_four_judges/` is the one to use (+ `offline_analysis.json`) |
 | `v4_smoke_n16/`, `v5_smoke_n16/` | 16-item pipeline tests: **numbers are noise** |
+| `v6_smoke_n16/`, `v6_full/` | v6 aggregates (`results_v6.json`, `v6_contrasts.csv`, figure). `v6_full` is the full run, exploratory until the human audit; the 360-row audit is on Drive (`vlm_tradeoff_out_v6/`) |
 | `v5_full/` | The full v5 run. `results_v5.json`, `v5_contrasts.csv`, `fig_v5_contrasts.png`, label files. The four `audit_v5_*` files in it are stale smoke leftovers (git-ignored): the real 240-row audit is on Drive (`vlm_tradeoff_out_v5/`) |
 
 ## 4. Code and tools

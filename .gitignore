@@ -25,3 +25,5 @@ gen_*.jsonl
 ruvector.db
 ruvector.db-shm
 ruvector.db-wal
+
+audit_work/
