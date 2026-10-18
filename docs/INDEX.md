@@ -6,6 +6,7 @@ Last updated 2026-10-16 (v6 notebook built). This lists every file that belongs 
 
 | # | File | What it is | Status |
 |---|---|---|---|
+| 000 | `AGENTS.md` (repo root) | **Operating brief for an AI agent (Codex)**: mission, rules, repo map, task queue T1 to T8 with acceptance criteria | current (2026-10-18) |
 | 00 | `docs/HANDOFF_END_TO_END.md` | **Start here for a new agent or collaborator**: goal, files, how to run/regenerate, results, rules, next steps | current (2026-10-18) |
 | 0b | `docs/NOVELTY_AUDIT_AND_PLAN.md` | **Verified prior-art check** (MMJailBench etc.), ranked novel ideas, what to add so reviewers cannot stop it | current (2026-10-18); abstract-level reads, search was shallow |
 | 0 | `docs/STATUS_AND_PAPER_PLAN.md` | **Cross-version analysis v1 to v6**: what is stable, see-saw verdict, publishability and a dated plan | current (2026-10-18) |
