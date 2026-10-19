@@ -1,5 +1,7 @@
 # End-to-end handoff: the VLM refusal-gap project (2026-10-18)
 
+**Later October 18 review supersedes the positioning and schedule below:** read `docs/STATUS_AND_PAPER_PLAN.md` and `docs/NOVELTY_AUDIT_AND_PLAN.md` first. FigStep already has its Q2-prime text control (Section 6.4); MMJailBench already has mismatch-conditioned ASR. Cross-version judge agreement is not uniform. Amendment 5 is approved and v7 benign compatibility testing is underway, with no v7 scientific result yet. The local audit still has zero human labels. ARR lists January 2027 without a verified exact day. Use the current review's generated tables and scope limits.
+
 Read this first. It explains the goal, what exists in the repo and on Google Drive, how to run and regenerate everything, what the results are, what is still open, and the rules to follow. Companion docs: `docs/STATUS_AND_PAPER_PLAN.md` (cross-version results and the venue plan), `docs/NOVELTY_AUDIT_AND_PLAN.md` (verified prior art and ranked ideas), `docs/ANALYSIS_PLAN_MODALITY_SAFETY.md` (the pre-specification), `docs/INDEX.md` (file index).
 
 ## 1. Goal and who is doing it
