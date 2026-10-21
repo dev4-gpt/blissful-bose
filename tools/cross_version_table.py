@@ -63,7 +63,18 @@ def table(headers, records):
                       for r in records])
 
 
-def blocks(data):
+def pilot_block(summary):
+    if summary['status'] != 'exploratory_guard_labelled_descriptive_pilot' or summary['historical_pooling_permitted']:
+        raise ValueError('Unexpected pilot evidence status')
+    def counts(x, field):
+        n = x[field+'_valid_n']
+        return f"{x[field+'_positive']}/{n}" if n else 'unavailable'
+    return table(['Judge', 'Condition', 'Refusal / valid', 'Unsafe / valid', 'NC / valid'],
+        [[x['judge'], x['cond']] + [counts(x, f) for f in ('refusal', 'unsafe', 'nc')]
+         for x in summary['rates']])
+
+
+def blocks(data, pilot=None):
     r = rows(data)
     cross = table(['Version', 'Model', 'Judge', 'n', 'A %', 'B %', 'C %', 'D %', 'E %', 'B−C pp'],
                   [[x['version'], x['model'], x['judge'], x['n']] +
@@ -91,8 +102,11 @@ def blocks(data):
             # Deliberately select numeric rates; the source also contains private sample text.
             if key.endswith('|0.0') or key.endswith('|0.5'):
                 steering.append([NAMES.get(model, model), key, value['n'], percent(value['refusal'])])
-    return dict(current=current, cross=cross, figstep=figstep, coupling=coupling,
-                steering=table(['Model', 'Arm and strength', 'n', 'Refusal %'], steering))
+    rendered = dict(current=current, cross=cross, figstep=figstep, coupling=coupling,
+                    steering=table(['Model', 'Arm and strength', 'n', 'Refusal %'], steering))
+    if pilot is not None:
+        rendered['pilot'] = pilot_block(pilot)
+    return rendered
 
 
 def figure(data, path):
@@ -134,9 +148,11 @@ def main():
     parser.add_argument('--check-doc', type=Path)
     parser.add_argument('--write-doc', type=Path)
     parser.add_argument('--figure', type=Path)
+    parser.add_argument('--pilot-summary', type=Path, default=ROOT/'v7_development_core8/pilot_summary.json')
     args = parser.parse_args()
     data = load()
-    rendered = blocks(data)
+    pilot = json.loads(args.pilot_summary.read_text()) if args.pilot_summary.exists() else None
+    rendered = blocks(data, pilot)
     if args.write_doc:
         text = args.write_doc.read_text()
         for name, block in rendered.items():

@@ -17,6 +17,18 @@ from vlm7_explanations import AFTER, run_readout7  # noqa: E402
 from vlm_audit_estimation import stratified_difference, synthetic_demo  # noqa: E402
 
 
+class SourceIdentityTests(unittest.TestCase):
+    def test_mirror_identity_uses_verified_author_fields(self):
+        meta = {'Question': 'original wording', 'Changed Question': 'neutral test question',
+                'Rephrased Question': 'other wrapper', 'Rephrased Question(SD)': 'neutral image wrapper'}
+        self.assertTrue(core.mm_identity7(meta, 'neutral test question', 'neutral image wrapper'))
+        self.assertFalse(core.mm_identity7(meta, 'original wording', 'other wrapper'))
+        self.assertFalse(core.mm_identity7(meta, 'wrong question', 'neutral image wrapper'))
+        self.assertFalse(core.mm_identity7(meta, 'neutral test question', 'wrong wrapper'))
+        self.assertFalse(core.mm_identity7({}, '', ''))
+        self.assertFalse(core.mm_identity7(None, '', ''))
+
+
 class AuditEstimationTests(unittest.TestCase):
     def test_companion_notebook_executes_only_synthetic_cpu_example(self):
         nb = json.loads((ROOT/'notebooks/vlm_methodology_review.ipynb').read_text())
@@ -160,8 +172,9 @@ class CoreTests(unittest.TestCase):
         stream = io.BytesIO()
         image.save(stream,format='PNG')
         raw = stream.getvalue()
-        source = {str(i):{'Question':'Benign question '+str(i),'Key Phrase':'Benign fixture instruction',
-            'Rephrased Question':'The image shows a phrase.'} for i in range(3)}
+        source = {str(i):{'Question':'Unused original '+str(i),'Changed Question':'Benign question '+str(i),
+            'Key Phrase':'Benign fixture instruction','Rephrased Question':'Unused wrapper',
+            'Rephrased Question(SD)':'The image shows a phrase.'} for i in range(3)}
         paths = [f'data/processed_questions/{(9 if s=="Privacy_Violence" else j):02d}-{s}.json'
                  for j,s in enumerate(core.SCENARIOS7,1)]
         requested=[]

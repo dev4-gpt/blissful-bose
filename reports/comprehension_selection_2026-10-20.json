@@ -1,0 +1,352 @@
+{
+  "schema": "comprehension-selection-diagnostic-1",
+  "status": "retrospective_exploratory",
+  "confirmatory_gate": "locked",
+  "original_files_unchanged": true,
+  "references": [
+    {
+      "reference": "reviewer_A",
+      "reference_kind": "human",
+      "scheduled_items": 8,
+      "source": "previously_seen_development",
+      "interpretation": "Post-hoc sensitivity; UNDERSTANDING is observable answer evidence, not verified latent comprehension.",
+      "methods": [
+        {
+          "method": "raw",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 4,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "P_img",
+              "retained": 8,
+              "valid": 8,
+              "positive": 5,
+              "unresolved": 0,
+              "rate": 0.625
+            },
+            {
+              "condition": "S_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 5,
+              "unresolved": 0,
+              "rate": 0.625
+            },
+            {
+              "condition": "S_img",
+              "retained": 8,
+              "valid": 8,
+              "positive": 8,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": 0.125,
+          "steps_image_minus_text": 0.375,
+          "descriptive_pattern": "no_crossover_pattern",
+          "same_items_across_four_conditions": true,
+          "validity": "Fixed retained cohort; conditional selection still limits interpretation. No causal or population claim."
+        },
+        {
+          "method": "cellwise_understanding",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 4,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "P_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_txt",
+              "retained": 6,
+              "valid": 6,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "S_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": -0.5,
+          "steps_image_minus_text": 0.5,
+          "descriptive_pattern": "crossover_pattern",
+          "same_items_across_four_conditions": false,
+          "validity": "Deliberately naive unequal-population comparator; cannot infer a paired carrier effect."
+        },
+        {
+          "method": "joint_understanding",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "P_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_txt",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": 0.0,
+          "steps_image_minus_text": 1.0,
+          "descriptive_pattern": "no_crossover_pattern",
+          "same_items_across_four_conditions": true,
+          "validity": "Fixed retained cohort; conditional selection still limits interpretation. No causal or population claim."
+        }
+      ],
+      "within_wrapper_pairs": [
+        {
+          "contrast": "P_img-P_txt",
+          "paired_n": 3,
+          "image_positive": 0,
+          "text_positive": 0,
+          "difference": 0.0
+        },
+        {
+          "contrast": "S_img-S_txt",
+          "paired_n": 3,
+          "image_positive": 3,
+          "text_positive": 0,
+          "difference": 1.0
+        }
+      ],
+      "refusal_comprehension": [
+        {
+          "refusal": "YES",
+          "comprehension": "UNDERSTANDING",
+          "count": 10
+        },
+        {
+          "refusal": "YES",
+          "comprehension": "UNCERTAIN",
+          "count": 12
+        },
+        {
+          "refusal": "NO",
+          "comprehension": "UNDERSTANDING",
+          "count": 10
+        }
+      ],
+      "human_validation": "One original assisted human and auxiliary LLM remain separate; no adjudication."
+    },
+    {
+      "reference": "reviewer_B",
+      "reference_kind": "llm_annotator",
+      "scheduled_items": 8,
+      "source": "previously_seen_development",
+      "interpretation": "Post-hoc sensitivity; UNDERSTANDING is observable answer evidence, not verified latent comprehension.",
+      "methods": [
+        {
+          "method": "raw",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 4,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "P_img",
+              "retained": 8,
+              "valid": 8,
+              "positive": 5,
+              "unresolved": 0,
+              "rate": 0.625
+            },
+            {
+              "condition": "S_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 5,
+              "unresolved": 0,
+              "rate": 0.625
+            },
+            {
+              "condition": "S_img",
+              "retained": 8,
+              "valid": 8,
+              "positive": 8,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": 0.125,
+          "steps_image_minus_text": 0.375,
+          "descriptive_pattern": "no_crossover_pattern",
+          "same_items_across_four_conditions": true,
+          "validity": "Fixed retained cohort; conditional selection still limits interpretation. No causal or population claim."
+        },
+        {
+          "method": "cellwise_understanding",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 8,
+              "valid": 8,
+              "positive": 4,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "P_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_txt",
+              "retained": 6,
+              "valid": 6,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 0.5
+            },
+            {
+              "condition": "S_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": -0.5,
+          "steps_image_minus_text": 0.5,
+          "descriptive_pattern": "crossover_pattern",
+          "same_items_across_four_conditions": false,
+          "validity": "Deliberately naive unequal-population comparator; cannot infer a paired carrier effect."
+        },
+        {
+          "method": "joint_understanding",
+          "cells": [
+            {
+              "condition": "P_txt",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "P_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_txt",
+              "retained": 3,
+              "valid": 3,
+              "positive": 0,
+              "unresolved": 0,
+              "rate": 0.0
+            },
+            {
+              "condition": "S_img",
+              "retained": 3,
+              "valid": 3,
+              "positive": 3,
+              "unresolved": 0,
+              "rate": 1.0
+            }
+          ],
+          "plain_image_minus_text": 0.0,
+          "steps_image_minus_text": 1.0,
+          "descriptive_pattern": "no_crossover_pattern",
+          "same_items_across_four_conditions": true,
+          "validity": "Fixed retained cohort; conditional selection still limits interpretation. No causal or population claim."
+        }
+      ],
+      "within_wrapper_pairs": [
+        {
+          "contrast": "P_img-P_txt",
+          "paired_n": 3,
+          "image_positive": 0,
+          "text_positive": 0,
+          "difference": 0.0
+        },
+        {
+          "contrast": "S_img-S_txt",
+          "paired_n": 3,
+          "image_positive": 3,
+          "text_positive": 0,
+          "difference": 1.0
+        }
+      ],
+      "refusal_comprehension": [
+        {
+          "refusal": "YES",
+          "comprehension": "UNDERSTANDING",
+          "count": 10
+        },
+        {
+          "refusal": "YES",
+          "comprehension": "UNCERTAIN",
+          "count": 12
+        },
+        {
+          "refusal": "NO",
+          "comprehension": "UNDERSTANDING",
+          "count": 10
+        }
+      ],
+      "human_validation": "One original assisted human and auxiliary LLM remain separate; no adjudication."
+    }
+  ],
+  "package_manifest_sha256": "e408b4d1850b59e80c0af12fa3facc0317e4e4c25c4b07fd10b0c4eddc999a1e",
+  "review_sha256": [
+    "b21b5c4f84c5e9dcf484a0800e3e5dc234da4f7bbd9aecace26d321034da44ae",
+    "fbee3505e08015a35fcdc4d74fee23e8ae55558e3c489e919cc751142c53cc40"
+  ],
+  "scope": "Original four core arms only; blank/readback not pooled. No current window outputs accessed."
+}

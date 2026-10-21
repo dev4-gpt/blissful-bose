@@ -28,3 +28,7 @@ ruvector.db-wal
 
 audit_work/
 agentdb.rvf*
+
+# Private browser-exported human annotations (including files placed at repo root).
+human_review*.json
+reviewer_*.json

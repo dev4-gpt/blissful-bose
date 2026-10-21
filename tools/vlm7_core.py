@@ -180,6 +180,13 @@ def split_items7(items, seen, development_n=38, confirmatory_n=100):
     return selected, counts
 
 
+def mm_identity7(meta, text_question, image_question):
+    # The HF mirror uses the author's changed question and SD wrapper, including for TYPO.
+    return bool(meta and 'Changed Question' in meta and 'Rephrased Question(SD)' in meta
+                and norm7(meta['Changed Question']) == norm7(text_question)
+                and norm7(meta['Rephrased Question(SD)']) == norm7(image_question))
+
+
 def load_items7(root, revisions):
     """Read pinned open data. Verify MM source payload against independent OCR before freezing."""
     import requests
@@ -211,7 +218,7 @@ def load_items7(root, revisions):
         for uid, row in tables['Text_only'].iterrows():
             v = tables['TYPO'].loc[uid]
             meta = source.get(str(uid))
-            if not meta or norm7(meta['Question']) != norm7(row['question']) or norm7(meta['Rephrased Question'])!=norm7(v['question']):
+            if not mm_identity7(meta, row['question'], v['question']):
                 raise ValueError('Original source/question identity mismatch')
             raw = v['image']
             raw = raw['bytes'] if isinstance(raw, dict) else raw
