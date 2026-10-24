@@ -1,5 +1,14 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 24 visual-attack pivot:** [VISUAL_ATTACKS_RESEARCH_DOSSIER.md](VISUAL_ATTACKS_RESEARCH_DOSSIER.md)
+contains the new paper register, original classifier-code audit, data readiness matrix, proposed
+evaluation contract and October 28 / December 1 milestones. The generated
+[visual-attack teaching notebook](../notebooks/vlm_visual_attacks_teaching.ipynb) executes CPU toy
+FGSM, PGD and localized patch mechanics with acceptance assertions; it is not a VLM experiment.
+Regenerate using `python3 tools/nb_gen/make_visual_attacks_nb.py --execute`.
+Scientific amendment, model adapters, dataset manifests, GPU runs and full paper/code audits remain pending.
+Earlier work below remains historical and unchanged by this pivot.
+
 Last updated 2026-10-20 (saved Colab reconciliation and completed response-window stage). This lists the files for the "is the typographic refusal gap a wrapper, content, or image effect?" project. Older reading material is listed at the end; unrelated work is excluded.
 
 **One place to read the project end to end:** [vlm_project_companion.ipynb](../notebooks/vlm_project_companion.ipynb) contains the version timeline, source/function map, regenerated historical tables, compatibility failures, both development studies, prior-art limits and source hashes. It is an executed, portable **CPU-only aggregate snapshot**, with no Drive mount, GPU inference or secrets. The maintained written synthesis is [STATUS_AND_PAPER_PLAN.md](STATUS_AND_PAPER_PLAN.md); the notebook is its generated computational companion, not a merged new experiment.
