@@ -1,5 +1,11 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 25 real attack lab:** [vlm_visual_attack_lab.ipynb](../notebooks/vlm_visual_attack_lab.ipynb)
+contains paper-derived objectives, a differentiable Qwen2.5-VL adapter and private paired runner.
+CPU acceptance checks: `python3 tools/nb_gen/e2e/e2e_visual_attacks.py`.
+Generate: `python3 tools/nb_gen/make_visual_suite_nb.py --execute`.
+All methods are adaptations with explicit coverage gaps; GPU is off and Amendment 8 acceptance is pending.
+
 **October 24 visual-attack pivot:** [VISUAL_ATTACKS_RESEARCH_DOSSIER.md](VISUAL_ATTACKS_RESEARCH_DOSSIER.md)
 contains the new paper register, original classifier-code audit, data readiness matrix, proposed
 evaluation contract and October 28 / December 1 milestones. The generated

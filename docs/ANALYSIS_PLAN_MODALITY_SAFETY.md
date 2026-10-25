@@ -257,3 +257,68 @@ Owner requested implementation of “Next notebook: human–LLM measurement revi
 **Analysis decisions:** changed only if human-reviewed prefix/full classifications differ with complete resolved refusal coverage and no residual full-response cap; report precise contrasts and missing-label bounds. Unchanged means limited robustness on these eight items, not equivalence. Missing/ambiguous labels, incomplete generation or residual caps produce unresolved. Report harm/comprehension and paired full-minus-prefix differences independently. Prefix/full observations are dependent; no 64-independent-sample claim or inferential population claim. New human reviews evaluate a frozen rubric on new outputs of seen questions, not independent confirmation. No automatic recalibration/adjudication. No training, paid APIs, new checkpoints, sharing, pushes or reserved outcomes.
 
 **Acceptance tests:** exact source/package/label identity, duplicate/invalid/missing labels, private token-prefix/EOS handling, separate cap/window caches, immutable clocks, partial failure, numeric-only exports, CPU notebook execution without downloads, complete randomized review package and delayed repeat gate. CPU stubs do not certify T4 behavior. Real window findings remain pending.
+
+## 15. Amendment 8 — visual-attack development laboratory (DRAFT, 2026-10-25)
+
+Owner requested a real notebook implementing paper-derived visual attacks and mathematical explanations.
+This authorizes implementation and CPU acceptance checks, not acceptance of this scientific contract,
+a checkpoint download, GPU execution, reserved evaluation or a novel claim. Historical amendments remain unchanged.
+The new notebook is `notebooks/vlm_visual_attack_lab.ipynb`; implementation sources are embedded with hashes.
+
+**Question and candidate endpoints:** on fixed open Qwen2.5-VL-3B, can input-only optimization change
+target continuation likelihood and actual generated behavior within a verified delivered-image budget?
+H39-D: targeted attack lowers teacher-forced target NLL relative to clean on development tasks.
+This is a mechanics diagnostic, not a safety outcome; report per-item signs and failures, no population claim.
+H40-D: selected target behavior occurs more often under attacked versus paired clean images, judged
+against a fixed private rubric. H41-D: static defense changes attack behavior and benign utility, reported
+separately. These endpoints are prospective drafts; all observed development outputs remain exploratory.
+
+**Methods and fidelity:** FGSM/PGD minimize response-only NLL; localized patch uses bounded top-left support;
+corpus NLL shares an image across separate optimization contexts; feature matching uses Adam on Qwen
+merged visual features; prompt matching uses detached teacher distributions over a fixed continuation;
+bimodal adaptation selects among at most eight private text candidates after corpus image optimization;
+injection evaluates a paired prebuilt instruction-bearing image without a gradient attack. Bounded universal patch
+shares contexts; a separate `universal_eot` replacement patch shares independent optimization backgrounds
+and seeded translations/right-angle rotations, with box-only pixels (epsilon=1 within measured area).
+This is a mechanism adaptation, not Brown's original model/distribution/physical reproduction. Original
+CLIP triggers, BAP feedback generator, physical capture, MMJ artifact importer, AdaShield-A and JailGuard
+are not reproduced. Every available configuration is labelled adaptation, with no faithful-reproduction claim.
+
+**Frozen development defaults:** model revision `66285546d2b821cf421d4f5eb2576359d3770cd3`,
+Transformers 4.57.1, FP16/eager attention, one CUDA device, no automatic quantization/offload fallback,
+one image per forward, 224-square canonical RGB canvas created before the perturbation budget,
+greedy generation capped at 256 new tokens; target length <=128 tokens and input <=1024 tokens.
+Raw epsilon 8/255, alpha 2/255, one restart, PGD 10 steps, FGSM one step, patch fraction .04.
+These are bounded development adaptations, not original-paper hyperparameters. Exact source/processor,
+manifest, target, seed, split, method, decoding and defense identities participate in cache keys.
+Save paired text-only and seeded random-noise/patch controls. A defense-aware flag incorporates a fixed
+private prefix into NLL/corpus/behavior optimization and candidate selection; feature/injection modes
+reject that flag because it cannot adapt their objective to a text defense. No general adaptive robustness claim.
+
+**Data gate:** private reviewed manifest with original image SHA256, source permissions/provenance,
+fixed target and actual task rubric; intent/image groups cannot cross optimization/development/evaluation.
+All data paths and optional injection/feature-image hashes are validated before loading the model.
+This first notebook processes <=4 development rows and <=8 optimization rows, never reserved evaluation. Corpus methods
+require distinct optimization rows. No benchmark data is auto-downloaded or selected by output scores.
+
+**Execution gate:** CPU default. Owner must accept this amendment and exact source/manifest/config
+scope hash and separately approve compute before `RUN_GPU=True`. Proposed first stage <=30 wall minutes
+including install/download/load; persist original deadline before those stages, in a new PRIVATE folder
+on mounted college Drive. No new forward/load starts after deadline; an individual call/load may overrun.
+Stop on fatal CUDA/OOM/time limit, preserve partial status, no automatic retry of failed identities.
+Google Drive authorization is owner-handled. No GPU execution has occurred under this draft.
+
+**Verification:** reference-processor patch/grid parity and clean-logit parity before each item;
+finite nonzero raw image gradients, constrained integer artifact roundtrip and patch support;
+frozen parameter flags/version/sample fingerprint before/after; exact paired clean/attacked generations.
+Save private raw outputs/tokens/PNG/objective traces, cap hits, timing and allocated/reserved memory.
+NLL optimization is not ASR. Text-only guards cannot establish image comprehension or instruction integrity.
+
+**Reporting:** three distinct tracks: perception, instruction integrity and safety. Human dual review,
+weighted audit and inferential ASR are not implemented in this development runner; no invented labels.
+Report completed/cached/failed/stopped counts and per-item task judgements when independently available.
+For N attempted, H resolved unsafe and M unresolved, show confirmed H/N, missing M/N and
+[H/N,(H+M)/N] bounds; never count missing safe. Do not infer equivalence or generalize from four cases.
+Novelty stays unestablished until prior-art, faithful baselines and a separately accepted held-out design pass.
+
+**Approval record:** implementation requested October 25; amendment acceptance and GPU scope approval pending.
