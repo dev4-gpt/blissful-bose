@@ -7,7 +7,10 @@ import ast
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
+import textwrap
 
 import nbformat
 import make_unified_nb as history
@@ -25,7 +28,8 @@ paper-derived visual attack laboratory, and prospective contribution designs.
 Historical tables are saved exploratory outcomes. CPU tests are software checks.
 One separate synthetic PGD feasibility case has completed on pretrained Qwen2.5-VL-3B/T4;
 its saved aggregate record is `visual_t4_profile_20261025/profile_aggregate_status.json`.
-The broader visual attack panel and safety benchmarks remain unvalidated.
+The two-model synthetic development panel has also completed; it is integration evidence.
+External integrity and broader safety benchmarks remain separate, with human validation pending.
 Novelty remains an open question; this workbook cannot manufacture novel results.
 
 ## Reading and execution route
@@ -168,12 +172,41 @@ def build(output=OUTPUT, execute=False):
                     cell['outputs'] = []
                 cells.append(cell)
     cells.append(nbformat.v4.new_markdown_cell(CONTRIBUTIONS))
+    cells.append(nbformat.v4.new_markdown_cell('''## Part E — two-model development and external diagnostic workflows
+
+These appendices embed the additional Smol/Idefics3 adapter, common 448-canvas panel,
+directional transfer, private review packet and the frozen external integrity protocol.
+All launch/export switches default off. Historical/CPU display execution never launches
+these processes. Native-system instructions and benchmark scope are preserved.
+Use a reviewed new run identity; completed or changed identities are never overwritten.
+External inference follows preservation of the completed synthetic run. See Amendments 9/10.
+The notebook does not provide independent human labels or a novel contribution automatically.'''))
+    cells.append(nbformat.v4.new_code_cell('RUN_PANEL_GPU = False\nRUN_EXTERNAL_GPU = False\nEXPORT_PANEL_AFTER_FINISH = False\n'))
+    with tempfile.TemporaryDirectory(prefix='vlm_panel_appendices_') as temporary:
+        for external in (False, True):
+            path=Path(temporary)/('external.ipynb' if external else 'panel.ipynb')
+            command=[sys.executable,str(ROOT/'tools/nb_gen/make_visual_panel_nb.py'),'--output',str(path)]
+            if external:command.append('--external')
+            subprocess.run(command,check=True,capture_output=True)
+            appendix=nbformat.read(path,as_version=4)
+            code_index=0
+            for cell in appendix.cells:
+                if cell.cell_type=='code':
+                    code_index+=1
+                    if code_index>1:
+                        switch='RUN_EXTERNAL_GPU' if external else 'RUN_PANEL_GPU'
+                        if not external and code_index==4:switch+=' and EXPORT_PANEL_AFTER_FINISH'
+                        cell.source='if '+switch+':\n'+textwrap.indent(cell.source,'    ')+'\nelse:\n    print("Optional stage disabled; no new model calls.")\n'
+                        ast.parse(cell.source)
+                cells.append(cell)
     for index, cell in enumerate(cells):
         cell['id'] = f'unified-{index:03d}'
     source_paths = ['tools/nb_gen/make_research_unified_nb.py',
                     'tools/nb_gen/make_unified_nb.py',
                     'tools/nb_gen/make_visual_attacks_nb.py',
-                    'tools/nb_gen/make_visual_suite_nb.py']
+                    'tools/nb_gen/make_visual_suite_nb.py',
+                    'tools/nb_gen/make_visual_panel_nb.py',
+                    'tools/vlm_visual_panel.py','tools/vlm_visual_smol_adapter.py']
     hashes = {p: hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in source_paths}
     notebook = nbformat.v4.new_notebook(cells=cells, metadata=dict(
         kernelspec=dict(display_name='Python 3', language='python', name='python3'),

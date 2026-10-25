@@ -1,6 +1,6 @@
 """Differentiable Qwen2.5-VL adapter, batch one, native Transformers, frozen weights.
 
-The attack canvas is an explicit 224x224 RGB image. Source-image resizing occurs
+The attack canvas is explicit RGB: 224x224 by default, 448x448 in the broader panel. Resizing occurs
 BEFORE defining its perturbation budget; original-resolution robustness is not claimed.
 Patch layout follows the Apache-2.0 Transformers Qwen2VLImageProcessor implementation:
 https://github.com/huggingface/transformers/blob/v4.57.1/src/transformers/models/qwen2_vl/image_processing_qwen2_vl.py
@@ -48,8 +48,8 @@ class QwenAttackAdapter:
             raise RuntimeError('Use reviewed transformers==4.57.1; restart after installing')
         if not torch.cuda.is_available():
             raise RuntimeError('Real VLM branch requires CUDA; CPU checks use injected tiny models')
-        if canvas != 224 or max_new < 1 or max_new > 512:
-            raise ValueError('Reviewed canvas=224; output cap must be 1..512')
+        if canvas not in (224, 448) or max_new < 1 or max_new > 512:
+            raise ValueError('Reviewed canvases=224/448; output cap must be 1..512')
         self.device, self.canvas, self.max_new = torch.device('cuda:0'), canvas, max_new
         self.processor = AutoProcessor.from_pretrained(self.MODEL, revision=self.REVISION,
                 trust_remote_code=False, use_fast=False, min_pixels=canvas**2, max_pixels=canvas**2)
@@ -80,8 +80,13 @@ class QwenAttackAdapter:
         # pixel_values with patchify(image) in _forward to keep raw input gradients.
         dummy = Image.fromarray(np.zeros((self.canvas, self.canvas, 3), dtype=np.uint8))
         content = ([dict(type='image')] if image is not None else []) + [dict(type='text', text=prompt)]
-        messages = [dict(role='user', content=content)]
+        messages = []
+        if getattr(self,'system_prompt',''):
+            messages.append(dict(role='system',content=[dict(type='text',text=self.system_prompt)]))
+        messages.append(dict(role='user',content=content))
         text = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        if getattr(self,'system_prompt','') and self.system_prompt not in text:
+            raise ValueError('Native chat template dropped system instruction')
         data = self.processor(text=[text], images=[dummy] if image is not None else None, return_tensors='pt')
         data = {k: v.to(self.device) for k, v in data.items()}
         data.pop('pixel_values', None)
@@ -151,6 +156,7 @@ class QwenAttackAdapter:
 
     def generate(self, image, prompt):
         inputs, start = self._inputs(image, prompt)
+        previous_peak = torch.cuda.max_memory_allocated()/1e9
         torch.cuda.reset_peak_memory_stats()
         begin = time.monotonic()
         visual = {} if image is None else dict(pixel_values=patchify(image, self.processor.image_processor).half())
@@ -164,7 +170,8 @@ class QwenAttackAdapter:
         return dict(response=self.processor.tokenizer.decode(ids, skip_special_tokens=True),
                     generated_ids=ids.cpu().tolist(), cap_hit=len(ids) >= self.max_new and int(ids[-1]) not in eos,
                     seconds=time.monotonic()-begin, peak_allocated_gb=torch.cuda.max_memory_allocated()/1e9,
-                    peak_reserved_gb=torch.cuda.max_memory_reserved()/1e9)
+                    peak_reserved_gb=torch.cuda.max_memory_reserved()/1e9,
+                    pre_generation_peak_gb=previous_peak)
 
     def frozen_fingerprint(self):
         # Full weight fingerprint is expensive; check frozen flags and mutation version

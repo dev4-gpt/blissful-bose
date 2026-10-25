@@ -237,7 +237,7 @@ def build(output=OUTPUT, execute=False):
     explain('These acceptance tests use analytic objectives and a fake adapter, never a pretrained VLM. '
             'They cover all runner paths, saved bounds, target masking, group leakage, identity, deadlines, '
             'failure caches and numeric-only summaries. These CPU tests alone do not establish T4 fit; '
-            'the dossier separately records the single synthetic pretrained PGD profile.')
+            'the dossier separately records the synthetic pretrained profiles and panel.')
     add('markdown','## 4. Private data contract\n\n'
         'MANIFEST_PATH points to a private JSON list. Required row fields: '
         '`id,image,image_sha256,prompt,target,split,intent_group,image_group,track`. '

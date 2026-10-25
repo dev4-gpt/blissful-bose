@@ -1,5 +1,13 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 25 broader two-model panel:** [visual manuscript](../paper/visual_attack_manuscript.md)
+and [dossier](VISUAL_ATTACKS_RESEARCH_DOSSIER.md) record the completed Qwen/Smol synthetic
+development panel (68 cases; eight directional transfer cases; no case failures).
+`tools/vlm_visual_panel.py` implements the private runner, source-data candidates and review tools;
+`tools/nb_gen/make_visual_panel_nb.py` generates panel/external appendices. CPU integration:
+`python3 tools/nb_gen/e2e/e2e_visual_panel.py`. External diagnostic is prepared, not run;
+Drive preservation awaits the owner Connect click, and independent human labels remain pending.
+
 **October 25 actual T4 profile completed:**
 `visual_t4_profile_20261025/profile_aggregate_status.json` records one synthetic perception
 case on pinned Qwen2.5-VL-3B: three PGD steps, processor/logit parity and saved-pixel bounds
