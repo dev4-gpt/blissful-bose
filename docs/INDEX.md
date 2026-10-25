@@ -1,5 +1,11 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 25 unified research workbook:** [vlm_research_unified.ipynb](../notebooks/vlm_research_unified.ipynb)
+combines sanitized historical evidence, worked CPU mathematics, the real visual attack lab,
+bounded optional T4 execution and prospective contribution designs. Default GPU is off;
+Amendment 8 and exact private scope acceptance remain pending. Rebuild and execute CPU checks:
+`python3 tools/nb_gen/make_research_unified_nb.py --execute`.
+
 **October 25 real attack lab:** [vlm_visual_attack_lab.ipynb](../notebooks/vlm_visual_attack_lab.ipynb)
 contains paper-derived objectives, a differentiable Qwen2.5-VL adapter and private paired runner.
 CPU acceptance checks: `python3 tools/nb_gen/e2e/e2e_visual_attacks.py`.
