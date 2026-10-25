@@ -236,7 +236,8 @@ def build(output=OUTPUT, execute=False):
     add('code','CPU_CHECKS = visual_tests.run_cpu_checks(visual_core, visual_adapter)\nprint(CPU_CHECKS)')
     explain('These acceptance tests use analytic objectives and a fake adapter, never a pretrained VLM. '
             'They cover all runner paths, saved bounds, target masking, group leakage, identity, deadlines, '
-            'failure caches and numeric-only summaries. T4 memory and real model behavior remain untested.')
+            'failure caches and numeric-only summaries. These CPU tests alone do not establish T4 fit; '
+            'the dossier separately records the single synthetic pretrained PGD profile.')
     add('markdown','## 4. Private data contract\n\n'
         'MANIFEST_PATH points to a private JSON list. Required row fields: '
         '`id,image,image_sha256,prompt,target,split,intent_group,image_group,track`. '

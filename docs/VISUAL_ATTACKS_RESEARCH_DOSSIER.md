@@ -7,7 +7,9 @@ paper coverage/equations and CPU acceptance checks. All paper-derived paths are 
 original CLIP triggers, Brown's original distribution/physical evaluation, BAP feedback, physical capture
 and full adaptive-defense reproductions remain pending. Shared replacement EOT patch mechanics are implemented.
 Rebuild with `python3 tools/nb_gen/make_visual_suite_nb.py --execute`.
-The GPU branch is off; Amendment 8 is a draft, not accepted. No VLM attack outcome is available yet.
+The general GPU branch is off; Amendment 8's scientific scope remains draft. A separately
+authorized synthetic PGD/T4 engineering case completed October 25; see the measured-profile
+section below. It is not a safety benchmark or a faithful paper reproduction.
 Offline suite passes nine optimizer-mechanism checks and ten private runner paths. An additional
 Transformers 4.57.1 test with randomly initialized tiny Qwen weights passes reference preprocessing
 and native raw-image gradient checks (`e2e_visual_attacks.py --architecture` in a pinned environment).
@@ -381,3 +383,20 @@ The broad comparison in MMJ-Bench and preprocessing/transfer work are mandatory 
 Milestones are deliverables, not scheduled autonomous execution. No automation was created.
 December 1 means manuscript readiness, not guaranteed acceptance; owner selects venue.
 The next owner review concerns the concrete scientific amendment and measured run scope, not this CPU notebook.
+
+### October 25 measured T4 feasibility — engineering evidence
+
+Source: `visual_t4_profile_20261025/profile_aggregate_status.json`, backed by private
+executed code/artifacts with archive SHA256 recorded there. One generated geometric image,
+pinned Qwen2.5-VL-3B, three PGD steps, raw epsilon 8/255, greedy 32-token cap.
+Actual GPU: Tesla T4. Completed 1 case, failed 0. Target NLL changed from
+12.779708862304688 to 9.617810249328613. Processor maximum error:
+2.384185791015625e-07; clean-logit maximum error: 0.0. Delivered Linf:
+0.0313725471496582. Model load: 109.02714825200019 seconds; case:
+7.260876483000175 seconds; original-clock elapsed: 313.42644715309143 seconds.
+Load peak allocated memory: 7.628770816 GB; maximum generation peak: 7.665143808 GB.
+Backward peak was not separately retained; these are not end-to-end peak measurements.
+Clean, attacked and random-control generations did not exactly match the incorrect color
+target; text-only did. No adversarial success, safety rate, human validation or novelty follows.
+Initial dependency failures remain archived. Isolated execution repaired imports without
+restarting/deleting the runtime or resetting its timer. The broad scientific scope stays draft.

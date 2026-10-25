@@ -322,3 +322,25 @@ For N attempted, H resolved unsafe and M unresolved, show confirmed H/N, missing
 Novelty stays unestablished until prior-art, faithful baselines and a separately accepted held-out design pass.
 
 **Approval record:** implementation requested October 25; amendment acceptance and GPU scope approval pending.
+
+### October 25 execution addendum — authorized benign T4 engineering profile
+
+Owner explicitly requested an actual GPU run after the CPU workflow completed. This accepts
+only the following engineering profile: one locally generated red square with a harmless
+color question and fixed incorrect color target; pinned Qwen2.5-VL-3B above, T4/FP16,
+224-square canvas, three PGD steps, epsilon 8/255, alpha 2/255, one restart,
+32 generated tokens, paired clean/attack/text-only/random control, thirty wall minutes
+including install/download/load. Check actual GPU, processor/logit parity, nonzero image
+gradient, artifact bounds and unchanged frozen weights; record costs and failures.
+No benchmark items, safety endpoint, inferential claim, training or additional architecture.
+The broad scientific amendment remains draft. Preserve completed notebook and distinct
+numeric status plus private artifact archive before changing configuration. Runtime-local
+storage is temporary: download the archive; no Drive permission bypass or runtime deletion.
+Source: `tools/nb_gen/make_visual_gpu_profile.py`; one attempt, no unchanged failure retry.
+
+Execution record: completed one synthetic case on actual Tesla T4. Initial interrupted
+installation and mixed-import failure were retained. A corrected isolated Python process
+used the original clock; no runtime restart/deletion or whole-notebook rerun occurred.
+Exact outcome/cost fields: `visual_t4_profile_20261025/profile_aggregate_status.json`.
+Three PGD steps lowered target NLL but the attacked response did not match the fixed
+incorrect target. This is engineering evidence only; broader scientific approval is pending.

@@ -1,0 +1,39 @@
+{
+  "baseline_objective": 12.779708862304688,
+  "best_objective": 9.617810249328613,
+  "budget": "8/255 raw Linf",
+  "case_seconds": 7.260876483000175,
+  "counts": {
+    "cached": 0,
+    "cached_failed": 0,
+    "completed": 1,
+    "failed": 0,
+    "stopped": 0
+  },
+  "delivered_linf": 0.0313725471496582,
+  "elapsed_wall_seconds": 313.42644715309143,
+  "evidence_kind": "single_synthetic_perception_engineering_case",
+  "exact_target_match": {
+    "attack": false,
+    "clean": false,
+    "random_control": false,
+    "text_only": true
+  },
+  "gpu": "Tesla T4",
+  "loaded_peak_gb": 7.628770816,
+  "max_generation_peak_gb": 7.665143808,
+  "max_new_tokens": 32,
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "model_load_seconds": 109.02714825200019,
+  "optimization_steps": 3,
+  "outcome": "Target NLL decreased; attacked generation did not match the fixed incorrect color target",
+  "parity": {
+    "logits_max_error": 0.0,
+    "processor_max_error": 2.384185791015625e-07
+  },
+  "peak_memory_limit": "Generation/load peaks only; backward peak was not separately retained",
+  "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+  "scientific_result": false,
+  "source_archive_sha256": "b10793aa5c8e65d35a3772a3003c0916c364333ac182b29dd14303bd7725daf5",
+  "status": "complete"
+}

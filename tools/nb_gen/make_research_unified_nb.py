@@ -23,7 +23,9 @@ INTRO = """# Unified VLM research: evidence, mathematics and visual attacks
 This brings together completed historical evidence, executable CPU lessons, the
 paper-derived visual attack laboratory, and prospective contribution designs.
 Historical tables are saved exploratory outcomes. CPU tests are software checks.
-The new visual attack mechanisms have not yet been validated on a pretrained GPU model.
+One separate synthetic PGD feasibility case has completed on pretrained Qwen2.5-VL-3B/T4;
+its saved aggregate record is `visual_t4_profile_20261025/profile_aggregate_status.json`.
+The broader visual attack panel and safety benchmarks remain unvalidated.
 Novelty remains an open question; this workbook cannot manufacture novel results.
 
 ## Reading and execution route

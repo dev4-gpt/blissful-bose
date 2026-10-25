@@ -1,5 +1,12 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 25 actual T4 profile completed:**
+`visual_t4_profile_20261025/profile_aggregate_status.json` records one synthetic perception
+case on pinned Qwen2.5-VL-3B: three PGD steps, processor/logit parity and saved-pixel bounds
+passed; target NLL decreased but the attacked generation did not reach the incorrect target.
+This is engineering evidence, not a safety benchmark. Generator:
+`tools/nb_gen/make_visual_gpu_profile.py` (isolated process; no runtime restart).
+
 **October 25 unified research workbook:** [vlm_research_unified.ipynb](../notebooks/vlm_research_unified.ipynb)
 combines sanitized historical evidence, worked CPU mathematics, the real visual attack lab,
 bounded optional T4 execution and prospective contribution designs. Default GPU is off;
