@@ -1,5 +1,12 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 26 inspected execution report:** [development results and research readiness](VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md)
+provides case-reconciled attack/control outcomes, mathematics, costs, evidence hashes and
+publication-quality gaps. Its later inspected execution has verified college-Drive preservation;
+the earlier October 25 archive below is a separate output identity. Numeric evidence:
+`visual_development_20261026/numeric_summary.json`; validate tables with
+`python3 tools/report_visual_development.py`. Human review and safety evaluation remain pending.
+
 **October 25 broader two-model panel:** [visual manuscript](../paper/visual_attack_manuscript.md)
 and [dossier](VISUAL_ATTACKS_RESEARCH_DOSSIER.md) record the completed Qwen/Smol synthetic
 development panel (68 cases; eight directional transfer cases; no case failures).

@@ -1,5 +1,10 @@
 # Visual attacks on open VLMs: research dossier
 
+**October 26 result assessment:** [development results and research readiness](VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md)
+records the later inspected execution, case-reconciled behavioral outcomes and verified
+college-Drive preservation. Its output hashes differ from the earlier panel below;
+do not pool the two executions. Independent human validation and safety evaluation remain pending.
+
 Prepared October 24, 2026. Advisor milestone: October 28; manuscript target: December 1.
 **October 25 implementation update:** [real attack lab](../notebooks/vlm_visual_attack_lab.ipynb)
 embeds actual input optimizers, a pinned differentiable Qwen adapter, private paired-generation runner,
