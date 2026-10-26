@@ -1,5 +1,12 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 26 published-source stage:** [protocol and coverage ledger](PUBLISHED_BENCHMARK_PROTOCOL.md)
+and [generated Colab notebook](../notebooks/vlm_published_benchmarks_20261026.ipynb)
+replace synthetic base examples with pinned HarmBench/Qi/CyberSecEval3 source items.
+Nine gradient/artifact variants plus a separate injection endpoint are implemented;
+source-schema checks passed, pretrained execution and classifier ASR are pending.
+Blocked original-paper methods are listed explicitly. No full-reproduction claim.
+
 **Expanded visual-study reading route:** [end-to-end data/architecture/mathematics/evaluation guide](VISUAL_ATTACKS_END_TO_END_GUIDE.md)
 → [verified results](VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md) →
 [paper-to-implementation fidelity and proposed contributions](VISUAL_ATTACKS_PRIOR_ART_AND_CONTRIBUTIONS.md).
