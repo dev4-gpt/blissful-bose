@@ -1,5 +1,11 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**Expanded visual-study reading route:** [end-to-end data/architecture/mathematics/evaluation guide](VISUAL_ATTACKS_END_TO_END_GUIDE.md)
+→ [verified results](VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md) →
+[paper-to-implementation fidelity and proposed contributions](VISUAL_ATTACKS_PRIOR_ART_AND_CONTRIBUTIONS.md).
+The guide includes source-generated primary-condition ASR and paired worked examples;
+candidate contributions remain prospective and novelty is unestablished.
+
 **October 26 inspected execution report:** [development results and research readiness](VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md)
 provides case-reconciled attack/control outcomes, mathematics, costs, evidence hashes and
 publication-quality gaps. Its later inspected execution has verified college-Drive preservation;

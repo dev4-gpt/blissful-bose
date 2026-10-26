@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'visual_development_20261026/numeric_summary.json'
 REPORT = ROOT / 'docs/VISUAL_ATTACKS_DEVELOPMENT_RESULTS.md'
+GUIDE = ROOT / 'docs/VISUAL_ATTACKS_END_TO_END_GUIDE.md'
 
 
 def render(data):
@@ -44,7 +45,25 @@ def render(data):
                 'generation_peak_gb', 'observed_pre_generation_peak_gb', 'processor_max',
                 'logits_max', 'linf_max_bounded', 'response_calls', 'cap_hits'):
         cost.append('| ' + key + ' | ' + ' | '.join(str(data['diagnostics'][m][key]) for m in ('qwen', 'smol')) + ' |')
-    return {'OUTCOMES': '\n'.join(lines), 'COST': '\n'.join(cost)}
+    asr = ['| Variant | Primary condition | Qwen target ASR | Qwen + prefix | Smol target ASR | Smol + prefix |',
+           '|---|---|---:|---:|---:|---:|']
+    index = {(r['model'], r['method']): r for r in rows}
+    for method in sorted({r['method'] for r in rows}):
+        primary = {'injection': 'injection', 'bimodal': 'combined'}.get(method, 'attack')
+        values = []
+        for model in ('qwen', 'smol'):
+            conditions = index[model, method]['conditions']
+            for condition in (primary, 'defended_attack'):
+                n, _, hits, _ = conditions[condition]
+                assert n > 0
+                values.append(f'{hits}/{n} ({100*hits/n:g}%)')
+        asr.append('| ' + ' | '.join([method, primary] + values) + ' |')
+    # Reconcile the worked example without treating a pre-existing capability failure as induced.
+    smol_pgd = [r for r in audit if r['model'] == 'smol' and r['method'] == 'pgd']
+    assert sum(r['conditions']['clean']['correct_exact'] for r in smol_pgd) == 3
+    assert sum(r['conditions']['clean']['correct_exact'] and not r['conditions']['attack']['correct_exact']
+               for r in smol_pgd) == 2
+    return {'OUTCOMES': '\n'.join(lines), 'COST': '\n'.join(cost), 'ASR': '\n'.join(asr)}
 
 
 def main():
@@ -52,20 +71,21 @@ def main():
     parser.add_argument('--write', action='store_true', help='Update only marked report tables')
     args = parser.parse_args()
     tables = render(json.loads(DATA.read_text()))
-    text = REPORT.read_text()
-    for name, table in tables.items():
-        start, end = f'<!-- {name}:START -->', f'<!-- {name}:END -->'
-        assert text.count(start) == text.count(end) == 1
-        prefix, tail = text.split(start)
-        old, suffix = tail.split(end)
-        expected = '\n\n' + table + '\n\n'
+    for document, names in ((REPORT, ('OUTCOMES', 'COST')), (GUIDE, ('ASR',))):
+        text = document.read_text()
+        for name in names:
+            start, end = f'<!-- {name}:START -->', f'<!-- {name}:END -->'
+            assert text.count(start) == text.count(end) == 1
+            prefix, tail = text.split(start)
+            old, suffix = tail.split(end)
+            expected = '\n\n' + tables[name] + '\n\n'
+            if args.write:
+                text = prefix + start + expected + end + suffix
+            else:
+                assert old == expected, f'{document.name}: {name} differs from saved evidence'
         if args.write:
-            text = prefix + start + expected + end + suffix
-        else:
-            assert old == expected, f'{name} table differs from saved evidence'
-    if args.write:
-        REPORT.write_text(text)
-    print('PASS: 68 records, 24 variant rows, case/aggregate reconciliation, report tables')
+            document.write_text(text)
+    print('PASS: 68 records, 24 variant rows, paired example, outcome/cost/primary-condition ASR tables')
 
 
 if __name__ == '__main__':

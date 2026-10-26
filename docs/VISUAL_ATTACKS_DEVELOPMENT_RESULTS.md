@@ -2,6 +2,11 @@
 
 **Research assessment · 26 October 2026 · exploratory synthetic development evidence**
 
+**Start with the [end-to-end guide](VISUAL_ATTACKS_END_TO_END_GUIDE.md)** for data, deep learning
+architecture, worked attack mathematics, ASR definitions and question-to-result mapping.
+The [prior-art and contribution review](VISUAL_ATTACKS_PRIOR_ART_AND_CONTRIBUTIONS.md)
+separates inherited ideas, implementation differences, completed tests and proposed studies.
+
 ## Executive assessment
 
 The implementation has passed an important engineering milestone: frozen pretrained
