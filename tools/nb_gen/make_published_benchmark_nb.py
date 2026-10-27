@@ -51,46 +51,60 @@ finally:
     (root.parent/(root.name+'_preservation_PRIVATE.json')).write_text(json.dumps(snapshot))
 '''
 LAUNCH=r'''
-# The owner authorized the published-data stage. No old clock/config is reused.
-import hashlib,json,subprocess,sys,time
-from pathlib import Path
-import torch
-if not torch.cuda.is_available() or 'T4' not in torch.cuda.get_device_name(0):
-    raise RuntimeError('Requested T4 runtime is not connected')
-if not Path('/content/drive/MyDrive').is_dir():
-    raise RuntimeError('Mount the college Drive with the owner-authorized Connect prompt first')
-BENCH_ROOT=Path('/content/drive/MyDrive/VLM_Published_Benchmarks_20261026_PRIVATE')
-BENCH_ROOT.mkdir(exist_ok=True)
-contract=hashlib.sha256(json.dumps(BENCH_SOURCES,sort_keys=True).encode()).hexdigest()
-clock=BENCH_ROOT/'stage_clock_PRIVATE.json'
-if clock.exists():
-    state=json.loads(clock.read_text())
-    if state['contract']!=contract:raise ValueError('Existing clock belongs to different sources')
-else:
-    state=dict(contract=contract,started=time.time(),minutes=120)
-    with clock.open('x') as handle:json.dump(state,handle)
-deadline=state['started']+7200
-if time.time()>=deadline:raise TimeoutError('Original published-stage clock expired')
-source=BENCH_ROOT/'source_PRIVATE';source.mkdir(exist_ok=True)
-for name,text in BENCH_SOURCES.items():
-    path=source/name
-    if path.exists() and path.read_text()!=text:raise ValueError('Saved source changed')
-    path.write_text(text)
-launch=BENCH_ROOT/'launch_PRIVATE.json'
-if launch.exists():
-    print('Already launched; use monitor. Do not duplicate or reset the clock.')
-else:
-    # Include installation/download in the persisted cap; no model objects in notebook kernel.
-    with (BENCH_ROOT/'installation_PRIVATE.log').open('w') as log:
-        subprocess.run([sys.executable,'-m','pip','install','--quiet','transformers==4.57.1',
-            'accelerate==1.11.0','bitsandbytes==0.48.1','sentencepiece'],check=True,
-            stdout=log,stderr=subprocess.STDOUT,timeout=max(1,int(deadline-time.time())))
-    with launch.open('x') as handle:json.dump(dict(contract=contract,time=time.time()),handle)
-    with (BENCH_ROOT/'driver_execution_PRIVATE.log').open('w') as log:
-        process=subprocess.Popen([sys.executable,'-u',str(source/'published_driver.py'),
-            str(BENCH_ROOT),str(deadline)],stdout=log,stderr=subprocess.STDOUT)
-    print(dict(stage='published_data_development',pid=process.pid,source_contract=contract,
-               deadline_utc=__import__('datetime').datetime.fromtimestamp(deadline,__import__('datetime').timezone.utc).isoformat()))
+# Owner-authorized stage; rerunning reports the saved run without new compute.
+def launch_published_stage():
+    import hashlib,json,subprocess,sys,time
+    from pathlib import Path
+    if not Path('/content/drive/MyDrive').is_dir():
+        raise RuntimeError('Mount the college Drive with the owner-authorized Connect prompt first')
+    BENCH_ROOT=Path('/content/drive/MyDrive/VLM_Published_Benchmarks_20261026_PRIVATE')
+    launch=BENCH_ROOT/'launch_PRIVATE.json'
+    status_path=BENCH_ROOT/'driver_status.json'
+    if launch.exists() or status_path.exists():
+        saved=json.loads(status_path.read_text()) if status_path.exists() else {}
+        print(dict(stage='published_data_development',
+            status='finished' if saved.get('finished') else 'previously_launched',
+            new_run_started=False, results_preserved=True,
+            next_step='Run the read-only monitor/results cell; do not reset the clock.'))
+        return
+    import torch
+    if not torch.cuda.is_available() or 'T4' not in torch.cuda.get_device_name(0):
+        raise RuntimeError('Requested T4 runtime is not connected')
+    BENCH_ROOT.mkdir(exist_ok=True)
+    contract=hashlib.sha256(json.dumps(BENCH_SOURCES,sort_keys=True).encode()).hexdigest()
+    clock=BENCH_ROOT/'stage_clock_PRIVATE.json'
+    if clock.exists():
+        state=json.loads(clock.read_text())
+        if state['contract']!=contract:raise ValueError('Existing clock belongs to different sources')
+    else:
+        state=dict(contract=contract,started=time.time(),minutes=120)
+        with clock.open('x') as handle:json.dump(state,handle)
+    deadline=state['started']+7200
+    if time.time()>=deadline:
+        print('Stage allowance expired; no new run started. Use the read-only monitor. Saved results are unchanged.')
+        return
+    source=BENCH_ROOT/'source_PRIVATE';source.mkdir(exist_ok=True)
+    for name,text in BENCH_SOURCES.items():
+        path=source/name
+        if path.exists() and path.read_text()!=text:raise ValueError('Saved source changed')
+        path.write_text(text)
+    launch=BENCH_ROOT/'launch_PRIVATE.json'
+    if launch.exists():
+        print('Already launched; use monitor. Do not duplicate or reset the clock.')
+    else:
+        # Include installation/download in the persisted cap; no model objects in notebook kernel.
+        with (BENCH_ROOT/'installation_PRIVATE.log').open('w') as log:
+            subprocess.run([sys.executable,'-m','pip','install','--quiet','transformers==4.57.1',
+                'accelerate==1.11.0','bitsandbytes==0.48.1','sentencepiece'],check=True,
+                stdout=log,stderr=subprocess.STDOUT,timeout=max(1,int(deadline-time.time())))
+        with launch.open('x') as handle:json.dump(dict(contract=contract,time=time.time()),handle)
+        with (BENCH_ROOT/'driver_execution_PRIVATE.log').open('w') as log:
+            process=subprocess.Popen([sys.executable,'-u',str(source/'published_driver.py'),
+                str(BENCH_ROOT),str(deadline)],stdout=log,stderr=subprocess.STDOUT)
+        print(dict(stage='published_data_development',pid=process.pid,source_contract=contract,
+                   deadline_utc=__import__('datetime').datetime.fromtimestamp(deadline,__import__('datetime').timezone.utc).isoformat()))
+
+launch_published_stage()
 '''
 MONITOR=r'''
 import json,time
