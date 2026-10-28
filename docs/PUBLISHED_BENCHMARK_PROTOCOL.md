@@ -154,3 +154,25 @@ and injection coverage, or recording an exact unresolved blocker. Feature matchi
 original teacher/context matching and full BAP search remain outside this repair until
 verified original configurations exist. Human validation, benign utility, full-dataset
 scale and novel contributions remain pending; do not call them completed.
+
+### Repair numerical deviation, before Qwen scientific outputs
+
+A probe of the actual released injection image found zero FP16 processor mismatches
+for CPU uint8 scaling versus 4,834 for GPU scaling. Therefore pixel decoding/rescaling
+must also occur on CPU before transfer, not just normalization. Preserve repair source
+v1, record v1/v2 file hashes and time, and use a v2 input-pixel identity. This is an
+explicit source migration within the same 60-minute clock; do not alter started/deadline.
+Do not relax parity, change data/attack settings, or overwrite original-run evidence.
+
+The running-source migration guard refused the initial change because Qwen had already
+started. No running source was changed. The corrected implementation therefore uses
+`source_v2_PRIVATE` and `numerics_v2_PRIVATE`, waits for the v1 target/judge processes
+to finish, and consumes only the original repair clock's remaining time. Preserve the
+v1 repair archive and metadata under a BEFORE_NUMERICS_V2 name before final reconciliation.
+
+At approximately 20:51 EDT the v1 scorer remained at `Fetching 6 files: 0/6`,
+with no classifier GPU allocation or completed labels after about 12 minutes.
+Stop that identified scorer subprocess, retain its exit status and loading log,
+and allow reconciliation/preservation before the queued v2 target work. This
+reorders unfinished work within the unchanged deadline. Unlabelled responses are
+unresolved, never classifier No; scoring may use only the remaining allowance.

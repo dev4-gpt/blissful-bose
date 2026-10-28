@@ -106,7 +106,10 @@ import json,time
 from pathlib import Path
 REPAIR_ROOT=Path('/content/drive/MyDrive/VLM_Published_Repair_20261027_PRIVATE')
 for name in ('driver_status.json','smol_PRIVATE/status.json','qwen_PRIVATE/status.json',
-             'qwen_injection_PRIVATE/aggregate.json','judge_status.json'):
+             'qwen_injection_PRIVATE/aggregate.json','judge_status.json','numerics_v2_status.json',
+             'numerics_v2_PRIVATE/qwen_PRIVATE/status.json',
+             'numerics_v2_PRIVATE/qwen_injection_PRIVATE/aggregate.json',
+             'numerics_v2_PRIVATE/judge_status.json'):
     path=REPAIR_ROOT/name
     if path.exists():
         value=json.loads(path.read_text())

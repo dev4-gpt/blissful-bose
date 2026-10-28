@@ -1,5 +1,10 @@
 # Visual attacks on VLMs: from data and gradients to evidence
 
+**Published-data update, 27 October:** the earlier geometry outcomes below are historical
+engineering checks. Use [measured published-benchmark results](PUBLISHED_BENCHMARK_RESULTS.md)
+and [source/repair protocol](PUBLISHED_BENCHMARK_PROTOCOL.md) for the HarmBench/Qi and
+CyberSecEval3 evaluation. Numerical repairs retain their own configuration labels.
+
 **26 October 2026 · teaching and research guide · inspected synthetic development execution**
 
 ## 1. Reading route and scientific purpose

@@ -7,6 +7,9 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import subprocess
+import sys
+import time
 import traceback
 
 import torch
@@ -36,7 +39,19 @@ class StableQwenAdapter(QwenAttackAdapter):
         self._modeling=modeling
         super().__init__(*args,**kwargs)
         self.identity.update(attention='eager_fp32_qkv_arithmetic',
-                             preprocessing='differentiable_cpu_reference_arithmetic')
+                             preprocessing='differentiable_cpu_reference_arithmetic',
+                             input_pixels='cpu_uint8_float32_div255_then_transfer_v2')
+
+    def read_image(self,path):
+        import numpy as np
+        from PIL import Image
+        image=Image.open(path).convert('RGB')
+        if image.size!=(self.canvas,self.canvas):
+            image=image.resize((self.canvas,self.canvas),Image.Resampling.BICUBIC)
+        # Match published uint8 -> float32 rescaling on CPU BEFORE GPU transfer.
+        # The raw-pixel budget is unchanged; GPU scalar division can round differently.
+        value=torch.from_numpy(np.array(image,copy=True)).permute(2,0,1)[None].float()/255
+        return value.to(self.device)
 
     def parity_check(self,image,prompt,target):
         import numpy as np
@@ -88,14 +103,16 @@ def prepare_repair(base,root):
     return selection
 
 
-def reconcile(base,root):
+def reconcile(base,root,extra=None):
     """Private combined view; original complete cases win, repaired missing cells retain origin."""
     from vlm_benchmark_judge import summarize
-    base,root=Path(base),Path(root);combined=root/'combined_PRIVATE';combined.mkdir(exist_ok=True)
+    base,root=Path(base),Path(root);extra=Path(extra) if extra else None
+    combined=root/'combined_PRIVATE';combined.mkdir(exist_ok=True)
+    stages=[('original',base),('repair',root)]+([('qwen_numerics_v2',extra)] if extra else [])
     counts={};ledger=[]
     for model in ('smol','qwen'):
         dest=combined/(model+'_PRIVATE');dest.mkdir(exist_ok=True)
-        for stage,source in (('original',base),('repair',root)):
+        for stage,source in stages:
             for path in (source/(model+'_PRIVATE')).glob('*_case_PRIVATE.json'):
                 record=json.loads(path.read_text());out=dest/path.name
                 if out.exists() and json.loads(out.read_text()).get('status')=='complete':continue
@@ -108,10 +125,10 @@ def reconcile(base,root):
         for method in bench.METHODS:
             rows=[c for c in cases if c['method']==method]
             ledger.append(dict(model=model,method=method,complete=len(rows),planned=8,
-                original=sum(c['source_stage']=='original' for c in rows),repair=sum(c['source_stage']=='repair' for c in rows),
-                qwen_repair_precision_change=model=='qwen' and any(c['source_stage']=='repair' for c in rows)))
+                original=sum(c['source_stage']=='original' for c in rows),repair=sum(c['source_stage']!='original' for c in rows),
+                qwen_repair_precision_change=model=='qwen' and any(c['source_stage']!='original' for c in rows)))
     labels=combined/'labels_PRIVATE';labels.mkdir(exist_ok=True)
-    for source in (base,root):
+    for stage,source in stages:
         for path in (source/'labels_PRIVATE').glob('*_PRIVATE.json'):
             out=labels/path.name
             if out.exists() and out.read_bytes()!=path.read_bytes():raise ValueError('Conflicting judge identity')
@@ -119,7 +136,7 @@ def reconcile(base,root):
     summarize(combined)
     injection={}
     for model in ('smol','qwen'):
-        source=base if model=='smol' else root
+        source=base if model=='smol' else (extra or root)
         path=source/(model+'_injection_PRIVATE')/'aggregate.json'
         injection[model]=json.loads(path.read_text()) if path.exists() else dict(status='missing')
     status=dict(coverage=ledger,counts=counts,total_completed=sum(sum(c.values()) for c in counts.values()),
@@ -140,11 +157,62 @@ def preserve(root):
     return result
 
 
+
+def followup(base,root,deadline):
+    """Wait for immutable v1 jobs, then use a separate v2 source/output namespace."""
+    base,root=Path(base),Path(root);extra=root/'numerics_v2_PRIVATE'
+    status=dict(stage='qwen_numerical_followup',finished=False,jobs=[])
+    output=root/'numerics_v2_status.json'
+    atomic_json(output,status)
+    # The original driver/judge owns the GPU until it has finished. No concurrent models.
+    while not json.loads((root/'driver_status.json').read_text()).get('finished'):
+        bench.check(deadline-60);time.sleep(5)
+    previous=root.parent/(root.name+'_FINISHED_PRIVATE.zip')
+    while not (root.parent/(root.name+'_preservation_PRIVATE.json')).exists():
+        bench.check(deadline-60);time.sleep(5)
+    before=root.parent/(root.name+'_BEFORE_NUMERICS_V2_PRIVATE.zip')
+    if previous.exists() and not before.exists():shutil.copyfile(previous,before)
+    previous_meta=root.parent/(root.name+'_preservation_PRIVATE.json')
+    before_meta=root.parent/(root.name+'_BEFORE_NUMERICS_V2_preservation_PRIVATE.json')
+    if not before_meta.exists():shutil.copyfile(previous_meta,before_meta)
+    prepare_repair(base,extra)
+    atomic_json(extra/'source_identity_PRIVATE.json',dict(source_sha256=bench.sha(__file__),
+        parent_clock_sha256=bench.sha(root/'stage_clock_PRIVATE.json'),
+        reason='Actual source image: CPU scaling zero mismatches; GPU scaling 4834',
+        parent_deadline=deadline,clock_reset=False))
+    source=Path(__file__).parent
+    for mode,minutes,reserve in (('qwen',20,10),('injection',8,8),('judge',60,1)):
+        available=min(minutes*60,deadline-time.time()-reserve*60)
+        if available<=0:
+            status['jobs'].append(dict(mode=mode,status='insufficient_original_budget'));continue
+        if mode=='judge':
+            command=[sys.executable,'-u',str(source/'vlm_benchmark_judge.py'),
+                     '--root',str(extra),'--deadline',str(time.time()+available)]
+        else:
+            command=[sys.executable,'-u',str(source/'vlm_published_repair.py'),'--base',str(base),
+                     '--root',str(extra),'--mode',mode,'--deadline',str(time.time()+available)]
+        entry=dict(mode=mode,started=time.time());status['jobs'].append(entry);atomic_json(output,status)
+        with (extra/(mode+'_execution_PRIVATE.log')).open('w') as log:
+            try:
+                run=subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,timeout=available)
+                entry['exit_code']=run.returncode
+            except subprocess.TimeoutExpired:entry['budget_stop']=True
+        entry['finished']=time.time();atomic_json(output,status)
+    coverage=reconcile(base,root,extra)
+    status.update(finished=True,complete_cases=coverage['total_completed'])
+    atomic_json(output,status)
+    preserve(root)
+    return status
+
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--base',type=Path,required=True)
     parser.add_argument('--root',type=Path,required=True);parser.add_argument('--deadline',type=float)
-    parser.add_argument('--mode',choices=('prepare','smol','qwen','injection','reconcile','preserve'),required=True)
+    parser.add_argument('--mode',choices=('prepare','smol','qwen','injection','reconcile','preserve','followup'),required=True)
     args=parser.parse_args()
+    if args.mode=='followup':
+        if args.deadline is None:parser.error('Original persisted deadline required')
+        print(followup(args.base,args.root,args.deadline));return
     selection=prepare_repair(args.base,args.root)
     if args.mode=='prepare':print({k:{m:len(v) for m,v in d.items()} for k,d in selection.items()});return
     if args.mode=='reconcile':print({'completed':reconcile(args.base,args.root)['total_completed']});return
