@@ -186,3 +186,21 @@ Last updated 2026-10-20 (saved Colab reconciliation and completed response-windo
 - `docs/STATUS_AND_PAPER_PLAN.md` §18: detailed method/version walkthrough, speaking notes, negative results and advisor questions for October 21.
 - `v7_window_core8/results_window.json`: aggregate-only copy from the verified final Drive snapshot; original code/output archive and row-level data remain private on Drive.
 - `tools/nb_gen/update_notebook_status.py`: refreshes navigation/status text in local notebooks without altering experiment code or importing private outputs.
+
+### Advisor progress presentation (prepared 2026-10-21)
+
+- `presentation/VLM_Advisor_Progress_2026-10-21.pptx`: condensed 14-slide deck with speaker notes; grouped by scientific question, no left-edge stripe.
+- Matching `.pdf` and `_Speaker_Guide.md`: portable slides and slide-by-slide speaking guidance, with the full detailed evidence bank, sources and evidence limits.
+- `tools/build_advisor_progress_deck.py`: reads saved aggregates and reproduces the presentation; no model calls or private review imports.
+
+### Technical advisor revision (2026-10-22)
+
+- `docs/TECHNICAL_NOTEBOOK_WALKTHROUGH.md`: read-only inspection of 38 saved Drive notebooks/archives and 14 local notebooks; source links, hashes, zero-based cell maps, estimators and protocol limitations.
+- The existing 14-slide advisor deck now states paired estimands, McNemar/scenario intervals, the item-clustered GEE, guard input windows, token-prefix dependence, ambiguity bounds and human/LLM agreement. It retains the stripe-free layout.
+- `tools/build_notebook_technical_audit.py`: reproducible structural inspection; private output details stay in ignored audit_work.
+
+### Figure-led explanation edition (2026-10-22)
+
+- `presentation/VLM_Research_Explained_2026-10-22.pptx` and `.pdf`: separate 14-slide, plain-English deck with seven plots; no source footers, citations retained in notes. The user-edited original is unchanged.
+- Matching `_Speaker_Guide.md`: 90-minute preparation plan, plain-English glossary, opening script, likely questions and per-slide narration.
+- `presentation/VLM_Advisor_Progress_Your_Saved_Edits_No_Sources.pptx`: copy of the user’s saved edited PPTX with source-footer shapes removed; unsaved edits are not captured.
