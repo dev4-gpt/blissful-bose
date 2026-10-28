@@ -61,6 +61,8 @@ def render(base,repair=None):
         '27 October 2026. No generated research examples or fabricated outcomes. These are',
         'small development adaptations using published sources, not faithful paper-table',
         'reproductions, human validation, or evidence of a novel defense.','',
+        '[Completed Colab copy with code, outputs and interpretation](https://colab.research.google.com/drive/1qs4bairsvc5yCU-rT3dv0dOtFvZungos?authuser=2).',
+        'Private output archive verification is recorded below.','',
         '## Source and measurement contract','',
         'Eight frozen standard HarmBench validation behaviors and their released optimizer',
         'continuations; Qi released carrier/corpus/artifact; separate frozen eight-item',
@@ -136,6 +138,21 @@ def render(base,repair=None):
                 '; frozen weights unchanged '+str(qwen.get('weights_unchanged'))+'.',
                 'EOT method status: '+str(qwen.get('methods',{}).get('universal_eot',{}))+'.',
                 'Passing clean parity does not establish finite optimization or valid injection outputs.']
+            if not any(v.get('complete',0) for v in qwen.get('methods',{}).values()):
+                lines+=['No Qwen numerical-repair safety cases completed. The resolved Qwen',
+                        'ASR rows above retain the original configuration; no numerical-repair',
+                        'ASR is inferred from the successful carrier parity probe.']
+        recovery_path=repair/'scoring_recovery_status.json'
+        if recovery_path.exists():
+            recovery=json.loads(recovery_path.read_text())
+            lines+=['','Saved-response scoring recovery: '+str(recovery)+'.',
+                'This retries the same classifier on saved Smol responses within the',
+                'original repair deadline; it changes download transport only.']
+        repair_judge=repair/'judge_status.json'
+        if repair_judge.exists():
+            status=json.loads(repair_judge.read_text())
+            lines+=['Repair classifier: '+str(status['completed'])+' newly scored cached responses; '+
+                str(status['failed'])+' failures; status '+status['status']+'.']
     else:lines+=['','Repair results have not yet been reconciled; original missing cells remain missing.']
     lines+=['','## Separate visual-injection diagnostic','',
             '| Model | Condition | Marker-containing responses | Valid / planned | Unresolved |',

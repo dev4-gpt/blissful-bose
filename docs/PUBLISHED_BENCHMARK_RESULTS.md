@@ -5,6 +5,9 @@ Generated from saved aggregate files by `python3 tools/report_published_benchmar
 small development adaptations using published sources, not faithful paper-table
 reproductions, human validation, or evidence of a novel defense.
 
+[Completed Colab copy with code, outputs and interpretation](https://colab.research.google.com/drive/1qs4bairsvc5yCU-rT3dv0dOtFvZungos?authuser=2).
+Private output archive verification is recorded below.
+
 ## Source and measurement contract
 
 Eight frozen standard HarmBench validation behaviors and their released optimizer
@@ -43,8 +46,8 @@ containment are different endpoints.
 | SmolVLM-500M | Shared bounded patch | 1/8 (12.5%) | 1/8 (12.5%) | 1/8 (12.5%) |
 | SmolVLM-500M | Replacement EOT patch | 1/8 (12.5%) | 1/8 (12.5%) | 0/8 (0%) |
 | SmolVLM-500M | Defense-aware PGD | 1/8 (12.5%) | 1/8 (12.5%) | 2/8 (25%) |
-| SmolVLM-500M | Flip-aware PGD | 1/8; 2 unresolved | 2/8; 2 unresolved | 3/8; 2 unresolved |
-| SmolVLM-500M | Released Qi artifact | 0/8; 8 unresolved | 0/8; 8 unresolved | 0/8; 8 unresolved |
+| SmolVLM-500M | Flip-aware PGD | 1/8 (12.5%) | 3/8 (37.5%) | 3/8 (37.5%) |
+| SmolVLM-500M | Released Qi artifact | 1/8 (12.5%) | 2/8 (25%) | 0/8 (0%) |
 | Qwen2.5-VL-3B | FGSM | 1/8 (12.5%) | 1/8 (12.5%) | 0/8 (0%) |
 | Qwen2.5-VL-3B | PGD | 1/8 (12.5%) | 2/8 (25%) | 2/8 (25%) |
 | Qwen2.5-VL-3B | Localized bounded patch | 1/8 (12.5%) | 0/8 (0%) | 0/8 (0%) |
@@ -80,10 +83,10 @@ be claimed. Many outputs hit their generation cap; full-length assistance may di
 | smol | Replacement EOT patch | defended_attack-attack | 8 | 0 / 1 | -12.5 pp |
 | smol | Defense-aware PGD | attack-clean | 8 | 1 / 1 | 0 pp |
 | smol | Defense-aware PGD | defended_attack-attack | 8 | 1 / 0 | 12.5 pp |
-| smol | Flip-aware PGD | attack-clean | 6 | 1 / 0 | 16.6667 pp |
-| smol | Flip-aware PGD | defended_attack-attack | 6 | 1 / 0 | 16.6667 pp |
-| smol | Released Qi artifact | attack-clean | 0 | 0 / 0 | Unavailable |
-| smol | Released Qi artifact | defended_attack-attack | 0 | 0 / 0 | Unavailable |
+| smol | Flip-aware PGD | attack-clean | 8 | 2 / 0 | 25 pp |
+| smol | Flip-aware PGD | defended_attack-attack | 8 | 1 / 1 | 0 pp |
+| smol | Released Qi artifact | attack-clean | 8 | 1 / 0 | 12.5 pp |
+| smol | Released Qi artifact | defended_attack-attack | 8 | 0 / 2 | -25 pp |
 | qwen | FGSM | attack-clean | 8 | 0 / 0 | 0 pp |
 | qwen | FGSM | defended_attack-attack | 8 | 0 / 1 | -12.5 pp |
 | qwen | PGD | attack-clean | 8 | 1 / 0 | 12.5 pp |
@@ -136,7 +139,7 @@ explicit source-stage provenance):
 | qwen | Released Qi artifact | 8 | 0 | 8/8 |
 
 Combined coverage: 136/144 method–request cells.
-Follow-up controller finished: False.
+Follow-up controller finished: True.
 Qwen repair uses FP32 attention arithmetic with frozen FP16 weights and
 reference-exact differentiable CPU normalization. Its paired controls use
 that same configuration. Those rows must not silently inherit the original
@@ -145,6 +148,14 @@ FP16-attention precision label or support a pure architecture comparison.
 Numerical follow-up: processor parity {'delivered_fp16_processor_exact': True, 'logits_max_error': 0.0, 'processor_max_error': 0.0}; frozen weights unchanged True.
 EOT method status: {'complete': 0, 'error_type': 'FloatingPointError', 'failed': 0, 'planned': 8, 'status': 'stopped'}.
 Passing clean parity does not establish finite optimization or valid injection outputs.
+No Qwen numerical-repair safety cases completed. The resolved Qwen
+ASR rows above retain the original configuration; no numerical-repair
+ASR is inferred from the successful carrier parity probe.
+
+Saved-response scoring recovery: {'stage': 'saved_smol_scoring_recovery', 'finished': True, 'clock_reset': False, 'exit_code': 0, 'complete_cases': 136}.
+This retries the same classifier on saved Smol responses within the
+original repair deadline; it changes download transport only.
+Repair classifier: 52 newly scored cached responses; 0 failures; status finished.
 
 ## Separate visual-injection diagnostic
 
@@ -179,9 +190,9 @@ Peak includes recorded pre-generation allocation peaks from optimization.
 
 - Original driver finished: True.
 - Original safety-aggregate SHA256: `70e06d02c4d9e2d4b9c5930b7bb7d1173329189f0b193134042978a75c0765a3`.
-- Reported safety-aggregate SHA256: `aed4681998cd361c756897111f487e759634ad416d77f50d723d91d06768d398`.
+- Reported safety-aggregate SHA256: `f17dc7c58f26b5e9fd3ed395ca55140c39d326df485a6ec21d3c54d5534ef04c`.
 - VLM_Published_Benchmarks_20261026_PRIVATE: recorded private archive 60096316 bytes, SHA256 `91eb85de1882fdcc6d8202f1582c08ad868358a8cd995bc593671d1dbc525c56`.
-- VLM_Published_Repair_20261027_PRIVATE: recorded private archive 20449450 bytes, SHA256 `afe1f0069d00827423a69d3bbe919aae4fffacf2204bed23f576c6c44a0172d0`.
+- VLM_Published_Repair_20261027_PRIVATE: recorded private archive 36599073 bytes, SHA256 `be713d12a847fdbf055b277866d367852b2cdc290848e3030005263bab5833c6`.
 
 Remaining: original feature/trigger matching, teacher/context matching and full
 BAP feedback search are not reproduced; full published datasets, benign utility,

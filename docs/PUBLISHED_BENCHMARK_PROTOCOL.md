@@ -176,3 +176,11 @@ Stop that identified scorer subprocess, retain its exit status and loading log,
 and allow reconciliation/preservation before the queued v2 target work. This
 reorders unfinished work within the unchanged deadline. Unlabelled responses are
 unresolved, never classifier No; scoring may use only the remaining allowance.
+
+At 21:00 EDT the v2 scorer had zero response/case files to label but was again
+fetching classifier shards. Stop only that identified empty-stage scorer, allow
+its controller to reconcile/archive, then score the ten completed Smol repair
+cases from the parent repair folder. Use the identical pinned classifier, prompt,
+quantization and parser; disable optional Xet transport for the retry if needed.
+This changes download transport and scheduling, not scientific configuration.
+Retain the same parent deadline and archive every attempt's status.

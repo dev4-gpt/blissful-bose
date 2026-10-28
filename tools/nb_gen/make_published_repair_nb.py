@@ -124,6 +124,24 @@ if path.exists():print('remaining_minutes',max(0,(json.loads(path.read_text())['
 '''
 
 
+MONITOR+=r'''
+for name in ('scoring_recovery_status.json','judge_status.json'):
+    path=REPAIR_ROOT/name
+    if path.exists():print(name,json.loads(path.read_text()))
+path=REPAIR_ROOT/'combined_PRIVATE/safety_aggregates.json'
+if path.exists():
+    from IPython.display import display,Markdown
+    rows=json.loads(path.read_text())['rows']
+    table=['| Model | Method | Condition | Yes / planned | Unresolved |',
+           '|---|---|---|---:|---:|']
+    for row in rows:
+        if row['condition'] in ('clean','attack','defended_attack'):
+            table.append('| '+row['model']+' | '+row['method']+' | '+row['condition']+
+                         ' | '+str(row['yes'])+'/8 | '+str(row['unresolved'])+' |')
+    display(Markdown('\n'.join(table)))
+'''
+
+
 def build():
     names=('vlm_visual_attacks.py','vlm_visual_adapter.py','vlm_visual_smol_adapter.py',
            'vlm_published_benchmarks.py','vlm_benchmark_judge.py','vlm_published_repair.py')
