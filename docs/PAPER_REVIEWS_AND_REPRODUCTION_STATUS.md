@@ -218,3 +218,18 @@ Mount recovery: the initial mount failed; retrying only that cell succeeded (`Mo
 Verified launch update: the college-Drive attempt clock started at 2026-10-28 16:45:47 America/New_York, deadline 17:45:47. Its private identity records Tesla T4 and CLIP revision `ce19dc912ca5cd21c8a653c79e251e808ccabcd1`. Setup/model loading is in progress; no completed optimizer result or downstream ASR is inferred. The recovered source/hash cells preceded the bounded driver; an earlier missing-variable error occurred before its clock.
 
 Measured encoder profile (private `profile_50/status_PRIVATE.json`): 50 updates completed; initial distance `18.397844314575195`, final tensor distance `8.296499252319336`, JPEG-reloaded distance `14.841279029846191`; elapsed `13.302191429000004` seconds. These values describe one released example and one component, not safety ASR. The driver created the distinct `release_5000` stage; its completion remains unverified.
+
+## Completed encoder component: 28 October 2026
+
+The saved controller reports `encoder_process_complete_requires_review`; 5000/5000 updates completed. This is a disclosed reimplementation of the released visual encoder example, not the whole paper or a native ASR reproduction.
+
+| Stage | Initial feature distance | Final tensor distance | JPEG reload distance | Optimization seconds |
+|---|---:|---:|---:|---:|
+| Profile, 50 updates | 18.397844314575195 | 8.296499252319336 | 14.841279029846191 | 13.302191429000004 |
+| Separate release-length, 5000 updates | 18.397844314575195 | 0.6099005937576294 | 15.424763679504395 | 1507.081493692 |
+
+Frozen weights matched before/after. Peak allocated memory was 2571547136 bytes. Controller elapsed time including setup was 1596.6343314647675 seconds. These are saved engineering measurements on the released example, not independent samples, human semantic equivalence or unsafe-assistance ASR.
+
+The optimized tensor improved the chosen embedding objective, but the delivered JPEG lost much of that improvement. This delivery discrepancy must be diagnosed before any downstream behavioral claim. Neither the final tensor nor JPEG establishes the paper's convergence/behavior results. No new optimizer attempt is authorized by reading these results.
+
+Private archive: 389414 bytes; SHA256 `c440f749e57f7d907f418e28ffb0f877b1b2d466ac233f6256550b5fde9388ed`, verified against the actual locally visible Drive archive. Native downstream ASR remains NOT_MEASURED. The driver now redisplays an existing summary on rerun without deleting its clock or launching a duplicate process.

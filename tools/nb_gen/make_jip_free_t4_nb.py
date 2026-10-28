@@ -150,12 +150,23 @@ budget. A five-minute preservation reserve is withheld. The fixed profile and
 release-length stage share one clock; failure never restarts it. Source identity,
 processor settings, software versions, actual GPU, frozen weights and loss traces
 are recorded. No downstream VLM or safety-request generation runs here.'''),
-    code('''if RUN_APPROVED:
+    code('''if RUN_APPROVED and ROOT_PRIVATE is None:
+    raise RuntimeError("Run the private Drive setup cell first")
+if RUN_APPROVED and (ROOT_PRIVATE/'attempt_clock_PRIVATE.json').exists():
+    # Read-only redisplay: never reset a prior attempt or launch another process.
+    clock = json.loads((ROOT_PRIVATE/'attempt_clock_PRIVATE.json').read_text())
+    print('Existing attempt preserved:',clock.get('status'))
+    summary = ROOT_PRIVATE/'encoder_summary_PRIVATE.json'
+    if summary.exists():
+        saved = json.loads(summary.read_text())
+        print(json.dumps(saved['results'],indent=2))
+        print('Frozen weights unchanged:',saved['identity'].get('weights_unchanged'))
+    else:
+        print('No complete summary yet. Inspect existing status; do not reset/replay the clock.')
+elif RUN_APPROVED:
     import importlib.util
     helper_path = ROOT_PRIVATE / 'vlm_jip_encoder_PRIVATE.py'
     ROOT_PRIVATE.mkdir(parents=True, exist_ok=True)
-    if (ROOT_PRIVATE/'attempt_clock_PRIVATE.json').exists():
-        raise RuntimeError("Existing clock preserved; do not reset or replay this attempt")
     helper_path.write_text(HELPER_SOURCE)
     spec = importlib.util.spec_from_file_location('jip_encoder_private', helper_path)
     helper = importlib.util.module_from_spec(spec)
