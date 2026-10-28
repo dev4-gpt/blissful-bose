@@ -9,14 +9,15 @@ ROOT=Path(__file__).resolve().parents[2]
 def build():
     md=nbformat.v4.new_markdown_cell
     code=nbformat.v4.new_code_cell
-    cells=[md('''# Jailbreak in Pieces: released encoder example — Colab T4
+    cells=[md('''# Jailbreak in Pieces: full-paper reproduction map and encoder prerequisite
 
 **28 October 2026 · Prepared, NOT RUN · No paid GPU.**
 
-This notebook reproduces the structure of the authors' released visual-trigger
-encoder optimization. It does not reproduce every trigger branch, the downstream
-VLM experiment or the paper's ASR table. The code is a disclosed reimplementation
-of the inspected loop, not unchanged execution of their script.
+**Full-paper reproduction is NOT COMPLETE and NOT executable end to end here.**
+The original encoder-only edition was narrower than the requested study. The main
+sections now identify the full paper procedure and its missing artifacts. The
+executable appendix is an encoder prerequisite, not the complete reproduction.
+Its code reimplements the inspected loop; it does not run the unchanged original script.
 
 Primary environment: free Colab T4. Kaggle is a possible separate free fallback
 after private preservation, quota checks and an explicit remaining-budget decision.
@@ -24,6 +25,59 @@ Do not reset or delete an existing runtime. Do not upgrade to paid compute.
 
 Default Run all performs no installs, downloads or GPU work. The amendment and
 60-minute cap require owner acceptance before enabling execution.'''),
+    md('''## Full-paper workflow: what must actually be rerun
+
+Original trigger/data manifest → **all selected attack branches** → original-compatible
+VLMs and prompts → repeated generated responses → native human/toxicity evaluation
+→ compare the selected published table with our measured table.
+
+| Stage | Required work | Actual status |
+|---|---|---|
+| Data | Recover original target triggers, initializations, generic prompts and item-to-scenario mapping | Incomplete demo release; no verified full manifest |
+| Attack | Text, OCR, visual and combined target embeddings; original image optimization | Visual fixed-loop prerequisite implemented; other branches pending |
+| Models | Original-compatible LLaVA and LLaMA-Adapter V2 with verified versions/processors | Historical checkpoint/configuration not yet recovered |
+| Generation | Reproduce paper sampling and selected experiment repetitions | NOT_RUN |
+| Evaluation | Harmful task fulfillment under original human rubric; toxicity separately | NOT_RUN; human procedure pending |
+| Comparison | Original results versus actual reproduced results, failures and deviations | No reproduced paper ASR exists |
+
+The [paper §4](https://arxiv.org/html/2307.14539v2) describes a 6400-generation main
+experiment; Appendix H clarifies task-fulfillment scoring. Its hidden-injection and
+supplementary experiments are separate. Reducing scale must be explicit.
+The notebook cannot reconstruct missing original inputs from a paper title.'''),
+    code('''# Readiness ledger only: these are blockers, not invented datasets or results.
+FULL_PAPER_READINESS = {
+    'complete_original_input_manifest': False,
+    'four_trigger_branches_verified': False,
+    'original_target_checkpoints_verified': False,
+    'original_preprocessing_and_sampling_verified': False,
+    'downstream_execution_implemented': False,
+    'native_evaluation_protocol_ready': False,
+    'actual_downstream_results_present': False,
+}
+missing = [name for name, ready in FULL_PAPER_READINESS.items() if not ready]
+print('FULL PAPER: BLOCKED / NOT_RUN')
+print('Unresolved components:', ', '.join(missing))
+'''),
+    md('''### Why not simply rerun the original script and call the paper reproduced?
+
+We should rerun the algorithm. However, the released `adv_image.py` optimizes one
+visual example only; its loop does not conduct the complete downstream experiment.
+Running it successfully establishes neither all trigger branches nor the paper ASR.
+The release also differs from Algorithm 1's convergence description.
+
+Use exact original code where executable dependencies/settings are recovered. Any
+repair or reimplementation must be disclosed and checked against it. Do not silently
+replace original models, examples, sampling or scoring to manufacture completion.
+
+**Next substantive milestone:** recover a complete original experiment contract,
+then execute attack generation **and** downstream evaluation on that contract.
+If only a subset is recoverable, label it reduced-scale/partial; if setup changes,
+label it adaptation. Missing original artifacts remain visible blockers.
+
+## Executable prerequisite: released visual encoder example
+
+The cells below remain the narrower 60-minute draft. They are not an approved
+budget for the whole paper, and running them cannot complete the ledger above.'''),
     md('''## 1. What is being reproduced?
 
 [Paper §§3–4 / Algorithm 1](https://arxiv.org/html/2307.14539v2)
@@ -51,7 +105,8 @@ Profile: 50 updates. If valid and projected affordable, independently restart fr
 the original initialization for the released 5000 updates. A short profile is not
 the full released-length run. Lower feature distance is not jailbreak success.'''),
     code('''from pathlib import Path
-import json, sys, time, hashlib, subprocess, shutil
+import json, sys, time, hashlib, subprocess, shutil, tempfile
+HELPER_BUILD_ROOT = Path(tempfile.mkdtemp(prefix='jip_notebook_source_PRIVATE_'))
 RUN_APPROVED = False
 ACCEPTED_PROTOCOL = ""  # Set only after the owner accepts Amendment 13 and its cap.
 PROTOCOL_TOKEN = "AMENDMENT_13_JIP_ENCODER_60_MIN_FREE_ONLY"
@@ -79,11 +134,12 @@ else:
 '''),
     md('''## 4. Reviewed helper source
 
-This is ordinary inspectable Python. The next cell stores it as a string without
-executing it. Source/model/data manifests and artifacts are written privately only
+The next cell shows ordinary Python and writes it to a private local temporary file.
+It does not load models or execute the attack. Source/model/data manifests and artifacts are written privately only
 after approval. Model revision is resolved and recorded before weight loading.
 The original paper-era model/environment identity remains unresolved.'''),
-    code('HELPER_SOURCE = '+repr((ROOT/'tools/vlm_jip_encoder.py').read_text())+'\nprint("Helper prepared; source SHA256:", hashlib.sha256(HELPER_SOURCE.encode()).hexdigest())'),
+    code('%%writefile {HELPER_BUILD_ROOT}/vlm_jip_encoder_PRIVATE.py\n'+(ROOT/'tools/vlm_jip_encoder.py').read_text()),
+    code('HELPER_SOURCE = (HELPER_BUILD_ROOT/"vlm_jip_encoder_PRIVATE.py").read_text()\nprint("Helper prepared; source SHA256:", hashlib.sha256(HELPER_SOURCE.encode()).hexdigest())'),
     md('''## 5. Bounded execution — starts one 60-minute clock
 
 Select a T4 under Runtime → Change runtime type before this cell; check free quota
@@ -91,7 +147,8 @@ and account settings yourself. No paid service is called by this notebook.
 
 Installation and model execution run in child processes with the remaining wall
 budget. A five-minute preservation reserve is withheld. The fixed profile and
-release-length stage share one clock; failure never restarts it. Source identity,+processor settings, software versions, actual GPU, frozen weights and loss traces
+release-length stage share one clock; failure never restarts it. Source identity,
+processor settings, software versions, actual GPU, frozen weights and loss traces
 are recorded. No downstream VLM or safety-request generation runs here.'''),
     code('''if RUN_APPROVED:
     import importlib.util
@@ -180,7 +237,10 @@ a remaining-budget decision; it is not an automatic additional attempt.'''),
         'scientific_run_status':'NOT_RUN','paid_compute_allowed':False})
     nbformat.validate(notebook)
     for cell in cells:
-        if cell.cell_type=='code': compile(cell.source,'<generated-cell>','exec')
+        if cell.cell_type=='code':
+            source=cell.source
+            if source.startswith('%%writefile '): source=source.split('\n',1)[1]
+            compile(source,'<generated-cell>','exec')
     path=ROOT/'notebooks/vlm_jip_free_t4.ipynb'
     path.write_text(json.dumps(notebook,ensure_ascii=False,separators=(',',':')))
     print(path,len(cells),'cells; code syntax passed; no GPU run')

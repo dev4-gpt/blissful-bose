@@ -1,4 +1,40 @@
-# Evolved-project paper catalogue
+# Visual attacks on VLMs: research brief and paper list
+
+## What you asked this research to do
+
+Study the existing research on visual attacks against vision-language models **before proposing a new attack or defense**. Identify the original papers; read them in depth; explain what each actually did, how and why it worked in its experiments, what data and models it used, and how success was measured. Then rerun recoverable original experiments and use the verified findings to design our own contribution.
+
+The deliverable is a paper-based research dossier and reproducible experiment record. Helper functions, a paper-name list, source downloads or one encoder-loss demonstration do not by themselves meet that request. No new synthetic examples or invented results may fill missing original evidence.
+
+For each selected paper, the required analysis is:
+
+1. **Identity and motivation:** original title, authors, version, source link, problem and claimed contribution.
+2. **Architecture:** an annotated diagram from inputs through encoder/connector/decoder to response, showing where the attack acts and what is frozen.
+3. **Threat model:** attacker access, controlled inputs, objective and constraints.
+4. **Mathematics:** every loss, update and constraint, with symbols explained and targeted/untargeted distinctions.
+5. **Data:** original dataset/trigger collection, construction, source files, splits, licensing and train/development/evaluation roles.
+6. **Procedure:** initialization, preprocessing, optimization, model/checkpoint, decoding, repetitions, selection and compute.
+7. **Evaluation:** exact success criterion, denominators, judges/human reviewers, uncertainty, controls, benign utility and costs.
+8. **Original evidence:** reported results linked to the actual section/table; limitations and author claims separated from our conclusions.
+9. **Reproduction:** rerun attack construction and the chosen original evaluation; record actual outputs and original-versus-reproduced results, with deviations and blockers.
+10. **Synthesis:** compare mechanisms and pipelines, identify what is already known, and only then justify a testable contribution.
+
+**Plain-language clarification:** in these papers, “downstream evaluation” means feeding the attack image into the target VLM with the specified text and assessing its generated answer. It is part of testing the attack itself, not a separate future application of the paper. Image optimization alone cannot reproduce the paper's behavioral result.
+
+## The papers we should research first
+
+The initial twelve-paper reading set is P01–P08 and P11–P14 below: three foundations, four digital VLM attack papers, physical injection, one comparison benchmark, two defenses and one survey. P09–P10 connect the historical typographic work. P15–P22 broaden attack coverage as the project evolves. Architecture and evaluation papers support understanding and measurement; they are not all additional attack algorithms.
+
+| Research question | First papers | Intended research product |
+|---|---|---|
+| What is the mathematics of pixel/patch optimization? | FGSM (P01), Madry/PGD (P02), Adversarial Patch (P03) | Worked equations and constraints; distinguish classifier results from VLM safety |
+| What has actually been demonstrated against generative VLMs? | Qi (P04), Jailbreak in Pieces (P05), Image Hijacks (P06), BAP (P07) | Full method/data/model/result analyses and recoverable original experiment contracts |
+| What other attack families would our first panel miss? | Physical injection (P08), AttackVLM (P15), imgJP (P16), HADES (P17), Multi-Modal Linkage (P19), visual-modality attacks (P22) | Source-verified expansion of transfer, semantic and scene-based mechanisms |
+| How does this connect to our earlier research? | FigStep (P09), MM-SafetyBench (P10) | Typography, framing and content/carrier controls; historical evidence kept separate |
+| How should safety and defenses be compared? | MMJ-Bench (P11), AdaShield (P12), JailGuard (P13), HarmBench (P31), StrongREJECT (P32) | Native scoring, safety/utility distinctions, defense assumptions and cost |
+| What could invalidate a novelty claim? | VLSBench (P23), DUAL-Bench (P26), MMJailBench (P28), alignment studies (P29–P30) | Closest-prior-work comparison before proposing a contribution |
+
+## Evidence status and full catalogue
 
 28 October 2026. **40 distinct papers** spanning architecture, attacks, safety evaluation and defenses. This is the consolidated reading set for the current atlas and its wider research expansion, not an exhaustive bibliography of the field or every citation ever mentioned in this repository. Preprint and conference versions are one study unless explicitly distinguished.
 

@@ -2,6 +2,28 @@
 
 28 October 2026. **Prepared, not approved or run.** The owner specified Colab T4, free Kaggle if needed and no paid GPU. Proposed maximum: 60 elapsed minutes for one attempt, starting before installs/downloads. The time cap and scientific amendment still require owner acceptance. No previous clock may be reset.
 
+## Correction: full-paper reproduction is the objective
+
+The initial notebook implemented an encoder feasibility stage only. That is insufficient for the owner's requested paper reproduction. The full study must connect **original inputs → attack construction → original-compatible target models → repeated downstream generations → native evaluation → comparison with published tables**. The executable 50/5000-update encoder stage below is one prerequisite, not the whole study or a proxy for ASR.
+
+| Reproduction component | Original evidence to match | Current readiness |
+|---|---|---|
+| Four trigger branches | Text-encoder target, OCR image target, visual image target, combined image target; Eq.3 | Only the released visual encoder example is implemented here |
+| Algorithm 1 | Target embedding, initialization, Adam/image updates, convergence rule; §3 | Released fixed-length loop available; paper convergence variant not implemented |
+| Main safety evaluation | LLaVA and LLaMA-Adapter V2; scenario/image/prompt/repetition design; §4 | Exact historical checkpoints, complete original inputs and decoding not yet recovered |
+| Primary scoring | Scenario-relevant harmful task fulfillment; §4 and Appendix H | Original-compatible human protocol and reviewers not yet established |
+| Supplemental scoring | Original toxicity models/services; §4 | Native versions/configuration and service availability unresolved |
+| Other experiments | Indirect/direct hidden injection, AdvBench supplement and qualitative grounding | Distinct original inputs/settings not yet recovered as complete collections |
+| Published comparison | Native per-model/per-trigger results and uncertainty | No new downstream result exists |
+
+The pinned official repository tree contains a small demo release: source, README, two visual targets, two initialization/background files and selected output examples. It does not supply a verified complete scenario/trigger/prompt manifest or the full paper experiment driver. The later README's LLaVA-1.5 example is not proof of the historical checkpoint. These are actual reproducibility blockers; another dataset or a new synthetic trigger would not resolve them faithfully.
+
+The paper's main experiment describes 6400 generations, using two models, eight scenarios, eight images, two prompts and 25 repetitions (§4). Its primary endpoint requires task-fulfilling harmful assistance, not just a smaller embedding loss or a refusal keyword. This scale is a source requirement, not a promise that the unprofiled whole study fits one free session. Do not add another clock or paid GPU to conceal a feasibility limit.
+
+**Whole-paper completion rule:** all selected experiment branches have original-source manifests and compatible checkpoints/configuration, actual attack artifacts, completed generation/scoring coverage and a table-level comparison with documented deviations. Any missing component remains blocked or partial. The notebook must report this state before showing the encoder appendix. Author-contact or newly discovered official artifacts may resolve missing inputs; no message is sent to authors without owner authorization.
+
+**Strategy:** finish the release/data/checkpoint audit first, select a specific recoverable paper experiment, and rerun its attack algorithm and downstream evaluation together. A declared reduced-scale reproduction may use fewer original items/repetitions while retaining the method; changed checkpoints/objectives/judges are adaptations. If the required original collection cannot be recovered, prioritize a paper with a complete accessible release rather than inventing substitutes.
+
 ## Research scope and evidence labels
 
 Source: Shayegani, Dong and Abu-Ghazaleh, [Jailbreak in pieces](https://arxiv.org/html/2307.14539v2), §§3–4, Algorithm 1; official [released encoder example](https://github.com/erfanshayegani/Jailbreak-In-Pieces/blob/b7b2bce812adada23f583f63f63e564f84d277c6/src/adv_image.py).
