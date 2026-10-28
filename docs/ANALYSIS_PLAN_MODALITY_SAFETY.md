@@ -488,3 +488,11 @@ clean-source counterpart or causal injection claim. No aggregate pooling across 
 No significance or general safety ranking; human validation remains pending. Mark
 failed/blocked/unrun cells explicitly. Preserve actual code/output notebook and
 distinct aggregate/private artifact snapshots with checksums before another stage.
+
+## 19. Amendment 12 — incomplete-cell repair (2026-10-27)
+
+Owner's “lets finish it” authorizes a separate <=60 T4-minute repair, including
+installs/downloads/scoring; no old clock reset. Frozen source IDs/endpoints remain.
+Before outputs, follow the repair selection, numerical configuration, controls and
+merge rules in `docs/PUBLISHED_BENCHMARK_PROTOCOL.md` section “Repair stage”.
+No new synthetic data, training, sample selection by safety score or silent pooling.

@@ -1,5 +1,10 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**October 27 repair and measured results:** [published-benchmark results](PUBLISHED_BENCHMARK_RESULTS.md)
+are generated from actual private aggregates, with ASR denominators and unresolved cells.
+[Repair appendix](../notebooks/vlm_published_repair_20261027.ipynb) implements Amendment 12:
+missing cells only, a separate bounded clock, and explicitly identified Qwen numerical adaptations.
+
 **October 26 published-source stage:** [protocol and coverage ledger](PUBLISHED_BENCHMARK_PROTOCOL.md)
 and [generated Colab notebook](../notebooks/vlm_published_benchmarks_20261026.ipynb)
 replace synthetic base examples with pinned HarmBench/Qi/CyberSecEval3 source items.

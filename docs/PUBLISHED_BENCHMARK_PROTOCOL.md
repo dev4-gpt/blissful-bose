@@ -113,3 +113,44 @@ and run actual pretrained checks. No runtime deletion or Drive-authorization byp
 Outstanding: fully audited original checkpoints/hyperparameters, remaining feature/teacher/
 text-search methods, real benign utility dataset/scorer, full benchmark scale, independent
 human labels and held-out confirmation. None is completed merely by starting this stage.
+
+## Repair stage — Amendment 12, 27 October 2026
+
+Owner explicitly requests finishing incomplete coverage. A separate, fixed <=60-minute
+T4 allowance covers installation, missing target runs, classifier scoring and archiving.
+Preserve the previous stage/archive/source clock and completed notebook copy first.
+Repair folder: `VLM_Published_Repair_20261027_PRIVATE`. No repeated completed identities.
+Use the same eight frozen source behaviors, eight corpus rows, budgets and endpoints.
+
+Smol: finish the two missing flip-aware PGD cases and all eight released-artifact cases.
+Qwen: retry all eight EOT cases and all eight injection records after diagnosing the
+original numerical/processor failures. Keep 256 safety tokens and 64 injection tokens.
+No substitutions of datasets, target continuations or published judge markers.
+
+Qwen numerical adaptation, declared before new outputs: run normalization/patch layout
+on CPU using differentiable Torch operations, then transfer patches to GPU. Require
+exact equality of delivered FP16 processor tensors to the original native processor.
+Evaluate eager attention query/key/value matmuls in FP32 then cast the attention output
+back to its original dtype; model weights remain frozen FP16. This addresses potential
+FP16 attention overflow, not an established causal diagnosis of the old failure. Record
+finite-loss/gradient, unchanged-weight and native-generation/processor parity gates;
+stop if they fail. Never widen the parity tolerance to make a failed case pass.
+
+The EOT initializer, step count, transformations, learning rate and patch support stay
+unchanged. Paired clean/random/text/defended controls use the same repaired numerical
+configuration. Qwen repair results must identify this configuration; their causal
+comparability with the original FP16-attention rows is limited. No invisible pooling
+under a single precision label. Retain old failure records and new success/failure IDs.
+
+Frozen selection for repair is determined solely by missing/completed files, before
+new labels. Original complete cases win in a combined *coverage* ledger. Repaired
+cases fill only pre-existing missing cells, with source-stage identity per record.
+Original classifier labels are retained for original records; score new responses
+with the same pinned NF4 HarmBench classifier/template. Report expected, generated,
+resolved and missing counts; do not pool repeated clean baselines as independent data.
+
+Finish means reconciling all nine implemented mechanism/artifact rows on both models
+and injection coverage, or recording an exact unresolved blocker. Feature matching,
+original teacher/context matching and full BAP search remain outside this repair until
+verified original configurations exist. Human validation, benign utility, full-dataset
+scale and novel contributions remain pending; do not call them completed.

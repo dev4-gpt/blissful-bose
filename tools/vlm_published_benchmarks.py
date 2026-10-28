@@ -128,7 +128,7 @@ def check(deadline):
         raise TimeoutError('Persisted stage deadline reached')
 
 
-def run_model(root, name, deadline):
+def run_model(root, name, deadline, selection=None, adapter_class=None):
     from vlm_visual_adapter import QwenAttackAdapter
     from vlm_visual_smol_adapter import SmolAttackAdapter
     root=Path(root); manifest=prepare(root); dest=root/(name+'_PRIVATE');dest.mkdir(exist_ok=True)
@@ -137,7 +137,7 @@ def run_model(root, name, deadline):
     try:
         check(deadline)
         start=time.monotonic()
-        adapter=(QwenAttackAdapter if name=='qwen' else SmolAttackAdapter)(canvas=448,max_new=256)
+        adapter=(adapter_class or (QwenAttackAdapter if name=='qwen' else SmolAttackAdapter))(canvas=448,max_new=256)
         status.update(load_seconds=time.monotonic()-start, identity=adapter.identity)
         clean=adapter.read_image(manifest['files']['carrier'])
         source=manifest['safety'][0]
@@ -148,7 +148,7 @@ def run_model(root, name, deadline):
         identity=core.digest(dict(manifest=sha(root/'manifest_PRIVATE.json'), model=adapter.identity,
                                   methods=METHODS, defense=DEFENSE, seed=SEED,
                                   configs={m:asdict(config(m)) for m in METHODS if m!='released_qi_16'},
-                                  source_sha256=sha(__file__)))
+                                  source_sha256=sha(__file__), selection=selection))
         identity_path=dest/'identity_PRIVATE.json'
         if identity_path.exists() and json.loads(identity_path.read_text())['identity']!=identity:
             raise ValueError('Existing identity differs')
@@ -169,6 +169,7 @@ def run_model(root, name, deadline):
             core.atomic_json(path,record)
             return record
         for method in METHODS:
+            if selection is not None and method not in selection:continue
             check(deadline)
             status['methods'][method]=dict(planned=8,complete=0,failed=0,status='running')
             core.atomic_json(dest/'status.json',status)
@@ -182,6 +183,7 @@ def run_model(root, name, deadline):
                         shared,shared_info=core.optimize(clean,objectives,config(method),deadline)
                     del objectives
                 for row in manifest['safety']:
+                    if selection is not None and row['id'] not in selection[method]:continue
                     check(deadline)
                     path=dest/(method+'__'+row['id']+'_case_PRIVATE.json')
                     if path.exists():
@@ -263,7 +265,7 @@ def run_model(root, name, deadline):
     return status
 
 
-def run_injection(root,name,deadline):
+def run_injection(root,name,deadline,adapter_class=None):
     """Released marker diagnostic, separate endpoint and source denominator."""
     from vlm_visual_adapter import QwenAttackAdapter
     from vlm_visual_smol_adapter import SmolAttackAdapter
@@ -280,7 +282,7 @@ def run_injection(root,name,deadline):
     adapter=None
     try:
         check(deadline)
-        adapter=(QwenAttackAdapter if name=='qwen' else SmolAttackAdapter)(canvas=448,max_new=64)
+        adapter=(adapter_class or (QwenAttackAdapter if name=='qwen' else SmolAttackAdapter))(canvas=448,max_new=64)
         for row in rows:
             marker=re.fullmatch(r'Does this response contain: ([A-Za-z0-9]+)\?',row['judge_question']).group(1)
             image_path=download(base+f'images/{row["id"]}.png',data/(str(row['id'])+'_PRIVATE.png'))
