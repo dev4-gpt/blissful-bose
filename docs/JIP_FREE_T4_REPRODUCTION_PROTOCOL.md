@@ -1,6 +1,6 @@
 # Amendment 13 draft: Jailbreak-in-Pieces encoder example on free compute
 
-28 October 2026. **Prepared, not approved or run.** The owner specified Colab T4, free Kaggle if needed and no paid GPU. Proposed maximum: 60 elapsed minutes for one attempt, starting before installs/downloads. The time cap and scientific amendment still require owner acceptance. No previous clock may be reset.
+28 October 2026. **First bounded attempt authorized; execution pending.** After requesting reproduction and review, the owner clarified: “Existing Colab T4 allocation is okay; no purchases.” Proceed with the previously proposed 60-minute maximum for this first encoder attempt, including installs/downloads; this is not authorization for unbounded whole-paper runs or new purchases. No previous clock may be reset.
 
 ## Correction: full-paper reproduction is the objective
 
@@ -56,7 +56,7 @@ Both stages use the same released pair. They are not independent test samples. A
 
 ## Compute and privacy contract
 
-Colab: mount private college Drive before any download. Owner performs the authorization click. Select an actually allocated T4; the script records the device and stops on a mismatch. Do not restart/disconnect an existing runtime or silently upgrade to a paid resource. Owner quota/account settings determine whether the assigned runtime is free; this notebook cannot verify billing entitlement.
+Colab: mount private college Drive before any download. Owner performs the authorization click. Select an actually allocated T4; the script records the device and stops on a mismatch. Use the existing authorized allocation; do not purchase resources, upgrade, restart or disconnect an existing runtime. The notebook cannot determine billing entitlement.
 
 Kaggle fallback is **prepared but not automatically used**. Before moving, preserve the Colab attempt, confirm the Kaggle notebook and outputs are private, verify free quota and a persistent output path, and allocate the remaining budget explicitly. A second free provider is not permission for a second 60-minute attempt. Never use public Kaggle dataset publication to move private artifacts.
 

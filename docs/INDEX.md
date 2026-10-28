@@ -1,5 +1,13 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**NotebookLM brief:** [self-contained paper-analysis instructions](NOTEBOOKLM_VLM_RESEARCH_BRIEF.md)
+defines the complete per-paper review, mathematics/architecture/data/evaluation/reproduction
+requirements, cross-paper synthesis, grounding rules and 40-source reading scope.
+
+**Paper-first review batch:** [original-paper reviews and reproduction record](PAPER_REVIEWS_AND_REPRODUCTION_STATUS.md)
+explains the core methods, selected original result anchors, release findings, critiques
+and exact remaining reproduction requirements. Published values are separate from our results.
+
 **First individual reproduction prepared:** [free-T4 Jailbreak-in-Pieces notebook](../notebooks/vlm_jip_free_t4.ipynb)
 and [Amendment 13 draft](JIP_FREE_T4_REPRODUCTION_PROTOCOL.md) specify released inputs,
 encoder objective, a 50-update profile and conditional separate 5000-update attempt within
