@@ -1,5 +1,10 @@
 # Index: modality-safety paper project (VLM refusal gap)
 
+**First individual reproduction prepared:** [free-T4 Jailbreak-in-Pieces notebook](../notebooks/vlm_jip_free_t4.ipynb)
+and [Amendment 13 draft](JIP_FREE_T4_REPRODUCTION_PROTOCOL.md) specify released inputs,
+encoder objective, a 50-update profile and conditional separate 5000-update attempt within
+one proposed 60-minute cap. No paid GPU; Kaggle is a gated fallback. Prepared, not run.
+
 **October 28 structural atlas and wider reading set:** [pipeline atlas](VISUAL_ATTACK_PIPELINE_ATLAS.md)
 maps input control, gradient paths, objectives, constraints, defenses and evaluation with
 16 diagrams. [Paper catalogue](VISUAL_ATTACK_PAPER_CATALOGUE.md) lists 40 distinct papers

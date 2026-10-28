@@ -496,3 +496,5 @@ installs/downloads/scoring; no old clock reset. Frozen source IDs/endpoints rema
 Before outputs, follow the repair selection, numerical configuration, controls and
 merge rules in `docs/PUBLISHED_BENCHMARK_PROTOCOL.md` section “Repair stage”.
 No new synthetic data, training, sample selection by safety score or silent pooling.
+
+## 20. Amendment 13 — DRAFT, owner acceptance pending: [Jailbreak-in-Pieces encoder example, free Colab T4, proposed 60-minute total cap](JIP_FREE_T4_REPRODUCTION_PROTOCOL.md). Hypothesis, endpoints, source identities, deviations, stopping/privacy rules and Kaggle fallback restrictions are specified in the linked pre-run contract; no new scientific run authorized by this draft.
