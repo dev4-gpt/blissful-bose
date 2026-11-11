@@ -1,0 +1,133 @@
+{
+  "archive_date": "2026-11-10",
+  "scope": "completed_MM_SafetyBench_panel",
+  "privacy": "aggregate_metrics_and_output_cleared_source_only",
+  "private_final_snapshot": {
+    "manifest_sha256": "f2b3e491543aed24e588a76f6bfa377b5c9e5ebda2ed450f0e2d9f147f9de7c1",
+    "verified_files": 48,
+    "verified_bytes": 102660476
+  },
+  "private_generation_snapshots": {
+    "instructblip_complete_20261108T111407Z_PRIVATE": {
+      "manifest_sha256": "9bd03bb2098c329cb4cdcdd230c92a02a9b73a30b0c7c5c1dd3febe4c3e0bdee",
+      "verified_files": 11,
+      "verified_bytes": 10115367
+    },
+    "llava_complete_20261108T213651Z_PRIVATE": {
+      "manifest_sha256": "3b9eacd3f38d953e347564b57896d0d7baab78faa75f1f7a6a0f4d4b43264f56",
+      "verified_files": 5,
+      "verified_bytes": 18693166
+    },
+    "qwen_complete_20261108T223517Z_PRIVATE": {
+      "manifest_sha256": "ca8129e584d1a34f1ab0320db260c8863170cda30985791c7a664e66c6f909b9",
+      "verified_files": 8,
+      "verified_bytes": 15868800
+    }
+  },
+  "notebooks": {
+    "notebooks/completed_mm_safetybench/llava_7b.ipynb": {
+      "source_sha256": "d689dc29295d107da37d1cfefcf07fac619bd0a2d331cf9c74f133ae1eb773fc",
+      "exported_sha256": "7c4f29a24a979b0211a2a32ba581bad0de773f011b25bb6cccbe7d4eb2f9cb47",
+      "code_cells": 5,
+      "outputs_cleared": true,
+      "source_code_preserved": true
+    },
+    "notebooks/completed_mm_safetybench/instructblip.ipynb": {
+      "source_sha256": "d599159d49d0b8038b2757b02024d3911a83915241ef8e76a771e4dd59384932",
+      "exported_sha256": "9ec32474fa4702aa378e403b2bba97699375f7865fede901a40652c12a5f723a",
+      "code_cells": 4,
+      "outputs_cleared": true,
+      "source_code_preserved": true
+    },
+    "notebooks/completed_mm_safetybench/qwen25_text.ipynb": {
+      "source_sha256": "ac5d797198301091157a7965e57a8bfb7924192b3e432169f939f9bb1cb52a27",
+      "exported_sha256": "5df133e932cbfe3647cfc1f99d71c1eaaff27bd1d7d7e81e7ada2d125557f33f",
+      "code_cells": 12,
+      "outputs_cleared": true,
+      "source_code_preserved": true
+    },
+    "notebooks/completed_mm_safetybench/qwen25_images.ipynb": {
+      "source_sha256": "93a4dc7b3d057fce6d18438c9700e20e831c639407fa35d76710d4062f06ee84",
+      "exported_sha256": "566170a469604e42caff27429821b19b452525a6a46805da3cb78c0fb91beab4",
+      "code_cells": 3,
+      "outputs_cleared": true,
+      "source_code_preserved": true
+    }
+  },
+  "tables": {
+    "reports/mm_safetybench_asr_rr_by_scenario.csv": {
+      "rows": 312,
+      "source_sha256": "b474ad35813cc3f6acf537c04ac640e4c7c8ca6dabc793fd08af5c01b8aa6a79",
+      "exported_sha256": "b474ad35813cc3f6acf537c04ac640e4c7c8ca6dabc793fd08af5c01b8aa6a79"
+    },
+    "reports/mm_safetybench_asr_rr_by_condition.csv": {
+      "rows": 24,
+      "source_sha256": "3c398c4a3ff3035ce15cb12479d35097af4efed29bf227e106981f90ec6189fe",
+      "exported_sha256": "3c398c4a3ff3035ce15cb12479d35097af4efed29bf227e106981f90ec6189fe"
+    }
+  },
+  "dataset": {
+    "paper": "https://arxiv.org/html/2311.17600v5",
+    "release_commit": "b80eedea3db312c09ded2082813390f68e750ef3",
+    "questions": 1680,
+    "scenarios": 13,
+    "conditions": [
+      "TEXT",
+      "SD",
+      "TYPO",
+      "SD_TYPO"
+    ],
+    "planned_cases_per_model": 6720,
+    "content_location": "author_release_and_private_college_Drive"
+  },
+  "judge": "gpt-4.1-2025-04-14",
+  "model_counts": {
+    "qwen25": {
+      "eligible": 6720,
+      "no_response": 0,
+      "metrics": {
+        "safety": {
+          "judged": 6549,
+          "filtered": 171
+        },
+        "refusal": {
+          "judged": 6603,
+          "filtered": 117
+        }
+      }
+    },
+    "instructblip": {
+      "eligible": 5922,
+      "no_response": 798,
+      "metrics": {
+        "safety": {
+          "judged": 5773,
+          "filtered": 149
+        },
+        "refusal": {
+          "judged": 5782,
+          "filtered": 140
+        }
+      }
+    },
+    "llava": {
+      "eligible": 6720,
+      "no_response": 0,
+      "metrics": {
+        "safety": {
+          "judged": 6414,
+          "filtered": 306
+        },
+        "refusal": {
+          "judged": 6478,
+          "filtered": 242
+        }
+      }
+    }
+  },
+  "metric_outcomes": 38724,
+  "cost_or_reservations_usd": "28.716136",
+  "human_validation": false,
+  "exact_historical_reproduction": false,
+  "source_record_verified_utc": "2026-11-09T03:47:18.022911+00:00"
+}

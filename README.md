@@ -1,5 +1,7 @@
 # Continual Safety Alignment in Small Vision-Language Models (VLMs) via Multimodal Gradient-Based Sample Selection
 
+**Completed MM-SafetyBench panel, November 2026.** The [reproduction archive](docs/MM_SAFETYBENCH_ARCHIVE.md) contains the three-model notebook sources, generation and Azure GPT-4.1 evaluation code, aggregate full/tiny ASR and RR results, and checksums for private evidence backups. The original notebooks with outputs, benchmark inputs, raw answers and per-case judgments remain in college Drive. The research overview below describes the earlier project proposal.
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dev4-gpt/blissful-bose/blob/master/notebooks/continual_safety_vlm.ipynb)
 [![CI Tests](https://img.shields.io/badge/pytest-13%20passed-brightgreen.svg)]()
 [![Model](https://img.shields.io/badge/Base%20Model-Qwen2--VL--2B--Instruct-blue.svg)]()
